@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Bonas Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="site-body">
+
+  <!-- GLOBAL NAVIGATION -->
+  <header class="site-header" id="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">Bonas Studio</a>
+      <nav class="site-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li class="nav-item"><a href="process.html" class="nav-link">Process</a></li>
+          <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+          <li class="nav-item"><a href="commission.html" class="nav-link nav-link--cta">Commission</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span class="nav-toggle-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="site-main contact-main">
+
+    <!-- CONTACT HEADER -->
+    <section class="contact-header section-padded">
+      <div class="section-container section-container--narrow">
+        <h1 class="page-title fade-in">Get in Touch</h1>
+        <p class="page-subtitle fade-in">
+          Whether you have questions about commissions, press inquiries, or just want to say hello—we'd love to hear from you.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT CONTENT -->
+    <section class="contact-content section-padded">
+      <div class="section-container">
+        <div class="contact-layout">
+          
+          <!-- Contact Form -->
+          <div class="contact-form-wrapper">
+            <h2 class="contact-section-title fade-in-scroll">Send a Message</h2>
+            <form class="contact-form" id="contact-form">
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" class="form-label">Name *</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    class="form-input" 
+                    required 
+                    autocomplete="name"
+                  />
+                </div>
+                
+                <div class="form-group">
+                  <label for="email" class="form-label">Email *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input" 
+                    required 
+                    autocomplete="email"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="subject" class="form-label">Subject *</label>
+                <input 
+                  type="text" 
+                  id="subject" 
+                  name="subject" 
+                  class="form-input" 
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="message" class="form-label">Message *</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  class="form-textarea" 
+                  rows="8" 
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="btn btn--accent">Send Message</button>
+              </div>
+
+              <!-- Success/Error Messages -->
+              <div class="form-message form-message--success" id="form-success">
+                <p>✓ Thank you! Your message has been sent. We'll respond within 24-48 hours.</p>
+              </div>
+              <div class="form-message form-message--error" id="form-error">
+                <p>Something went wrong. Please try emailing us directly at <a href="mailto:jonas@bonasstudio.com">jonas@bonasstudio.com</a></p>
+              </div>
+
+            </form>
+          </div>
+
+          <!-- Contact Info Sidebar -->
+          <div class="contact-info-wrapper">
+            
+            <!-- Direct Contact -->
+            <div class="contact-info-block fade-in-scroll">
+              <h3 class="contact-info-title">Direct Contact</h3>
+              <div class="contact-info-items">
+                <a href="mailto:jonas@bonasstudio.com" class="contact-info-link">
+                  <span class="contact-info-icon">✉</span>
+                  <span class="contact-info-text">jonas@bonasstudio.com</span>
+                </a>
+                <a href="tel:+15551234567" class="contact-info-link">
+                  <span class="contact-info-icon">☎</span>
+                  <span class="contact-info-text">+1 (555) 123-4567</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="contact-info-block fade-in-scroll">
+              <h3 class="contact-info-title">Follow Along</h3>
+              <div class="contact-info-items">
+                <a href="https://instagram.com/bonasstudio" target="_blank" rel="noopener" class="contact-info-link">
+                  <span class="contact-info-icon">📷</span>
+                  <span class="contact-info-text">jonas@bonasstudio</span>
+                </a>
+                <a href="https://linkedin.com/company/bonas-studio" target="_blank" rel="noopener" class="contact-info-link">
+                  <span class="contact-info-icon">💼</span>
+                  <span class="contact-info-text">LinkedIn</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Studio Location (Optional) -->
+            <div class="contact-info-block fade-in-scroll">
+              <h3 class="contact-info-title">Studio</h3>
+              <p class="contact-info-text">
+                780 Worcester St<br>
+                Natick, Massachusetts<br>
+                <em>By appointment only</em>
+              </p>
+            </div>
+
+            <!-- Response Time -->
+            <div class="contact-info-block fade-in-scroll">
+              <h3 class="contact-info-title">What to Expect</h3>
+              <p class="contact-info-text">
+                We respond to all inquiries within 24-48 hours. For commission consultations, 
+                we'll schedule a video call to discuss your project in depth.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ TEASER (Optional) -->
+    <section class="contact-faq section-padded bg-dark">
+      <div class="section-container section-container--narrow text-center">
+        <h2 class="section-title fade-in-scroll">Common Questions</h2>
+        <div class="faq-list">
+          <div class="faq-item fade-in-scroll">
+            <h3 class="faq-question">How long does a commission take?</h3>
+            <p class="faq-answer">Most pieces are completed in 8-12 weeks from consultation to delivery.</p>
+          </div>
+          <div class="faq-item fade-in-scroll">
+            <h3 class="faq-question">What's the investment range?</h3>
+            <p class="faq-answer">Custom pieces begin at mid-four figures and scale with size, complexity, and materials.</p>
+          </div>
+          <div class="faq-item fade-in-scroll">
+            <h3 class="faq-question">Do you ship internationally?</h3>
+            <p class="faq-answer">Yes. We work with specialized art shippers to ensure safe delivery worldwide.</p>
+          </div>
+        </div>
+        <a href="commission.html" class="btn btn--primary" style="margin-top: var(--space-5);">Learn About Commissions</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <p class="footer-logo">Bonas Studio</p>
+        <p class="footer-tagline">Custom Topographic Art</p>
+      </div>
+      <nav class="footer-nav">
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item"><a href="gallery.html" class="footer-link">Gallery</a></li>
+          <li class="footer-nav-item"><a href="process.html" class="footer-link">Process</a></li>
+          <li class="footer-nav-item"><a href="commission.html" class="footer-link">Commission</a></li>
+          <li class="footer-nav-item"><a href="about.html" class="footer-link">About</a></li>
+          <li class="footer-nav-item"><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-social">
+        <a href="#" class="social-link" aria-label="Instagram"><span class="icon-instagram">IG</span></a>
+        <a href="#" class="social-link" aria-label="Email"><span class="icon-email">@</span></a>
+      </div>
+      <div class="footer-legal">
+        <p class="footer-copyright">&copy; 2025 Bonas Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script src="contact.js"></script>
+</body>
+</html>

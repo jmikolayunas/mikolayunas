@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery — Bonas Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="site-body">
+
+  <!-- GLOBAL NAVIGATION -->
+  <header class="site-header" id="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">Bonas Studio</a>
+      <nav class="site-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li class="nav-item"><a href="process.html" class="nav-link">Process</a></li>
+          <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+          <li class="nav-item"><a href="commission.html" class="nav-link nav-link--cta">Commission</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span class="nav-toggle-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="site-main gallery-main">
+
+    <!-- GALLERY HEADER -->
+    <section class="gallery-header section-padded">
+      <div class="section-container section-container--narrow">
+        <h1 class="page-title fade-in">Collection</h1>
+        <p class="page-subtitle fade-in">Each piece is a one-of-one collaboration—capturing place, memory, and craftsmanship in topographic relief.</p>
+      </div>
+    </section>
+
+    <!-- GALLERY FILTERS -->
+    <section class="gallery-filters">
+      <div class="section-container">
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">All Work</button>
+          <button class="filter-btn" data-filter="mountains">Mountains</button>
+          <button class="filter-btn" data-filter="coastlines">Coastlines</button>
+          <button class="filter-btn" data-filter="lakes">Lakes & Rivers</button>
+          <button class="filter-btn" data-filter="urban">Urban</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY GRID -->
+    <section class="gallery-section section-padded">
+      <div class="section-container">
+        <div class="gallery-grid" id="gallery-grid">
+
+          <!-- Gallery Item 1 -->
+          <article class="gallery-item" data-category="mountains">
+            <button class="gallery-item-link" data-index="0">
+              <div class="gallery-item-media">
+                <img src="images/work-1.jpg" alt="Mount Rainier Relief" class="gallery-item-image" />
+              </div>
+              <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Mount Rainier Relief</h3>
+                <p class="gallery-item-meta">Walnut, epoxy, brass inlay</p>
+              </div>
+            </button>
+          </article>
+
+          <!-- Gallery Item 2 -->
+          <article class="gallery-item" data-category="coastlines">
+            <button class="gallery-item-link" data-index="1">
+              <div class="gallery-item-media">
+                <img src="images/work-2.jpg" alt="Big Sur Coastline" class="gallery-item-image" />
+              </div>
+              <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Big Sur Coastline</h3>
+                <p class="gallery-item-meta">Maple, blue resin</p>
+              </div>
+            </button>
+          </article>
+
+          <!-- Gallery Item 3 -->
+          <article class="gallery-item" data-category="lakes">
+            <button class="gallery-item-link" data-index="2">
+              <div class="gallery-item-media">
+                <img src="images/work-3.jpg" alt="Lake Tahoe Depth Map" class="gallery-item-image" />
+              </div>
+              <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Lake Tahoe Depth Map</h3>
+                <p class="gallery-item-meta">Ash, teal epoxy, 36" × 48"</p>
+              </div>
+            </button>
+          </article>
+
+          <!-- Gallery Item 4 -->
+          <article class="gallery-item" data-category="mountains">
+            <button class="gallery-item-link" data-index="3">
+              <div class="gallery-item-media">
+                <img src="images/work-4.jpg" alt="Grand Teton Range" class="gallery-item-image" />
+              </div>
+              <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Grand Teton Range</h3>
+                <p class="gallery-item-meta">Cherry, charcoal finish</p>
+              </div>
+            </button>
+          </article>
+
+          <!-- Gallery Item 5 -->
+          <article class="gallery-item" data-category="urban">
+            <button class="gallery-item-link" data-index="4">
+              <div class="gallery-item-media">
+                <img src="images/work-5.jpg" alt="San Francisco Topography" class="gallery-item-image" />
+              </div>
+              <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">San Francisco Topography</h3>
+                <p class="gallery-item-meta">Birch, graphite stain, brass</p>
+              </div>
+            </button>
+          </article>
+
+          <!-- Gallery Item 6 -->
+          <article class="gallery-item" data-category="coastlines">
+            <button class="gallery-item-link" data-index="5">
+              <div class="gallery-item-media">
+                <img src="images/work-6.jpg" alt="Maine Archipelago" class="gallery-item-image" />
+              </div>
+              <div class="gallery-item-overlay">
+                <h3 class="gallery-item-title">Maine Archipelago</h3>
+                <p class="gallery-item-meta">Oak, ocean blue resin</p>
+              </div>
+            </button>
+          </article>
+
+          <!-- Add more gallery items following this pattern -->
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta section-padded" id="cta">
+      <div class="section-container section-container--narrow text-center">
+        <h2 class="cta-title fade-in-scroll">Commission Your Own</h2>
+        <p class="cta-text">Every piece begins with your story and the place that matters most to you.</p>
+        <a href="commission.html" class="btn btn--accent">Start a Conversation</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LIGHTBOX MODAL -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close lightbox">
+      <span class="close-icon">&times;</span>
+    </button>
+    <button class="lightbox-nav lightbox-nav--prev" id="lightbox-prev" aria-label="Previous image">
+      <span class="nav-arrow">‹</span>
+    </button>
+    <button class="lightbox-nav lightbox-nav--next" id="lightbox-next" aria-label="Next image">
+      <span class="nav-arrow">›</span>
+    </button>
+    <div class="lightbox-content">
+      <img src="" alt="" class="lightbox-image" id="lightbox-image" />
+      <div class="lightbox-info">
+        <h2 class="lightbox-title" id="lightbox-title"></h2>
+        <p class="lightbox-meta" id="lightbox-meta"></p>
+        <p class="lightbox-description" id="lightbox-description"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <p class="footer-logo">Bonas Studio</p>
+        <p class="footer-tagline">Custom Topographic Art</p>
+      </div>
+      <nav class="footer-nav">
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item"><a href="gallery.html" class="footer-link">Gallery</a></li>
+          <li class="footer-nav-item"><a href="process.html" class="footer-link">Process</a></li>
+          <li class="footer-nav-item"><a href="commission.html" class="footer-link">Commission</a></li>
+          <li class="footer-nav-item"><a href="about.html" class="footer-link">About</a></li>
+          <li class="footer-nav-item"><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-social">
+        <a href="#" class="social-link" aria-label="Instagram"><span class="icon-instagram">IG</span></a>
+        <a href="#" class="social-link" aria-label="Email"><span class="icon-email">@</span></a>
+      </div>
+      <div class="footer-legal">
+        <p class="footer-copyright">&copy; 2025 Bonas Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script src="gallery.js"></script>
+</body>
+</html>
