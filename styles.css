@@ -2799,3 +2799,16 @@ ul {
 .story-card-image-wrapper {
   background: linear-gradient(135deg, #2E2E2E 0%, #121212 100%);
 }
+
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-arrow {
+  display: inline-block;
+  line-height: 1;
+  transform: translateY(-1px); /* Fine-tune vertical position */
+}
