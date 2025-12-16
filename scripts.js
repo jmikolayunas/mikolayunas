@@ -2,7 +2,61 @@
 // BONAS STUDIO - INTERACTIONS
 // ============================================
 
+// ============================================
+// AUTO-SIZE WORK ITEM IMAGES
+// Automatically adjusts containers to match image dimensions
+// ============================================
+
+function autoSizeWorkImages() {
+  const workItems = document.querySelectorAll('.work-item');
+  
+  workItems.forEach(item => {
+    const workMedia = item.querySelector('.work-media');
+    const mainImage = item.querySelector('.work-image:not(.work-image--detail)');
+    
+    if (!mainImage || !workMedia) return;
+    
+    // Wait for image to load
+    if (mainImage.complete) {
+      setAspectRatio(mainImage, workMedia);
+    } else {
+      mainImage.addEventListener('load', () => {
+        setAspectRatio(mainImage, workMedia);
+      });
+    }
+  });
+}
+
+function setAspectRatio(image, container) {
+  const naturalWidth = image.naturalWidth;
+  const naturalHeight = image.naturalHeight;
+  
+  if (naturalWidth && naturalHeight) {
+    const aspectRatio = naturalWidth / naturalHeight;
+    
+    // Set CSS aspect ratio on container
+    container.style.aspectRatio = `${aspectRatio}`;
+    
+    // Add data attribute for reference
+    container.setAttribute('data-aspect-ratio', aspectRatio.toFixed(3));
+    
+    console.log(`✓ Auto-sized: ${aspectRatio.toFixed(3)} ratio (${naturalWidth}×${naturalHeight})`);
+  }
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', autoSizeWorkImages);
+
+// Re-run if window is resized (in case images reload)
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(autoSizeWorkImages, 250);
+});
+
+// ============================================
 // Smooth parallax on hero section
+// ============================================
 const heroImage = document.querySelector('.hero-image');
 let ticking = false;
 
@@ -107,4 +161,4 @@ window.addEventListener('scroll', () => {
 });
 
 // Log to confirm JS is loaded
-console.log('✓ Bonas Studio scripts loaded');
+console.log('✓ Bonas Studio scripts loaded with auto-sizing');

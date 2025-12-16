@@ -509,81 +509,110 @@ ul {
 }
 
 /* ============================================
-   WORK GRID
+   WORK GRID - AUTO-SIZING IMAGES
    ============================================ */
+
 .work-grid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-}
-
-@media (min-width: 640px) {
-  .work-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .work-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 0;
 }
 
 .work-item {
-  position: relative;
+  overflow: hidden;
+  background: transparent;
 }
 
 .work-link {
   display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
 }
 
+.work-link:hover {
+  transform: translateY(-4px);
+}
+
+/* Container that auto-sizes to image */
 .work-media {
   position: relative;
-  aspect-ratio: 4 / 5;
+  display: block;
+  width: 100%;
+  /* aspect-ratio will be set by JavaScript */
   overflow: hidden;
-  background: var(--color-graphite);
-  margin-bottom: var(--space-2);
+  background-color: #f0f0f0; /* Light gray placeholder while loading */
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+}
+
+/* Fallback aspect ratio if JS doesn't run */
+.work-media:not([data-aspect-ratio]) {
+  aspect-ratio: 4 / 5; /* Default fallback */
 }
 
 .work-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-.work-image--detail {
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.work-item:hover .work-image {
+/* Detail image (shows on hover) */
+.work-image--detail {
+  opacity: 0;
   transform: scale(1.05);
 }
 
 .work-item:hover .work-image--detail {
   opacity: 1;
+  transform: scale(1);
+}
+
+/* Optional: Zoom main image on hover */
+.work-item:hover .work-image:not(.work-image--detail) {
+  transform: scale(1.02);
 }
 
 .work-info {
+  padding: 1.5rem 0.5rem;
   text-align: center;
 }
 
 .work-title {
-  font-family: var(--font-primary);
-  font-size: var(--text-base);
-  font-weight: var(--weight-regular);
-  color: var(--color-text-primary);
-  margin: 0 0 var(--space-1);
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  color: #2E2E2E;
 }
 
 .work-meta {
-  font-family: var(--font-secondary);
-  font-size: var(--text-sm);
-  color: var(--color-text-secondary);
-  margin: 0;
+  font-size: 0.875rem;
+  color: #6B6B6B;
+  font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .work-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 /* ============================================
@@ -2837,5 +2866,206 @@ ul {
   }
   60% {
     transform: rotate(45deg) translateY(4px);
+  }
+}
+
+
+
+
+.featured-work .section-container {
+  max-width: 1600px;
+  padding: 0 3rem;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem; /* Generous breathing room */
+}
+
+@media (max-width: 768px) {
+  .work-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+
+
+
+/* ============================================
+   FEATURED WORK - TWO PIECE SHOWCASE
+   ============================================ */
+
+.featured-work {
+  background-color: #F7F6F3;
+  padding: 8rem 0; /* Extra generous padding */
+}
+
+.featured-work .section-container {
+  max-width: 1200px;
+  padding: 0 3rem;
+}
+
+.section-title {
+  text-align: center;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 6rem; /* More space before pieces */
+  color: #2E2E2E;
+}
+
+.work-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem; /* HUGE gap for dramatic spacing */
+}
+
+.work-item {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px; /* Slightly larger than 3-piece version */
+  width: 100%;
+}
+
+/* First piece - left aligned */
+.work-item:nth-child(1) {
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+/* Second piece - right aligned */
+.work-item:nth-child(2) {
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.work-link {
+  display: block;
+  text-decoration: none;
+  transition: transform 0.4s ease;
+}
+
+.work-link:hover {
+  transform: translateY(-8px);
+}
+
+.work-media {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  background-color: #f0f0f0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.4s ease;
+}
+
+.work-link:hover .work-media {
+  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.15);
+}
+
+.work-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.work-image--detail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.work-item:hover .work-image--detail {
+  opacity: 1;
+}
+
+.work-info {
+  padding: 2rem 0.5rem;
+}
+
+/* First piece: text left aligned */
+.work-item:nth-child(1) .work-info {
+  text-align: left;
+}
+
+/* Second piece: text right aligned */
+.work-item:nth-child(2) .work-info {
+  text-align: right;
+}
+
+.work-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.375rem; /* Slightly larger for 2-piece */
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  color: #2E2E2E;
+}
+
+.work-meta {
+  font-size: 1rem; /* Slightly larger */
+  color: #6B6B6B;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .work-grid {
+    gap: 8rem;
+  }
+  
+  .work-item {
+    max-width: 550px;
+  }
+}
+
+/* Mobile - center both */
+@media (max-width: 768px) {
+  .featured-work {
+    padding: 5rem 0;
+  }
+  
+  .featured-work .section-container {
+    padding: 0 2rem;
+  }
+  
+  .section-title {
+    margin-bottom: 4rem;
+    font-size: 1.75rem;
+  }
+  
+  .work-grid {
+    gap: 5rem;
+  }
+  
+  .work-item:nth-child(1),
+  .work-item:nth-child(2) {
+    align-self: center;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+  
+  .work-info,
+  .work-item:nth-child(1) .work-info,
+  .work-item:nth-child(2) .work-info {
+    text-align: center;
+    padding: 1.75rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-grid {
+    gap: 4rem;
   }
 }
