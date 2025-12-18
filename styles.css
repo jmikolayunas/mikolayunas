@@ -851,11 +851,6 @@ ul {
 .gallery-filters {
   padding: var(--space-4) 0;
   border-bottom: 1px solid var(--color-border);
-  position: sticky;
-  top: 70px;
-  background: var(--color-bg-primary);
-  z-index: 100;
-  backdrop-filter: blur(10px);
 }
 
 .filter-bar {
@@ -1742,7 +1737,7 @@ ul {
 }
 
 .investment-list li::before {
-  content: '→';
+  content: 'â†’';
   position: absolute;
   left: 0;
   color: var(--color-brass);
@@ -2226,7 +2221,7 @@ ul {
 }
 
 .stage-details li::before {
-  content: '•';
+  content: 'â€¢';
   position: absolute;
   left: 0;
   color: var(--color-brass);
