@@ -3,8 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bonas Studio — Custom Topographic Art</title>
+  <title>Bonas Studio – Custom Topographic Art</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Footer nav horizontal alignment - override */
+    .footer-nav {
+      justify-self: end;
+    }
+    
+    .footer-nav-list {
+      display: flex;
+      flex-direction: row;
+      gap: var(--space-5);
+      align-items: center;
+    }
+    
+    @media (max-width: 767px) {
+      .footer-nav {
+        justify-self: start;
+      }
+      
+      .footer-nav-list {
+        flex-direction: column;
+        gap: var(--space-2);
+      }
+    }
+  </style>
 </head>
 
 <body class="site-body">
@@ -44,7 +68,7 @@
   <div class="hero-content">
     <p class="hero-tagline">Handcrafted Topographic Art</p>
     <h1 class="hero-title">Geography Transformed<br>Into Heirloom Art</h1>
-    <p class="hero-subtitle">Custom pieces that reconnect you to place — created in collaboration with you</p>
+    <p class="hero-subtitle">Custom pieces that reconnect you to place – created in collaboration with you</p>
   </div>
 <a href="#philosophy" class="hero-scroll-indicator" aria-label="Scroll to learn more">
   <span class="chevron-down"></span>
@@ -77,7 +101,7 @@
               </div>
               <div class="work-info">
                 <h3 class="work-title">Block Island</h3>
-                <p class="work-meta">maple, walnut, epoxy resin — 27" × 32"</p>
+                <p class="work-meta">maple, walnut, epoxy resin – 27" × 32"</p>
               </div>
             </a>
           </article>
@@ -91,7 +115,7 @@
               </div>
               <div class="work-info">
                 <h3 class="work-title">Sunday River</h3>
-                <p class="work-meta">basswood, birch, walnut  — 33" × 22"</p>
+                <p class="work-meta">basswood, birch, walnut  – 33" × 22"</p>
               </div>
             </a>
           </article>
