@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Commission — Bonas Studio</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Ensure arrows instead of bullets for investment list */
+    .investment-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--color-brass);
+      font-weight: var(--weight-bold);
+    }
+  </style>
 </head>
 
 <body class="site-body">
@@ -37,9 +47,9 @@
       <div class="section-container section-container--narrow">
         <h1 class="page-title fade-in">Your Story, Handcrafted</h1>
         <p class="page-subtitle fade-in">
-          Every commission begins with place, memory, and story. Together, we'll transform the geography 
-          that matters most to you into an heirloom artwork—crafted with precision, finished by hand, 
-          and built to last generations.
+          Every commission begins with place, memory, and story. 
+          Together, we'll transform the geography that matters most to you into an heirloom artwork
+          —crafted with precision, finished by hand, and built to last generations.
         </p>
       </div>
     </section>
@@ -56,7 +66,7 @@
           <ul class="investment-list fade-in-scroll">
             <li>Custom geospatial data acquisition and processing</li>
             <li>Hand-selected domestic hardwoods from sustainable sources</li>
-            <li>Precision CNC fabrication (8-12 hours of machine time)</li>
+            <li>Precision CNC fabrication (12-36 hours of machine time)</li>
             <li>Hand-finishing, resin work, and detail inlay</li>
             <li>Professional crating and white-glove delivery</li>
           </ul>
@@ -166,7 +176,7 @@
               </div>
               
               <div class="form-group">
-                <label for="email" class="form-label">Email Address *</label>
+                <label for="email" class="form-label">Email *</label>
                 <input 
                   type="email" 
                   id="email" 
@@ -178,63 +188,76 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="phone" class="form-label">Phone Number (Optional)</label>
-              <input 
-                type="tel" 
-                id="phone" 
-                name="phone" 
-                class="form-input" 
-                autocomplete="tel"
-              />
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone" class="form-label">Phone (Optional)</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  class="form-input" 
+                  autocomplete="tel"
+                />
+              </div>
+              
+              <div class="form-group">
+                <label for="location" class="form-label">Your Location *</label>
+                <input 
+                  type="text" 
+                  id="location" 
+                  name="location" 
+                  class="form-input" 
+                  placeholder="City, State/Country" 
+                  required
+                />
+                <span class="form-helper">Helps me understand shipping logistics</span>
+              </div>
             </div>
           </div>
 
           <!-- Project Details -->
           <div class="form-section">
-            <h3 class="form-section-title">Your Project</h3>
+            <h3 class="form-section-title">Project Details</h3>
             
             <div class="form-group">
-              <label for="location" class="form-label">Location / Subject *</label>
+              <label for="place" class="form-label">What Place Do You Want to Capture? *</label>
               <input 
                 type="text" 
-                id="location" 
-                name="location" 
+                id="place" 
+                name="place" 
                 class="form-input" 
-                placeholder="e.g., Mount Rainier, Big Sur Coastline, Lake Tahoe"
+                placeholder="e.g. Mount Washington, Lake Tahoe, Nantucket Island, Brooklyn neighborhood"
                 required
               />
-              <span class="form-helper">The place you want captured in topographic relief</span>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="size" class="form-label">Desired Size *</label>
-                <select id="size" name="size" class="form-select" required>
-                  <option value="">Select a size range</option>
-                  <option value="small">Small (18" × 24" or smaller)</option>
-                  <option value="medium">Medium (24" × 36" to 36" × 48")</option>
-                  <option value="large">Large (48" × 60" or larger)</option>
-                  <option value="multi">Multi-panel installation</option>
-                  <option value="unsure">Not sure yet</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="timeline" class="form-label">Timeline Needs *</label>
-                <select id="timeline" name="timeline" class="form-select" required>
-                  <option value="">Select timeline</option>
-                  <option value="standard">Standard (8-12 weeks)</option>
-                  <option value="gift">Gift deadline (specify in story)</option>
-                  <option value="flexible">Flexible / No rush</option>
-                </select>
-              </div>
+              <span class="form-helper">Be as specific as possible—mountain name, coastline section, city district, trail system</span>
             </div>
 
             <div class="form-group">
-              <label for="budget" class="form-label">Budget Comfort *</label>
+              <label for="timeline" class="form-label">Ideal Timeline *</label>
+              <select id="timeline" name="timeline" class="form-select" required>
+                <option value="">Select a timeline</option>
+                <option value="flexible">Flexible—whenever it's ready</option>
+                <option value="3-months">Within 3 months</option>
+                <option value="6-months">Within 6 months</option>
+                <option value="specific-date">Specific date (gift, anniversary, etc.)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="size-preference" class="form-label">Size Preference</label>
+              <select id="size-preference" name="size-preference" class="form-select">
+                <option value="">Not sure yet</option>
+                <option value="small">Small (18"–24")</option>
+                <option value="medium">Medium (30"–40")</option>
+                <option value="large">Large (48"+)</option>
+                <option value="discuss">Let's discuss during consultation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="budget" class="form-label">Budget Range *</label>
               <select id="budget" name="budget" class="form-select" required>
-                <option value="">Select your investment range</option>
+                <option value="">Select a range</option>
                 <option value="under-5k">Under $5,000</option>
                 <option value="5k-10k">$5,000 – $10,000</option>
                 <option value="10k-15k">$10,000 – $15,000</option>
@@ -285,7 +308,7 @@
             <p><strong>✓ Thank you!</strong> Your commission inquiry has been received. I'll review your story and respond within 24 hours to schedule a consultation call.</p>
           </div>
           <div class="form-message form-message--error" id="form-error">
-            <p><strong>Something went wrong.</strong> Please try emailing your inquiry directly to <a href="mailto:commissions@bonasstudio.com">commissions@bonasstudio.com</a></p>
+            <p><strong>Something went wrong.</strong> Please try emailing your inquiry directly to <a href="mailto:studio@bonasart.com">studio@bonasart.com</a></p>
           </div>
 
         </form>
@@ -409,6 +432,5 @@
   </footer>
 
   <script src="scripts.js"></script>
-  <script src="commission.js"></script>
 </body>
 </html>
