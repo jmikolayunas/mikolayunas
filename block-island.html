@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Island — Bonas Studio</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* PIECE DETAIL PAGE STYLES */
+    
+    /* Hero Section - Full Screen */
+    .piece-hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--color-charcoal);
+    }
+    
+    .piece-hero-media {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .piece-hero-image {
+      width: 100%;
+      height: 120%;
+      object-fit: cover;
+      object-position: center;
+      will-change: transform;
+    }
+    
+    .piece-hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: var(--space-4);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .piece-hero-title {
+      font-family: var(--font-primary);
+      font-size: var(--text-3xl);
+      font-weight: var(--weight-regular);
+      line-height: var(--leading-tight);
+      color: var(--color-text-inverse);
+      margin: 0;
+      opacity: 0;
+      animation: fadeInUp 2s ease 0.3s forwards;
+    }
+    
+    .piece-hero-location {
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      font-weight: var(--weight-regular);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--color-brass);
+      margin: var(--space-3) 0 0;
+      opacity: 0;
+      animation: fadeInUp 2s ease 0.6s forwards;
+    }
+    
+    /* Details Section */
+    .piece-details {
+      background: var(--color-bg-primary);
+      padding: var(--space-8) 0;
+    }
+    
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    @media (min-width: 768px) {
+      .details-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-8);
+      }
+    }
+    
+    .detail-group {
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .detail-label {
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-secondary);
+      margin: 0 0 var(--space-2);
+      display: block;
+    }
+    
+    .detail-value {
+      font-family: var(--font-primary);
+      font-size: var(--text-lg);
+      color: var(--color-text-primary);
+      margin: 0;
+    }
+    
+    .piece-description {
+      grid-column: 1 / -1;
+      padding: var(--space-5) 0 0;
+      border-top: 2px solid var(--color-brass);
+      margin-top: var(--space-4);
+    }
+    
+    .piece-description p {
+      font-family: var(--font-secondary);
+      font-size: var(--text-base);
+      line-height: var(--leading-relaxed);
+      color: var(--color-text-secondary);
+      margin: 0 0 var(--space-3);
+    }
+    
+    /* Image Gallery Section */
+    .piece-gallery {
+      background: var(--color-bg-primary);
+      padding: var(--space-8) 0;
+    }
+    
+    .gallery-images {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-7);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .gallery-image-wrapper {
+      position: relative;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 1.2s ease, transform 1.2s ease;
+    }
+    
+    .gallery-image-wrapper.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .gallery-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid var(--color-border);
+    }
+    
+    .gallery-caption {
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      font-style: italic;
+      color: var(--color-text-secondary);
+      text-align: center;
+      margin: var(--space-3) 0 0;
+    }
+    
+    /* Story Section */
+    .piece-story {
+      background: var(--color-bg-dark);
+      padding: var(--space-8) 0;
+    }
+    
+    .story-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .story-title {
+      font-family: var(--font-primary);
+      font-size: var(--text-2xl);
+      font-weight: var(--weight-regular);
+      color: var(--color-text-inverse);
+      margin: 0 0 var(--space-5);
+      text-align: center;
+    }
+    
+    .story-text p {
+      font-family: var(--font-secondary);
+      font-size: var(--text-base);
+      line-height: var(--leading-relaxed);
+      color: var(--color-text-inverse);
+      margin: 0 0 var(--space-4);
+      opacity: 0.9;
+    }
+    
+    .story-text em {
+      color: var(--color-brass);
+      font-style: italic;
+    }
+    
+    /* Back to Gallery Link */
+    .back-to-gallery {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-primary);
+      text-decoration: none;
+      margin-bottom: var(--space-4);
+      transition: color 0.3s ease;
+    }
+    
+    .back-to-gallery:hover {
+      color: var(--color-brass);
+    }
+    
+    .back-arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    
+    .back-to-gallery:hover .back-arrow {
+      transform: translateX(-4px);
+    }
+    
+    @media (max-width: 767px) {
+      .piece-hero {
+        min-height: 500px;
+      }
+      
+      .piece-hero-title {
+        font-size: var(--text-2xl);
+      }
+    }
+  </style>
+</head>
+
+<body class="site-body">
+
+  <!-- GLOBAL NAVIGATION -->
+  <header class="site-header" id="site-header">
+    <div class="header-container">
+      <a href="index.html" class="site-logo">Bonas Studio</a>
+      <nav class="site-nav">
+        <ul class="nav-list">
+          <li class="nav-item"><a href="gallery.html" class="nav-link">Gallery</a></li>
+          <li class="nav-item"><a href="process.html" class="nav-link">Process</a></li>
+          <li class="nav-item"><a href="stories.html" class="nav-link">Stories</a></li>
+          <li class="nav-item"><a href="commission.html" class="nav-link nav-link--cta">Commission</a></li>
+          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span class="nav-toggle-icon"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="site-main">
+
+    <!-- HERO SECTION -->
+    <section class="piece-hero" id="piece-hero">
+      <div class="piece-hero-media">
+        <img 
+          src="images/block island/block-island-full.jpg" 
+          alt="Block Island topographic relief map" 
+          class="piece-hero-image" 
+        />
+      </div>
+      <div class="piece-hero-content">
+        <h1 class="piece-hero-title">Block Island</h1>
+        <p class="piece-hero-location">Rhode Island • 2024</p>
+      </div>
+      <a href="#details" class="hero-scroll-indicator" aria-label="Scroll to details">
+        <span class="chevron-down"></span>
+      </a>
+    </section>
+
+    <!-- DETAILS SECTION -->
+    <section class="piece-details section-padded" id="details">
+      <div class="section-container section-container--narrow">
+        <a href="gallery.html" class="back-to-gallery">
+          <span class="back-arrow">←</span> Back to Gallery
+        </a>
+        
+        <div class="details-grid">
+          <div class="detail-group fade-in-scroll">
+            <span class="detail-label">Materials</span>
+            <p class="detail-value">Maple, birch, mahogany, epoxy resin</p>
+          </div>
+          
+          <div class="detail-group fade-in-scroll">
+            <span class="detail-label">Dimensions</span>
+            <p class="detail-value">27" × 32" × 2"</p>
+          </div>
+          
+          <div class="detail-group fade-in-scroll">
+            <span class="detail-label">Location Captured</span>
+            <p class="detail-value">Block Island, Rhode Island</p>
+          </div>
+          
+          <div class="detail-group fade-in-scroll">
+            <span class="detail-label">Date Completed</span>
+            <p class="detail-value">November 2024</p>
+          </div>
+          
+          <div class="piece-description fade-in-scroll">
+            <p>
+              A one-of-one relief map capturing the dramatic coastline and rolling interior of Block Island, 
+              where New England bedrock meets the Atlantic. The piece uses graduated wood tones to represent 
+              elevation changes across the island's 10 square miles, while hand-poured turquoise epoxy resin 
+              captures the surrounding waters and harbors.
+            </p>
+            <p>
+              Created in collaboration with clients who spent childhood summers on the island, this piece 
+              honors both geographic accuracy and personal memory—from the Mohegan Bluffs on the southeast 
+              shore to the Great Salt Pond that bisects the island's center.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMAGE GALLERY SECTION -->
+    <section class="piece-gallery section-padded">
+      <div class="section-container">
+        <div class="gallery-images">
+          
+          <!-- Image 1: Full View -->
+          <div class="gallery-image-wrapper fade-in-scroll">
+            <img 
+              src="images/block island/block-island-full.jpg" 
+              alt="Block Island full piece view" 
+              class="gallery-image"
+            />
+            <p class="gallery-caption">Full piece showing the island's entire topography and surrounding waters</p>
+          </div>
+          
+          <!-- Image 2: Detail Shot -->
+          <div class="gallery-image-wrapper fade-in-scroll">
+            <img 
+              src="images/blockisland.jpg" 
+              alt="Block Island detail - coastal relief" 
+              class="gallery-image"
+            />
+            <p class="gallery-caption">Detail of the southeastern coastline showing the dramatic Mohegan Bluffs</p>
+          </div>
+          
+          <!-- Image 3: Angle View -->
+          <div class="gallery-image-wrapper fade-in-scroll">
+            <img 
+              src="images/block island/block-island-angle.jpg" 
+              alt="Block Island side angle showing depth" 
+              class="gallery-image"
+            />
+            <p class="gallery-caption">Side angle revealing the layered wood construction and relief depth</p>
+          </div>
+          
+          <!-- Image 4: Detail/Texture (Optional) -->
+          <div class="gallery-image-wrapper fade-in-scroll">
+            <img 
+              src="images/block island/block-island-texture.jpg" 
+              alt="Block Island wood grain and resin detail" 
+              class="gallery-image"
+            />
+            <p class="gallery-caption">Close view of wood grain, CNC-carved contours, and resin interface</p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY SECTION (OPTIONAL) -->
+    <section class="piece-story section-padded">
+      <div class="section-container section-container--narrow">
+        <h2 class="story-title fade-in-scroll">The Story</h2>
+        <div class="story-text">
+          <p class="fade-in-scroll">
+            This commission came from a couple who spent every summer of their childhood on Block Island—
+            a place that shaped their sense of home, despite living hundreds of miles away during the school year. 
+            When they married, they wanted something that honored that shared geography.
+          </p>
+          <p class="fade-in-scroll">
+            During our consultation, they described <em>specifics</em>: the steep clay cliffs on the southeast shore, 
+            the bike ride from Old Harbor to New Harbor, the way the island feels both small and vast. 
+            We decided to capture the entire island, showing its compact scale while emphasizing the dramatic 
+            coastal relief that makes it feel so much larger.
+          </p>
+          <p class="fade-in-scroll">
+            The resin pour was particularly meaningful—we mixed a custom blue-green to match the exact hue 
+            of Block Island Sound on a calm August morning. They sent reference photos from their last visit, 
+            and we color-matched in the studio. The result isn't just geographically accurate; 
+            it's <em>memory-accurate</em>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta section-padded" id="cta">
+      <div class="section-container section-container--narrow text-center">
+        <h2 class="cta-title fade-in-scroll">Commission Your Place</h2>
+        <p class="cta-text">
+          Every piece begins with a place that matters to you. 
+          Let's create something worthy of your story.
+        </p>
+        <a href="commission.html" class="btn btn--accent">Start Your Commission</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- GLOBAL FOOTER -->
+  <footer class="site-footer" id="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <p class="footer-logo">Bonas Studio</p>
+        <p class="footer-tagline">Custom Topographic Art</p>
+      </div>
+      <nav class="footer-nav">
+        <ul class="footer-nav-list">
+          <li class="footer-nav-item"><a href="gallery.html" class="footer-link">Gallery</a></li>
+          <li class="footer-nav-item"><a href="process.html" class="footer-link">Process</a></li>
+          <li class="footer-nav-item"><a href="commission.html" class="footer-link">Commission</a></li>
+          <li class="footer-nav-item"><a href="about.html" class="footer-link">About</a></li>
+          <li class="footer-nav-item"><a href="contact.html" class="footer-link">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="footer-social">
+        <a href="#" class="social-link" aria-label="Instagram"><span class="icon-instagram">IG</span></a>
+        <a href="#" class="social-link" aria-label="Email"><span class="icon-email">@</span></a>
+      </div>
+      <div class="footer-legal">
+        <p class="footer-copyright">&copy; 2026 Bonas Studio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script>
+    // Parallax effect for hero image
+    const heroImage = document.querySelector('.piece-hero-image');
+    let ticking = false;
+    
+    function updateParallax() {
+      if (!heroImage) return;
+      
+      const scrolled = window.pageYOffset;
+      const heroHeight = document.querySelector('.piece-hero').offsetHeight;
+      
+      if (scrolled < heroHeight) {
+        const parallaxSpeed = 0.5;
+        heroImage.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+      }
+      
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateParallax);
+        ticking = true;
+      }
+    });
+    
+    // Gallery image fade-in on scroll
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.gallery-image-wrapper').forEach(el => {
+      fadeObserver.observe(el);
+    });
+  </script>
+</body>
+</html>

@@ -7,7 +7,7 @@ const galleryData = [
   {
     title: "Mt. Mansfield",
     category: "mountains",
-    image: "images/work-1.jpg",
+    image: "images/stowe/stowe-front-full.jpg",
     meta: "maple, walnut",
     description: "A true-to-scale relief map of Mount Mansfield, the home of Mt. Snow ski resort, carved from solid maple and walnut. Laser-etched tree lines and negative space shading allow the slopes to reveal themselves."
   },
