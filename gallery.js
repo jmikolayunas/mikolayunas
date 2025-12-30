@@ -12,40 +12,52 @@ const galleryData = [
     description: "A true-to-scale relief map of Mount Mansfield, the home of Mt. Snow ski resort, carved from solid maple and walnut. Laser-etched tree lines and negative space shading allow the slopes to reveal themselves."
   },
   {
-    title: "Big Sur Coastline",
+    title: "Nantucket Island",
     category: "coastlines",
     image: "images/work-2.jpg",
-    meta: "Maple, blue resin",
+    meta: "maple, walnut, resin",
     description: "The rugged California coastline rendered in layered maple, with deep blue resin representing the Pacific Ocean. Each contour captures the dramatic elevation changes from sea to ridge."
   },
   {
-    title: "Lake Tahoe Depth Map",
-    category: "lakes",
+    title: "Hurricane Mountain Trails",
+    category: "trails",
     image: "images/work-3.jpg",
-    meta: "Ash, teal epoxy, 36\" × 48\"",
+    meta: "birch, walnut",
     description: "A bathymetric study of Lake Tahoe's legendary depth. Graduated teal resin shows the lake's descent to 1,645 feet, surrounded by the Sierra Nevada peaks in natural ash."
   },
   {
-    title: "Grand Teton Range",
+    title: "Mahoosuc Mountain Range",
     category: "mountains",
     image: "images/work-4.jpg",
-    meta: "Cherry, charcoal finish",
+    meta: "basswood, birch, walnut",
     description: "The jagged peaks of the Teton Range carved in rich cherry wood with a charcoal finish that emphasizes the dramatic relief of these ancient mountains."
   },
   {
-    title: "San Francisco Topography",
+    title: "Middlesex Fells Reservation",
     category: "urban",
     image: "images/work-5.jpg",
-    meta: "Birch, graphite stain, brass",
+    meta: "maple, walnut, birch, gold leaf",
     description: "Seven square miles of San Francisco's iconic hills rendered in birch. Brass markers indicate landmarks while graphite staining highlights the city's surprising elevation changes."
   },
   {
-    title: "Maine Archipelago",
+    title: "Block Island",
     category: "coastlines",
     image: "images/work-6.jpg",
-    meta: "Oak, ocean blue resin",
+    meta: "maple, mahogany, resin",
+    description: "The complex island ecosystem of coastal Maine, with hundreds of islands emerging from deep blue resin. White oak captures the rocky, weathered character of the North Atlantic shore."
+  },
+  {
+    title: "Cape Ann",
+    category: "coastlines",
+    image: "images/work-6.jpg",
+    meta: "maple, birch, mahogany, resin",
     description: "The complex island ecosystem of coastal Maine, with hundreds of islands emerging from deep blue resin. White oak captures the rocky, weathered character of the North Atlantic shore."
   }
+
+
+
+
+  
 ];
 
 // ============================================
