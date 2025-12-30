@@ -5,11 +5,11 @@
 // Gallery data with full details
 const galleryData = [
   {
-    title: "Mount Rainier Relief",
+    title: "Mt. Mansfield",
     category: "mountains",
     image: "images/work-1.jpg",
-    meta: "Walnut, epoxy, brass inlay",
-    description: "A dramatic relief map of Mount Rainier's glaciated peak, carved from solid walnut with topographic precision. Blue-tinted epoxy fills the valleys while brass inlay traces the summit route."
+    meta: "maple, walnut",
+    description: "A true-to-scale relief map of Mount Mansfield, the home of Mt. Snow ski resort, carved from solid maple and walnut. Laser-etched tree lines and negative space shading allow the slopes to reveal themselves."
   },
   {
     title: "Big Sur Coastline",
