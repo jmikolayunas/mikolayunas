@@ -144,6 +144,31 @@
     .flatpickr-months .flatpickr-next-month svg {
       fill: var(--color-text-inverse);
     }
+
+    /* Style default/placeholder options in select boxes to be lighter grey */
+    .commission-form select option[value=""] {
+      color: rgba(247, 246, 243, 0.4);
+    }
+
+    /* Make select appear lighter when default option is selected */
+    .commission-form select:invalid {
+      color: rgba(247, 246, 243, 0.4);
+    }
+
+    /* Return to normal color when valid option selected */
+    .commission-form select:valid {
+      color: var(--color-text-inverse);
+    }
+
+    /* Style file input text (No file chosen) to be lighter grey */
+    input[type="file"] {
+      color: rgba(247, 246, 243, 0.4);
+    }
+
+    /* When file is selected, keep it lighter grey */
+    input[type="file"]:valid {
+      color: rgba(247, 246, 243, 0.4);
+    }
   </style>
 </head>
 
@@ -278,8 +303,8 @@
 
         </div>
         <p class="timeline-note fade-in-scroll">
-          <strong>Total Timeline:</strong> Most commissions are completed in 8-12 weeks from consultation 
-          to delivery. Rush timelines may be available—ask during consultation.
+          <strong>Total Timeline:</strong> Most commissions are delivered within 8–12 weeks from consultation. 
+          Priority scheduling is limited and can be discussed during your consult.
         </p>
       </div>
     </section>
@@ -567,6 +592,29 @@
       allowInput: false,              // Prevent manual typing (calendar only)
       disableMobile: false,           // Keep custom calendar on mobile too
       monthSelectorType: "static"     // Disable dropdown, show month name only (use arrows to navigate)
+    });
+
+    // Handle placeholder styling for select boxes
+    document.addEventListener('DOMContentLoaded', function() {
+      const selects = document.querySelectorAll('.commission-form select');
+      
+      selects.forEach(select => {
+        // Set initial state
+        updateSelectColor(select);
+        
+        // Update on change
+        select.addEventListener('change', function() {
+          updateSelectColor(this);
+        });
+      });
+      
+      function updateSelectColor(select) {
+        if (select.value === '') {
+          select.style.color = 'rgba(247, 246, 243, 0.4)';
+        } else {
+          select.style.color = 'var(--color-text-inverse)';
+        }
+      }
     });
   </script>
   <script src="scripts.js"></script>
