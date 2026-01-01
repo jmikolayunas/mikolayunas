@@ -5,6 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gallery — Bonas Studio</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Luxury Gallery Filter Styling */
+    .filter-bar {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: var(--space-6) var(--section-padding-x);
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-bg-primary);
+    }
+
+    .filter-label {
+      display: block;
+      font-family: var(--font-primary);
+      font-size: var(--text-sm);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-4);
+      text-align: left;
+    }
+
+    .filter-controls {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: var(--space-2) var(--space-5);
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      letter-spacing: 0.05em;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: none;
+      font-weight: var(--weight-regular);
+    }
+
+    .filter-btn:hover {
+      background: transparent;
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-brass);
+    }
+
+    .filter-btn.active {
+      background: transparent;
+      color: var(--color-text-primary);
+      border-bottom-color: var(--color-brass);
+      font-weight: var(--weight-semibold);
+    }
+
+    @media (max-width: 640px) {
+      .filter-controls {
+        gap: var(--space-2);
+      }
+      
+      .filter-btn {
+        padding: var(--space-2) var(--space-3);
+        font-size: var(--text-xs);
+      }
+    }
+  </style>
 </head>
 
 <body class="site-body">
@@ -41,17 +108,17 @@
     </section>
 
     <!-- GALLERY FILTERS -->
-<div class="filter-bar" aria-label="Series filter">
-  <span class="filter-label">Series</span>
+    <div class="filter-bar" aria-label="Series filter">
+      <span class="filter-label">Series</span>
 
-  <div class="filter-controls">
-    <button class="filter-btn active" data-filter="all" type="button">All Works</button>
-    <button class="filter-btn" data-filter="alpine" type="button">Alpine</button>
-    <button class="filter-btn" data-filter="ocean" type="button">Ocean</button>
-    <button class="filter-btn" data-filter="trail" type="button">Trail</button>
-    <button class="filter-btn" data-filter="urban" type="button">City</button>
-  </div>
-</div>
+      <div class="filter-controls">
+        <button class="filter-btn active" data-filter="all" type="button">All Works</button>
+        <button class="filter-btn" data-filter="alpine" type="button">Alpine</button>
+        <button class="filter-btn" data-filter="ocean" type="button">Ocean</button>
+        <button class="filter-btn" data-filter="trail" type="button">Trail</button>
+        <button class="filter-btn" data-filter="urban" type="button">City</button>
+      </div>
+    </div>
 
     <!-- GALLERY GRID -->
     <section class="gallery-section section-padded">
