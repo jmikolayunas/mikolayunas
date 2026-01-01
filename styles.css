@@ -484,9 +484,12 @@ ul {
   background: var(--color-bg-primary);
 }
 
-.philosophy-text--dark {
+.philosophy-text {
   color: var(--color-graphite);
-  font-weight: var(--weight-regular);
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .section-title {
@@ -1273,7 +1276,7 @@ ul {
   transform: translateY(-4px);
 }
 
-.philosophy-title {
+.studio-philosophy .philosophy-title {
   font-family: var(--font-primary);
   font-size: var(--text-lg);
   font-weight: var(--weight-regular);
@@ -1281,12 +1284,13 @@ ul {
   margin: 0 0 var(--space-3);
 }
 
-.philosophy-text {
-  color: var(--color-graphite);
-  text-align: center;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+.studio-philosophy .philosophy-text {
+  color: var(--color-text-inverse);
+  font-size: 1.25rem;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  font-weight: 300;
+  opacity: 0.95;
 }
 
 /* ============================================
@@ -1741,7 +1745,7 @@ ul {
 }
 
 .investment-list li::before {
-  content: 'â†’';
+  content: 'Ã¢â€ â€™';
   position: absolute;
   left: 0;
   color: var(--color-brass);
@@ -2225,7 +2229,7 @@ ul {
 }
 
 .stage-details li::before {
-  content: 'â€¢';
+  content: 'Ã¢â‚¬Â¢';
   position: absolute;
   left: 0;
   color: var(--color-brass);
