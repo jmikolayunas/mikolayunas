@@ -484,9 +484,9 @@ ul {
   background: var(--color-bg-primary);
 }
 
-.philosophy-text {
-  text-align: center;
-  color: var(--color-text-primary);
+.philosophy-text--dark {
+  color: var(--color-graphite);
+  font-weight: var(--weight-regular);
 }
 
 .section-title {
@@ -1282,11 +1282,11 @@ ul {
 }
 
 .philosophy-text {
-  color: #F7F6F3;
-  font-size: 1.25rem;
-  line-height: 1.9;
-  letter-spacing: 0.01em;
-  font-weight: 300;
+  color: var(--color-graphite);
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ============================================
