@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Commission — Bonas Studio</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
     /* Ensure arrows instead of bullets for investment list */
     .investment-list li::before {
@@ -13,6 +14,135 @@
       left: 0;
       color: var(--color-brass);
       font-weight: var(--weight-bold);
+    }
+
+    /* File input styling */
+    input[type="file"] {
+      padding: var(--space-2);
+      cursor: pointer;
+    }
+
+    input[type="file"]::file-selector-button {
+      padding: var(--space-2) var(--space-3);
+      background: transparent;
+      border: 1px solid var(--color-brass);
+      color: var(--color-brass);
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: var(--space-2);
+    }
+
+    input[type="file"]::file-selector-button:hover {
+      background: var(--color-brass);
+      color: var(--color-charcoal);
+    }
+
+    /* Dark background for dropdown menus */
+    .commission-form select {
+      background-color: var(--color-graphite);
+      color: var(--color-text-inverse);
+      border-color: rgba(199, 168, 106, 0.2);
+    }
+
+    .commission-form select option {
+      background-color: var(--color-graphite);
+      color: var(--color-text-inverse);
+    }
+
+    .commission-form select:focus {
+      background-color: rgba(46, 46, 46, 0.95);
+      border-color: var(--color-brass);
+    }
+
+    /* Custom Flatpickr Dark Theme - Graphite */
+    .flatpickr-calendar {
+      background: var(--color-graphite);
+      border: 1px solid var(--color-brass);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .flatpickr-months {
+      background: var(--color-graphite);
+      border-bottom: 1px solid rgba(199, 168, 106, 0.2);
+    }
+
+    .flatpickr-current-month {
+      color: var(--color-text-inverse);
+    }
+
+    .flatpickr-current-month .flatpickr-monthDropdown-months {
+      background: var(--color-graphite);
+      color: var(--color-text-inverse);
+      font-weight: 600;
+    }
+
+    .flatpickr-current-month .numInputWrapper input {
+      background: var(--color-graphite);
+      color: var(--color-text-inverse);
+    }
+
+    .flatpickr-weekdays {
+      background: var(--color-graphite);
+    }
+
+    span.flatpickr-weekday {
+      color: var(--color-brass);
+      font-weight: 600;
+    }
+
+    .flatpickr-days {
+      background: var(--color-graphite);
+    }
+
+    .flatpickr-day {
+      color: var(--color-text-inverse);
+      border: none;
+    }
+
+    .flatpickr-day:hover {
+      background: rgba(199, 168, 106, 0.2);
+      border-color: var(--color-brass);
+    }
+
+    .flatpickr-day.today {
+      border-color: var(--color-brass);
+      background: rgba(199, 168, 106, 0.15);
+      color: var(--color-brass);
+    }
+
+    .flatpickr-day.today:hover {
+      background: rgba(199, 168, 106, 0.3);
+    }
+
+    .flatpickr-day.selected {
+      background: var(--color-brass);
+      color: var(--color-charcoal);
+      border-color: var(--color-brass);
+    }
+
+    .flatpickr-day.selected:hover {
+      background: var(--color-brass);
+      color: var(--color-charcoal);
+    }
+
+    .flatpickr-day.disabled,
+    .flatpickr-day.prevMonthDay,
+    .flatpickr-day.nextMonthDay {
+      color: rgba(247, 246, 243, 0.3);
+    }
+
+    .flatpickr-months .flatpickr-prev-month:hover svg,
+    .flatpickr-months .flatpickr-next-month:hover svg {
+      fill: var(--color-brass);
+    }
+
+    .flatpickr-months .flatpickr-prev-month svg,
+    .flatpickr-months .flatpickr-next-month svg {
+      fill: var(--color-text-inverse);
     }
   </style>
 </head>
@@ -65,7 +195,7 @@
           </p>
           <ul class="investment-list fade-in-scroll">
             <li>Custom geospatial data acquisition, cleaning, and processing</li>
-            <li>High-resolution terrain modeling (topography + bathymetry, if applicable)</li>
+            <li>High-resolution terrain modeling and sculpting</li>
             <li>Hand-selected domestic hardwoods from sustainable sources</li>
             <li>Precision CNC fabrication (12-36 hours of machine time)</li>
             <li>Custom vector overlays (trails, coastlines, coordinates, labels)</li>
@@ -82,7 +212,7 @@
             </p>
             <p class="pricing-details">
               Small (18" × 24"): typically <strong>$4,500–$6,500</strong><br>
-              Signature (24" × 36" to 30" × 40"): typically <strong>$6,500–$9,500</strong><br>
+              Signature (approx. 24" × 36" to 30" × 40"): typically <strong>$6,500–$9,500</strong><br>
               Statement (36" × 48"): typically <strong>$8,500–$14,000</strong><br>
               Installation (48"+ / multi-panel): from <strong>$15,000+</strong>
             </p>
@@ -106,7 +236,7 @@
             <div class="step-content">
               <h3 class="step-title">Consultation (Week 1)</h3>
               <p class="step-description">
-              We begin with a video call to discuss the place, story, and vision. 
+              We begin with a video call to discuss place, story, and vision. 
               Material samples are shared, the process is explained, and a detailed quote and timeline are provided.
               </p>
             </div>
@@ -236,43 +366,42 @@
                 placeholder="e.g. Mount Washington, Lake Tahoe, Nantucket Island, Brooklyn neighborhood"
                 required
               />
-              <span class="form-helper">Be as specific as possible—mountain name, coastline section, city district, trail system, gps coordinates</span>
+              <span class="form-helper">Be as specific as possible—mountain name, coastline section, trail system, gps coordinates</span>
             </div>
 
             <div class="form-group">
-              <label for="timeline" class="form-label">Ideal Timeline *</label>
-              <select id="timeline" name="timeline" class="form-select" required>
-                <option value="">Select a timeline</option>
-                <option value="flexible">Flexible—whenever it's ready</option>
-                <option value="3-months">Within 3 months</option>
-                <option value="6-months">Within 6 months</option>
-                <option value="specific-date">Specific date (gift, anniversary, etc.)</option>
+              <label for="map-type" class="form-label">Map Type *</label>
+              <select id="map-type" name="map-type" class="form-select" required>
+                <option value="">Select a map type</option>
+                <option value="ocean">Ocean</option>
+                <option value="alpine">Alpine</option>
+                <option value="trails">Trails</option>
+                <option value="urban">Urban</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="size-preference" class="form-label">Size Preference</label>
-              <select id="size-preference" name="size-preference" class="form-select">
-                <option value="">Not sure yet</option>
-                <option value="small">Small (18"–24")</option>
-                <option value="medium">Medium (30"–40")</option>
-                <option value="large">Large (48"+)</option>
-                <option value="discuss">Let's discuss during consultation</option>
+              <label for="size-preference" class="form-label">Size Preference *</label>
+              <select id="size-preference" name="size-preference" class="form-select" required>
+                <option value="">Select a size</option>
+                <option value="small">Small format</option>
+                <option value="medium">Medium format</option>
+                <option value="large">Large format</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label for="budget" class="form-label">Budget Range *</label>
-              <select id="budget" name="budget" class="form-select" required>
-                <option value="">Select a range</option>
-                <option value="under-5k">Under $5,000</option>
-                <option value="5k-10k">$5,000 – $10,000</option>
-                <option value="10k-15k">$10,000 – $15,000</option>
-                <option value="15k-25k">$15,000 – $25,000</option>
-                <option value="25k-plus">$25,000+</option>
-                <option value="open">Open to discussion</option>
-              </select>
-              <span class="form-helper">This helps me recommend appropriate scale and materials—no judgment, just planning</span>
+              <label for="timeline" class="form-label">Event driven deadline *</label>
+              <input 
+                type="text" 
+                id="timeline" 
+                name="timeline" 
+                class="form-input" 
+                placeholder="Select a date"
+                required
+                readonly
+              />
+              <span class="form-helper">Select your desired completion date</span>
             </div>
           </div>
 
@@ -303,6 +432,19 @@
                 placeholder="Any specific materials, colors, or pieces from the gallery that inspire you? Or leave blank and we'll explore together."
               ></textarea>
             </div>
+
+            <div class="form-group">
+              <label for="files" class="form-label">Upload Reference Files (Optional)</label>
+              <input 
+                type="file" 
+                id="files" 
+                name="files" 
+                class="form-input" 
+                multiple
+                accept="image/*,.pdf,.doc,.docx"
+              />
+              <span class="form-helper">Share photos, sketches, or documents that inspire your vision (max 10MB per file)</span>
+            </div>
           </div>
 
           <!-- Submit -->
@@ -315,7 +457,7 @@
             <p><strong>✓ Thank you!</strong> Your commission inquiry has been received. I'll review your story and respond within 24 hours to schedule a consultation call.</p>
           </div>
           <div class="form-message form-message--error" id="form-error">
-            <p><strong>Something went wrong.</strong> Please try emailing your inquiry directly to <a href="mailto:studio@bonasart.com">studio@bonasart.com</a></p>
+            <p><strong>Something went wrong.</strong> Please try emailing your inquiry directly to <a href="/cdn-cgi/l/email-protection#46353233222f290624292827352734326825292b"><span class="__cf_email__" data-cfemail="c9babdbcada0a689aba6a7a8baa8bbbde7aaa6a4">[email&#160;protected]</span></a></p>
           </div>
 
         </form>
@@ -391,11 +533,23 @@
         <a href="#" class="social-link" aria-label="Email"><span class="icon-email">@</span></a>
       </div>
       <div class="footer-legal">
-        <p class="footer-copyright">&copy; 2026 Bonas Studio. All rights reserved.</p>
+        <p class="footer-copyright">&copy; 2025 Bonas Studio. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    // Initialize Flatpickr on the timeline input
+    flatpickr("#timeline", {
+      dateFormat: "F j, Y",           // e.g., "January 15, 2025"
+      minDate: "today",               // Can't select dates in the past
+      defaultDate: null,
+      allowInput: false,              // Prevent manual typing (calendar only)
+      disableMobile: false,           // Keep custom calendar on mobile too
+      monthSelectorType: "static"     // Disable dropdown, show month name only (use arrows to navigate)
+    });
+  </script>
   <script src="scripts.js"></script>
 </body>
 </html>
