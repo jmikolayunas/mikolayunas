@@ -370,28 +370,19 @@
             </div>
 
             <div class="form-group">
-              <label for="map-type" class="form-label">Map Type *</label>
-              <select id="map-type" name="map-type" class="form-select" required>
-                <option value="">Select a map type</option>
-                <option value="ocean">Ocean</option>
-                <option value="alpine">Alpine</option>
-                <option value="trails">Trails</option>
-                <option value="urban">Urban</option>
-              </select>
-            </div>
-
-            <div class="form-group">
               <label for="size-preference" class="form-label">Size Preference *</label>
               <select id="size-preference" name="size-preference" class="form-select" required>
                 <option value="">Select a size</option>
-                <option value="small">Small format</option>
-                <option value="medium">Medium format</option>
-                <option value="large">Large format</option>
-              </select>
+                <option value="small">Small (18&quot; × 24&quot;)</option>
+                <option value="signature">Signature (24&quot; × 36&quot; to 30&quot; × 40&quot;)</option>
+                <option value="statement">Statement (36&quot; × 48&quot;)</option>
+                <option value="installation">Installation (48&quot;+ / multi-panel)</option>
+                <option value="recommendations">Open to recommendations</option>
+</select>
             </div>
 
             <div class="form-group">
-              <label for="timeline" class="form-label">Event driven deadline *</label>
+              <label for="timeline" class="form-label">Event / Delivery Deadline *</label>
               <input 
                 type="text" 
                 id="timeline" 
@@ -401,25 +392,53 @@
                 required
                 readonly
               />
-              <span class="form-helper">Select your desired completion date</span>
+              <span class="form-helper">Select the date you need the piece in hand. Typical lead time is <strong>8–12 weeks</strong>; feasibility will be confirmed during consultation.</span>
             </div>
-          </div>
+          
+            <div class="form-group">
+              <label for="deadline-flexibility" class="form-label">Deadline Flexibility (Optional)</label>
+              <select id="deadline-flexibility" name="deadline-flexibility" class="form-select">
+                <option value="">Select flexibility</option>
+                <option value="hard">Exact date (hard deadline)</option>
+                <option value="flex-1-2">Flexible by 1–2 weeks</option>
+                <option value="flex-3-4">Flexible by 3–4 weeks</option>
+                <option value="recommendations">No deadline / flexible</option>
+              </select>
+              <span class="form-helper">Helps me confirm whether your deadline aligns with the current 8–12 week lead time</span>
+            </div>
+
+            <div class="form-group">
+              <label for="occasion" class="form-label">Occasion (Optional)</label>
+              <select id="occasion" name="occasion" class="form-select">
+                <option value="">Select an occasion</option>
+                <option value="wedding">Wedding</option>
+                <option value="anniversary">Anniversary</option>
+                <option value="birthday">Birthday</option>
+                <option value="housewarming">Housewarming</option>
+                <option value="retirement">Retirement</option>
+                <option value="corporate">Corporate / Client Gift</option>
+                <option value="gallery">Gallery / Installation</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="form-helper">Optional—useful if this piece is a gift or tied to a specific event</span>
+            </div>
+</div>
 
           <!-- Story -->
           <div class="form-section">
             <h3 class="form-section-title">Your Story</h3>
             
             <div class="form-group">
-              <label for="story" class="form-label">Tell Me About This Place *</label>
+              <label for="story" class="form-label">The Story Behind This Place *</label>
               <textarea 
                 id="story" 
                 name="story" 
                 class="form-textarea" 
                 rows="10" 
-                placeholder="What makes this place meaningful to you? Is it a memory, a milestone, a home? The more you share, the better I can understand your vision and create something truly personal."
+                placeholder="What draws you to this place—memory, milestone, home, or heritage? If there’s an occasion, date, or name you’d like honored (including for the nameplate), share it here. A few lines is perfect."
                 required
               ></textarea>
-              <span class="form-helper">Share as much detail as you'd like—this is where the collaboration begins</span>
+              <span class="form-helper">Share as much-or as little-as you wish. This guides the creative direction. Your story stays private and is used only to shape the design.</span>
             </div>
 
             <div class="form-group">
@@ -429,7 +448,7 @@
                 name="inspiration" 
                 class="form-textarea" 
                 rows="5" 
-                placeholder="Any specific materials, colors, or pieces from the gallery that inspire you? Or leave blank and we'll explore together."
+                placeholder="If you have a preferred mood, palette, wood species, or a piece from the gallery you love, note it here. If not, I’ll guide you."
               ></textarea>
             </div>
 
