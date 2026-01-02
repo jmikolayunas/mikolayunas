@@ -324,13 +324,14 @@ ul {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: #0a0a0a; /* Dark background for Nantucket piece */
 }
 
 .hero-image {
   width: 100%;
-  height: 120%; /* Extra for parallax */
-  object-fit: cover;
-  object-position: center;
+  height: 100%; /* Changed from 120% - crops to fit, no parallax */
+  object-fit: cover; /* Crops top/bottom black space */
+  object-position: center; /* Centers the island */
   will-change: transform;
 }
 
@@ -368,6 +369,7 @@ ul {
   margin: 0 0 var(--space-3);
   opacity: 0;
   animation: fadeInUp 3s ease 0.3s forwards;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4); /* Readability over resin */
 }
 
 .hero-subtitle {
@@ -379,6 +381,7 @@ ul {
   margin: 0;
   opacity: 0;
   animation: fadeInUp 3s ease 0.8s forwards;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4); /* Readability over resin */
 }
 
 .hero-tagline {
@@ -391,6 +394,7 @@ ul {
   margin: 0 0 var(--space-2);
   opacity: 0;
   animation: fadeInUp 3s ease 0s forwards;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5); /* Stronger shadow for brass text */
 }
 
 /* Scroll Indicator */
@@ -446,13 +450,13 @@ ul {
 }
 
 @keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
   from {
     opacity: 0;
     transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-8vh); /* Ends at -8vh instead of 0 */
   }
 }
 
@@ -466,6 +470,10 @@ ul {
 @media (max-width: 767px) {
   .hero {
     min-height: 500px;
+  }
+  
+  .hero-content {
+    transform: translateY(-5vh); /* Less offset on mobile */
   }
   
   .hero-title {
@@ -490,6 +498,9 @@ ul {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  font-size: var(--text-lg); /* ADD THIS - increases from 16-18px to 18-22px */
+  line-height: var(--leading-relaxed); /* ADD THIS - gives more breathing room */
+  font-weight: var(--weight-light); /* ADD THIS - makes it feel elegant */
 }
 
 .section-title {
@@ -2902,21 +2913,12 @@ ul {
 
 .featured-work {
   background-color: #F7F6F3;
-  padding: 8rem 0; /* Extra generous padding */
+  padding: 8rem 0;
 }
 
 .featured-work .section-container {
   max-width: 1200px;
   padding: 0 3rem;
-}
-
-.section-title {
-  text-align: center;
-  font-family: 'Libre Baskerville', serif;
-  font-size: 2rem;
-  font-weight: 400;
-  margin-bottom: 6rem; /* More space before pieces */
-  color: #2E2E2E;
 }
 
 .work-grid {
@@ -2928,7 +2930,7 @@ ul {
 .work-item {
   display: flex;
   flex-direction: column;
-  max-width: 600px; /* Slightly larger than 3-piece version */
+  max-width: 600px;
   width: 100%;
 }
 
@@ -2962,7 +2964,7 @@ ul {
   padding: 0;
   margin: 0;
   line-height: 0;
-  background-color: #f0f0f0;
+  background-color: #000;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.4s ease;
 }
@@ -2979,18 +2981,14 @@ ul {
   transition: transform 0.5s ease;
 }
 
-.work-image--detail {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+/* Subtle zoom on hover - no detail image swap */
+.work-link:hover .work-image {
+  transform: scale(1.05);
 }
 
-.work-item:hover .work-image--detail {
-  opacity: 1;
+/* Remove detail image feature */
+.work-image--detail {
+  display: none;
 }
 
 .work-info {
@@ -3009,14 +3007,14 @@ ul {
 
 .work-title {
   font-family: 'Libre Baskerville', serif;
-  font-size: 1.375rem; /* Slightly larger for 2-piece */
+  font-size: 1.375rem;
   font-weight: 400;
   margin-bottom: 0.75rem;
   color: #2E2E2E;
 }
 
 .work-meta {
-  font-size: 1rem; /* Slightly larger */
+  font-size: 1rem;
   color: #6B6B6B;
   font-style: italic;
   line-height: 1.6;
@@ -3041,11 +3039,6 @@ ul {
   
   .featured-work .section-container {
     padding: 0 2rem;
-  }
-  
-  .section-title {
-    margin-bottom: 4rem;
-    font-size: 1.75rem;
   }
   
   .work-grid {
