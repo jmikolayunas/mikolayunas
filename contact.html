@@ -36,7 +36,7 @@
       <div class="section-container section-container--narrow">
         <h1 class="page-title fade-in">Get in Touch</h1>
         <p class="page-subtitle fade-in">
-          For commissions, press, or private inquiries—reach out below. I respond personally within 1–2 business days.
+          For commissions, press, or private inquiries—reach out below.<br>I respond personally within 1–2 business days.
         </p>
       </div>
     </section>
@@ -45,57 +45,81 @@
     <section class="contact-content section-padded">
       <div class="section-container">
         <div class="contact-layout">
-          
+
           <!-- Contact Form -->
-          <div class="contact-form-wrapper">
-            <h2 class="contact-section-title fade-in-scroll">Send an Inquiry</h2>
+          <div class="contact-form-wrapper" id="general-inquiry">
+            <h2 class="contact-section-title fade-in-scroll">How can I help?</h2>
+
+            <!-- Commission-first fork (luxury-coded, low friction) -->
+            <div class="contact-intent fade-in-scroll" style="margin-bottom: var(--space-5);">
+              <p class="text-body" style="margin: 0 0 var(--space-3); color: var(--color-text-secondary);">
+                For commissions, the Commission Inquiry form is the fastest way to confirm scope, timeline, and a precise quote.
+              </p>
+              <div class="form-actions" style="gap: var(--space-2); flex-wrap: wrap;">
+                <a href="commission.html" class="btn btn--accent">Begin a Commission</a>
+                <a href="#general-inquiry-form" class="btn btn--primary" style="border-color: var(--color-border); color: var(--color-text-primary);">
+                  General Inquiry
+                </a>
+              </div>
+            </div>
+
             <form class="contact-form" id="contact-form">
-              
+              <div id="general-inquiry-form"></div>
+
               <div class="form-row">
                 <div class="form-group">
                   <label for="name" class="form-label">Name *</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    class="form-input" 
-                    required 
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="form-input"
+                    required
                     autocomplete="name"
                   />
                 </div>
-                
+
                 <div class="form-group">
                   <label for="email" class="form-label">Email *</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    class="form-input" 
-                    required 
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input"
+                    required
                     autocomplete="email"
                   />
                 </div>
               </div>
 
+              <!-- Subject becomes a dropdown for triage + reduced friction -->
               <div class="form-group">
-                <label for="subject" class="form-label">Subject *</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  name="subject" 
-                  class="form-input" 
+                <label for="subject" class="form-label">Inquiry Type *</label>
+                <select
+                  id="subject"
+                  name="subject"
+                  class="form-select"
                   required
-                />
+                >
+                  <option value="" selected disabled>Select one</option>
+                  <option value="commission">Commission / Gift</option>
+                  <option value="studio-visit">Studio visit</option>
+                  <option value="trade">Designer / Architect / Gallery</option>
+                  <option value="press">Press</option>
+                  <option value="general">General question</option>
+                </select>
+                <span class="form-helper">If this is a commission, the <a href="commission.html" style="color: var(--color-brass); text-decoration: underline;">Commission Inquiry</a> form helps me respond with accurate timeline + pricing.</span>
               </div>
 
               <div class="form-group">
                 <label for="message" class="form-label">Message *</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  class="form-textarea" 
-                  rows="8" 
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form-textarea"
+                  rows="8"
                   required
+                  placeholder="A few lines is perfect. If this relates to a commission, feel free to include the place and any deadline."
                 ></textarea>
               </div>
 
@@ -116,7 +140,7 @@
 
           <!-- Contact Info Sidebar -->
           <div class="contact-info-wrapper">
-            
+
             <!-- Direct Contact -->
             <div class="contact-info-block fade-in-scroll">
               <h3 class="contact-info-title">Direct Contact</h3>
@@ -128,17 +152,17 @@
               </div>
             </div>
 
-            <!-- Social Links -->
+            <!-- Social Links (clean + consistent) -->
             <div class="contact-info-block fade-in-scroll">
               <h3 class="contact-info-title">Follow Along</h3>
               <div class="contact-info-items">
                 <a href="https://instagram.com/bonasstudio" target="_blank" rel="noopener" class="contact-info-link">
                   <span class="contact-info-icon">📷</span>
-                  <span class="contact-info-text">@bonasstudios</span>
+                  <span class="contact-info-text">@bonasstudio</span>
                 </a>
                 <a href="https://linkedin.com/company/bonas-studio" target="_blank" rel="noopener" class="contact-info-link">
-                  <span class="contact-info-icon">📷 </span>
-                  <span class="contact-info-text">@bonasstudio</span>
+                  <span class="contact-info-icon">in</span>
+                  <span class="contact-info-text">Bonas Studio</span>
                 </a>
               </div>
             </div>
@@ -156,8 +180,8 @@
             <div class="contact-info-block fade-in-scroll">
               <h3 class="contact-info-title">What to Expect</h3>
               <p class="contact-info-text">
-               I respond to all inquiries within 1–2 business days. 
-               For commissions, I'll follow up personally to learn about the place, the story, and how you'd like the piece to live in your space—then I'll suggest clear next steps.
+                I respond to all inquiries within 1–2 business days.
+                For commissions, I'll suggest clear next steps—often beginning with a short consultation to discuss place, scale, and timeline.
               </p>
             </div>
 
