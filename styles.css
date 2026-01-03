@@ -380,8 +380,8 @@ ul {
   color: var(--color-text-inverse);
   margin: 0;
   opacity: 0;
-  animation: fadeInUp 3s ease 0.8s forwards;
-  text-shadow: 0 2px 12px rgba(0,0,0,0.4); /* Readability over resin */
+  animation: fadeInUp 3s ease 1.5s forwards;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
 }
 
 .hero-tagline {
