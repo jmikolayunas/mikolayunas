@@ -472,8 +472,22 @@ ul {
     min-height: 500px;
   }
   
-  .hero-content {
-    transform: translateY(-5vh); /* Less offset on mobile */
+  /* Create mobile-specific animation */
+  @keyframes fadeInUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(-5vh); /* Less offset on mobile */
+    }
+  }
+  
+  .hero-title,
+  .hero-subtitle,
+  .hero-tagline {
+    animation-name: fadeInUpMobile;
   }
   
   .hero-title {
@@ -498,9 +512,9 @@ ul {
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
-  font-size: var(--text-lg); /* ADD THIS - increases from 16-18px to 18-22px */
-  line-height: var(--leading-relaxed); /* ADD THIS - gives more breathing room */
-  font-weight: var(--weight-light); /* ADD THIS - makes it feel elegant */
+  font-size: var(--text-lg); /* Increased size */
+  line-height: var(--leading-relaxed); /* More breathing room */
+  font-weight: var(--weight-light); /* Elegant weight */
 }
 
 .section-title {
@@ -511,6 +525,20 @@ ul {
   color: var(--color-text-primary);
   margin: 0 0 var(--space-6);
   text-align: center;
+}
+
+/* Section subtitle style - ADDED */
+.section-subtitle {
+  font-family: var(--font-secondary);
+  font-size: var(--text-xs);
+  text-align: center;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: var(--weight-regular);
+  margin: -3rem auto 5rem;
+  max-width: 600px;
+  opacity: 0.85;
 }
 
 .bg-dark {
@@ -1756,7 +1784,7 @@ ul {
 }
 
 .investment-list li::before {
-  content: 'Ã¢â€ â€™';
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--color-brass);
@@ -2240,7 +2268,7 @@ ul {
 }
 
 .stage-details li::before {
-  content: 'Ã¢â‚¬Â¢';
+  content: '•';
   position: absolute;
   left: 0;
   color: var(--color-brass);
@@ -2370,130 +2398,6 @@ ul {
 
 .stage-media {
   background: linear-gradient(135deg, #2E2E2E 0%, #121212 100%);
-}
-
-
-/* ============================================
-   STORIES PAGE
-   ============================================ */
-
-/* Stories Main */
-.stories-main {
-  padding-top: calc(var(--space-7) + 60px);
-}
-
-/* Stories Header */
-.stories-header {
-  text-align: center;
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-6);
-}
-
-/* ============================================
-   STORIES GRID
-   ============================================ */
-.stories-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-}
-
-@media (min-width: 768px) {
-  .stories-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-7);
-  }
-}
-
-@media (min-width: 1200px) {
-  .stories-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Story Card */
-.story-card {
-  position: relative;
-  background: var(--color-bg-primary);
-  border: 1px solid var(--color-border);
-  transition: all 0.4s ease;
-  overflow: hidden;
-}
-
-.story-card:hover {
-  border-color: var(--color-brass);
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(18, 18, 18, 0.1);
-}
-
-.story-card-link {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.story-card-image-wrapper {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  background: var(--color-graphite);
-}
-
-.story-card-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.story-card:hover .story-card-image {
-  transform: scale(1.1);
-}
-
-.story-card-content {
-  padding: var(--space-5);
-}
-
-.story-card-category {
-  display: inline-block;
-  font-family: var(--font-secondary);
-  font-size: var(--text-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-brass);
-  margin-bottom: var(--space-2);
-  font-weight: var(--weight-semibold);
-}
-
-.story-card-title {
-  font-family: var(--font-primary);
-  font-size: var(--text-xl);
-  font-weight: var(--weight-regular);
-  line-height: var(--leading-snug);
-  color: var(--color-text-primary);
-  margin: 0 0 var(--space-3);
-}
-
-.story-card-excerpt {
-  font-family: var(--font-secondary);
-  font-size: var(--text-base);
-  line-height: var(--leading-relaxed);
-  color: var(--color-text-secondary);
-  margin: 0 0 var(--space-3);
-}
-
-.story-card-cta {
-  font-family: var(--font-secondary);
-  font-size: var(--text-sm);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-brass);
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.story-card:hover .story-card-cta {
-  transform: translateX(4px);
 }
 
 
@@ -2884,31 +2788,8 @@ ul {
 }
 
 
-
-
-.featured-work .section-container {
-  max-width: 1600px;
-  padding: 0 3rem;
-}
-
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4rem; /* Generous breathing room */
-}
-
-@media (max-width: 768px) {
-  .work-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-}
-
-
-
-
 /* ============================================
-   FEATURED WORK - TWO PIECE SHOWCASE
+   FEATURED WORK - TWO PIECE SHOWCASE (LUXURY)
    ============================================ */
 
 .featured-work {
@@ -2953,7 +2834,7 @@ ul {
 }
 
 .work-link:hover {
-  transform: translateY(-8px);
+  transform: translateY(-4px); /* UPDATED - Reduced from -8px, more subtle */
 }
 
 .work-media {
@@ -2966,7 +2847,7 @@ ul {
   line-height: 0;
   background-color: #000;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.4s ease;
+  transition: box-shadow 0.7s ease-out; /* UPDATED - Slower, more luxurious */
 }
 
 .work-link:hover .work-media {
@@ -2981,14 +2862,24 @@ ul {
   transition: transform 0.5s ease;
 }
 
-/* Subtle zoom on hover - no detail image swap */
-.work-link:hover .work-image {
-  transform: scale(1.05);
+/* Subtle zoom on main image */
+.work-link:hover .work-image:not(.work-image--detail) {
+  transform: scale(1.02);
 }
 
-/* Remove detail image feature */
+/* Detail image reveal on hover - luxury timing */
 .work-image--detail {
-  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-out; /* UPDATED - Slower = more luxurious */
+}
+
+.work-link:hover .work-image--detail {
+  opacity: 1;
 }
 
 .work-info {
@@ -3014,10 +2905,15 @@ ul {
 }
 
 .work-meta {
-  font-size: 1rem;
-  color: #6B6B6B;
-  font-style: italic;
-  line-height: 1.6;
+  font-family: var(--font-secondary);
+  font-size: 0.875rem; /* UPDATED - Smaller, more refined */
+  color: #8B8B8B; /* UPDATED - Slightly lighter gray */
+  font-style: normal; /* UPDATED - Remove italic */
+  text-transform: uppercase; /* UPDATED - Gallery placard style */
+  letter-spacing: 0.08em; /* UPDATED - Add tracking */
+  line-height: 1.8;
+  font-weight: 300; /* UPDATED - Lighter weight */
+  margin-top: 0.5rem;
 }
 
 /* Tablet */
