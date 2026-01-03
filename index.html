@@ -57,6 +57,63 @@
     max-width: 90%;
   }
 }
+
+
+
+
+
+
+.featured-work .work-link {
+  transition: none;
+  cursor: pointer;
+}
+
+.featured-work .work-link:hover {
+  transform: none;
+}
+
+/* Hide detail image completely - no hover reveal */
+.featured-work .work-image--detail {
+  display: none;
+}
+
+/* Remove image transitions */
+.featured-work .work-image {
+  transition: none;
+}
+
+.featured-work .work-item:hover .work-image {
+  transform: none;
+}
+
+/* Stagger the work item animations for parallax effect */
+.featured-work .work-item.fade-in-scroll {
+  transition-delay: 0s;
+}
+
+.featured-work .work-item.fade-in-scroll:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.featured-work .work-item.fade-in-scroll:nth-child(2) {
+  transition-delay: 0.3s;
+}
+
+/* Slower, more luxurious fade transition for work items */
+.featured-work .work-item.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 1.4s ease, transform 1.4s ease;
+}
+
+.featured-work .work-item.fade-in-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
 </style>
 <body class="site-body">
 
@@ -102,49 +159,49 @@
     <section class="philosophy section-padded" id="philosophy">
       <div class="section-container section-container--narrow">
       <p class="text-body fade-in-scroll philosophy-text philosophy-text--dark">
-      Together, we transform real terrain into handcrafted relief<br>—grounded in geospatial data, finished entirely by hand.<br> 
+      Together, we trans real terrain into handcrafted relief<br>—grounded in geospatial data, finished entirely by hand.<br> 
       Through a collaborative, intentionally iterative process, the piece evolves<br> to reflect both landscape and personal meaning.
 </p>
       </div>
     </section>
 
 <!-- FEATURED WORK SECTION -->
-    <section class="featured-work section-padded" id="featured-work">
-      <div class="section-container">
-        <h2 class="section-title fade-in-scroll">Recent Works</h2>
-        <div class="work-grid">
-          
-          <!-- Work Item 1 -->
-          <article class="work-item">
-            <a href="gallery.html#work-1" class="work-link">
-              <div class="work-media">
-                <img src="images/block island/block-island-full.jpg" alt="Block Island topographic map" class="work-image" />
-                <img src="images/blockisland.jpg" alt="Block Island detail view" class="work-image work-image--detail" />
-              </div>
-              <div class="work-info">
-                <h3 class="work-title">Block Island</h3>
-                <p class="work-meta">maple, walnut, resin – 27" × 32"</p>
-              </div>
-            </a>
-          </article>
+<section class="featured-work section-padded" id="featured-work">
+  <div class="section-container">
+    <h2 class="section-title fade-in-scroll">Recent Works</h2>
+    <div class="work-grid">
+      
+      <!-- Work Item 1 - ADD fade-in-scroll CLASS -->
+      <article class="work-item fade-in-scroll">
+        <a href="gallery.html#work-1" class="work-link">
+          <div class="work-media">
+            <img src="images/block island/block-island-full.jpg" alt="Block Island topographic map" class="work-image" />
+            <img src="images/blockisland.jpg" alt="Block Island detail view" class="work-image work-image--detail" />
+          </div>
+          <div class="work-info">
+            <h3 class="work-title">Block Island</h3>
+            <p class="work-meta">maple, walnut, resin – 27" × 32"</p>
+          </div>
+        </a>
+      </article>
 
-          <!-- Work Item 2 -->
-          <article class="work-item">
-            <a href="gallery.html#work-3" class="work-link">
-              <div class="work-media">
-                <img src="images/sunday river/sunday-river-full.jpg" alt="Sunday River topographic map" class="work-image" />
-                <img src="images/sundayriver.jpg" alt="Mountain terrain relief detail" class="work-image work-image--detail" />
-              </div>
-              <div class="work-info">
-                <h3 class="work-title">Sunday River</h3>
-                <p class="work-meta">basswood, birch, walnut  – 33" × 22"</p>
-              </div>
-            </a>
-          </article>
+      <!-- Work Item 2 - ADD fade-in-scroll CLASS -->
+      <article class="work-item fade-in-scroll">
+        <a href="gallery.html#work-3" class="work-link">
+          <div class="work-media">
+            <img src="images/sunday river/sunday-river-full.jpg" alt="Sunday River topographic map" class="work-image" />
+            <img src="images/sundayriver.jpg" alt="Mountain terrain relief detail" class="work-image work-image--detail" />
+          </div>
+          <div class="work-info">
+            <h3 class="work-title">Sunday River</h3>
+            <p class="work-meta">basswood, birch, walnut  – 33" × 22"</p>
+          </div>
+        </a>
+      </article>
 
-        </div>
-      </div>
-    </section>
+    </div>
+  </div>
+</section>
 
     <!-- PROCESS TEASER SECTION -->
     <section class="process-teaser section-padded bg-dark" id="process-teaser">
