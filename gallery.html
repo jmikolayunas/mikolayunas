@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gallery — Bonas Studio</title>
+  <title>Gallery – Bonas Studio</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     /* Luxury Gallery Filter Styling */
@@ -71,6 +71,126 @@
         font-size: var(--text-xs);
       }
     }
+
+    /* ===== MUSEUM CATALOG LAYOUT - TRUE DIMENSIONS ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-7); /* 96px */
+      align-items: start;
+      padding: var(--space-6) 0;
+    }
+
+    /* Gallery items maintain true aspect ratios */
+    .gallery-item {
+      width: 100%;
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .gallery-item.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .gallery-item.hidden {
+      opacity: 0 !important;
+      transform: translateY(20px) scale(0.9) !important;
+      height: 0 !important;
+      overflow: hidden !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease, height 0.3s ease 0.1s, margin 0.3s ease 0.1s !important;
+    }
+
+    .gallery-item-media {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      background: transparent;
+      border: none;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.03);
+      transition: box-shadow 0.4s ease;
+      /* Aspect ratio set by JavaScript based on data attributes */
+    }
+
+    .gallery-item-link:hover .gallery-item-media {
+      box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
+    }
+
+    .gallery-item-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-item-link:hover .gallery-item-image {
+      transform: scale(1.02);
+    }
+
+    /* Ultra-minimal overlay */
+    .gallery-item-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(247, 246, 243, 0.98) 0%,
+        rgba(247, 246, 243, 0.92) 60%,
+        transparent 100%
+      );
+      padding: var(--space-4);
+      text-align: center;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .gallery-item-link:hover .gallery-item-overlay,
+    .gallery-item-link:focus .gallery-item-overlay {
+      transform: translateY(0);
+    }
+
+    /* Quieter typography */
+    .gallery-item-title {
+      font-size: var(--text-base);
+      opacity: 0.95;
+      margin-bottom: var(--space-1);
+    }
+
+    .gallery-item-meta {
+      font-size: var(--text-sm);
+      opacity: 0.7;
+      text-transform: lowercase;
+      margin: 0;
+    }
+
+    /* Tablet: 2 columns */
+    @media (min-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-7);
+      }
+    }
+
+    /* Desktop: 3 columns */
+    @media (min-width: 1024px) {
+      .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-8); /* 128px on large screens */
+      }
+    }
+
+    /* Large desktop: more breathing room */
+    @media (min-width: 1440px) {
+      .gallery-grid {
+        gap: clamp(6rem, 8vw, 10rem);
+      }
+    }
   </style>
 </head>
 
@@ -125,8 +245,8 @@
       <div class="section-container">
         <div class="gallery-grid" id="gallery-grid">
 
-          <!-- Gallery Item 1 -->
-          <article class="gallery-item" data-category="alpine">
+          <!-- Gallery Item 1: Mount Mansfield - 24" × 30" portrait -->
+          <article class="gallery-item" data-category="alpine" data-width="24" data-height="30">
             <a href="pieces/mount-mansfield.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/stowe/stowe-front-full.jpg" alt="Mount Mansfield" class="gallery-item-image" />
@@ -138,8 +258,8 @@
             </a>
           </article>
 
-          <!-- Gallery Item 2 -->
-          <article class="gallery-item" data-category="ocean">
+          <!-- Gallery Item 2: Nantucket - 32" × 24" landscape -->
+          <article class="gallery-item" data-category="ocean" data-width="32" data-height="24">
             <a href="pieces/nantucket.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/nantucket/nantucket-front-full-wb.jpg" alt="Nantucket" class="gallery-item-image" />
@@ -151,8 +271,8 @@
             </a>
           </article>
 
-          <!-- Gallery Item 3 -->
-          <article class="gallery-item" data-category="trail">
+          <!-- Gallery Item 3: Hurricane Mountain - 28" × 28" square -->
+          <article class="gallery-item" data-category="trail" data-width="28" data-height="28">
             <a href="pieces/hurricane.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/hurricane/hurricane-front-full.jpg" alt="Hurricane Mountain" class="gallery-item-image" />
@@ -164,8 +284,8 @@
             </a>
           </article>
 
-          <!-- Gallery Item 4 -->
-          <article class="gallery-item" data-category="alpine">
+          <!-- Gallery Item 4: Sunday River - 33" × 22" landscape -->
+          <article class="gallery-item" data-category="alpine" data-width="33" data-height="22">
             <a href="pieces/sunday-river.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/sunday river/sunday-river-full.jpg" alt="Mahoosuc Mountain Range" class="gallery-item-image" />
@@ -177,8 +297,8 @@
             </a>
           </article>
 
-          <!-- Gallery Item 5 -->
-          <article class="gallery-item" data-category="urban">
+          <!-- Gallery Item 5: Middlesex Fells - 20" × 26" portrait -->
+          <article class="gallery-item" data-category="urban" data-width="20" data-height="26">
             <a href="pieces/fells.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/fells/fells-front-full.jpg" alt="Middlesex Fells" class="gallery-item-image" />
@@ -190,8 +310,8 @@
             </a>
           </article>
 
-          <!-- Gallery Item 6 -->
-          <article class="gallery-item" data-category="ocean">
+          <!-- Gallery Item 6: Block Island - 27" × 32" portrait -->
+          <article class="gallery-item" data-category="ocean" data-width="27" data-height="32">
             <a href="pieces/block-island.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/block island/block-island-full.jpg" alt="Block Island" class="gallery-item-image" />
@@ -203,8 +323,8 @@
             </a>
           </article>
 
-          <!-- Gallery Item 7 -->
-          <article class="gallery-item" data-category="ocean">
+          <!-- Gallery Item 7: Cape Ann - 36" × 24" landscape -->
+          <article class="gallery-item" data-category="ocean" data-width="36" data-height="24">
             <a href="pieces/cape ann.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/cape ann/cape-ann-full.jpg" alt="Cape Ann" class="gallery-item-image" />
@@ -216,8 +336,8 @@
             </a>
           </article>
 
-          <!-- Gallery Item 8 -->
-          <article class="gallery-item" data-category="alpine">
+          <!-- Gallery Item 8: Cannon Mountain - 22" × 28" portrait -->
+          <article class="gallery-item" data-category="alpine" data-width="22" data-height="28">
             <a href="pieces/cannon.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/cannon/cannon-full.jpg" alt="Cannon Mountain" class="gallery-item-image" />
@@ -229,8 +349,8 @@
             </a>
           </article>
 
-          <!-- Gallery Item 9 -->
-          <article class="gallery-item" data-category="alpine">
+          <!-- Gallery Item 9: Bromley Mountain - 30" × 20" landscape -->
+          <article class="gallery-item" data-category="alpine" data-width="30" data-height="20">
             <a href="pieces/bromley.html" class="gallery-item-link">
               <div class="gallery-item-media">
                 <img src="images/bromley/bromley-front-full.jpg" alt="Bromley Mountain" class="gallery-item-image" />
@@ -285,5 +405,28 @@
 
   <script src="scripts.js"></script>
   <script src="gallery.js"></script>
+  <script>
+    // Set gallery aspect ratios based on true dimensions
+    function setGalleryAspectRatios() {
+      const galleryItems = document.querySelectorAll('.gallery-item[data-width][data-height]');
+      
+      galleryItems.forEach(item => {
+        const width = parseFloat(item.dataset.width);
+        const height = parseFloat(item.dataset.height);
+        const media = item.querySelector('.gallery-item-media');
+        
+        if (media && width && height) {
+          media.style.aspectRatio = `${width} / ${height}`;
+        }
+      });
+    }
+
+    // Initialize on page load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setGalleryAspectRatios);
+    } else {
+      setGalleryAspectRatios();
+    }
+  </script>
 </body>
 </html>

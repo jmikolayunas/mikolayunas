@@ -61,32 +61,99 @@ const galleryData = [
 ];
 
 // ============================================
-// FILTERING FUNCTIONALITY
+// GALLERY FILTER FUNCTIONALITY
 // ============================================
 
-const filterBtns = document.querySelectorAll('.filter-btn');
-const galleryItems = document.querySelectorAll('.gallery-item');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    const filter = btn.dataset.filter;
-    
-    // Update active button
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    
-    // Filter gallery items
-    galleryItems.forEach(item => {
-      const category = item.dataset.category;
+function initGalleryFilter() {
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  
+  // Show all items on initial page load
+  setTimeout(() => {
+    galleryItems.forEach((item, index) => {
+      setTimeout(() => {
+        item.classList.add('is-visible');
+      }, index * 80);
+    });
+  }, 100);
+  
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const filterValue = button.dataset.filter;
       
-      if (filter === 'all' || category === filter) {
-        item.classList.remove('hidden');
-      } else {
-        item.classList.add('hidden');
-      }
+      // Update active button
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // STEP 1: Fade out ALL items (regardless of filter match)
+      galleryItems.forEach(item => {
+        item.classList.remove('is-visible');
+      });
+      
+      // STEP 2: After fade-out completes, update hidden states
+      setTimeout(() => {
+        galleryItems.forEach(item => {
+          const itemCategory = item.dataset.category;
+          
+          if (filterValue !== 'all' && itemCategory !== filterValue) {
+            item.classList.add('hidden');
+          } else {
+            item.classList.remove('hidden');
+          }
+        });
+        
+        // STEP 3: Stagger fade-in of ALL visible items
+        setTimeout(() => {
+          let visibleIndex = 0;
+          
+          galleryItems.forEach(item => {
+            const itemCategory = item.dataset.category;
+            
+            if (filterValue === 'all' || itemCategory === filterValue) {
+              setTimeout(() => {
+                item.classList.add('is-visible');
+              }, visibleIndex * 80);
+              
+              visibleIndex++;
+            }
+          });
+        }, 50);
+      }, 600); // Wait for fade-out transition to complete
     });
   });
-});
+}
+
+// ============================================
+// GALLERY ASPECT RATIOS
+// ============================================
+
+function setGalleryAspectRatios() {
+  const galleryItems = document.querySelectorAll('.gallery-item[data-width][data-height]');
+  
+  galleryItems.forEach(item => {
+    const width = parseFloat(item.dataset.width);
+    const height = parseFloat(item.dataset.height);
+    const media = item.querySelector('.gallery-item-media');
+    
+    if (media && width && height) {
+      media.style.aspectRatio = `${width} / ${height}`;
+    }
+  });
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    setGalleryAspectRatios();
+    initGalleryFilter();
+  });
+} else {
+  setGalleryAspectRatios();
+  initGalleryFilter();
+}
 
 // ============================================
 // LIGHTBOX FUNCTIONALITY
