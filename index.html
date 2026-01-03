@@ -63,6 +63,7 @@
 
 
 
+/* Remove all hover effects */
 .featured-work .work-link {
   transition: none;
   cursor: pointer;
@@ -86,29 +87,22 @@
   transform: none;
 }
 
-/* Stagger the work item animations for parallax effect */
-.featured-work .work-item.fade-in-scroll {
-  transition-delay: 0s;
-}
-
-.featured-work .work-item.fade-in-scroll:nth-child(1) {
-  transition-delay: 0.1s;
-}
-
-.featured-work .work-item.fade-in-scroll:nth-child(2) {
-  transition-delay: 0.3s;
-}
-
-/* Slower, more luxurious fade transition for work items */
-.featured-work .work-item.fade-in-scroll {
+/* Scroll-linked opacity reveal for work items */
+.featured-work .work-item[data-scroll-reveal] .work-image {
   opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 1.4s ease, transform 1.4s ease;
+  transition: none;
 }
 
-.featured-work .work-item.fade-in-scroll.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+.featured-work .work-item[data-scroll-reveal] .work-info {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Remove background from work media - ghost-like reveal */
+.featured-work .work-media {
+  background: transparent;
+  box-shadow: none;
 }
 
 
@@ -165,18 +159,19 @@
       </div>
     </section>
 
+    
 <!-- FEATURED WORK SECTION -->
 <section class="featured-work section-padded" id="featured-work">
   <div class="section-container">
     <h2 class="section-title fade-in-scroll">Recent Works</h2>
     <div class="work-grid">
       
-      <!-- Work Item 1 - ADD fade-in-scroll CLASS -->
-      <article class="work-item fade-in-scroll">
+
+      <!-- Work Item 1 - REMOVE fade-in-scroll class -->
+      <article class="work-item" data-scroll-reveal>
         <a href="gallery.html#work-1" class="work-link">
           <div class="work-media">
             <img src="images/block island/block-island-full.jpg" alt="Block Island topographic map" class="work-image" />
-            <img src="images/blockisland.jpg" alt="Block Island detail view" class="work-image work-image--detail" />
           </div>
           <div class="work-info">
             <h3 class="work-title">Block Island</h3>
@@ -185,16 +180,16 @@
         </a>
       </article>
 
-      <!-- Work Item 2 - ADD fade-in-scroll CLASS -->
-      <article class="work-item fade-in-scroll">
+
+      <!-- Work Item 2 - REMOVE fade-in-scroll class -->
+      <article class="work-item" data-scroll-reveal>
         <a href="gallery.html#work-3" class="work-link">
           <div class="work-media">
             <img src="images/sunday river/sunday-river-full.jpg" alt="Sunday River topographic map" class="work-image" />
-            <img src="images/sundayriver.jpg" alt="Mountain terrain relief detail" class="work-image work-image--detail" />
           </div>
           <div class="work-info">
             <h3 class="work-title">Sunday River</h3>
-            <p class="work-meta">basswood, birch, walnut  – 33" × 22"</p>
+            <p class="work-meta">basswood, birch, walnut – 33" × 22"</p>
           </div>
         </a>
       </article>
@@ -202,6 +197,7 @@
     </div>
   </div>
 </section>
+
 
     <!-- PROCESS TEASER SECTION -->
     <section class="process-teaser section-padded bg-dark" id="process-teaser">

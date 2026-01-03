@@ -162,3 +162,75 @@ window.addEventListener('scroll', () => {
 
 // Log to confirm JS is loaded
 console.log('✓ Bonas Studio scripts loaded with auto-sizing');
+
+
+
+// ============================================
+// SCROLL-LINKED OPACITY REVEAL
+// ============================================
+
+function initScrollReveal() {
+  const revealItems = document.querySelectorAll('[data-scroll-reveal]');
+  
+  function updateReveal() {
+    revealItems.forEach(item => {
+      const image = item.querySelector('.work-image');
+      const info = item.querySelector('.work-info');
+      const rect = item.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate opacity progress (0 to 1)
+      // Starts revealing when item enters bottom 80% of viewport
+      // Fully opaque when item is at 30% from top
+      const revealStart = windowHeight * 0.8;
+      const revealEnd = windowHeight * 0.3;
+      const revealRange = revealStart - revealEnd;
+      
+      let progress = 0;
+      
+      if (rect.top < revealStart && rect.top > revealEnd) {
+        // Item is in reveal zone
+        progress = (revealStart - rect.top) / revealRange;
+        progress = Math.max(0, Math.min(1, progress)); // Clamp 0-1
+      } else if (rect.top <= revealEnd) {
+        // Item is fully revealed
+        progress = 1;
+      }
+      
+      // Apply opacity directly based on scroll position
+      image.style.opacity = progress;
+      
+      // Fade in text info when image is 70% opaque
+      if (progress >= 0.7) {
+        info.style.opacity = '1';
+        info.style.transform = 'translateY(0)';
+      } else {
+        info.style.opacity = '0';
+        info.style.transform = 'translateY(20px)';
+      }
+    });
+  }
+  
+  // Update on scroll (with requestAnimationFrame for performance)
+  let ticking = false;
+  
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateReveal();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // Initial check
+  updateReveal();
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initScrollReveal);
+} else {
+  initScrollReveal();
+}
