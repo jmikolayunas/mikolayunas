@@ -31,7 +31,7 @@
     <section class="review-intro section-padded">
       <div class="section-container section-container--narrow">
         <p class="review-meta fade-in-scroll">Iteration 3 · January 2026</p>
-        <h1 class="review-title fade-in-scroll">Block Island — Coastal Refinement</h1>
+        <h1 class="review-title fade-in-scroll">Block Island — <br>Coastal Refinement</h1>
         <p class="review-subtitle fade-in-scroll">
           In this iteration, I've refined the northern coastal detail and adjusted 
           the vertical exaggeration to emphasize the bluff formations you mentioned.
@@ -70,14 +70,33 @@
             </div>
             
             <div class="viewer-controls">
-              <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
+              <button class="view-preset" data-orbit="0deg 0deg 105%">Top View</button>
               <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
               <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
               <button class="view-reset">Reset View</button>
             </div>
-
+            
           </model-viewer>
         </div>
+
+  
+  <!-- NEW: Light Control Slider -->
+  <div class="light-control">
+    <label for="exposure-slider" class="light-label">
+      <span class="light-label-text">Light Intensity</span>
+      <span class="light-value" id="exposure-value">1.0</span>
+    </label>
+    <input 
+      type="range" 
+      id="exposure-slider" 
+      class="light-slider"
+      min="0.3" 
+      max="1.2" 
+      step="0.05" 
+      value="0.7"
+    />
+  </div>
+</div>
 
         <!-- Model Info -->
         <div class="model-info fade-in-scroll">

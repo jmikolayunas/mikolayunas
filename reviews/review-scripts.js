@@ -24,6 +24,20 @@ function initModelViewer() {
   const presetButtons = document.querySelectorAll('.view-preset');
   const resetButton = document.querySelector('.view-reset');
   
+  
+  // NEW: Light/Exposure Control
+  const exposureSlider = document.getElementById('exposure-slider');
+  const exposureValue = document.getElementById('exposure-value');
+  
+  if (exposureSlider && exposureValue) {
+    exposureSlider.addEventListener('input', (e) => {
+      const value = parseFloat(e.target.value);
+      modelViewer.exposure = value;
+      exposureValue.textContent = value.toFixed(1);
+    });
+  }
+
+
   // Store initial camera position
   let initialOrbit = null;
   
