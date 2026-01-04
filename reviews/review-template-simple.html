@@ -16,11 +16,11 @@
 
 <body class="review-body">
 
-  <!-- Minimal Header (no full navigation) -->
+  <!-- Minimal Header -->
   <header class="review-header">
     <div class="review-header-container">
       <a href="../index.html" class="review-logo">Bonas Studio</a>
-      <span class="review-status">Private Viewing</span>
+      <span class="review-status">Design Review</span>
     </div>
   </header>
 
@@ -63,15 +63,14 @@
             rotation-per-second="20deg"
             shadow-intensity="1"
             exposure="1"
-            poster="models/block-island-preview.jpg"
             loading="eager">
             
-            <!-- Loading/Error States -->
+            <!-- Loading State -->
             <div class="viewer-loading" slot="poster">
               <p>Loading your design...</p>
             </div>
             
-            <!-- Camera Presets (Optional) -->
+            <!-- Camera Presets -->
             <div class="viewer-controls">
               <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
               <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
@@ -143,8 +142,27 @@
             share your observations below or <a href="mailto:studio@bonasstudio.com" class="text-link">email me directly</a>.
           </p>
 
-          <!-- Simple Feedback Form -->
-          <form class="feedback-form" id="feedback-form">
+          <!-- Feedback Form with Formspree -->
+          <form class="feedback-form" 
+                id="feedback-form"
+                action="https://formspree.io/f/YOUR_FORM_ID" 
+                method="POST">
+            
+            <!-- Hidden fields for context -->
+            <input type="hidden" name="_subject" value="Review Feedback: Block Island V3" />
+            <input type="hidden" name="project" value="Block Island" />
+            <input type="hidden" name="iteration" value="Version 3" />
+            
+            <div class="form-group">
+              <label for="client-name" class="form-label">Your Name</label>
+              <input 
+                type="text" 
+                id="client-name" 
+                name="name" 
+                class="form-input" 
+                required />
+            </div>
+
             <div class="form-group">
               <label for="feedback-text" class="form-label">Your Feedback</label>
               <textarea 
@@ -152,13 +170,14 @@
                 name="feedback" 
                 class="form-textarea"
                 placeholder="What resonates? What needs refinement? Are there specific areas you'd like to discuss?"
-                rows="8"></textarea>
+                rows="8"
+                required></textarea>
             </div>
 
             <div class="form-row">
               <div class="form-group">
                 <label for="next-step" class="form-label">Next Step</label>
-                <select id="next-step" name="next-step" class="form-select">
+                <select id="next-step" name="next-step" class="form-select" required>
                   <option value="">Select one...</option>
                   <option value="approve">Ready to proceed to fabrication</option>
                   <option value="revise">I'd like another iteration</option>
@@ -258,7 +277,7 @@
   <!-- Minimal Footer -->
   <footer class="review-footer">
     <div class="review-footer-container">
-      <p class="footer-copyright">© 2026 Bonas Studio · Private Client Review</p>
+      <p class="footer-copyright">© 2026 Bonas Studio · Client Review</p>
     </div>
   </footer>
 
@@ -267,3 +286,28 @@
 
 </body>
 </html>
+```
+
+---
+
+## Part 5: Set Up Formspree (Free Form Handling)
+
+### Step 1: Create Formspree Account
+
+1. Go to https://formspree.io/
+2. Click **"Get Started Free"**
+3. Sign up with email or GitHub
+4. Confirm your email
+
+### Step 2: Create Your Form
+
+1. Click **"+ New Form"**
+2. **Form name:** "Review Feedback"
+3. **Email notifications to:** `your-email@bonasstudio.com`
+4. Click **"Create Form"**
+
+### Step 3: Get Your Form Endpoint
+
+After creating the form, you'll see:
+```
+https://formspree.io/f/xyzabc123
