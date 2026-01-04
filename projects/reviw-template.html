@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Review — Bonas Studio</title>
+  
+  <!-- Link to your main styles -->
+  <link rel="stylesheet" href="../styles.css">
+  <!-- Link to review-specific styles -->
+  <link rel="stylesheet" href="review-styles.css">
+  
+  <!-- Google's model-viewer for 3D -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+</head>
+
+<body class="review-body">
+
+  <!-- Minimal Header (no full navigation) -->
+  <header class="review-header">
+    <div class="review-header-container">
+      <a href="../index.html" class="review-logo">Bonas Studio</a>
+      <span class="review-status">Private Viewing</span>
+    </div>
+  </header>
+
+  <!-- Main Review Content -->
+  <main class="review-main">
+    
+    <!-- Project Title Section -->
+    <section class="review-intro section-padded">
+      <div class="section-container section-container--narrow">
+        <p class="review-meta fade-in-scroll">Iteration 3 · January 2026</p>
+        <h1 class="review-title fade-in-scroll">Block Island — Coastal Refinement</h1>
+        <p class="review-subtitle fade-in-scroll">
+          In this iteration, I've refined the northern coastal detail and adjusted 
+          the vertical exaggeration to emphasize the bluff formations you mentioned.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3D Model Viewer -->
+    <section class="model-viewer-section section-padded">
+      <div class="section-container">
+        
+        <!-- Viewing Instructions -->
+        <div class="viewer-instructions fade-in-scroll">
+          <p class="text-meta">Interactive 3D Model</p>
+          <p class="text-body">
+            Click and drag to rotate · Scroll to zoom · Two fingers to pan
+          </p>
+        </div>
+
+        <!-- The 3D Viewer -->
+        <div class="model-viewer-container fade-in-scroll">
+          <model-viewer
+            id="model-viewer"
+            src="models/block-island-v3.glb"
+            alt="Block Island topographic relief model"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="3000"
+            rotation-per-second="20deg"
+            shadow-intensity="1"
+            exposure="1"
+            poster="models/block-island-preview.jpg"
+            loading="eager">
+            
+            <!-- Loading/Error States -->
+            <div class="viewer-loading" slot="poster">
+              <p>Loading your design...</p>
+            </div>
+            
+            <!-- Camera Presets (Optional) -->
+            <div class="viewer-controls">
+              <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
+              <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
+              <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
+              <button class="view-reset">Reset View</button>
+            </div>
+
+          </model-viewer>
+        </div>
+
+        <!-- Model Info -->
+        <div class="model-info fade-in-scroll">
+          <div class="info-grid">
+            <div class="info-item">
+              <p class="info-label">Iteration</p>
+              <p class="info-value">Version 3</p>
+            </div>
+            <div class="info-item">
+              <p class="info-label">Scale</p>
+              <p class="info-value">1:50,000</p>
+            </div>
+            <div class="info-item">
+              <p class="info-label">Vertical Exaggeration</p>
+              <p class="info-value">2.5×</p>
+            </div>
+            <div class="info-item">
+              <p class="info-label">Date</p>
+              <p class="info-value">January 4, 2026</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Design Notes -->
+    <section class="design-notes section-padded bg-light">
+      <div class="section-container section-container--narrow">
+        <h2 class="section-title fade-in-scroll">This Iteration</h2>
+        
+        <div class="notes-content fade-in-scroll">
+          <h3 class="note-heading">Refinements Made</h3>
+          <ul class="note-list">
+            <li>Enhanced northern coastal bluff definition</li>
+            <li>Adjusted vertical exaggeration from 2.0× to 2.5×</li>
+            <li>Smoothed transition zones between elevation bands</li>
+            <li>Refined boundary treatment along western edge</li>
+          </ul>
+
+          <h3 class="note-heading">For Your Consideration</h3>
+          <p class="text-body">
+            As you explore the model, pay particular attention to the coastal formations. 
+            Does the heightened relief capture the drama of the landscape as you remember it? 
+            The interplay between the interior terrain and the coastal edge is beginning to 
+            emerge—this is where the geography tells its story.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="feedback-section section-padded">
+      <div class="section-container section-container--narrow">
+        <h2 class="section-title fade-in-scroll">Your Thoughts</h2>
+        
+        <div class="feedback-content fade-in-scroll">
+          <p class="text-body">
+            Take your time studying the terrain from every angle. When you're ready, 
+            share your observations below or <a href="mailto:studio@bonasstudio.com" class="text-link">email me directly</a>.
+          </p>
+
+          <!-- Simple Feedback Form -->
+          <form class="feedback-form" id="feedback-form">
+            <div class="form-group">
+              <label for="feedback-text" class="form-label">Your Feedback</label>
+              <textarea 
+                id="feedback-text" 
+                name="feedback" 
+                class="form-textarea"
+                placeholder="What resonates? What needs refinement? Are there specific areas you'd like to discuss?"
+                rows="8"></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="next-step" class="form-label">Next Step</label>
+                <select id="next-step" name="next-step" class="form-select">
+                  <option value="">Select one...</option>
+                  <option value="approve">Ready to proceed to fabrication</option>
+                  <option value="revise">I'd like another iteration</option>
+                  <option value="discuss">Let's schedule a call to discuss</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn--accent">Send Feedback</button>
+            </div>
+
+            <div class="form-message" id="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Version History -->
+    <section class="version-history section-padded bg-dark">
+      <div class="section-container section-container--narrow">
+        <h2 class="section-title fade-in-scroll">The Journey So Far</h2>
+        
+        <div class="timeline-list fade-in-scroll">
+          <div class="timeline-item timeline-item--completed">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Initial Consultation</h3>
+              <p class="timeline-date">December 15, 2025</p>
+              <p class="timeline-description">
+                Discussed your connection to Block Island, boundary preferences, 
+                and the story you want the work to tell.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-item--completed">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Version 1: Initial Elevation Study</h3>
+              <p class="timeline-date">December 22, 2025</p>
+              <p class="timeline-description">
+                First digital model with standard exaggeration and preliminary boundaries.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-item--completed">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Version 2: Boundary Refinement</h3>
+              <p class="timeline-date">December 28, 2025</p>
+              <p class="timeline-description">
+                Adjusted to include the full northern coastline per your feedback.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-item--current">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Version 3: Coastal Refinement</h3>
+              <p class="timeline-date">January 4, 2026</p>
+              <p class="timeline-description">
+                Enhanced coastal detail and adjusted vertical exaggeration for dramatic effect.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item timeline-item--upcoming">
+            <div class="timeline-marker"></div>
+            <div class="timeline-content">
+              <h3 class="timeline-title">Final Approval & Fabrication</h3>
+              <p class="timeline-date">Upcoming</p>
+              <p class="timeline-description">
+                Once the design is finalized, fabrication begins—transforming data into heirloom.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="review-contact section-padded">
+      <div class="section-container section-container--narrow text-center">
+        <h2 class="cta-title fade-in-scroll">Questions?</h2>
+        <p class="cta-text">
+          I'm here to discuss any aspect of the design. No detail is too small.
+        </p>
+        <a href="mailto:studio@bonasstudio.com" class="btn btn--accent">Email Me</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimal Footer -->
+  <footer class="review-footer">
+    <div class="review-footer-container">
+      <p class="footer-copyright">© 2026 Bonas Studio · Private Client Review</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="review-scripts.js"></script>
+
+</body>
+</html>
