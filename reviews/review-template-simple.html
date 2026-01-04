@@ -53,33 +53,32 @@
 
         <!-- The 3D Viewer -->
         <div class="model-viewer-container fade-in-scroll">
-          <model-viewer
-            id="model-viewer"
-            src="models/block-island-v3.glb"
-            alt="Block Island topographic relief model"
-            camera-controls
-            auto-rotate
-            auto-rotate-delay="3000"
-            rotation-per-second="20deg"
-            shadow-intensity="1"
-            exposure="1"
-            loading="eager">
-            
-            <!-- Loading State -->
-            <div class="viewer-loading" slot="poster">
-              <p>Loading your design...</p>
-            </div>
-            
-            <!-- Camera Presets -->
-            <div class="viewer-controls">
-              <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
-              <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
-              <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
-              <button class="view-reset">Reset View</button>
-            </div>
+  <model-viewer
+    id="model-viewer"
+    src="models/test-model.glb"
+    alt="Test 3D model"
+    camera-controls
+    auto-rotate
+    auto-rotate-delay="3000"
+    rotation-per-second="20deg"
+    shadow-intensity="1"
+    exposure="1"
+    poster="models/test-model-preview.jpg"
+    loading="eager">
+    
+    <div class="viewer-loading" slot="poster">
+      <p>Loading your design...</p>
+    </div>
+    
+    <div class="viewer-controls">
+      <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
+      <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
+      <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
+      <button class="view-reset">Reset View</button>
+    </div>
 
-          </model-viewer>
-        </div>
+  </model-viewer>
+</div>
 
         <!-- Model Info -->
         <div class="model-info fade-in-scroll">
