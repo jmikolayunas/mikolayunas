@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Design Review — Bonas Studio</title>
   
-  <!-- Link to your main styles -->
-  <link rel="stylesheet" href="../styles.css">
-  <!-- Link to review-specific styles -->
-  <link rel="stylesheet" href="review-styles.css">
+  <!-- Link to your main styles (2 levels up to root) -->
+  <link rel="stylesheet" href="../../styles.css">
+  <!-- Link to review-specific styles (1 level up to reviews folder) -->
+  <link rel="stylesheet" href="../review-styles.css">
   
   <!-- Google's model-viewer for 3D -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
@@ -19,7 +19,7 @@
   <!-- Minimal Header -->
   <header class="review-header">
     <div class="review-header-container">
-      <a href="../index.html" class="review-logo">Bonas Studio</a>
+      <a href="../../index.html" class="review-logo">Bonas Studio</a>
       <span class="review-status">Design Review</span>
     </div>
   </header>
@@ -53,32 +53,31 @@
 
         <!-- The 3D Viewer -->
         <div class="model-viewer-container fade-in-scroll">
-  <model-viewer
-    id="model-viewer"
-    src="models/test-model.glb"
-    alt="Test 3D model"
-    camera-controls
-    auto-rotate
-    auto-rotate-delay="3000"
-    rotation-per-second="20deg"
-    shadow-intensity="1"
-    exposure="1"
-    poster="models/test-model-preview.jpg"
-    loading="eager">
-    
-    <div class="viewer-loading" slot="poster">
-      <p>Loading your design...</p>
-    </div>
-    
-    <div class="viewer-controls">
-      <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
-      <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
-      <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
-      <button class="view-reset">Reset View</button>
-    </div>
+          <model-viewer
+            id="model-viewer"
+            src="models/test-model.glb"
+            alt="Test 3D model"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="3000"
+            rotation-per-second="20deg"
+            shadow-intensity="1"
+            exposure="1"
+            loading="eager">
+            
+            <div class="viewer-loading" slot="poster">
+              <p>Loading your design...</p>
+            </div>
+            
+            <div class="viewer-controls">
+              <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
+              <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
+              <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
+              <button class="view-reset">Reset View</button>
+            </div>
 
-  </model-viewer>
-</div>
+          </model-viewer>
+        </div>
 
         <!-- Model Info -->
         <div class="model-info fade-in-scroll">
@@ -151,8 +150,6 @@
             <input type="hidden" name="_subject" value="Review Feedback: Block Island V3" />
             <input type="hidden" name="project" value="Block Island" />
             <input type="hidden" name="iteration" value="Version 3" />
-            
-        
 
             <div class="form-group">
               <label for="feedback-text" class="form-label">Your Feedback</label>
@@ -273,32 +270,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="review-scripts.js"></script>
+  <script src="../review-scripts.js"></script>
 
 </body>
 </html>
-```
-
----
-
-## Part 5: Set Up Formspree (Free Form Handling)
-
-### Step 1: Create Formspree Account
-
-1. Go to https://formspree.io/
-2. Click **"Get Started Free"**
-3. Sign up with email or GitHub
-4. Confirm your email
-
-### Step 2: Create Your Form
-
-1. Click **"+ New Form"**
-2. **Form name:** "Review Feedback"
-3. **Email notifications to:** `your-email@bonasstudio.com`
-4. Click **"Create Form"**
-
-### Step 3: Get Your Form Endpoint
-
-After creating the form, you'll see:
-```
-https://formspree.io/f/xyzabc123
