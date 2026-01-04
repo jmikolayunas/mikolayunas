@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block Island V3 — Design Review — Bonas Studio</title>
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../review-styles.css">
+  
+  <!-- model-viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+  
+  <!-- Password protection (optional - see next section) -->
+  <style>
+    /* Simple password overlay - more secure options below */
+    .password-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(18, 18, 18, 0.98);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .password-overlay.active {
+      display: flex;
+    }
+    
+    .password-box {
+      background: #F7F6F3;
+      padding: 3rem;
+      max-width: 400px;
+      text-align: center;
+    }
+    
+    .password-box h2 {
+      font-family: 'Libre Baskerville', serif;
+      margin-bottom: 1rem;
+    }
+    
+    .password-box input {
+      width: 100%;
+      padding: 1rem;
+      margin: 1rem 0;
+      border: 1px solid #C7A86A;
+      font-size: 1rem;
+    }
+    
+    .password-box button {
+      width: 100%;
+      padding: 1rem;
+      background: #C7A86A;
+      border: none;
+      color: #121212;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .password-error {
+      color: #c83232;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="review-body">
+
+  <!-- Password Protection Overlay -->
+  <div class="password-overlay active" id="password-overlay">
+    <div class="password-box">
+      <h2>Private Viewing</h2>
+      <p>Enter the access code shared via email</p>
+      <input type="password" id="password-input" placeholder="Access Code" />
+      <button onclick="checkPassword()">View Design</button>
+      <p class="password-error" id="password-error">Incorrect code. Please try again.</p>
+    </div>
+  </div>
+
+  <!-- Main content (hidden until password entered) -->
+  <div id="protected-content" style="display: none;">
+    
+    <header class="review-header">
+      <div class="review-header-container">
+        <a href="../../index.html" class="review-logo">Bonas Studio</a>
+        <span class="review-status">Private Viewing</span>
+      </div>
+    </header>
+
+    <main class="review-main">
+      
+      <!-- Customize all content for this specific client/iteration -->
+      <section class="review-intro section-padded">
+        <div class="section-container section-container--narrow">
+          <p class="review-meta fade-in-scroll">Iteration 3 · January 2026</p>
+          <h1 class="review-title fade-in-scroll">Block Island — Coastal Refinement</h1>
+          <p class="review-subtitle fade-in-scroll">
+            In this iteration, I've refined the northern coastal detail and adjusted 
+            the vertical exaggeration to emphasize the bluff formations you mentioned.
+          </p>
+        </div>
+      </section>
+
+      <!-- 3D Model Viewer -->
+      <section class="model-viewer-section section-padded">
+        <div class="section-container">
+          
+          <div class="viewer-instructions fade-in-scroll">
+            <p class="text-meta">Interactive 3D Model</p>
+            <p class="text-body">
+              Click and drag to rotate · Scroll to zoom · Two fingers to pan
+            </p>
+          </div>
+
+          <div class="model-viewer-container fade-in-scroll">
+            <model-viewer
+              id="model-viewer"
+              src="models/block-island-v3.glb"
+              alt="Block Island topographic relief model"
+              camera-controls
+              auto-rotate
+              auto-rotate-delay="3000"
+              rotation-per-second="20deg"
+              shadow-intensity="1"
+              exposure="1"
+              poster="models/block-island-preview.jpg"
+              loading="eager">
+              
+              <div class="viewer-loading" slot="poster">
+                <p>Loading your design...</p>
+              </div>
+              
+              <div class="viewer-controls">
+                <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
+                <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
+                <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
+                <button class="view-reset">Reset View</button>
+              </div>
+
+            </model-viewer>
+          </div>
+
+          <div class="model-info fade-in-scroll">
+            <div class="info-grid">
+              <div class="info-item">
+                <p class="info-label">Iteration</p>
+                <p class="info-value">Version 3</p>
+              </div>
+              <div class="info-item">
+                <p class="info-label">Scale</p>
+                <p class="info-value">1:50,000</p>
+              </div>
+              <div class="info-item">
+                <p class="info-label">Vertical Exaggeration</p>
+                <p class="info-value">2.5×</p>
+              </div>
+              <div class="info-item">
+                <p class="info-label">Date</p>
+                <p class="info-value">January 4, 2026</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Rest of sections... (copy from template) -->
+      
+    </main>
+
+    <footer class="review-footer">
+      <div class="review-footer-container">
+        <p class="footer-copyright">© 2026 Bonas Studio · Private Client Review</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Password Check Script -->
+  <script>
+    // Simple password protection
+    // For production, use server-side or Netlify password protection
+    const CORRECT_PASSWORD = 'BlockIsland2026'; // Change this for each client
+    
+    function checkPassword() {
+      const input = document.getElementById('password-input');
+      const overlay = document.getElementById('password-overlay');
+      const content = document.getElementById('protected-content');
+      const error = document.getElementById('password-error');
+      
+      if (input.value === CORRECT_PASSWORD) {
+        overlay.style.display = 'none';
+        content.style.display = 'block';
+        // Store in sessionStorage so they don't need to re-enter
+        sessionStorage.setItem('review-authenticated', 'true');
+      } else {
+        error.style.display = 'block';
+        input.value = '';
+        input.focus();
+      }
+    }
+    
+    // Check if already authenticated this session
+    if (sessionStorage.getItem('review-authenticated') === 'true') {
+      document.getElementById('password-overlay').style.display = 'none';
+      document.getElementById('protected-content').style.display = 'block';
+    }
+    
+    // Allow Enter key to submit
+    document.getElementById('password-input').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        checkPassword();
+      }
+    });
+  </script>
+  
+  <script src="../review-scripts.js"></script>
+
+</body>
+</html>
