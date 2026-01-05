@@ -54,6 +54,27 @@ function initModelViewer() {
     });
   }
   
+// Environment Intensity Control (reveals terrain contrast)
+const envSlider = document.getElementById('env-slider');
+const envValue = document.getElementById('env-value');
+
+if (envSlider && envValue) {
+  envSlider.addEventListener('input', (e) => {
+    const value = parseFloat(e.target.value);
+    // This changes the intensity of environment lighting
+    modelViewer.environmentIntensity = value;
+    envValue.textContent = value.toFixed(1);
+    console.log('Environment intensity set to:', value);
+  });
+  
+  // Set initial value when model loads
+  modelViewer.addEventListener('load', () => {
+    const initialEnv = parseFloat(envSlider.value);
+    modelViewer.environmentIntensity = initialEnv;
+    console.log('Initial environment intensity:', initialEnv);
+  });
+}
+  
   // Exposure/Brightness Control
   const exposureSlider = document.getElementById('exposure-slider');
   const exposureValue = document.getElementById('exposure-value');
@@ -63,24 +84,6 @@ function initModelViewer() {
       const value = parseFloat(e.target.value);
       modelViewer.exposure = value;
       exposureValue.textContent = value.toFixed(1);
-      console.log('Exposure set to:', value);
-    });
-  }
-  
-  // Environment Lighting Control (changes lighting direction/quality)
-  const environmentSelect = document.getElementById('environment-select');
-  
-  if (environmentSelect) {
-    environmentSelect.addEventListener('change', (e) => {
-      const envValue = e.target.value;
-      
-      if (envValue === '') {
-        modelViewer.removeAttribute('environment-image');
-      } else {
-        modelViewer.setAttribute('environment-image', envValue);
-      }
-      
-      console.log('Environment changed to:', envValue || 'studio (default)');
     });
   }
   
