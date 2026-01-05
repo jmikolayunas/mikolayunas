@@ -54,24 +54,16 @@ function initModelViewer() {
     });
   }
   
-// Environment Intensity Control (reveals terrain contrast)
-const envSlider = document.getElementById('env-slider');
-const envValue = document.getElementById('env-value');
+// Contrast Control (CSS Filter - affects visual contrast)
+const contrastSlider = document.getElementById('contrast-slider');
+const contrastValue = document.getElementById('contrast-value');
 
-if (envSlider && envValue) {
-  envSlider.addEventListener('input', (e) => {
-    const value = parseFloat(e.target.value);
-    // This changes the intensity of environment lighting
-    modelViewer.environmentIntensity = value;
-    envValue.textContent = value.toFixed(1);
-    console.log('Environment intensity set to:', value);
-  });
-  
-  // Set initial value when model loads
-  modelViewer.addEventListener('load', () => {
-    const initialEnv = parseFloat(envSlider.value);
-    modelViewer.environmentIntensity = initialEnv;
-    console.log('Initial environment intensity:', initialEnv);
+if (contrastSlider && contrastValue) {
+  contrastSlider.addEventListener('input', (e) => {
+    const value = parseInt(e.target.value);
+    modelViewer.style.filter = `contrast(${value}%)`;
+    contrastValue.textContent = value + '%';
+    console.log('Contrast set to:', value + '%');
   });
 }
   
