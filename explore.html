@@ -22,10 +22,16 @@
   
   <!-- model-viewer for 3D display -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
-  
-  <!-- THREE.js for 3D mesh generation -->
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/examples/js/exporters/GLTFExporter.js"></script>
+
+  <!-- THREE.js ES Modules -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
   
   <style>
     /* Reset & Base */
@@ -1008,7 +1014,7 @@
     </div>
   </footer>
 
-  <script src="explore.js"></script>
+  <script type="module" src="explore.js"></script>
 
 </body>
 </html>

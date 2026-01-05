@@ -2,6 +2,10 @@
    ENHANCED TERRAIN EXPLORER WITH 3D GENERATION
    ============================================ */
 
+// Import THREE.js modules
+import * as THREE from 'three';
+import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
+
 // Replace with your Mapbox token
 mapboxgl.accessToken = 'pk.eyJ1Ijoiam1pa29sYXl1bmFzIiwiYSI6ImNtazA5MnJ1MTA4ZWszY3B2MjF6aHlmd3kifQ.nmEJFXg8QJF77YOywWGWYw';
 
