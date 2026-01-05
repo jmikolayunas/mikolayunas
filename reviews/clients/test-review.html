@@ -40,88 +40,85 @@
     </section>
 
     <!-- 3D Model Viewer -->
-    <section class="model-viewer-section section-padded">
-      <div class="section-container">
+<section class="model-viewer-section section-padded">
+  <div class="section-container">
+    
+    <!-- Viewing Instructions -->
+    <div class="viewer-instructions fade-in-scroll">
+      <p class="text-meta">Interactive 3D Model</p>
+      <p class="text-body">
+        Click and drag to rotate · Scroll to zoom · Two fingers to pan
+      </p>
+    </div>
+
+    <!-- The 3D Viewer -->
+    <div class="model-viewer-container fade-in-scroll">
+      <model-viewer
+        id="model-viewer"
+        src="models/test-model.glb"
+        alt="Test 3D model"
+        camera-controls
+        auto-rotate
+        auto-rotate-delay="3000"
+        rotation-per-second="20deg"
+        exposure="1.0"
+        loading="eager">
         
-        <!-- Viewing Instructions -->
-        <div class="viewer-instructions fade-in-scroll">
-          <p class="text-meta">Interactive 3D Model</p>
-          <p class="text-body">
-            Click and drag to rotate · Scroll to zoom · Two fingers to pan
-          </p>
+        <div class="viewer-loading" slot="poster">
+          <p>Loading your design...</p>
         </div>
-
-        <!-- The 3D Viewer -->
-        <div class="model-viewer-container fade-in-scroll">
-          <model-viewer
-            id="model-viewer"
-            src="models/test-model.glb"
-            alt="Test 3D model"
-            camera-controls
-            auto-rotate
-            auto-rotate-delay="3000"
-            rotation-per-second="20deg"
-            shadow-intensity="1"
-            exposure="1"
-            loading="eager">
-            
-            <div class="viewer-loading" slot="poster">
-              <p>Loading your design...</p>
-            </div>
-            
-            <div class="viewer-controls">
-              <button class="view-preset" data-orbit="0deg 0deg 105%">Top View</button>
-              <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
-              <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
-              <button class="view-reset">Reset View</button>
-            </div>
-            
-          </model-viewer>
+        
+        <div class="viewer-controls">
+          <button class="view-preset" data-orbit="0deg 0deg 105%">Top View</button>
+          <button class="view-preset" data-orbit="45deg 65deg 105%">Angle View</button>
+          <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
+          <button class="view-reset">Reset View</button>
         </div>
+        
+      </model-viewer>
+    </div>
 
-  
-  <!-- NEW: Light Control Slider -->
-  <div class="light-control">
-    <label for="exposure-slider" class="light-label">
-      <span class="light-label-text">Light Intensity</span>
-      <span class="light-value" id="exposure-value">1.0</span>
-    </label>
-    <input 
-      type="range" 
-      id="exposure-slider" 
-      class="light-slider"
-      min="0.3" 
-      max="1.2" 
-      step="0.05" 
-      value="0.7"
-    />
-  </div>
-</div>
-
-        <!-- Model Info -->
-        <div class="model-info fade-in-scroll">
-          <div class="info-grid">
-            <div class="info-item">
-              <p class="info-label">Iteration</p>
-              <p class="info-value">Version 3</p>
-            </div>
-            <div class="info-item">
-              <p class="info-label">Scale</p>
-              <p class="info-value">1:50,000</p>
-            </div>
-            <div class="info-item">
-              <p class="info-label">Vertical Exaggeration</p>
-              <p class="info-value">2.5×</p>
-            </div>
-            <div class="info-item">
-              <p class="info-label">Date</p>
-              <p class="info-value">January 4, 2026</p>
-            </div>
-          </div>
-        </div>
-
+    <!-- Lighting Controls -->
+    <div class="lighting-controls fade-in-scroll">
+      
+      <!-- Brightness/Exposure -->
+      <div class="light-control">
+        <label for="exposure-slider" class="light-label">
+          <span class="light-label-text">Brightness</span>
+          <span class="light-value" id="exposure-value">1.0</span>
+        </label>
+        <input 
+          type="range" 
+          id="exposure-slider" 
+          class="light-slider"
+          min="0.3" 
+          max="1.2" 
+          step="0.05" 
+          value="0.7"
+        />
       </div>
-    </section>
+
+      <!-- Environment Lighting Style -->
+      <div class="light-control">
+        <label for="environment-select" class="light-label">
+          <span class="light-label-text">Lighting Style</span>
+        </label>
+        <select id="environment-select" class="light-select">
+          <option value="neutral">Neutral (Default)</option>
+          <option value="">Studio</option>
+          <option value="legacy">Legacy</option>
+        </select>
+      </div>
+      
+    </div>
+
+    <!-- Model Info -->
+    <div class="model-info fade-in-scroll">
+      <!-- ... rest of your model info ... -->
+    </div>
+
+  </div>
+</section>
 
     <!-- Design Notes -->
     <section class="design-notes section-padded bg-light">

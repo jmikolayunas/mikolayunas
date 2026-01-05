@@ -24,20 +24,6 @@ function initModelViewer() {
   const presetButtons = document.querySelectorAll('.view-preset');
   const resetButton = document.querySelector('.view-reset');
   
-  
-  // NEW: Light/Exposure Control
-  const exposureSlider = document.getElementById('exposure-slider');
-  const exposureValue = document.getElementById('exposure-value');
-  
-  if (exposureSlider && exposureValue) {
-    exposureSlider.addEventListener('input', (e) => {
-      const value = parseFloat(e.target.value);
-      modelViewer.exposure = value;
-      exposureValue.textContent = value.toFixed(1);
-    });
-  }
-
-
   // Store initial camera position
   let initialOrbit = null;
   
@@ -49,12 +35,11 @@ function initModelViewer() {
   
   // Handle camera preset clicks
   presetButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      const orbit = e.target.getAttribute('data-orbit');
+    button.addEventListener('click', () => {
+      const orbit = button.getAttribute('data-orbit');
       if (orbit) {
         modelViewer.cameraOrbit = orbit;
-        // Pause auto-rotate when user interacts
-        modelViewer.setAttribute('auto-rotate', 'false');
+        modelViewer.autoRotate = false;
       }
     });
   });
@@ -65,32 +50,56 @@ function initModelViewer() {
       if (initialOrbit) {
         modelViewer.cameraOrbit = initialOrbit.toString();
       }
-      // Resume auto-rotate
-      modelViewer.setAttribute('auto-rotate', 'true');
+      modelViewer.autoRotate = true;
+    });
+  }
+  
+  // Exposure/Brightness Control
+  const exposureSlider = document.getElementById('exposure-slider');
+  const exposureValue = document.getElementById('exposure-value');
+  
+  if (exposureSlider && exposureValue) {
+    exposureSlider.addEventListener('input', (e) => {
+      const value = parseFloat(e.target.value);
+      modelViewer.exposure = value;
+      exposureValue.textContent = value.toFixed(1);
+      console.log('Exposure set to:', value);
+    });
+  }
+  
+  // Environment Lighting Control (changes lighting direction/quality)
+  const environmentSelect = document.getElementById('environment-select');
+  
+  if (environmentSelect) {
+    environmentSelect.addEventListener('change', (e) => {
+      const envValue = e.target.value;
+      
+      if (envValue === '') {
+        modelViewer.removeAttribute('environment-image');
+      } else {
+        modelViewer.setAttribute('environment-image', envValue);
+      }
+      
+      console.log('Environment changed to:', envValue || 'studio (default)');
     });
   }
   
   // Pause auto-rotate when user interacts manually
   modelViewer.addEventListener('camera-change', () => {
-    if (modelViewer.hasAttribute('auto-rotate')) {
-      // User has interacted, turn off auto-rotate
-      setTimeout(() => {
-        modelViewer.removeAttribute('auto-rotate');
-      }, 100);
-    }
+    setTimeout(() => {
+      modelViewer.autoRotate = false;
+    }, 100);
   });
   
-  // Show loading progress (optional)
+  // Show loading progress
   modelViewer.addEventListener('progress', (event) => {
     const progress = event.detail.totalProgress;
     console.log(`Loading: ${(progress * 100).toFixed(0)}%`);
-    // You could update a progress bar here if desired
   });
   
   // Handle errors
   modelViewer.addEventListener('error', (event) => {
     console.error('Error loading model:', event.detail);
-    // You could show an error message to the user here
   });
 }
 
@@ -129,11 +138,6 @@ function initFeedbackForm() {
     submitBtn.disabled = true;
     
     try {
-      // OPTION 1: Use Netlify Forms (if hosting on Netlify)
-      // Just let the form submit normally with netlify attribute
-      // No additional code needed
-      
-      // OPTION 2: Use Formspree or similar service
       const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
         body: formData,
@@ -153,7 +157,6 @@ function initFeedbackForm() {
       console.error('Error submitting form:', error);
       showMessage('There was an error sending your feedback. Please email me directly at studio@bonasstudio.com', 'error');
     } finally {
-      // Restore button state
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;
     }
@@ -163,7 +166,6 @@ function initFeedbackForm() {
     messageDiv.className = `form-message form-message--${type} show`;
     messageDiv.innerHTML = `<p>${text}</p>`;
     
-    // Auto-hide success messages after 5 seconds
     if (type === 'success') {
       setTimeout(() => {
         messageDiv.classList.remove('show');
@@ -185,13 +187,10 @@ function initScrollAnimations() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-        // Optional: stop observing once visible
-        // observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
   
-  // Observe all elements with fade-in-scroll class
   document.querySelectorAll('.fade-in-scroll').forEach(el => {
     observer.observe(el);
   });
@@ -208,7 +207,6 @@ function copyReviewLink() {
       alert('Review link copied to clipboard');
     });
   } else {
-    // Fallback for older browsers
     const tempInput = document.createElement('input');
     tempInput.value = url;
     document.body.appendChild(tempInput);
