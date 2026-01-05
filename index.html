@@ -82,29 +82,13 @@
       transform: none;
     }
 
-    /* Remove background from work media - ghost-like reveal */
-    .featured-work .work-media {
-      background: transparent;
-      box-shadow: none;
-    }
-
-    /* Slow delayed fade-in for work items */
-    .featured-work .work-item.fade-in-scroll {
-      opacity: 0;
-      transition: opacity 2.5s ease 0.5s;
-    }
-
-    .featured-work .work-item.fade-in-scroll.is-visible {
-      opacity: 1;
-    }
-
-    /* Stagger the items slightly */
+    /* Stagger the work items for sequential reveal */
     .featured-work .work-item.fade-in-scroll:nth-child(1) {
-      transition-delay: 0.3s;
+      transition-delay: 0.2s;
     }
 
     .featured-work .work-item.fade-in-scroll:nth-child(2) {
-      transition-delay: 0.3s;
+      transition-delay: 0.5s;
     }
   </style>
 </head>

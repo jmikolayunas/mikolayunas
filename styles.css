@@ -178,6 +178,17 @@ ul {
   padding-inline: var(--section-padding-x);
 }
 
+/* Gallery-like spacing for home page sections */
+.philosophy.section-padded {
+  padding-top: clamp(6rem, 12vw, 12rem);
+  padding-bottom: clamp(6rem, 12vw, 12rem);
+}
+
+.featured-work.section-padded {
+  padding-top: clamp(8rem, 14vw, 14rem);
+  padding-bottom: clamp(6rem, 10vw, 10rem);
+}
+
 .section-container {
   max-width: var(--container-max-width);
   margin-inline: auto;
@@ -524,8 +535,13 @@ ul {
   font-weight: var(--weight-regular);
   line-height: var(--leading-snug);
   color: var(--color-text-primary);
-  margin: 0 0 var(--space-6);
+  margin: 0 0 var(--space-7);
   text-align: center;
+}
+
+/* More space for featured work title */
+.featured-work .section-title {
+  margin-bottom: clamp(4rem, 8vw, 8rem);
 }
 
 /* Section subtitle style - ADDED */
@@ -558,7 +574,7 @@ ul {
 .work-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  gap: clamp(3rem, 6vw, 6rem);
   padding: 0;
 }
 
@@ -589,6 +605,21 @@ ul {
   padding: 0;
   margin: 0;
   line-height: 0;
+  /* Luxury depth with elegant shadow */
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 8px 40px rgba(0, 0, 0, 0.06),
+    0 16px 80px rgba(0, 0, 0, 0.04);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced shadow on hover */
+.work-item:hover .work-media {
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.12),
+    0 16px 60px rgba(0, 0, 0, 0.08),
+    0 24px 100px rgba(0, 0, 0, 0.06);
 }
 
 /* Fallback aspect ratio if JS doesn't run */
@@ -627,6 +658,15 @@ ul {
 .work-info {
   padding: 1.5rem 0.5rem;
   text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s,
+              transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+}
+
+.work-item.fade-in-scroll.is-visible .work-info {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .work-title {
@@ -846,11 +886,25 @@ ul {
    ============================================ */
 .fade-in-scroll {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 1.2s ease, transform 1.2s ease;
+  transform: translateY(60px);
+  transition: opacity 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .fade-in-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Luxurious rise animation for images */
+.featured-work .work-item.fade-in-scroll {
+  opacity: 0;
+  transform: translateY(80px);
+  transition: opacity 2.2s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featured-work .work-item.fade-in-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -1002,13 +1056,13 @@ ul {
   padding: var(--space-4);
   background: linear-gradient(
     to top,
-    rgba(18, 18, 18, 0.95) 0%,
-    rgba(18, 18, 18, 0.7) 70%,
+    rgba(247, 246, 243, 0.95) 0%,
+    rgba(247, 246, 243, 0.7) 70%,
     transparent 100%
   );
   text-align: center;
   transform: translateY(100%);
-  transition: transform 0.4s ease;
+  transition: transform 0.8s ease;
 }
 
 .gallery-item-link:hover .gallery-item-overlay,
@@ -1020,7 +1074,7 @@ ul {
   font-family: var(--font-primary);
   font-size: var(--text-base);
   font-weight: var(--weight-regular);
-  color: var(--color-text-inverse);
+  color: var(--color-graphite);
   margin: 0 0 var(--space-1);
 }
 
