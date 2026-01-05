@@ -20,6 +20,21 @@ function initModelViewer() {
   
   if (!modelViewer) return;
   
+// --- Interaction prompt (mouse/drag hint) control ---
+  // Show briefly, then turn off (≈2 cycles), and turn off immediately on first interaction.
+  modelViewer.setAttribute('interaction-prompt', 'auto');
+
+  const TWO_CYCLES_MS = 10000; // tweak (8000–12000) depending on what you see
+  const promptTimer = setTimeout(() => {
+    modelViewer.setAttribute('interaction-prompt', 'none');
+  }, TWO_CYCLES_MS);
+
+  const disablePrompt = () => {
+    clearTimeout(promptTimer);
+    modelViewer.setAttribute('interaction-prompt', 'none');
+  };
+
+
   // Camera preset buttons
   const presetButtons = document.querySelectorAll('.view-preset');
   const resetButton = document.querySelector('.view-reset');
