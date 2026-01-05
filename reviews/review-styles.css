@@ -89,6 +89,18 @@
   margin: 0 0 var(--space-4);
 }
 
+.review-title-line {
+  display: block;
+}
+
+.review-title-line--sub {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-light);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-2);
+  opacity: 0.85;
+}
+
 .review-subtitle {
   font-family: var(--font-secondary);
   font-size: var(--text-lg);
@@ -474,7 +486,11 @@ model-viewer {
   .review-title {
     font-size: var(--text-2xl);
   }
-  
+
+  .review-title-line--sub {
+    font-size: var(--text-lg);
+  }
+
   .review-subtitle {
     font-size: var(--text-base);
   }
