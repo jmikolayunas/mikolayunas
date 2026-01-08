@@ -1,5 +1,5 @@
 // ============================================
-// BONAS STUDIO - INTERACTIONS
+// BONAS STUDIO - GLOBAL INTERACTIONS
 // ============================================
 
 // ============================================
@@ -9,13 +9,13 @@
 
 function autoSizeWorkImages() {
   const workItems = document.querySelectorAll('.work-item');
-  
+
   workItems.forEach(item => {
     const workMedia = item.querySelector('.work-media');
     const mainImage = item.querySelector('.work-image:not(.work-image--detail)');
-    
+
     if (!mainImage || !workMedia) return;
-    
+
     // Wait for image to load
     if (mainImage.complete) {
       setAspectRatio(mainImage, workMedia);
@@ -30,16 +30,16 @@ function autoSizeWorkImages() {
 function setAspectRatio(image, container) {
   const naturalWidth = image.naturalWidth;
   const naturalHeight = image.naturalHeight;
-  
+
   if (naturalWidth && naturalHeight) {
     const aspectRatio = naturalWidth / naturalHeight;
-    
+
     // Set CSS aspect ratio on container
     container.style.aspectRatio = `${aspectRatio}`;
-    
+
     // Add data attribute for reference
     container.setAttribute('data-aspect-ratio', aspectRatio.toFixed(3));
-    
+
     console.log(`✓ Auto-sized: ${aspectRatio.toFixed(3)} ratio (${naturalWidth}×${naturalHeight})`);
   }
 }
@@ -55,39 +55,41 @@ window.addEventListener('resize', () => {
 });
 
 // ============================================
-// Smooth parallax on hero section
+// HERO PARALLAX EFFECT
 // ============================================
+
 const heroImage = document.querySelector('.hero-image');
-let ticking = false;
+let parallaxTicking = false;
 
 function updateParallax() {
   if (!heroImage) return;
-  
+
   const scrolled = window.pageYOffset;
-  const heroHeight = document.querySelector('.hero').offsetHeight;
-  
+  const heroHeight = document.querySelector('.hero')?.offsetHeight || 0;
+
   // Only apply parallax while hero is in view
   if (scrolled < heroHeight) {
-    const parallaxSpeed = 0.5;
+    const parallaxSpeed = 0.3;
     heroImage.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
   }
-  
-  ticking = false;
+
+  parallaxTicking = false;
 }
 
 window.addEventListener('scroll', () => {
-  if (!ticking) {
+  if (!parallaxTicking) {
     window.requestAnimationFrame(updateParallax);
-    ticking = true;
+    parallaxTicking = true;
   }
 });
 
 // ============================================
-// Scroll-triggered fade-ins for content sections
+// SCROLL-TRIGGERED FADE-INS
 // ============================================
+
 const observerOptions = {
-  threshold: 0.15,
-  rootMargin: '0px 0px -100px 0px'
+  threshold: 0.5,
+  rootMargin: '0px 0px -15% 0px'
 };
 
 const fadeObserver = new IntersectionObserver((entries) => {
@@ -106,8 +108,9 @@ document.querySelectorAll('.fade-in-scroll').forEach(el => {
 });
 
 // ============================================
-// Mobile navigation toggle
+// MOBILE NAVIGATION TOGGLE
 // ============================================
+
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
 const body = document.body;
@@ -116,7 +119,7 @@ if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isActive = siteNav.classList.toggle('is-active');
     navToggle.classList.toggle('is-active');
-    
+
     // Prevent scroll when mobile menu is open
     if (isActive) {
       body.style.overflow = 'hidden';
@@ -124,7 +127,7 @@ if (navToggle && siteNav) {
       body.style.overflow = '';
     }
   });
-  
+
   // Close menu when clicking nav links
   const navLinks = siteNav.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
@@ -137,33 +140,31 @@ if (navToggle && siteNav) {
 }
 
 // ============================================
-// Header hide/show on scroll
+// HEADER HIDE/SHOW ON SCROLL
 // ============================================
+
 let lastScroll = 0;
 const header = document.querySelector('.site-header');
 
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  
-  if (currentScroll > 100) {
-    if (currentScroll > lastScroll) {
-      // Scrolling down
-      header.style.transform = 'translateY(-100%)';
+if (header) {
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 100) {
+      if (currentScroll > lastScroll) {
+        // Scrolling down
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        // Scrolling up
+        header.style.transform = 'translateY(0)';
+      }
     } else {
-      // Scrolling up
       header.style.transform = 'translateY(0)';
     }
-  } else {
-    header.style.transform = 'translateY(0)';
-  }
-  
-  lastScroll = currentScroll;
-});
 
-// Log to confirm JS is loaded
-console.log('✓ Bonas Studio scripts loaded with auto-sizing');
-
-
+    lastScroll = currentScroll;
+  });
+}
 
 // ============================================
 // SCROLL-LINKED OPACITY REVEAL
@@ -171,23 +172,23 @@ console.log('✓ Bonas Studio scripts loaded with auto-sizing');
 
 function initScrollReveal() {
   const revealItems = document.querySelectorAll('[data-scroll-reveal]');
-  
+
   function updateReveal() {
     revealItems.forEach(item => {
       const image = item.querySelector('.work-image');
       const info = item.querySelector('.work-info');
       const rect = item.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+
       // Calculate opacity progress (0 to 1)
       // Starts revealing when item enters bottom 80% of viewport
       // Fully opaque when item is at 30% from top
       const revealStart = windowHeight * 0.8;
       const revealEnd = windowHeight * 0.3;
       const revealRange = revealStart - revealEnd;
-      
+
       let progress = 0;
-      
+
       if (rect.top < revealStart && rect.top > revealEnd) {
         // Item is in reveal zone
         progress = (revealStart - rect.top) / revealRange;
@@ -196,34 +197,38 @@ function initScrollReveal() {
         // Item is fully revealed
         progress = 1;
       }
-      
+
       // Apply opacity directly based on scroll position
-      image.style.opacity = progress;
-      
+      if (image) {
+        image.style.opacity = progress;
+      }
+
       // Fade in text info when image is 70% opaque
-      if (progress >= 0.7) {
-        info.style.opacity = '1';
-        info.style.transform = 'translateY(0)';
-      } else {
-        info.style.opacity = '0';
-        info.style.transform = 'translateY(20px)';
+      if (info) {
+        if (progress >= 0.7) {
+          info.style.opacity = '1';
+          info.style.transform = 'translateY(0)';
+        } else {
+          info.style.opacity = '0';
+          info.style.transform = 'translateY(20px)';
+        }
       }
     });
   }
-  
+
   // Update on scroll (with requestAnimationFrame for performance)
-  let ticking = false;
-  
+  let revealTicking = false;
+
   window.addEventListener('scroll', () => {
-    if (!ticking) {
+    if (!revealTicking) {
       window.requestAnimationFrame(() => {
         updateReveal();
-        ticking = false;
+        revealTicking = false;
       });
-      ticking = true;
+      revealTicking = true;
     }
   });
-  
+
   // Initial check
   updateReveal();
 }
@@ -234,3 +239,6 @@ if (document.readyState === 'loading') {
 } else {
   initScrollReveal();
 }
+
+// Log to confirm JS is loaded
+console.log('✓ Bonas Studio global scripts loaded');

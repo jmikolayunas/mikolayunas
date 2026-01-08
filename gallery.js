@@ -1,5 +1,5 @@
 // ============================================
-// GALLERY PAGE - FILTERING & LIGHTBOX
+// GALLERY PAGE - FILTERING & LAYOUT
 // ============================================
 
 // Gallery data with full details
@@ -53,12 +53,41 @@ const galleryData = [
     meta: "maple, birch, mahogany, resin",
     description: "The complex island ecosystem of coastal Maine, with hundreds of islands emerging from deep blue resin. White oak captures the rocky, weathered character of the North Atlantic shore."
   }
-
-
-
-
-  
 ];
+
+// ============================================
+// SET TRUE SCALE FOR GALLERY ITEMS
+// ============================================
+
+function setGalleryTrueScale() {
+  const galleryItems = document.querySelectorAll('.gallery-item[data-width][data-height]');
+
+  // Define scale: 1 inch = X pixels
+  // Adjust this value to make all pieces larger or smaller
+  const SCALE = 11; // 11 pixels per inch (adjust as needed)
+
+  galleryItems.forEach(item => {
+    const widthInches = parseFloat(item.dataset.width);
+    const heightInches = parseFloat(item.dataset.height);
+    const media = item.querySelector('.gallery-item-media');
+
+    if (media && widthInches && heightInches) {
+      // Calculate pixel dimensions based on scale
+      const widthPixels = widthInches * SCALE;
+      const heightPixels = heightInches * SCALE;
+
+      // Set dimensions on the item container
+      item.style.width = `${widthPixels}px`;
+      item.style.maxWidth = `${widthPixels}px`;
+
+      // Set dimensions on the media container (width AND height)
+      media.style.width = `${widthPixels}px`;
+      media.style.height = `${heightPixels}px`;
+
+      console.log(`Scaled ${widthInches}"×${heightInches}" to ${widthPixels}px×${heightPixels}px`);
+    }
+  });
+}
 
 // ============================================
 // GALLERY FILTER FUNCTIONALITY
@@ -67,7 +96,7 @@ const galleryData = [
 function initGalleryFilter() {
   const filterButtons = document.querySelectorAll('.filter-btn');
   const galleryItems = document.querySelectorAll('.gallery-item');
-  
+
   // Show all items on initial page load
   setTimeout(() => {
     galleryItems.forEach((item, index) => {
@@ -76,44 +105,44 @@ function initGalleryFilter() {
       }, index * 80);
     });
   }, 100);
-  
+
   filterButtons.forEach(button => {
     button.addEventListener('click', () => {
       const filterValue = button.dataset.filter;
-      
+
       // Update active button
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
-      
+
       // STEP 1: Fade out ALL items (regardless of filter match)
       galleryItems.forEach(item => {
         item.classList.remove('is-visible');
       });
-      
+
       // STEP 2: After fade-out completes, update hidden states
       setTimeout(() => {
         galleryItems.forEach(item => {
           const itemCategory = item.dataset.category;
-          
+
           if (filterValue !== 'all' && itemCategory !== filterValue) {
             item.classList.add('hidden');
           } else {
             item.classList.remove('hidden');
           }
         });
-        
+
         // STEP 3: Stagger fade-in of ALL visible items
         setTimeout(() => {
           let visibleIndex = 0;
-          
+
           galleryItems.forEach(item => {
             const itemCategory = item.dataset.category;
-            
+
             if (filterValue === 'all' || itemCategory === filterValue) {
               setTimeout(() => {
                 item.classList.add('is-visible');
               }, visibleIndex * 80);
-              
+
               visibleIndex++;
             }
           });
@@ -129,12 +158,12 @@ function initGalleryFilter() {
 
 function setGalleryAspectRatios() {
   const galleryItems = document.querySelectorAll('.gallery-item[data-width][data-height]');
-  
+
   galleryItems.forEach(item => {
     const width = parseFloat(item.dataset.width);
     const height = parseFloat(item.dataset.height);
     const media = item.querySelector('.gallery-item-media');
-    
+
     if (media && width && height) {
       media.style.aspectRatio = `${width} / ${height}`;
     }
@@ -147,13 +176,22 @@ function setGalleryAspectRatios() {
 
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
+    setGalleryTrueScale();
     setGalleryAspectRatios();
     initGalleryFilter();
   });
 } else {
+  setGalleryTrueScale();
   setGalleryAspectRatios();
   initGalleryFilter();
 }
+
+// Recalculate on window resize
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(setGalleryTrueScale, 150);
+});
 
 // ============================================
 // LIGHTBOX FUNCTIONALITY
@@ -181,13 +219,13 @@ galleryLinks.forEach(link => {
 
 function openLightbox(index) {
   const item = galleryData[index];
-  
+
   lightboxImage.src = item.image;
   lightboxImage.alt = item.title;
   lightboxTitle.textContent = item.title;
   lightboxMeta.textContent = item.meta;
   lightboxDescription.textContent = item.description;
-  
+
   lightbox.classList.add('active');
   document.body.style.overflow = 'hidden'; // Prevent background scroll
 }
@@ -198,30 +236,38 @@ function closeLightbox() {
   document.body.style.overflow = ''; // Restore scroll
 }
 
-lightboxClose.addEventListener('click', closeLightbox);
+if (lightboxClose) {
+  lightboxClose.addEventListener('click', closeLightbox);
+}
 
 // Close on background click
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) {
-    closeLightbox();
-  }
-});
+if (lightbox) {
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
+    }
+  });
+}
 
 // Navigation
-lightboxPrev.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
-  openLightbox(currentIndex);
-});
+if (lightboxPrev) {
+  lightboxPrev.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + galleryData.length) % galleryData.length;
+    openLightbox(currentIndex);
+  });
+}
 
-lightboxNext.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % galleryData.length;
-  openLightbox(currentIndex);
-});
+if (lightboxNext) {
+  lightboxNext.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % galleryData.length;
+    openLightbox(currentIndex);
+  });
+}
 
 // Keyboard navigation
 document.addEventListener('keydown', (e) => {
-  if (!lightbox.classList.contains('active')) return;
-  
+  if (!lightbox || !lightbox.classList.contains('active')) return;
+
   if (e.key === 'Escape') {
     closeLightbox();
   } else if (e.key === 'ArrowLeft') {
