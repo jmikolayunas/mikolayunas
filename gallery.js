@@ -147,7 +147,7 @@ function initGalleryFilter() {
             }
           });
         }, 50);
-      }, 600); // Wait for fade-out transition to complete
+      }, 1500); // Wait for fade-out transition to complete
     });
   });
 }
