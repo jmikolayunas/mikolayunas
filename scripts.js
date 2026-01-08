@@ -89,7 +89,7 @@ window.addEventListener('scroll', () => {
 
 const observerOptions = {
   threshold: 0.5,
-  rootMargin: '0px 0px -15% 0px'
+  rootMargin: '0px 0px -0% 0px'
 };
 
 const fadeObserver = new IntersectionObserver((entries) => {
