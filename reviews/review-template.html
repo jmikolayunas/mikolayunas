@@ -55,29 +55,44 @@
         <div class="model-viewer-container fade-in-scroll">
   <model-viewer
     id="model-viewer"
-    src="models/test-model.glb"
-    alt="Test 3D model"
+    src="models/stowe.glb"
+    alt="Damaged Helmet 3D model"
     camera-controls
     auto-rotate
     auto-rotate-delay="3000"
     rotation-per-second="20deg"
-    shadow-intensity="1"
-    exposure="1"
+    shadow-intensity="1.8"
+    shadow-softness="0.8"
+    exposure="1.4"
+    environment-image="legacy"
     poster="models/test-model-preview.jpg"
-    loading="eager">
+    loading="eager"
+    style="filter: contrast(125%);">
     
     <div class="viewer-loading" slot="poster">
       <p>Loading your design...</p>
     </div>
     
-    <div class="viewer-controls">
-      <button class="view-preset" data-orbit="0deg 75deg 105%">Top View</button>
-      <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
-      <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
-      <button class="view-reset">Reset View</button>
-    </div>
+  <!-- View Controls -->
+  <div class="viewer-controls">
+    <button class="view-preset" data-orbit="0deg 0deg 105%">Top View</button>
+    <button class="view-preset" data-orbit="45deg 60deg 105%">Angle View</button>
+    <button class="view-preset" data-orbit="90deg 90deg 105%">Side View</button>
+    <button class="view-reset">Reset View</button>
+  </div>
+</model-viewer>
+</div>
 
-  </model-viewer>
+<!-- Light Slider -->
+<div class="lighting-controls">
+  <input
+    type="range"
+    id="sun-position-slider"
+    class="light-slider"
+    min="0"
+    max="100"
+    value="50"
+    step="1">
 </div>
 
         <!-- Model Info -->
@@ -144,7 +159,7 @@
           <!-- Feedback Form with Formspree -->
           <form class="feedback-form" 
                 id="feedback-form"
-                action="https://formspree.io/f/YOUR_FORM_ID" 
+                action="https://formspree.io/f/xojjvbeb" 
                 method="POST">
             
             <!-- Hidden fields for context -->
@@ -277,28 +292,3 @@
 
 </body>
 </html>
-```
-
----
-
-## Part 5: Set Up Formspree (Free Form Handling)
-
-### Step 1: Create Formspree Account
-
-1. Go to https://formspree.io/
-2. Click **"Get Started Free"**
-3. Sign up with email or GitHub
-4. Confirm your email
-
-### Step 2: Create Your Form
-
-1. Click **"+ New Form"**
-2. **Form name:** "Review Feedback"
-3. **Email notifications to:** `your-email@bonasstudio.com`
-4. Click **"Create Form"**
-
-### Step 3: Get Your Form Endpoint
-
-After creating the form, you'll see:
-```
-https://formspree.io/f/xyzabc123

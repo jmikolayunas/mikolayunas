@@ -45,7 +45,20 @@ function initModelViewer() {
   // Wait for model to load to capture initial position
   modelViewer.addEventListener('load', () => {
     initialOrbit = modelViewer.getCameraOrbit();
-    console.log('Model loaded successfully');
+
+    // Ensure initial lighting settings are applied
+    modelViewer.exposure = 1.4;
+    modelViewer.shadowIntensity = 1.8;
+    modelViewer.shadowSoftness = 0.8;
+    modelViewer.style.filter = 'contrast(125%)';
+
+    // Set initial sun position if slider exists
+    const sunSlider = document.getElementById('sun-position-slider');
+    if (sunSlider) {
+      updateSunPosition(50);
+    }
+
+    console.log('Model loaded successfully with enhanced lighting');
   });
   
   // Handle camera preset clicks
@@ -69,30 +82,30 @@ function initModelViewer() {
     });
   }
   
-// Contrast Control (CSS Filter - affects visual contrast)
-const contrastSlider = document.getElementById('contrast-slider');
-const contrastValue = document.getElementById('contrast-value');
+  // Light slider - simple one-direction brightness control
+  const sunSlider = document.getElementById('sun-position-slider');
 
-if (contrastSlider && contrastValue) {
-  contrastSlider.addEventListener('input', (e) => {
-    const value = parseInt(e.target.value);
-    modelViewer.style.filter = `contrast(${value}%)`;
-    contrastValue.textContent = value + '%';
-    console.log('Contrast set to:', value + '%');
-  });
-}
-  
-  // Exposure/Brightness Control
-  const exposureSlider = document.getElementById('exposure-slider');
-  const exposureValue = document.getElementById('exposure-value');
-  
-  if (exposureSlider && exposureValue) {
-    exposureSlider.addEventListener('input', (e) => {
-      const value = parseFloat(e.target.value);
-      modelViewer.exposure = value;
-      exposureValue.textContent = value.toFixed(1);
+  // Function to update lighting (one direction: dark to bright)
+  function updateSunPosition(value) {
+    // 0 = darker, 100 = brighter
+    const exposure = 0.8 + (value / 100) * 1.0; // 0.8 to 1.8
+    const shadowIntensity = 2.2 - (value / 100) * 1.0; // 2.2 to 1.2
+    const contrast = 130 - (value / 100) * 20; // 130% to 110%
+
+    if (modelViewer) {
+      modelViewer.exposure = exposure;
+      modelViewer.shadowIntensity = shadowIntensity;
+      modelViewer.style.filter = `contrast(${contrast}%)`;
+    }
+  }
+
+  if (sunSlider) {
+    sunSlider.addEventListener('input', (e) => {
+      const value = parseInt(e.target.value);
+      updateSunPosition(value);
     });
   }
+  
   
   // Pause auto-rotate when user interacts manually
   modelViewer.addEventListener('camera-change', () => {
@@ -148,7 +161,7 @@ function initFeedbackForm() {
     submitBtn.disabled = true;
     
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('https://formspree.io/f/xojjvbeb', {
         method: 'POST',
         body: formData,
         headers: {
