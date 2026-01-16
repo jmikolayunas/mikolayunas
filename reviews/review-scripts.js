@@ -88,7 +88,7 @@ function initModelViewer() {
   // Function to update lighting (one direction: dark to bright)
   function updateSunPosition(value) {
     // 0 = darker, 100 = brighter
-    const exposure = 0.8 + (value / 100) * 1.0; // 0.8 to 1.8
+    const exposure = 0.2 + (value / 100) * 1.0; // 0.8 to 1.8
     const shadowIntensity = 2.2 - (value / 100) * 1.0; // 2.2 to 1.2
     const contrast = 130 - (value / 100) * 20; // 130% to 110%
 
