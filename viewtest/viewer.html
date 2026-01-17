@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Viewer Test — Light Control</title>
+  
+  <link rel="stylesheet" href="viewer-styles.css">
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+</head>
+
+<body>
+
+  <div class="viewer-container">
+    
+    <h1>3D Terrain Viewer — Light Control Test</h1>
+    
+    <!-- 3D Model Viewer -->
+    <div class="model-wrapper">
+      <model-viewer
+        id="model-viewer"
+        src="models/stowe.glb"
+        alt="Stowe terrain model"
+        camera-controls
+        shadow-intensity="1.5"
+        shadow-softness="0.8"
+        exposure="1.2"
+        environment-image="models/hdri/kloppenheim_06_1k.hdr"
+        style="filter: contrast(110%);">
+        
+        <div class="loading-indicator" slot="poster">
+          <p>Loading model...</p>
+        </div>
+
+      </model-viewer>
+    </div>
+
+    <!-- Light Controls -->
+    <div class="light-controls">
+      
+      <!-- Sun Position Slider -->
+      <div class="control-group">
+        <div class="control-header">
+          <span class="control-label">Sun Position</span>
+          <span class="control-value" id="sun-position-value">Noon</span>
+        </div>
+        
+        <input 
+          type="range" 
+          id="sun-position-slider" 
+          class="slider"
+          min="0" 
+          max="100" 
+          value="50"
+          step="1">
+        
+        <div class="slider-labels">
+          <span class="label-left">Dawn (East)</span>
+          <span class="label-center">Noon</span>
+          <span class="label-right">Dusk (West)</span>
+        </div>
+      </div>
+
+      <!-- Light Intensity Slider -->
+      <div class="control-group">
+        <div class="control-header">
+          <span class="control-label">Light Intensity</span>
+          <span class="control-value" id="intensity-value">Medium</span>
+        </div>
+        
+        <input 
+          type="range" 
+          id="intensity-slider" 
+          class="slider"
+          min="0" 
+          max="100" 
+          value="50"
+          step="1">
+        
+        <div class="slider-labels">
+          <span class="label-left">Dark</span>
+          <span class="label-right">Bright</span>
+        </div>
+      </div>
+      
+      <!-- Debug Info -->
+      <div class="debug-info" id="debug-info">
+        <h4>Live Values (Slider IS Working):</h4>
+        <p>Sun Elevation: <span id="debug-elevation">--</span></p>
+        <p>Sun Azimuth: <span id="debug-azimuth">--</span></p>
+        <p>Shadow Intensity: <span id="debug-shadow">--</span></p>
+        <p>Exposure: <span id="debug-exposure">--</span></p>
+        <p style="margin-top: 10px; color: #ff9500;"><strong>If these values change, slider works!</strong></p>
+        <p style="color: #ff9500;"><strong>No shadows? Need HDRI. See FIX-SHADOWS.txt</strong></p>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions">
+      <h3>Controls</h3>
+      <ul>
+        <li><strong>Click + Drag:</strong> Rotate model</li>
+        <li><strong>Scroll:</strong> Zoom in/out</li>
+        <li><strong>Two Fingers:</strong> Pan (mobile)</li>
+        <li><strong>Slider:</strong> Adjust light angle and intensity</li>
+      </ul>
+      
+      <h3>What to Watch For</h3>
+      <ul>
+        <li>Shadow direction changes as you move slider</li>
+        <li>Shadows update as you rotate the model</li>
+        <li>Low slider = Low angle light (long shadows)</li>
+        <li>High slider = High angle light (short shadows)</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <script src="viewer-scripts.js"></script>
+
+</body>
+</html>
