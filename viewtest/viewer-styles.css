@@ -60,7 +60,6 @@ h1 {
 
 .control-group { margin-bottom:20px; }
 
-
 /* Make sliders 50% width and centered */
 .control-group .slider {
   width: 50%;
@@ -75,7 +74,6 @@ h1 {
   margin-left: auto;
   margin-right: auto;
 }
-
 
 .control-header {
   display:flex;
@@ -97,6 +95,80 @@ h1 {
   color:#C7A86A;
   min-width:120px;
   text-align:right;
+}
+
+/* ============================================================
+   Season switch UI
+   ============================================================ */
+
+.season-switch-row {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  padding: 6px 0 2px 0;
+}
+
+.season-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color:#666;
+}
+
+/* Switch container */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
+}
+
+/* Hide default checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The track */
+.slider-switch {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #444;
+  border-radius: 999px;
+  border: 1px solid #333;
+  transition: 0.2s ease;
+}
+
+/* The knob */
+.slider-switch::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #C7A86A;
+  border-radius: 50%;
+  border: 2px solid #1a1a1a;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  transition: 0.2s ease;
+}
+
+/* Checked = Summer (knob right) */
+.switch input:checked + .slider-switch::before {
+  transform: translate(24px, -50%);
+}
+
+/* Slight highlight when checked */
+.switch input:checked + .slider-switch {
+  background: #3b3b3b;
 }
 
 .slider {
@@ -167,4 +239,11 @@ h1 {
   body { padding:10px; }
   .viewer-stage { height: clamp(340px, 55vh, 480px); min-height: 340px; }
   .light-controls, .instructions { padding:20px; }
+
+  /* On mobile, widen the centered controls a bit */
+  .control-group .slider,
+  .control-group .slider-labels,
+  .season-switch-row {
+    width: 92%;
+  }
 }

@@ -6,7 +6,7 @@
   <title>3D Terrain Viewer — Sun Shadows (Three.js)</title>
   <link rel="stylesheet" href="viewer-styles.css" />
 
-  <!-- ✅ Import map makes bare imports like "three" work in the browser -->
+  <!-- Import map makes bare imports like "three" work in the browser -->
   <script type="importmap">
   {
     "imports": {
@@ -37,6 +37,26 @@
     </div>
 
     <div class="light-controls">
+      <!-- ✅ NEW: Season switch (replaces all previous presets UI) -->
+      <div class="control-group">
+        <div class="control-header">
+          <span class="control-label">Season</span>
+          <span class="control-value" id="season-value">Summer</span>
+        </div>
+
+        <div class="season-switch-row">
+          <span class="season-label">Winter</span>
+
+          <label class="switch" aria-label="Toggle season">
+            <!-- checked = Summer -->
+            <input id="season-toggle" type="checkbox" checked />
+            <span class="slider-switch"></span>
+          </label>
+
+          <span class="season-label">Summer</span>
+        </div>
+      </div>
+
       <div class="control-group">
         <div class="control-header">
           <span class="control-label">Sun Position</span>
@@ -45,25 +65,25 @@
 
         <input type="range" id="sun-position-slider" class="slider" min="0" max="100" value="50" step="1" />
 
+        <!-- West on left, East on right (map-facing-north convention) -->
         <div class="slider-labels">
-  <span class="label-left">Dusk (West)</span>
-  <span class="label-center">Noon</span>
-  <span class="label-right">Dawn (East)</span>
-</div>
-
+          <span class="label-left">Dusk (West)</span>
+          <span class="label-center">Noon</span>
+          <span class="label-right">Dawn (East)</span>
+        </div>
       </div>
 
       <div class="control-group">
         <div class="control-header">
-          <span class="control-label">Light Intensity</span>
+          <span class="control-label">Sun Intensity</span>
           <span class="control-value" id="intensity-value">Medium</span>
         </div>
 
         <input type="range" id="intensity-slider" class="slider" min="0" max="100" value="50" step="1" />
 
         <div class="slider-labels">
-          <span class="label-left">Dark</span>
-          <span class="label-right">Bright</span>
+          <span class="label-left">Very Dark</span>
+          <span class="label-right">Very Bright</span>
         </div>
       </div>
 
@@ -87,12 +107,13 @@
         <li><strong>Left drag:</strong> Orbit</li>
         <li><strong>Scroll:</strong> Zoom</li>
         <li><strong>Right drag:</strong> Pan</li>
-        <li><strong>Slider:</strong> Sun direction + intensity</li>
+        <li><strong>Sun slider:</strong> East↔West sweep</li>
+        <li><strong>Intensity slider:</strong> Sun power + exposure</li>
+        <li><strong>Season switch:</strong> Summer ↔ Winter sun path</li>
       </ul>
     </div>
   </div>
 
-  <!-- ✅ Must be module -->
   <script type="module" src="viewer-scripts.js"></script>
 </body>
 </html>
