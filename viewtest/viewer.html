@@ -1,83 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Viewer Test — Light Control</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Terrain Viewer — Sun Shadows (Three.js)</title>
+  <link rel="stylesheet" href="viewer-styles.css" />
 
-  <link rel="stylesheet" href="viewer-styles.css">
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+  <!-- ✅ Import map makes bare imports like "three" work in the browser -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 
 <body>
-
   <div class="viewer-container">
+    <h1>3D Terrain Viewer — Sun Shadow Test (Three.js)</h1>
 
-    <h1>3D Terrain Viewer — Light Control Test</h1>
-
-    <!-- 3D Model Viewer -->
     <div class="model-wrapper">
-      <model-viewer
-        id="model-viewer"
-        src="models/stowe.glb"
-        alt="Stowe terrain model"
-        camera-controls
-        loading="eager"
-        reveal="auto"
-        shadow-intensity="1.5"
-        shadow-softness="0.8"
-        exposure="1.2"
-        environment-image="models/hdri/kloppenheim_06_1k.hdr"
-        style="filter: contrast(110%);">
+      <div class="viewer-stage">
+        <canvas id="viewer-canvas"></canvas>
 
-        <div class="loading-indicator" slot="poster">
-          <p>Loading model...</p>
+        <div class="loading-indicator" id="loading-indicator">
+          <div>
+            <p style="margin-bottom:8px;">Loading…</p>
+            <p style="font-family: 'Courier New', monospace; font-size: 12px; color:#aaa;">
+              Status: <span id="overlay-status">Starting…</span>
+            </p>
+          </div>
         </div>
-
-      </model-viewer>
+      </div>
     </div>
 
-    <!-- Light Controls -->
     <div class="light-controls">
-
-      <!-- Sun Position Slider -->
       <div class="control-group">
         <div class="control-header">
           <span class="control-label">Sun Position</span>
           <span class="control-value" id="sun-position-value">Noon</span>
         </div>
 
-        <input
-          type="range"
-          id="sun-position-slider"
-          class="slider"
-          min="0"
-          max="100"
-          value="50"
-          step="1">
+        <input type="range" id="sun-position-slider" class="slider" min="0" max="100" value="50" step="1" />
 
         <div class="slider-labels">
-          <span class="label-left">Dawn (East)</span>
-          <span class="label-center">Noon</span>
-          <span class="label-right">Dusk (West)</span>
-        </div>
+  <span class="label-left">Dusk (West)</span>
+  <span class="label-center">Noon</span>
+  <span class="label-right">Dawn (East)</span>
+</div>
+
       </div>
 
-      <!-- Light Intensity Slider -->
       <div class="control-group">
         <div class="control-header">
           <span class="control-label">Light Intensity</span>
           <span class="control-value" id="intensity-value">Medium</span>
         </div>
 
-        <input
-          type="range"
-          id="intensity-slider"
-          class="slider"
-          min="0"
-          max="100"
-          value="50"
-          step="1">
+        <input type="range" id="intensity-slider" class="slider" min="0" max="100" value="50" step="1" />
 
         <div class="slider-labels">
           <span class="label-left">Dark</span>
@@ -85,38 +67,32 @@
         </div>
       </div>
 
-      <!-- Debug Info -->
-      <div class="debug-info" id="debug-info">
+      <div class="debug-info">
         <h4>Live Values</h4>
         <p>Sun Elevation: <span id="debug-elevation">--</span></p>
         <p>Sun Azimuth: <span id="debug-azimuth">--</span></p>
-        <p>Shadow Intensity: <span id="debug-shadow">--</span></p>
+        <p>Sun Intensity: <span id="debug-shadow">--</span></p>
         <p>Exposure: <span id="debug-exposure">--</span></p>
-        <p style="margin-top: 10px;">Model status: <span id="debug-model-status">--</span></p>
-        <p>HDRI status: <span id="debug-hdri-status">--</span></p>
-        <p>JS status: <span id="debug-js-status">--</span></p>
+
+        <p style="margin-top:10px;">JS: <span id="dbg-js">--</span></p>
+        <p>GLB fetch: <span id="dbg-glb">--</span></p>
+        <p>HDR fetch: <span id="dbg-hdr">--</span></p>
+        <p>Model load: <span id="dbg-model">--</span></p>
       </div>
     </div>
 
-    <!-- Instructions -->
     <div class="instructions">
       <h3>Controls</h3>
       <ul>
-        <li><strong>Click + Drag:</strong> Rotate model</li>
-        <li><strong>Scroll:</strong> Zoom in/out</li>
-        <li><strong>Two Fingers:</strong> Pan (mobile)</li>
-        <li><strong>Slider:</strong> Adjust light angle and intensity</li>
-      </ul>
-
-      <h3>What to Watch For</h3>
-      <ul>
-        <li>“Live Values” should change the moment you touch a slider</li>
-        <li>If the model doesn’t load, the debug section should tell you what URL failed</li>
+        <li><strong>Left drag:</strong> Orbit</li>
+        <li><strong>Scroll:</strong> Zoom</li>
+        <li><strong>Right drag:</strong> Pan</li>
+        <li><strong>Slider:</strong> Sun direction + intensity</li>
       </ul>
     </div>
-
   </div>
 
-  <script src="viewer-scripts.js"></script>
+  <!-- ✅ Must be module -->
+  <script type="module" src="viewer-scripts.js"></script>
 </body>
 </html>
