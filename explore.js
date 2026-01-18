@@ -134,7 +134,6 @@ function setupEventListeners() {
   document.getElementById('draw-polygon').addEventListener('click', () => {
     draw.changeMode('draw_polygon');
     setActiveDrawButton('draw-polygon');
-  });
   
   document.getElementById('clear-drawing').addEventListener('click', () => {
     draw.deleteAll();
