@@ -9,7 +9,7 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
    SEASON PRESETS — ONLY SUMMER + WINTER
    ------------------------------------------------------------
    Sun Position slider drives azimuth + elevation curve (t)
-   Intensity slider drives ONLY sun intensity (i)
+   Intensity slider drives ONLY sun intensity (i)  [FLIPPED]
    Exposure is AUTO (derived from i + season)
    ============================================================ */
 
@@ -21,13 +21,14 @@ const SEASONS = {
     elevationMinDeg: 2,
     elevationAmpDeg: 45,
 
-    // Sun strength range
-    sunIntensityMin: 0.8,
-    sunIntensityMax: 4.2,
+    // ✅ TUNED: darker darks + less blown brights
+    sunIntensityMin: 0.30,
+    sunIntensityMax: 3.10,
 
-    // Exposure AUTO range (we’ll map inversely to sun strength)
-    exposureMin: 0.80,
-    exposureMax: 1.55,
+    // ✅ TUNED: exposure follows sun strength (dark stays dark)
+    // exposureLow = darkest end, exposureHigh = brightest end
+    exposureLow: 0.65,
+    exposureHigh: 1.00,
 
     intensityScaleDivisor: 100,
     hemisphereIntensity: 0.20,
@@ -44,13 +45,13 @@ const SEASONS = {
     elevationMinDeg: 6,
     elevationAmpDeg: 70,
 
-    // Sun strength range
-    sunIntensityMin: 0.7,
-    sunIntensityMax: 3.9,
+    // ✅ TUNED: darker darks + less blown brights
+    sunIntensityMin: 0.35,
+    sunIntensityMax: 2.80,
 
-    // Exposure AUTO range
-    exposureMin: 0.85,
-    exposureMax: 1.75,
+    // ✅ TUNED: exposure follows sun strength (dark stays dark)
+    exposureLow: 0.70,
+    exposureHigh: 1.10,
 
     intensityScaleDivisor: 100,
     hemisphereIntensity: 0.25,
@@ -154,8 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
-    // Start exposure in the middle of the season’s range
-    renderer.toneMappingExposure = (SEASON.exposureMin + SEASON.exposureMax) / 2;
+    // Start exposure midrange (now uses exposureLow/exposureHigh)
+    renderer.toneMappingExposure = (SEASON.exposureLow + SEASON.exposureHigh) / 2;
 
     const scene = new THREE.Scene();
 
@@ -203,6 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (sun.shadow.map) sun.shadow.map.dispose();
       sun.shadow.map = null;
       sun.shadow.needsUpdate = true;
+
+      // Keep exposure in range after season switch
+      renderer.toneMappingExposure = (SEASON.exposureLow + SEASON.exposureHigh) / 2;
     }
 
     function resize() {
@@ -323,26 +327,23 @@ document.addEventListener("DOMContentLoaded", () => {
       // LEFT = West/Dusk, RIGHT = East/Dawn
       const azDeg = 180 * (1 - t);
 
-      // Slider -> sun strength ONLY
-      const i = 1 - THREE.MathUtils.clamp(inten / SEASON.intensityScaleDivisor, 0, 1);
+      // FLIPPED: left = stronger sun, right = weaker sun
+      const i = THREE.MathUtils.clamp(inten / SEASON.intensityScaleDivisor, 0, 1);
 
-
-      // Season controls the elevation curve endpoints + noon height
+      // Elevation curve
       const elDeg =
         SEASON.elevationMinDeg +
         Math.sin(Math.PI * t) * SEASON.elevationAmpDeg;
 
-      // ✅ Sun intensity driven by slider
+      // Sun intensity driven by slider
       sun.intensity =
         SEASON.sunIntensityMin +
         i * (SEASON.sunIntensityMax - SEASON.sunIntensityMin);
 
-      // ✅ Exposure AUTO (inverse to sun strength so highlights don’t blow out)
-      // When i is high (strong sun), expT drops → exposure goes toward exposureMin.
-      const expT = 1 - i;
+      // ✅ NEW: Exposure AUTO follows sun strength (dark stays dark; brights don’t blow out)
       renderer.toneMappingExposure =
-        SEASON.exposureMin +
-        expT * (SEASON.exposureMax - SEASON.exposureMin);
+        SEASON.exposureLow +
+        i * (SEASON.exposureHigh - SEASON.exposureLow);
 
       const az = THREE.MathUtils.degToRad(azDeg);
       const el = THREE.MathUtils.degToRad(elDeg);
@@ -373,11 +374,13 @@ document.addEventListener("DOMContentLoaded", () => {
       else sunLabel.textContent = "Morning";
 
       // Intensity label now means SUN STRENGTH (not exposure)
-      if (inten === 0) intensityLabel.textContent = "Very Low";
-      else if (inten === 100) intensityLabel.textContent = "Very High";
-      else if (inten < 35) intensityLabel.textContent = "Low";
-      else if (inten <= 65) intensityLabel.textContent = "Medium";
-      else intensityLabel.textContent = "High";
+if (inten === 0) intensityLabel.textContent = "Very Low";
+else if (inten === 100) intensityLabel.textContent = "Very High";
+else if (inten < 35) intensityLabel.textContent = "Low";
+else if (inten <= 65) intensityLabel.textContent = "Medium";
+else intensityLabel.textContent = "High";
+
+
 
       // Debug readout
       setText(dbgEl, `${elDeg.toFixed(1)}°`);
