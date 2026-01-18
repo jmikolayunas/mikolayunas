@@ -326,6 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Slider -> sun strength ONLY
       const i = 1 - THREE.MathUtils.clamp(inten / SEASON.intensityScaleDivisor, 0, 1);
 
+
       // Season controls the elevation curve endpoints + noon height
       const elDeg =
         SEASON.elevationMinDeg +
