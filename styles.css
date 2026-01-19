@@ -2485,6 +2485,10 @@ ul {
   transition: all 0.3s ease;
 }
 
+.process-summary .summary-item.fade-in-scroll {
+  transition-duration: 1.6s;
+}
+
 .summary-item:hover {
   border-color: var(--color-brass);
   transform: translateY(-4px);
