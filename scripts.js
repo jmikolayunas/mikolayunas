@@ -87,25 +87,65 @@ window.addEventListener('scroll', () => {
 // SCROLL-TRIGGERED FADE-INS
 // ============================================
 
-const observerOptions = {
-  threshold: 0.5,
-  rootMargin: '0px 0px -0% 0px'
-};
+function initFadeInOnScroll() {
+  // Supports both page-wide fade-ins and gallery image wrappers
+  const targets = document.querySelectorAll('.gallery-image-wrapper, .fade-in-scroll');
+  if (!targets.length) return;
 
-const fadeObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      // Only trigger once
-      fadeObserver.unobserve(entry.target);
-    }
-  });
-}, observerOptions);
+  // Tuned for smooth reveals as elements approach the viewport
+  const options = {
+    threshold: 0.15,
+    rootMargin: '0px 0px -100px 0px'
+  };
 
-// Observe all elements with fade-in-scroll class
-document.querySelectorAll('.fade-in-scroll').forEach(el => {
-  fadeObserver.observe(el);
-});
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        // Only trigger once
+        observer.unobserve(entry.target);
+      }
+    });
+  }, options);
+
+  targets.forEach(el => observer.observe(el));
+}
+
+function initBackToGalleryButton() {
+  const backButton = document.getElementById('back-to-gallery');
+  if (!backButton) return;
+
+  const detailsSection = document.getElementById('details');
+  const gallerySection = document.querySelector('.piece-gallery');
+
+  // If a page doesn't have the expected sections, fail gracefully.
+  if (!detailsSection || !gallerySection) return;
+
+  // Optional per-page tuning via: data-buffer="120"
+  const buffer = parseInt(backButton.dataset.buffer || '100', 10);
+
+  function updateButtonVisibility() {
+    const scrollY = window.scrollY;
+    const detailsTop = detailsSection.offsetTop;
+    const galleryBottom = gallerySection.offsetTop + gallerySection.offsetHeight;
+
+    const shouldShow = scrollY >= (detailsTop - buffer) && scrollY < (galleryBottom - buffer);
+    backButton.classList.toggle('is-visible', shouldShow);
+  }
+
+  // Run once now + on scroll/resize
+  updateButtonVisibility();
+  window.addEventListener('scroll', updateButtonVisibility, { passive: true });
+  window.addEventListener('resize', updateButtonVisibility);
+}
+
+function initSite() {
+  initFadeInOnScroll();
+  initBackToGalleryButton();
+}
+
+// Ensure DOM exists before querying for page features
+document.addEventListener('DOMContentLoaded', initSite);
 
 // ============================================
 // MOBILE NAVIGATION TOGGLE
