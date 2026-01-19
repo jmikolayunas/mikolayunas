@@ -32,11 +32,13 @@
     .story-title { font-family: var(--font-primary); font-size: var(--text-2xl); font-weight: var(--weight-regular); color: var(--color-text-inverse); margin: 0 0 var(--space-5); text-align: center; }
     .story-text p { font-family: var(--font-secondary); font-size: var(--text-base); line-height: var(--leading-relaxed); color: var(--color-text-inverse); margin: 0 0 var(--space-4); opacity: 0.9; }
     .story-text em { color: var(--color-brass); font-style: italic; }
-    .back-to-gallery { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-secondary); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-primary); text-decoration: none; margin-bottom: var(--space-4); transition: color 0.3s ease; }
+    .back-to-gallery { position: fixed; top: 100px; left: var(--space-6); display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-secondary); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-primary); text-decoration: none; transition: color 0.3s ease, opacity 1.2s ease; z-index: 10; opacity: 0; pointer-events: none; }
+    .back-to-gallery.is-visible { opacity: 1; pointer-events: auto; }
     .back-to-gallery:hover { color: var(--color-brass); }
     .back-arrow { display: inline-block; transition: transform 0.3s ease; }
     .back-to-gallery:hover .back-arrow { transform: translateX(-4px); }
-    @media (max-width: 767px) { .piece-hero { padding: 80px var(--space-3) 40px; } .piece-hero-image-container { padding: 0 var(--space-3); } .piece-hero-content { padding: 0 calc(var(--space-3) + var(--space-2)); } .piece-hero-title { font-size: var(--text-lg); } .gallery-images { gap: var(--space-8); } }
+    @media (max-width: 900px) { .back-to-gallery { left: var(--space-4); } }
+    @media (max-width: 767px) { .piece-hero { padding: 80px var(--space-3) 40px; } .piece-hero-image-container { padding: 0 var(--space-3); } .piece-hero-content { padding: 0 calc(var(--space-3) + var(--space-2)); } .piece-hero-title { font-size: var(--text-lg); } .gallery-images { gap: var(--space-8); } .back-to-gallery { top: 70px; left: var(--space-3); font-size: var(--text-xs); } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
@@ -69,8 +71,8 @@
     </section>
 
     <section class="piece-details section-padded" id="details">
+      <a href="../gallery.html" class="back-to-gallery" id="back-to-gallery"><span class="back-arrow">←</span> Back to Gallery</a>
       <div class="section-container section-container--narrow">
-        <a href="../gallery.html" class="back-to-gallery"><span class="back-arrow">←</span> Back to Gallery</a>
         <div class="details-grid">
           <div class="detail-group fade-in-scroll">
             <span class="detail-label">Materials</span>
@@ -144,8 +146,8 @@
     <section class="cta section-padded" id="cta">
       <div class="section-container section-container--narrow text-center">
         <h2 class="cta-title fade-in-scroll">Commission Your Place</h2>
-        <p class="cta-text">Every piece begins with a place that matters to you. Let's create something worthy of your story.</p>
-        <a href="../commission.html" class="btn btn--accent">Start Your Commission</a>
+        <p class="cta-text fade-in-scroll">Every piece begins with a place that matters to you. Let's create something worthy of your story.</p>
+        <a href="../commission.html" class="btn btn--accent fade-in-scroll">Start Your Commission</a>
       </div>
     </section>
   </main>
@@ -185,6 +187,27 @@
     }, observerOptions);
     document.querySelectorAll('.gallery-image-wrapper').forEach(el => fadeObserver.observe(el));
     document.querySelectorAll('.fade-in-scroll').forEach(el => fadeObserver.observe(el));
+
+    // Back to Gallery button visibility
+    const backButton = document.getElementById('back-to-gallery');
+    const heroSection = document.getElementById('piece-hero');
+    const gallerySection = document.querySelector('.piece-gallery');
+
+    function updateButtonVisibility() {
+      const scrollY = window.scrollY;
+      const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
+      const galleryBottom = gallerySection.offsetTop + gallerySection.offsetHeight;
+      const triggerLine = scrollY + (window.innerHeight / 2);
+      const buffer = 100;
+      if (triggerLine >= heroBottom && scrollY < (galleryBottom - buffer)) {
+        backButton.classList.add('is-visible');
+      } else {
+        backButton.classList.remove('is-visible');
+      }
+    }
+    window.addEventListener('scroll', updateButtonVisibility);
+    window.addEventListener('load', updateButtonVisibility);
+    setTimeout(updateButtonVisibility, 100);
   </script>
 </body>
 </html>
