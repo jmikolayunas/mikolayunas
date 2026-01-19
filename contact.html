@@ -55,7 +55,7 @@
               <p class="text-body" style="margin: 0 0 var(--space-3); color: var(--color-text-secondary);">
                 For commissions, the Commission Inquiry form is the fastest way to confirm scope, timeline, and a precise quote.
               </p>
-              <div class="form-actions" style="gap: var(--space-2); flex-wrap: wrap;">
+              <div class="form-actions fade-in-scroll" style="gap: var(--space-2); flex-wrap: wrap;">
                 <a href="commission.html" class="btn btn--accent">Begin a Commission</a>
                 <a href="#general-inquiry-form" class="btn btn--primary" style="border-color: var(--color-border); color: var(--color-text-primary);">
                   General Inquiry
@@ -63,11 +63,11 @@
               </div>
             </div>
 
-            <form class="contact-form" id="contact-form">
+            <form class="contact-form fade-in-scroll" id="contact-form">
               <div id="general-inquiry-form"></div>
 
-              <div class="form-row">
-                <div class="form-group">
+              <div class="form-row fade-in-scroll">
+                <div class="form-group fade-in-scroll">
                   <label for="name" class="form-label">Name *</label>
                   <input
                     type="text"
@@ -79,7 +79,7 @@
                   />
                 </div>
 
-                <div class="form-group">
+                <div class="form-group fade-in-scroll">
                   <label for="email" class="form-label">Email *</label>
                   <input
                     type="email"
@@ -93,7 +93,7 @@
               </div>
 
               <!-- Subject becomes a dropdown for triage + reduced friction -->
-              <div class="form-group">
+              <div class="form-group fade-in-scroll">
                 <label for="subject" class="form-label">Inquiry Type *</label>
                 <select
                   id="subject"
@@ -111,7 +111,7 @@
                 <span class="form-helper">If this is a commission, the <a href="commission.html" style="color: var(--color-brass); text-decoration: underline;">Commission Inquiry</a> form helps me respond with accurate timeline + pricing.</span>
               </div>
 
-              <div class="form-group">
+              <div class="form-group fade-in-scroll">
                 <label for="message" class="form-label">Message *</label>
                 <textarea
                   id="message"
@@ -123,15 +123,15 @@
                 ></textarea>
               </div>
 
-              <div class="form-actions">
+              <div class="form-actions fade-in-scroll">
                 <button type="submit" class="btn btn--accent">Send Message</button>
               </div>
 
               <!-- Success/Error Messages -->
-              <div class="form-message form-message--success" id="form-success">
+              <div class="form-message form-message--success fade-in-scroll" id="form-success">
                 <p>✓ Thank you—message received. I'll reply within 1–2 business days.</p>
               </div>
-              <div class="form-message form-message--error" id="form-error">
+              <div class="form-message form-message--error fade-in-scroll" id="form-error">
                 <p>Something went wrong. Please email me directly at <a href="mailto:jonas@bonasstudio.com">jonas@bonasstudio.com</a></p>
               </div>
 
@@ -224,4 +224,3 @@
   <script src="contact.js"></script>
 </body>
 </html>
-

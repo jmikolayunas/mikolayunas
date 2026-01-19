@@ -1460,6 +1460,10 @@ ul {
   transform: translateY(-4px);
 }
 
+.studio-philosophy .philosophy-grid.fade-in-scroll {
+  transition-duration: 1.6s;
+}
+
 .studio-philosophy .philosophy-title {
   font-family: var(--font-primary);
   font-size: var(--text-lg);
@@ -2308,8 +2312,9 @@ ul {
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transform: scale(1.1);
-  transition: opacity 1.2s ease, transform 1.2s ease;
+  transform: scale(1.08);
+  transition: opacity 2.0s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 2.0s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .process-stage.in-view .stage-image {
