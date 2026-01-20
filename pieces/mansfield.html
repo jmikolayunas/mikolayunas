@@ -87,8 +87,8 @@
             .piece-details { background: var(--color-bg-primary); }
     .piece-details.section-padded { padding-top: calc(var(--section-padding-y) - var(--space-4)); padding-bottom: var(--section-padding-y); }
     .details-grid { display: block; max-width: 900px; margin: 0 auto; }
-    .details-specs { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding: var(--space-3) 0; font-family: var(--font-secondary); font-size: var(--text-xs); color: var(--color-text-secondary); line-height: var(--leading-normal); align-items: baseline; }
-    .detail-item { display: inline; white-space: nowrap; }
+    .details-specs { display: flex; flex-wrap: nowrap; gap: 0; padding: var(--space-3) 0; font-family: var(--font-secondary); font-size: var(--text-xs); color: var(--color-text-secondary); line-height: var(--leading-normal); align-items: baseline; justify-content: center; }
+    .detail-item { white-space: nowrap; flex-shrink: 0; }
     .detail-item::after { content: "•"; margin: 0 var(--space-2); opacity: 0.4; }
     .detail-item:last-child::after { content: ""; margin: 0; }
     .detail-label { text-transform: uppercase; letter-spacing: 0.1em; font-weight: var(--weight-semibold); margin-right: var(--space-1); }
@@ -220,7 +220,7 @@
 
       .back-to-gallery { top: 70px; left: var(--space-3); font-size: var(--text-xs); }
     
-    .details-specs { font-size: 0.7rem; gap: var(--space-2); }
+    .details-specs { font-size: 0.7rem; gap: 0; }
     .detail-item::after { margin: 0 var(--space-1); }}
 
     /* Animation Keyframes */
@@ -461,6 +461,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
