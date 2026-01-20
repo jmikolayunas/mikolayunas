@@ -84,65 +84,23 @@
     }
     
     /* Details Section */
-    .piece-details.section-padded { padding-top: calc(var(--section-padding-y) - var(--space-4)); padding-bottom: calc(var(--section-padding-y) + var(--space-4)); }
-.details-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-6);
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    @media (min-width: 768px) {
-      .details-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-8);
-      }
-    }
-    
-    .detail-group {
-      padding: var(--space-4) 0;
-      border-bottom: 1px solid var(--color-border);
-    }
-    
-    .detail-label {
-      font-family: var(--font-secondary);
-      font-size: var(--text-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--color-text-secondary);
-      margin: 0 0 var(--space-2);
-      display: block;
-    }
-    
-    .detail-value {
-      font-family: var(--font-primary);
-      font-size: var(--text-lg);
-      color: var(--color-text-primary);
-      margin: 0;
-    }
-    
-    .piece-description {
-      grid-column: 1 / -1;
-      padding: var(--space-5) 0 0;
-      border-top: 2px solid var(--color-brass);
-      margin-top: var(--space-4);
-    }
-    
-    .piece-description p {
-      font-family: var(--font-secondary);
-      font-size: var(--text-base);
-      line-height: var(--leading-relaxed);
-      color: var(--color-text-secondary);
-      margin: 0 0 var(--space-3);
-    }
-    
-    /* Image Gallery Section - Viewing Moments */
-    .piece-gallery.section-padded { padding-top: calc(var(--section-padding-y) + var(--space-4)); padding-bottom: var(--section-padding-y); }
+        .piece-details { background: var(--color-bg-primary); }
+    .piece-details.section-padded { padding-top: calc(var(--section-padding-y) - var(--space-4)); padding-bottom: var(--section-padding-y); }
+    .details-grid { display: block; max-width: 900px; margin: 0 auto; }
+    .details-specs { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding: var(--space-3) 0; font-family: var(--font-secondary); font-size: var(--text-xs); color: var(--color-text-secondary); line-height: var(--leading-normal); align-items: baseline; }
+    .detail-item { display: inline; white-space: nowrap; }
+    .detail-item::after { content: "\2022"; margin: 0 var(--space-2); opacity: 0.4; }
+    .detail-item:last-child::after { content: ""; margin: 0; }
+    .detail-label { text-transform: uppercase; letter-spacing: 0.1em; font-weight: var(--weight-semibold); margin-right: var(--space-1); }
+    .detail-value { font-weight: var(--weight-regular); }
+    .piece-description { padding: var(--space-5) 0 var(--space-5); border-bottom: 2px solid var(--color-brass); margin-top: var(--space-5); }
+    .piece-description p { font-family: var(--font-secondary); font-size: var(--text-base); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0 0 var(--space-3); }
+.piece-gallery { background: #f5f5f5; }
+    .piece-gallery.section-padded { padding-top: calc(var(--section-padding-y) - var(--space-2)); padding-bottom: var(--section-padding-y); }
 .gallery-images {
       display: flex;
       flex-direction: column;
-      gap: var(--space-10);
+      gap: var(--space-8);
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 var(--space-4);
@@ -180,37 +138,57 @@
     }
     
     /* Story Section */
-    .piece-story {
-      background: var(--color-bg-dark);
-      padding: var(--space-10) 0;
-    }
+    .piece-artists-note { background: var(--color-bg-dark); padding: var(--section-padding-y) 0; }
     
-    .story-content {
+    .artists-note-content {
       max-width: 800px;
       margin: 0 auto;
     }
     
-    .story-title {
-      font-family: var(--font-primary);
-      font-size: var(--text-2xl);
-      font-weight: var(--weight-regular);
-      color: var(--color-text-inverse);
-      margin: 0 0 var(--space-5);
-      text-align: center;
-    }
     
-    .story-text p {
+    .artists-note-text p {
       font-family: var(--font-secondary);
       font-size: var(--text-base);
       line-height: var(--leading-relaxed);
       color: var(--color-text-inverse);
       margin: 0 0 var(--space-4);
-      opacity: 0.9;
+      opacity: 0.9; text-align: left;
     }
+    .artists-note-text p:first-of-type::first-letter { font-family: var(--font-primary); font-size: 3.5em; line-height: 0.9; float: left; margin: 0.05em 0.1em 0 0; color: var(--color-brass); }
     
-    .story-text em {
+    .artists-note-text em {
       color: var(--color-brass);
       font-style: italic;
+    }
+    
+    
+    .artists-note-attribution {
+    
+    
+      font-family: var(--font-secondary);
+    
+    
+      font-size: var(--text-sm);
+    
+    
+      font-style: italic;
+    
+    
+      color: var(--color-brass);
+    
+    
+      text-align: right;
+    
+    
+      margin-top: var(--space-5);
+    
+    
+      opacity: 0.8;
+    
+    
+      letter-spacing: 0.05em;
+    
+    
     }
     
     /* Back to Gallery Link */
@@ -238,12 +216,12 @@
         font-size: var(--text-lg);
       }
 
-      .gallery-images {
-        gap: var(--space-8);
-      }
+      .gallery-images { gap: var(--space-6); }
 
       .back-to-gallery { top: 70px; left: var(--space-3); font-size: var(--text-xs); }
-    }
+    
+    .details-specs { font-size: 0.7rem; gap: var(--space-2); }
+    .detail-item::after { margin: 0 var(--space-1); }}
     
     /* Animation Keyframes */
     @keyframes fadeInUp {
@@ -304,32 +282,31 @@
         <span class="back-arrow">←</span> Back to Gallery
       </a>
       <div class="section-container section-container--narrow">
-        <div class="details-grid">
-          <div class="detail-group fade-in-scroll">
-            <span class="detail-label">Materials</span>
-            <p class="detail-value">basswood, birch, walnut</p>
+                <div class="details-grid">
+          <div class="details-specs">
+            <span class="detail-item">
+              <span class="detail-label">Materials:</span>
+              <span class="detail-value">basswood, birch, walnut</span>
+            </span>
+            <span class="detail-item">
+              <span class="detail-label">Dimensions:</span>
+              <span class="detail-value">22" × 33" × 4½"</span>
+            </span>
+            <span class="detail-item">
+              <span class="detail-label">Location:</span>
+              <span class="detail-value">Mahoosuc Range, Sunday River, Newry, Maine</span>
+            </span>
+            <span class="detail-item">
+              <span class="detail-label">Completed:</span>
+              <span class="detail-value">November 2024</span>
+            </span>
           </div>
-          
-          <div class="detail-group fade-in-scroll">
-            <span class="detail-label">Dimensions</span>
-            <p class="detail-value">22" × 33" × 4 ½"</p>
-          </div>
-          
-          <div class="detail-group fade-in-scroll">
-            <span class="detail-label">Location Captured</span>
-            <p class="detail-value">Mahoosuc Range<br>Sunday River<br>Newry, Maine</p>
-          </div>
-          
-          <div class="detail-group fade-in-scroll">
-            <span class="detail-label">Date Completed</span>
-            <p class="detail-value">November 2024</p>
-          </div>
-          
+
           <div class="piece-description fade-in-scroll">
             <p>
-              Relief map capturing Sunday River's multi-peak structure and connected ridge system. 
-              Carved hardwood emphasizes terrain continuity across summits. 
-              Laser-etched trail network spans the range with clear readability. 
+              Relief map capturing Sunday River's multi-peak structure and connected ridge system.
+              Carved hardwood emphasizes terrain continuity across summits.
+              Laser-etched trail network spans the range with clear readability.
               Tonal elevation shifts reveal how the mountain system links together.
             </p>
           </div>
@@ -365,10 +342,9 @@
     </section>
 
     <!-- STORY SECTION -->
-    <section class="piece-story section-padded">
+    <section class="piece-artists-note section-padded">
       <div class="section-container section-container--narrow">
-        <h2 class="story-title fade-in-scroll">The Story</h2>
-        <div class="story-text">
+        <div class="artists-note-text">
           <p class="fade-in-scroll">
             Mahoosuc Range isn't one peak—it's a sequence. Movement, not arrival. 
             Ridges link, valleys separate, trails braid across exposures.
@@ -379,6 +355,7 @@
             The deeper structure—carved terrain—holds the invitation: this is a place built for range, not a single summit.
           </p>
         </div>
+        <p class="artists-note-attribution fade-in-scroll">— Artist's Note</p>
       </div>
     </section>
 
@@ -420,7 +397,7 @@
       <div class="footer-legal">
         <p class="footer-copyright">&copy; 2026 Bonas Studio. All rights reserved.</p>
       </div>
-      <div class="footer-attribution">
+      <div class="footer-attribution footer-attribution--lower-left">
         <p class="attribution-text">Trail data powered by</p>
         <a href="https://www.trailforks.com" target="_blank" rel="noopener" class="attribution-link">
           <img src="../images/trailforks/TF banner black_inverted.png" alt="Trailforks" class="attribution-logo">
@@ -479,6 +456,15 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 

@@ -75,64 +75,35 @@
       animation: fadeInUp 1.8s ease 0.7s forwards;
     }
 
-    .piece-details.section-padded { padding-top: calc(var(--section-padding-y) - var(--space-4)); padding-bottom: calc(var(--section-padding-y) + var(--space-4)); }
-.details-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-6);
-      max-width: 900px;
-      margin: 0 auto;
-    }
+    
+    .piece-details { background: var(--color-bg-primary); }
 
-    @media (min-width: 768px) {
-      .details-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-8);
-      }
-    }
+    .piece-details.section-padded { padding-top: calc(var(--section-padding-y) - var(--space-4)); padding-bottom: var(--section-padding-y); }
 
-    .detail-group {
-      padding: var(--space-4) 0;
-      border-bottom: 1px solid var(--color-border);
-    }
+    .details-grid { display: block; max-width: 900px; margin: 0 auto; }
 
-    .detail-label {
-      font-family: var(--font-secondary);
-      font-size: var(--text-xs);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--color-text-secondary);
-      margin: 0 0 var(--space-2);
-      display: block;
-    }
+    .details-specs { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); padding: var(--space-3) 0; font-family: var(--font-secondary); font-size: var(--text-xs); color: var(--color-text-secondary); line-height: var(--leading-normal); align-items: baseline; }
 
-    .detail-value {
-      font-family: var(--font-primary);
-      font-size: var(--text-lg);
-      color: var(--color-text-primary);
-      margin: 0;
-    }
+    .detail-item { display: inline; white-space: nowrap; }
 
-    .piece-description {
-      grid-column: 1 / -1;
-      padding: var(--space-5) 0 0;
-      border-top: 2px solid var(--color-brass);
-      margin-top: var(--space-4);
-    }
+    .detail-item::after { content: "\2022"; margin: 0 var(--space-2); opacity: 0.4; }
 
-    .piece-description p {
-      font-family: var(--font-secondary);
-      font-size: var(--text-base);
-      line-height: var(--leading-relaxed);
-      color: var(--color-text-secondary);
-      margin: 0 0 var(--space-3);
-    }
+    .detail-item:last-child::after { content: ""; margin: 0; }
 
-    .piece-gallery.section-padded { padding-top: calc(var(--section-padding-y) + var(--space-4)); padding-bottom: var(--section-padding-y); }
+    .detail-label { text-transform: uppercase; letter-spacing: 0.1em; font-weight: var(--weight-semibold); margin-right: var(--space-1); }
+
+    .detail-value { font-weight: var(--weight-regular); }
+
+    .piece-description { padding: var(--space-5) 0 var(--space-5); border-bottom: 2px solid var(--color-brass); margin-top: var(--space-5); }
+
+    .piece-description p { font-family: var(--font-secondary); font-size: var(--text-base); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0 0 var(--space-3); }
+.piece-gallery { background: #f5f5f5; }
+
+    .piece-gallery.section-padded { padding-top: calc(var(--section-padding-y) - var(--space-2)); padding-bottom: var(--section-padding-y); }
 .gallery-images {
       display: flex;
       flex-direction: column;
-      gap: var(--space-10);
+      gap: var(--space-8);
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 var(--space-4);
@@ -169,37 +140,57 @@
       opacity: 0.7;
     }
 
-    .piece-story {
-      background: var(--color-bg-dark);
-      padding: var(--space-10) 0;
-    }
+    .piece-artists-note { background: var(--color-bg-dark); padding: var(--section-padding-y) 0; }
 
-    .story-content {
+    .artists-note-content {
       max-width: 800px;
       margin: 0 auto;
     }
 
-    .story-title {
-      font-family: var(--font-primary);
-      font-size: var(--text-2xl);
-      font-weight: var(--weight-regular);
-      color: var(--color-text-inverse);
-      margin: 0 0 var(--space-5);
-      text-align: center;
-    }
 
-    .story-text p {
+    .artists-note-text p {
       font-family: var(--font-secondary);
       font-size: var(--text-base);
       line-height: var(--leading-relaxed);
       color: var(--color-text-inverse);
       margin: 0 0 var(--space-4);
-      opacity: 0.9;
+      opacity: 0.9; text-align: left;
     }
+    .artists-note-text p:first-of-type::first-letter { font-family: var(--font-primary); font-size: 3.5em; line-height: 0.9; float: left; margin: 0.05em 0.1em 0 0; color: var(--color-brass); }
 
-    .story-text em {
+    .artists-note-text em {
       color: var(--color-brass);
       font-style: italic;
+    }
+
+
+    .artists-note-attribution {
+
+
+      font-family: var(--font-secondary);
+
+
+      font-size: var(--text-sm);
+
+
+      font-style: italic;
+
+
+      color: var(--color-brass);
+
+
+      text-align: right;
+
+
+      margin-top: var(--space-5);
+
+
+      opacity: 0.8;
+
+
+      letter-spacing: 0.05em;
+
+
     }
 
     .back-to-gallery { position: fixed; top: 100px; left: var(--space-6); display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-secondary); font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-primary); text-decoration: none; transition: color 0.3s ease, opacity 1.2s ease; z-index: 10; opacity: 0; pointer-events: none; }
@@ -221,11 +212,13 @@
       .piece-hero-title {
         font-size: var(--text-lg);
       }
-      .gallery-images {
-        gap: var(--space-8);
-      }
+      .gallery-images { gap: var(--space-6); }
       .back-to-gallery { top: 70px; left: var(--space-3); font-size: var(--text-xs); }
-    }
+    
+
+    .details-specs { font-size: 0.7rem; gap: var(--space-2); }
+
+    .detail-item::after { margin: 0 var(--space-1); }}
 
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -271,25 +264,24 @@
         <span class="back-arrow">←</span> Back to Gallery
       </a>
       <div class="section-container section-container--narrow">
-        <div class="details-grid">
-          <div class="detail-group fade-in-scroll">
-            <span class="detail-label">Materials</span>
-            <p class="detail-value">basswood, walnut</p>
-          </div>
-
-          <div class="detail-group fade-in-scroll">
-            <span class="detail-label">Dimensions</span>
-            <p class="detail-value">28" × 17" × 5 &frac12;"</p>
-          </div>
-
-          <div class="detail-group fade-in-scroll">
-            <span class="detail-label">Location Captured</span>
-            <p class="detail-value">Bromley Mountain<br>Peru, Vermont</p>
-          </div>
-
-          <div class="detail-group fade-in-scroll">
-            <span class="detail-label">Date Completed</span>
-            <p class="detail-value">November 2023</p>
+                <div class="details-grid">
+          <div class="details-specs">
+            <span class="detail-item">
+              <span class="detail-label">Materials:</span>
+              <span class="detail-value">basswood, walnut</span>
+            </span>
+            <span class="detail-item">
+              <span class="detail-label">Dimensions:</span>
+              <span class="detail-value">28" × 17" × 5½"</span>
+            </span>
+            <span class="detail-item">
+              <span class="detail-label">Location:</span>
+              <span class="detail-value">Bromley Mountain, Peru, Vermont</span>
+            </span>
+            <span class="detail-item">
+              <span class="detail-label">Completed:</span>
+              <span class="detail-value">November 2023</span>
+            </span>
           </div>
 
           <div class="piece-description fade-in-scroll">
@@ -331,10 +323,9 @@
       </div>
     </section>
 
-    <section class="piece-story section-padded">
+    <section class="piece-artists-note section-padded">
       <div class="section-container section-container--narrow">
-        <h2 class="story-title fade-in-scroll">The Story</h2>
-        <div class="story-text">
+        <div class="artists-note-text">
           <p class="fade-in-scroll">
            Bromley was the horizon line. Visible from the house, through seasons, before it ever became a place to ski.
            The mountain marked weather coming, snow depth, the promise of winter.
@@ -345,6 +336,7 @@
            The result holds both: the mountain as landmark, and the mountain as known ground.
           </p>
         </div>
+        <p class="artists-note-attribution fade-in-scroll">— Artist's Note</p>
       </div>
     </section>
 
@@ -384,7 +376,7 @@
       <div class="footer-legal">
         <p class="footer-copyright">&copy; 2026 Bonas Studio. All rights reserved.</p>
       </div>
-      <div class="footer-attribution">
+      <div class="footer-attribution footer-attribution--lower-left">
         <p class="attribution-text">Trail data powered by</p>
         <a href="https://www.trailforks.com" target="_blank" rel="noopener" class="attribution-link">
           <img src="../images/trailforks/TF banner black_inverted.png" alt="Trailforks" class="attribution-logo">
@@ -440,6 +432,15 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 
