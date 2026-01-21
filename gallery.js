@@ -171,6 +171,31 @@ function setGalleryAspectRatios() {
 }
 
 // ============================================
+// VARIED SPACING FOR CURATORIAL FEEL
+// ============================================
+
+function setVariedSpacing() {
+  const items = document.querySelectorAll('.gallery-item');
+
+  items.forEach((item, index) => {
+    const category = item.dataset.category;
+    const nextItem = items[index + 1];
+
+    if (nextItem) {
+      const nextCategory = nextItem.dataset.category;
+
+      // Tighter spacing if same category (thematic grouping)
+      if (category === nextCategory) {
+        item.style.marginBottom = '4rem';
+      } else {
+        // Larger gap between different categories (visual break)
+        item.style.marginBottom = '8rem';
+      }
+    }
+  });
+}
+
+// ============================================
 // INITIALIZE ON PAGE LOAD
 // ============================================
 
@@ -178,11 +203,13 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
     setGalleryTrueScale();
     setGalleryAspectRatios();
+    setVariedSpacing();
     initGalleryFilter();
   });
 } else {
   setGalleryTrueScale();
   setGalleryAspectRatios();
+  setVariedSpacing();
   initGalleryFilter();
 }
 
