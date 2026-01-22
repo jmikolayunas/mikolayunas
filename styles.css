@@ -1192,7 +1192,7 @@ ul {
   color: inherit;
   text-decoration: none;
   cursor: pointer;
-  overflow: hidden;
+  user-select: none;
 }
 
 /* Gallery Item Media Container */
@@ -1208,7 +1208,6 @@ ul {
 
 .gallery-item-link:hover .gallery-item-media {
   transform: translateY(-4px);
-  border-color: var(--color-brass);
 }
 
 /* Gallery Item Image */
