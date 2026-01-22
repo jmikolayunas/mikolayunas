@@ -215,6 +215,18 @@ a {
   margin: 0 0 var(--space-4);
 }
 
+.review-title-line {
+  display: block;
+}
+
+.review-title-line + .review-title-line {
+  margin-top: var(--space-2);
+}
+
+.review-title-line--sub {
+  font-size: var(--text-2xl);
+}
+
 .review-subtitle {
   font-family: var(--font-secondary);
   font-size: var(--text-lg);
