@@ -204,29 +204,6 @@ ul {
 .philosophy.section-padded {
   padding-top: clamp(6rem, 12vw, 12rem);
   padding-bottom: clamp(5rem, 10vw, 8rem);
-<<<<<<< HEAD
-  position: relative;
-}
-
-.philosophy-divider {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 2px;
-  background: var(--color-brass);
-  opacity: 0.6;
-}
-
-.philosophy-divider.fade-in-scroll {
-  opacity: 0;
-  transform: translate(-50%, 60px);
-}
-
-.philosophy-divider.fade-in-scroll.is-visible {
-  opacity: 0.6;
-  transform: translate(-50%, 0);
 }
 
 .featured-work.section-padded {
