@@ -7,55 +7,33 @@ import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
 /* ============================================================
    SEASON PRESETS — ONLY SUMMER + WINTER
-   ------------------------------------------------------------
-   Sun Position slider drives azimuth + elevation curve (t)
-   Intensity slider drives ONLY sun intensity (i)  [FLIPPED]
-   Exposure is AUTO (derived from i + season)
    ============================================================ */
 
 const SEASONS = {
   WINTER: {
     name: "Winter",
-
-    // Lower sun path (more raking light all day)
     elevationMinDeg: 2,
     elevationAmpDeg: 45,
-
-    // ✅ TUNED: darker darks + less blown brights
     sunIntensityMin: 0.30,
     sunIntensityMax: 3.10,
-
-    // ✅ TUNED: exposure follows sun strength (dark stays dark)
-    // exposureLow = darkest end, exposureHigh = brightest end
     exposureLow: 0.65,
     exposureHigh: 1.00,
-
     intensityScaleDivisor: 100,
     hemisphereIntensity: 0.20,
-
     shadowMapSize: 4096,
     shadowBias: -0.00025,
     shadowNormalBias: 0.02
   },
-
   SUMMER: {
     name: "Summer",
-
-    // Higher sun path (noon gets higher)
     elevationMinDeg: 6,
     elevationAmpDeg: 70,
-
-    // ✅ TUNED: darker darks + less blown brights
     sunIntensityMin: 0.35,
     sunIntensityMax: 2.80,
-
-    // ✅ TUNED: exposure follows sun strength (dark stays dark)
     exposureLow: 0.70,
     exposureHigh: 1.10,
-
     intensityScaleDivisor: 100,
     hemisphereIntensity: 0.25,
-
     shadowMapSize: 2048,
     shadowBias: -0.0002,
     shadowNormalBias: 0.02
@@ -69,7 +47,6 @@ let SEASON = SEASONS[ACTIVE_SEASON_KEY];
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("viewer-canvas");
   const loadingEl = document.getElementById("loading-indicator");
-  const overlayStatus = document.getElementById("overlay-status");
 
   const seasonToggle = document.getElementById("season-toggle");
   const seasonValue = document.getElementById("season-value");
@@ -79,21 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const intensitySlider = document.getElementById("intensity-slider");
   const intensityLabel = document.getElementById("intensity-value");
 
-  const dbgEl = document.getElementById("debug-elevation");
-  const dbgAz = document.getElementById("debug-azimuth");
-  const dbgInt = document.getElementById("debug-shadow");
-  const dbgExp = document.getElementById("debug-exposure");
-
-  const dbgJS = document.getElementById("dbg-js");
-  const dbgGLB = document.getElementById("dbg-glb");
-  const dbgHDR = document.getElementById("dbg-hdr");
-  const dbgModel = document.getElementById("dbg-model");
+  // View preset buttons
+  const viewPresetButtons = document.querySelectorAll(".view-preset");
+  const viewResetButton = document.querySelector(".view-reset");
 
   const glbPath = "models/stowe.glb";
   const hdrPath = "models/hdri/kloppenheim_06_1k.hdr";
 
   const setText = (el, t) => { if (el) el.textContent = t; };
-  const setOverlay = (t) => { if (overlayStatus) overlayStatus.textContent = t; };
   const setLoading = (on) => { if (loadingEl) loadingEl.style.display = on ? "flex" : "none"; };
 
   function readRange(inputEl, fallback) {
@@ -108,43 +78,34 @@ document.addEventListener("DOMContentLoaded", () => {
     setText(seasonValue, SEASON.name);
   }
 
-  setText(dbgJS, "Three.js module running ✔");
-
   if (!canvas || !sunSlider || !intensitySlider || !seasonToggle) {
-    setOverlay("Missing required DOM elements");
+    console.error("Missing required DOM elements");
     return;
   }
 
   if (location.protocol === "file:") {
-    setOverlay("Opened as file:// — use Live Server (http://)");
-    setText(dbgGLB, "FAILED (file://)");
-    setText(dbgHDR, "FAILED (file://)");
-    setText(dbgModel, "NOT ATTEMPTED");
+    console.error("Opened as file:// — use Live Server (http://)");
     return;
   }
 
   // Init season label from default checked state
   setSeasonFromToggle();
 
-  async function check(url, outEl) {
+  async function check(url) {
     try {
       const bust = url + (url.includes("?") ? "&" : "?") + "v=" + Date.now();
       const res = await fetch(bust, { method: "GET" });
-      setText(outEl, res.ok ? `OK (${res.status})` : `FAILED (${res.status})`);
       return res.ok;
     } catch {
-      setText(outEl, "FAILED (network/CORS)");
       return false;
     }
   }
 
   setLoading(true);
-  setOverlay("Checking assets…");
 
-  Promise.all([check(glbPath, dbgGLB), check(hdrPath, dbgHDR)]).then(([glbOK, hdrOK]) => {
+  Promise.all([check(glbPath), check(hdrPath)]).then(([glbOK, hdrOK]) => {
     if (!glbOK) {
-      setOverlay(`GLB not reachable: ${glbPath} (check path/case)`);
-      setText(dbgModel, "FAILED (GLB fetch)");
+      console.error(`GLB not reachable: ${glbPath}`);
       setLoading(false);
       return;
     }
@@ -239,9 +200,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Load model
     const box = new THREE.Box3();
     let model = null;
-
-    setText(dbgModel, "Loading…");
-    setOverlay("Loading GLB…");
+    let initialCameraPosition = new THREE.Vector3();
+    let modelCenter = new THREE.Vector3();
 
     new GLTFLoader().load(
       glbPath,
@@ -290,6 +250,10 @@ document.addEventListener("DOMContentLoaded", () => {
         camera.far = dist * 50;
         camera.updateProjectionMatrix();
 
+        // Store initial camera position and center for reset
+        initialCameraPosition.copy(camera.position);
+        modelCenter.copy(center);
+
         // Shadow camera bounds sized to model
         const r = maxDim * 1.3;
         const sc = sun.shadow.camera;
@@ -302,8 +266,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         applySeasonTuning();
 
-        setText(dbgModel, "Loaded ✔");
-        setOverlay("Loaded ✔");
         setLoading(false);
 
         resize();
@@ -312,8 +274,6 @@ document.addEventListener("DOMContentLoaded", () => {
       undefined,
       (err) => {
         console.error("GLB load error:", err);
-        setText(dbgModel, "FAILED (parse/load)");
-        setOverlay("GLB failed to parse/load — check Console");
         setLoading(false);
       }
     );
@@ -340,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
         SEASON.sunIntensityMin +
         i * (SEASON.sunIntensityMax - SEASON.sunIntensityMin);
 
-      // ✅ NEW: Exposure AUTO follows sun strength (dark stays dark; brights don’t blow out)
+      // ✅ NEW: Exposure AUTO follows sun strength (dark stays dark; brights don't blow out)
       renderer.toneMappingExposure =
         SEASON.exposureLow +
         i * (SEASON.exposureHigh - SEASON.exposureLow);
@@ -374,19 +334,58 @@ document.addEventListener("DOMContentLoaded", () => {
       else sunLabel.textContent = "Morning";
 
       // Intensity label now means SUN STRENGTH (not exposure)
-if (inten === 0) intensityLabel.textContent = "Very Low";
-else if (inten === 100) intensityLabel.textContent = "Very High";
-else if (inten < 35) intensityLabel.textContent = "Low";
-else if (inten <= 65) intensityLabel.textContent = "Medium";
-else intensityLabel.textContent = "High";
+      if (inten === 0) intensityLabel.textContent = "Very Low";
+      else if (inten === 100) intensityLabel.textContent = "Very High";
+      else if (inten < 35) intensityLabel.textContent = "Low";
+      else if (inten <= 65) intensityLabel.textContent = "Medium";
+      else intensityLabel.textContent = "High";
+    }
 
+    // ============================================
+    // VIEW PRESET BUTTONS (Added from review page)
+    // ============================================
+    viewPresetButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const view = button.dataset.view;
+        if (!model) return;
 
+        const size = new THREE.Vector3();
+        box.setFromObject(model);
+        box.getSize(size);
+        const center = modelCenter;
 
-      // Debug readout
-      setText(dbgEl, `${elDeg.toFixed(1)}°`);
-      setText(dbgAz, `${azDeg.toFixed(1)}°`);
-      setText(dbgInt, sun.intensity.toFixed(2));
-      setText(dbgExp, renderer.toneMappingExposure.toFixed(2));
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const fov = (camera.fov * Math.PI) / 180;
+        const dist = (maxDim / 2) / Math.tan(fov / 2);
+
+        switch (view) {
+          case "top":
+            // Top view - looking straight down
+            camera.position.set(center.x, center.y + dist * 1.2, center.z);
+            break;
+          case "angle":
+            // Angle view - 45 degree perspective
+            camera.position.set(center.x + dist * 0.9, center.y + dist * 0.55, center.z + dist * 0.9);
+            break;
+          case "side":
+            // Side view - 90 degree from side
+            camera.position.set(center.x + dist * 1.2, center.y + dist * 0.3, center.z);
+            break;
+        }
+
+        controls.target.copy(center);
+        controls.update();
+      });
+    });
+
+    // Reset View Button
+    if (viewResetButton) {
+      viewResetButton.addEventListener("click", () => {
+        if (!model) return;
+        camera.position.copy(initialCameraPosition);
+        controls.target.copy(modelCenter);
+        controls.update();
+      });
     }
 
     // Season toggle handler
