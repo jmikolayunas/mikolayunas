@@ -70,7 +70,7 @@ function updateParallax() {
   // Only apply parallax while hero is in view
   if (scrolled < heroHeight) {
     const parallaxSpeed = 0.3;
-    heroImage.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
+    heroImage.style.setProperty('--hero-parallax', `${scrolled * parallaxSpeed}px`);
   }
 
   parallaxTicking = false;
