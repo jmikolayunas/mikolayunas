@@ -76,15 +76,11 @@
           </div>
         </div>
 
-        <!-- Lighting Controls (Three controls from viewtest) -->
+        <!-- Lighting Controls -->
         <div class="lighting-controls">
           <!-- Season Toggle -->
           <div class="light-control">
-            <div class="light-label">
-              <span class="light-label-text">Season</span>
-              <span class="light-value" id="season-value">Summer</span>
-            </div>
-            
+            <span class="light-label-text">Season</span>
             <div class="season-switch-row">
               <span class="season-label">Winter</span>
               <label class="switch" aria-label="Toggle season">
@@ -93,52 +89,23 @@
               </label>
               <span class="season-label">Summer</span>
             </div>
+            <span class="light-value" id="season-value">Summer</span>
           </div>
 
           <!-- Sun Position Slider -->
           <div class="light-control">
-            <div class="light-label">
-              <span class="light-label-text">Sun Position</span>
-              <span class="light-value" id="sun-position-value">Noon</span>
-            </div>
-            
-            <input 
-              type="range" 
-              id="sun-position-slider" 
-              class="light-slider" 
-              min="0" 
-              max="100" 
-              value="50" 
+            <span class="light-label-text">Sun Position</span>
+            <input
+              type="range"
+              id="sun-position-slider"
+              class="light-slider"
+              min="0"
+              max="100"
+              value="50"
               step="1">
-            
-            <div class="slider-labels">
-              <span class="label-left">Dusk (West)</span>
-              <span class="label-center">Noon</span>
-              <span class="label-right">Dawn (East)</span>
-            </div>
+            <span class="light-value" id="sun-position-value">Noon</span>
           </div>
 
-          <!-- Sun Intensity Slider -->
-          <div class="light-control">
-            <div class="light-label">
-              <span class="light-label-text">Sun Intensity</span>
-              <span class="light-value" id="intensity-value">Medium</span>
-            </div>
-            
-            <input 
-              type="range" 
-              id="intensity-slider" 
-              class="light-slider" 
-              min="0" 
-              max="100" 
-              value="50" 
-              step="1">
-            
-            <div class="slider-labels">
-              <span class="label-left">Very Dark</span>
-              <span class="label-right">Very Bright</span>
-            </div>
-          </div>
         </div>
 
         <!-- Model Info -->

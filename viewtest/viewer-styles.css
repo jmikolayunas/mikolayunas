@@ -367,35 +367,38 @@ a {
    LIGHTING CONTROLS
    ============================================ */
 .lighting-controls {
-  width: 50%;
+  width: 70%;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  padding: var(--space-4) 0;
-  margin-top: calc(var(--space-1) * -1);
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  margin-top: calc(var(--space-1) / 2);
 }
 
 .light-control {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
 }
 
-.light-label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.light-label-text {
+  flex: 0 0 100px;
   font-family: var(--font-secondary);
   font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--color-text-primary);
-  margin-bottom: var(--space-1);
+  white-space: nowrap;
 }
 
 .light-value {
+  flex: 0 0 80px;
+  text-align: right;
   color: var(--color-brass);
   font-weight: var(--weight-semibold);
   font-family: var(--font-primary);
@@ -404,14 +407,11 @@ a {
 
 /* Season Toggle */
 .season-switch-row {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  padding: 6px 0 2px 0;
 }
 
 .season-label {
@@ -473,15 +473,12 @@ a {
 .light-slider {
   -webkit-appearance: none;
   appearance: none;
-  width: 50%;
+  flex: 1;
   height: 2px;
   background: var(--color-border);
   outline: none;
   border-radius: 2px;
   cursor: pointer;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
 }
 
 .light-slider::-webkit-slider-thumb {
@@ -531,55 +528,33 @@ a {
 }
 
 .slider-labels {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  font-family: var(--font-secondary);
-  font-size: var(--text-xs);
-  color: var(--color-text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  opacity: 0.6;
-  margin-top: var(--space-1);
-}
-
-.label-center {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  display: none;
 }
 
 @media (max-width: 767px) {
   .lighting-controls {
-    width: 80%;
-    gap: var(--space-4);
+    width: 95%;
+    gap: var(--space-2);
   }
-  
-  .light-slider,
-  .slider-labels,
-  .season-switch-row {
-    width: 70%;
+
+  .light-label-text {
+    flex: 0 0 70px;
+    font-size: var(--text-xs);
   }
-  
+
+  .light-value {
+    flex: 0 0 60px;
+    font-size: var(--text-sm);
+  }
+
   .light-slider::-webkit-slider-thumb,
   .light-slider::-moz-range-thumb {
     width: 20px;
     height: 20px;
   }
-}
 
-@media (min-width: 768px) and (max-width: 1023px) {
-  .lighting-controls {
-    width: 60%;
-  }
-  
-  .light-slider,
-  .slider-labels,
-  .season-switch-row {
-    width: 60%;
+  .season-label {
+    display: none;
   }
 }
 

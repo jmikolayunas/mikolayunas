@@ -53,8 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const sunSlider = document.getElementById("sun-position-slider");
   const sunLabel = document.getElementById("sun-position-value");
-  const intensitySlider = document.getElementById("intensity-slider");
-  const intensityLabel = document.getElementById("intensity-value");
 
   const viewPresetButtons = document.querySelectorAll(".view-preset");
   const viewResetButton = document.querySelector(".view-reset");
@@ -75,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (seasonValue) seasonValue.textContent = SEASON.name;
   }
 
-  if (!canvas || !sunSlider || !intensitySlider || !seasonToggle) {
+  if (!canvas || !sunSlider || !seasonToggle) {
     console.error("Missing required DOM elements");
     return;
   }
@@ -205,7 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
       box.getSize(size);
       box.getCenter(center);
 
-      controls.target.copy(center);
+      // Offset target down by 10% of model height to shift model up in view
+      const targetOffset = size.y * 0.1;
+      controls.target.set(center.x, center.y - targetOffset, center.z);
       controls.update();
       ground.position.set(center.x, 0, center.z);
 
@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
       camera.updateProjectionMatrix();
 
       initialCameraPosition.copy(camera.position);
-      modelCenter.copy(center);
+      modelCenter.set(center.x, center.y - targetOffset, center.z);
 
       const r = maxDim * 1.3;
       const sc = sun.shadow.camera;
@@ -240,14 +240,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateSun() {
       const sunPos = readRange(sunSlider, 50);
-      const inten = readRange(intensitySlider, 50);
       const t = THREE.MathUtils.clamp(sunPos / 100, 0, 1);
       const azDeg = 180 * (1 - t);
-      const i = THREE.MathUtils.clamp(inten / SEASON.intensityScaleDivisor, 0, 1);
       const elDeg = SEASON.elevationMinDeg + Math.sin(Math.PI * t) * SEASON.elevationAmpDeg;
 
-      sun.intensity = SEASON.sunIntensityMin + i * (SEASON.sunIntensityMax - SEASON.sunIntensityMin);
-      renderer.toneMappingExposure = SEASON.exposureLow + i * (SEASON.exposureHigh - SEASON.exposureLow);
+      // Fixed at max intensity ("Very High")
+      sun.intensity = SEASON.sunIntensityMax;
+      renderer.toneMappingExposure = SEASON.exposureHigh;
 
       const az = THREE.MathUtils.degToRad(azDeg);
       const el = THREE.MathUtils.degToRad(elDeg);
@@ -269,12 +268,6 @@ document.addEventListener("DOMContentLoaded", () => {
       else if (sunPos < 35) sunLabel.textContent = "Afternoon";
       else if (sunPos <= 65) sunLabel.textContent = "Noon";
       else sunLabel.textContent = "Morning";
-
-      if (inten === 0) intensityLabel.textContent = "Very Low";
-      else if (inten === 100) intensityLabel.textContent = "Very High";
-      else if (inten < 35) intensityLabel.textContent = "Low";
-      else if (inten <= 65) intensityLabel.textContent = "Medium";
-      else intensityLabel.textContent = "High";
     }
 
     viewPresetButtons.forEach(button => {
@@ -322,7 +315,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     sunSlider.addEventListener("input", updateSun);
-    intensitySlider.addEventListener("input", updateSun);
 
     function tick() {
       requestAnimationFrame(tick);
