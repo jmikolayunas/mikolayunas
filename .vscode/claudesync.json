@@ -24,7 +24,8 @@
     "*.jpg",
     "*.jpeg",
     "*.gif",
-    "viewtest/models/hdri/kloppenheim_06_1k.hdr"
+    "viewtest/models/hdri/kloppenheim_06_1k.hdr",
+    "viewtest/hdri/kloppenheim_06_1k.hdr"
   ],
   "maxFileSize": 2097152,
   "autoSync": false,

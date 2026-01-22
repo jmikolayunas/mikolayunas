@@ -6,7 +6,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
 
 /* ============================================================
-   SEASON PRESETS — ONLY SUMMER + WINTER
+   SEASON PRESETS — WINTER + SUMMER
    ============================================================ */
 
 const SEASONS = {
@@ -40,7 +40,7 @@ const SEASONS = {
   }
 };
 
-// Default: SUMMER (toggle checked)
+// Default: SUMMER
 let ACTIVE_SEASON_KEY = "SUMMER";
 let SEASON = SEASONS[ACTIVE_SEASON_KEY];
 
@@ -56,14 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const intensitySlider = document.getElementById("intensity-slider");
   const intensityLabel = document.getElementById("intensity-value");
 
-  // View preset buttons
   const viewPresetButtons = document.querySelectorAll(".view-preset");
   const viewResetButton = document.querySelector(".view-reset");
 
   const glbPath = "models/stowe.glb";
   const hdrPath = "models/hdri/kloppenheim_06_1k.hdr";
 
-  const setText = (el, t) => { if (el) el.textContent = t; };
   const setLoading = (on) => { if (loadingEl) loadingEl.style.display = on ? "flex" : "none"; };
 
   function readRange(inputEl, fallback) {
@@ -72,10 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function setSeasonFromToggle() {
-    // checked = Summer, unchecked = Winter
     ACTIVE_SEASON_KEY = seasonToggle?.checked ? "SUMMER" : "WINTER";
     SEASON = SEASONS[ACTIVE_SEASON_KEY];
-    setText(seasonValue, SEASON.name);
+    if (seasonValue) seasonValue.textContent = SEASON.name;
   }
 
   if (!canvas || !sunSlider || !intensitySlider || !seasonToggle) {
@@ -88,10 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // Init season label from default checked state
   setSeasonFromToggle();
 
-  async function check(url) {
+  async function checkAsset(url) {
     try {
       const bust = url + (url.includes("?") ? "&" : "?") + "v=" + Date.now();
       const res = await fetch(bust, { method: "GET" });
@@ -103,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setLoading(true);
 
-  Promise.all([check(glbPath), check(hdrPath)]).then(([glbOK, hdrOK]) => {
+  Promise.all([checkAsset(glbPath), checkAsset(hdrPath)]).then(([glbOK, hdrOK]) => {
     if (!glbOK) {
       console.error(`GLB not reachable: ${glbPath}`);
       setLoading(false);
@@ -115,12 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-
-    // Start exposure midrange (now uses exposureLow/exposureHigh)
     renderer.toneMappingExposure = (SEASON.exposureLow + SEASON.exposureHigh) / 2;
 
     const scene = new THREE.Scene();
-
     const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 5000);
     camera.position.set(2.5, 1.6, 2.5);
 
@@ -129,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     controls.dampingFactor = 0.06;
     controls.screenSpacePanning = true;
 
-    // Keep refs so season can retune them live
     const hemi = new THREE.HemisphereLight(0xffffff, 0x101010, SEASON.hemisphereIntensity);
     scene.add(hemi);
 
@@ -150,23 +142,14 @@ document.addEventListener("DOMContentLoaded", () => {
     scene.add(ground);
 
     function applySeasonTuning() {
-      // ensure SEASON matches toggle
       setSeasonFromToggle();
-
-      // Fill light
       hemi.intensity = SEASON.hemisphereIntensity;
-
-      // Shadow quality + acne controls
       sun.shadow.mapSize.set(SEASON.shadowMapSize, SEASON.shadowMapSize);
       sun.shadow.bias = SEASON.shadowBias;
       sun.shadow.normalBias = SEASON.shadowNormalBias;
-
-      // Refresh shadow map after resizing
       if (sun.shadow.map) sun.shadow.map.dispose();
       sun.shadow.map = null;
       sun.shadow.needsUpdate = true;
-
-      // Keep exposure in range after season switch
       renderer.toneMappingExposure = (SEASON.exposureLow + SEASON.exposureHigh) / 2;
     }
 
@@ -181,140 +164,95 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     window.addEventListener("resize", resize);
 
-    // HDR environment (optional)
     if (hdrOK) {
       const pmrem = new THREE.PMREMGenerator(renderer);
       pmrem.compileEquirectangularShader();
-      new RGBELoader().load(
-        hdrPath,
-        (tex) => {
-          scene.environment = pmrem.fromEquirectangular(tex).texture;
-          tex.dispose();
-          pmrem.dispose();
-        },
-        undefined,
-        () => pmrem.dispose()
-      );
+      new RGBELoader().load(hdrPath, (tex) => {
+        scene.environment = pmrem.fromEquirectangular(tex).texture;
+        tex.dispose();
+        pmrem.dispose();
+      }, undefined, () => pmrem.dispose());
     }
 
-    // Load model
     const box = new THREE.Box3();
     let model = null;
     let initialCameraPosition = new THREE.Vector3();
     let modelCenter = new THREE.Vector3();
 
-    new GLTFLoader().load(
-      glbPath,
-      (gltf) => {
-        model = gltf.scene;
-
-        model.traverse((o) => {
-          if (o.isMesh) {
-            o.castShadow = true;
-            o.receiveShadow = true;
-
-            if (o.material && "roughness" in o.material) {
-              o.material.roughness = Math.max(o.material.roughness ?? 0.7, 0.7);
-            }
-            if (o.material && "metalness" in o.material) {
-              o.material.metalness = Math.min(o.material.metalness ?? 0.0, 0.0);
-            }
+    new GLTFLoader().load(glbPath, (gltf) => {
+      model = gltf.scene;
+      model.traverse((o) => {
+        if (o.isMesh) {
+          o.castShadow = true;
+          o.receiveShadow = true;
+          if (o.material && "roughness" in o.material) {
+            o.material.roughness = Math.max(o.material.roughness ?? 0.7, 0.7);
           }
-        });
+          if (o.material && "metalness" in o.material) {
+            o.material.metalness = Math.min(o.material.metalness ?? 0.0, 0.0);
+          }
+        }
+      });
 
-        scene.add(model);
+      scene.add(model);
+      box.setFromObject(model);
+      const size = new THREE.Vector3();
+      const center = new THREE.Vector3();
+      box.getSize(size);
+      box.getCenter(center);
+      model.position.y -= box.min.y;
+      box.setFromObject(model);
+      box.getSize(size);
+      box.getCenter(center);
 
-        // Fit camera + ground
-        box.setFromObject(model);
-        const size = new THREE.Vector3();
-        const center = new THREE.Vector3();
-        box.getSize(size);
-        box.getCenter(center);
+      controls.target.copy(center);
+      controls.update();
+      ground.position.set(center.x, 0, center.z);
 
-        model.position.y -= box.min.y;
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const fov = (camera.fov * Math.PI) / 180;
+      const dist = (maxDim / 2) / Math.tan(fov / 2);
 
-        box.setFromObject(model);
-        box.getSize(size);
-        box.getCenter(center);
+      camera.position.set(center.x + dist * 0.9, center.y + dist * 0.55, center.z + dist * 0.9);
+      camera.near = Math.max(0.01, dist / 200);
+      camera.far = dist * 50;
+      camera.updateProjectionMatrix();
 
-        controls.target.copy(center);
-        controls.update();
-        ground.position.set(center.x, 0, center.z);
+      initialCameraPosition.copy(camera.position);
+      modelCenter.copy(center);
 
-        const maxDim = Math.max(size.x, size.y, size.z);
-        const fov = (camera.fov * Math.PI) / 180;
-        const dist = (maxDim / 2) / Math.tan(fov / 2);
+      const r = maxDim * 1.3;
+      const sc = sun.shadow.camera;
+      sc.left = -r; sc.right = r; sc.top = r; sc.bottom = -r;
+      sc.near = 0.01;
+      sc.far = Math.max(50, maxDim * 12);
+      sc.updateProjectionMatrix();
 
-        camera.position.set(center.x + dist * 0.9, center.y + dist * 0.55, center.z + dist * 0.9);
-        camera.near = Math.max(0.01, dist / 200);
-        camera.far = dist * 50;
-        camera.updateProjectionMatrix();
-
-        // Store initial camera position and center for reset
-        initialCameraPosition.copy(camera.position);
-        modelCenter.copy(center);
-
-        // Shadow camera bounds sized to model
-        const r = maxDim * 1.3;
-        const sc = sun.shadow.camera;
-        sc.left = -r; sc.right = r; sc.top = r; sc.bottom = -r;
-        sc.near = 0.01;
-        sc.far = Math.max(50, maxDim * 12);
-        sc.updateProjectionMatrix();
-
-        sunTarget.position.copy(center);
-
-        applySeasonTuning();
-
-        setLoading(false);
-
-        resize();
-        updateSun(); // initial
-      },
-      undefined,
-      (err) => {
-        console.error("GLB load error:", err);
-        setLoading(false);
-      }
-    );
+      sunTarget.position.copy(center);
+      applySeasonTuning();
+      setLoading(false);
+      resize();
+      updateSun();
+    }, undefined, (err) => {
+      console.error("GLB load error:", err);
+      setLoading(false);
+    });
 
     function updateSun() {
-      const sunPos = readRange(sunSlider, 50);          // 0..100
-      const inten = readRange(intensitySlider, 50);     // 0..100
+      const sunPos = readRange(sunSlider, 50);
+      const inten = readRange(intensitySlider, 50);
       const t = THREE.MathUtils.clamp(sunPos / 100, 0, 1);
-
-      // East↔West sweep, map-facing-north convention:
-      // LEFT = West/Dusk, RIGHT = East/Dawn
       const azDeg = 180 * (1 - t);
-
-      // FLIPPED: left = stronger sun, right = weaker sun
       const i = THREE.MathUtils.clamp(inten / SEASON.intensityScaleDivisor, 0, 1);
+      const elDeg = SEASON.elevationMinDeg + Math.sin(Math.PI * t) * SEASON.elevationAmpDeg;
 
-      // Elevation curve
-      const elDeg =
-        SEASON.elevationMinDeg +
-        Math.sin(Math.PI * t) * SEASON.elevationAmpDeg;
-
-      // Sun intensity driven by slider
-      sun.intensity =
-        SEASON.sunIntensityMin +
-        i * (SEASON.sunIntensityMax - SEASON.sunIntensityMin);
-
-      // ✅ NEW: Exposure AUTO follows sun strength (dark stays dark; brights don't blow out)
-      renderer.toneMappingExposure =
-        SEASON.exposureLow +
-        i * (SEASON.exposureHigh - SEASON.exposureLow);
+      sun.intensity = SEASON.sunIntensityMin + i * (SEASON.sunIntensityMax - SEASON.sunIntensityMin);
+      renderer.toneMappingExposure = SEASON.exposureLow + i * (SEASON.exposureHigh - SEASON.exposureLow);
 
       const az = THREE.MathUtils.degToRad(azDeg);
       const el = THREE.MathUtils.degToRad(elDeg);
+      const dir = new THREE.Vector3(Math.cos(el) * Math.cos(az), Math.sin(el), Math.cos(el) * Math.sin(az));
 
-      const dir = new THREE.Vector3(
-        Math.cos(el) * Math.cos(az),
-        Math.sin(el),
-        Math.cos(el) * Math.sin(az)
-      );
-
-      // Distance scales with model size
       let dist = 12;
       if (model) {
         const s = new THREE.Vector3();
@@ -326,14 +264,12 @@ document.addEventListener("DOMContentLoaded", () => {
       sun.position.copy(sunTarget.position).addScaledVector(dir, dist);
       sun.target.updateMatrixWorld();
 
-      // Sun position label
       if (sunPos === 0) sunLabel.textContent = "Dusk";
       else if (sunPos === 100) sunLabel.textContent = "Dawn";
       else if (sunPos < 35) sunLabel.textContent = "Afternoon";
       else if (sunPos <= 65) sunLabel.textContent = "Noon";
       else sunLabel.textContent = "Morning";
 
-      // Intensity label now means SUN STRENGTH (not exposure)
       if (inten === 0) intensityLabel.textContent = "Very Low";
       else if (inten === 100) intensityLabel.textContent = "Very High";
       else if (inten < 35) intensityLabel.textContent = "Low";
@@ -341,9 +277,6 @@ document.addEventListener("DOMContentLoaded", () => {
       else intensityLabel.textContent = "High";
     }
 
-    // ============================================
-    // VIEW PRESET BUTTONS (Added from review page)
-    // ============================================
     viewPresetButtons.forEach(button => {
       button.addEventListener("click", () => {
         const view = button.dataset.view;
@@ -353,22 +286,18 @@ document.addEventListener("DOMContentLoaded", () => {
         box.setFromObject(model);
         box.getSize(size);
         const center = modelCenter;
-
         const maxDim = Math.max(size.x, size.y, size.z);
         const fov = (camera.fov * Math.PI) / 180;
         const dist = (maxDim / 2) / Math.tan(fov / 2);
 
         switch (view) {
           case "top":
-            // Top view - looking straight down
             camera.position.set(center.x, center.y + dist * 1.2, center.z);
             break;
           case "angle":
-            // Angle view - 45 degree perspective
             camera.position.set(center.x + dist * 0.9, center.y + dist * 0.55, center.z + dist * 0.9);
             break;
           case "side":
-            // Side view - 90 degree from side
             camera.position.set(center.x + dist * 1.2, center.y + dist * 0.3, center.z);
             break;
         }
@@ -378,7 +307,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Reset View Button
     if (viewResetButton) {
       viewResetButton.addEventListener("click", () => {
         if (!model) return;
@@ -388,7 +316,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Season toggle handler
     seasonToggle.addEventListener("change", () => {
       applySeasonTuning();
       updateSun();
