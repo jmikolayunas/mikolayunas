@@ -44,6 +44,31 @@ const SEASONS = {
 let ACTIVE_SEASON_KEY = "SUMMER";
 let SEASON = SEASONS[ACTIVE_SEASON_KEY];
 
+function initReviewHeaderScroll() {
+  const header = document.querySelector(".review-header");
+  if (!header) return;
+
+  let lastScroll = 0;
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 100) {
+      if (currentScroll > lastScroll) {
+        header.style.transform = "translateY(-100%)";
+      } else {
+        header.style.transform = "translateY(0)";
+      }
+    } else {
+      header.style.transform = "translateY(0)";
+    }
+
+    lastScroll = currentScroll;
+  }, { passive: true });
+}
+
+document.addEventListener("DOMContentLoaded", initReviewHeaderScroll);
+
 document.addEventListener("DOMContentLoaded", () => {
   const canvas = document.getElementById("viewer-canvas");
   const loadingEl = document.getElementById("loading-indicator");

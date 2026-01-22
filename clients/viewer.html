@@ -76,15 +76,9 @@
               <button class="view-preset" data-view="side">Side View</button>
               <button class="view-reset">Reset View</button>
             </div>
-          </div>
-        </div>
 
-        <!-- Lighting Controls -->
-        <div class="lighting-controls">
-          <!-- Season Toggle -->
-          <div class="light-control">
-            <span class="light-label-text">Season</span>
-            <div class="season-switch-row">
+            <!-- Season Toggle (inside viewer window) -->
+            <div class="viewer-season-toggle">
               <span class="season-label">Winter</span>
               <label class="switch" aria-label="Toggle season">
                 <input id="season-toggle" type="checkbox" checked />
@@ -92,9 +86,11 @@
               </label>
               <span class="season-label">Summer</span>
             </div>
-            <span class="light-value" id="season-value">Summer</span>
           </div>
+        </div>
 
+        <!-- Lighting Controls -->
+        <div class="lighting-controls">
           <!-- Sun Position Slider -->
           <div class="light-control">
             <span class="light-label-text">Sun Position</span>
