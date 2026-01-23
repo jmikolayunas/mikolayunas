@@ -6,7 +6,7 @@
   <title>Highland Mountain Bike Trails — Bonas Studio</title>
   <link rel="stylesheet" href="../styles.css">
   <style>
-    .piece-hero { position: relative; background: #f5f5f5; padding: 120px var(--space-4) 60px; min-height: auto; }
+    .piece-hero { position: relative; background: transparent; /* Preserves transparent PNG backgrounds */ padding: 120px var(--space-4) 60px; min-height: auto; }
     .piece-hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.02) 100%); pointer-events: none; z-index: 1; }
     .piece-hero-image-container { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 var(--space-6); }
     .piece-hero-image { width: 100%; height: auto; display: block; box-shadow: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08); opacity: 0; transform: translateY(20px); animation: fadeInUp 1.8s ease 0.2s forwards; }
@@ -24,7 +24,7 @@
     .detail-value { font-weight: var(--weight-regular); }
     .piece-description { padding: var(--space-5) 0 var(--space-5); border-bottom: 2px solid var(--color-brass); margin-top: var(--space-5); }
     .piece-description p { font-family: var(--font-secondary); font-size: var(--text-base); line-height: var(--leading-relaxed); color: var(--color-text-secondary); margin: 0 0 var(--space-3); }
-.piece-gallery { background: #f5f5f5; }
+.piece-gallery { background: transparent; }
     .piece-gallery.section-padded { padding-top: calc(var(--section-padding-y) - var(--space-2)); padding-bottom: var(--section-padding-y); }
 .gallery-images { display: flex; flex-direction: column; gap: var(--space-8); max-width: 1200px; margin: 0 auto; padding: 0 var(--space-4); }
     .gallery-image-wrapper { position: relative; width: 100%; opacity: 0; transform: translateY(40px); transition: opacity 1.8s ease, transform 1.8s ease; }
@@ -76,10 +76,10 @@
   <main class="site-main">
     <section class="piece-hero" id="piece-hero">
       <div class="piece-hero-image-container">
-        <img src="../images/hurricane/hurricane-front-full.jpg" alt="Highland Mountain Bike Trails topographic relief map" class="piece-hero-image" />
+        <img src="../images/highland/highland.back.png" alt="Highland Mountain Bike Trails topographic relief map" class="piece-hero-image" />
       </div>
       <div class="piece-hero-content">
-        <h1 class="piece-hero-title">Highland Mountain Bike Trails</h1>
+        <h1 class="piece-hero-title">Highland Mountain</h1>
         <p class="piece-hero-location">Northfield, New Hampshire</p>
       </div>
     </section>
@@ -99,7 +99,7 @@
             </span>
             <span class="detail-item">
               <span class="detail-label">Location:</span>
-              <span class="detail-value">Highland Mountain Bike Park, Northfield, NH</span>
+              <span class="detail-value">Highland Mountain, Northfield, NH</span>
             </span>
             <span class="detail-item">
               <span class="detail-label">Completed:</span>
@@ -122,19 +122,19 @@
       <div class="section-container">
         <div class="gallery-images">
           <div class="gallery-image-wrapper fade-in-scroll">
-            <img src="../images/nantucket/nantucket-front-close-per.jpg" alt="Highland Mountain full piece view" />
+            <img src="../images/highland/highland.hero (2).webp" alt="Highland Mountain full piece view" />
             <p class="gallery-caption">Full piece showing entire topography</p>
           </div>
           <div class="gallery-image-wrapper fade-in-scroll">
-            <img src="../images/nantucket/nantucket-detail-2.jpg" alt="Highland Mountain detail" />
+            <img src="../images/highland/highland.hero.webp" alt="Highland Mountain detail" />
             <p class="gallery-caption">Detail of trail network</p>
           </div>
           <div class="gallery-image-wrapper fade-in-scroll">
-            <img src="../images/nantucket/nantucket-detail-4.jpg" alt="Highland Mountain side angle" />
+            <img src="../images/highland/highland.hero (1).webp" alt="Highland Mountain side angle" />
             <p class="gallery-caption">Side angle showing depth</p>
           </div>
           <div class="gallery-image-wrapper fade-in-scroll">
-            <img src="../images/nantucket/nantucket-detail-bottom-right-mid.jpg" alt="Highland Mountain wood grain" />
+            <img src="../images/highland/highland.back (6).webp" alt="Highland Mountain wood grain" />
             <p class="gallery-caption">Close view of wood grain</p>
           </div>
         </div>
