@@ -11,7 +11,7 @@
     /* Hero Section - Gallery Wall Presentation */
     .piece-hero {
       position: relative;
-      background: transparent; /* Preserves transparent PNG backgrounds */
+      background: transparent; /* Preserves transparent PNG/WebP backgrounds */
       padding: 120px var(--space-4) 60px;
       min-height: auto;
     }
@@ -42,9 +42,7 @@
       width: 100%;
       height: auto;
       display: block;
-      box-shadow: 
-        0 8px 24px rgba(0,0,0,0.12),
-        0 2px 6px rgba(0,0,0,0.08);
+      /* Box-shadow removed - interferes with transparent PNG/WebP backgrounds */
       opacity: 0;
       transform: translateY(20px);
       animation: fadeInUp 1.8s ease 0.2s forwards;
@@ -123,7 +121,7 @@
       width: 100%;
       height: auto;
       display: block;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      /* Box-shadow removed - interferes with transparent PNG/WebP backgrounds */
     }
     
     .gallery-caption {

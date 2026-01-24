@@ -693,7 +693,7 @@ ul {
   width: 100%;
   /* aspect-ratio will be set by JavaScript */
   overflow: hidden;
-  background-color: transparent; /* Preserves transparent PNG backgrounds */
+  background-color: transparent; /* Preserves transparent PNG/WebP backgrounds */
   padding: 0;
   margin: 0;
   line-height: 0;
@@ -3081,7 +3081,7 @@ ul {
   padding: 0;
   margin: 0;
   line-height: 0;
-  background-color: transparent; /* Preserves transparent PNG backgrounds */
+  background-color: transparent; /* Preserves transparent PNG/WebP backgrounds */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.7s ease-out; /* UPDATED - Slower, more luxurious */
 }
