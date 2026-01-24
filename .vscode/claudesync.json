@@ -26,7 +26,11 @@
     "*.gif",
     "clients/models/hdri/kloppenheim_06_1k.hdr",
     "clients/hdri/kloppenheim_06_1k.hdr",
-    "clients/models/kloppenheim_06_1k.hdr"
+    "clients/models/kloppenheim_06_1k.hdr",
+    "images/highland/highland.detail.webp",
+    "images/highland/highland.base.webp",
+    "images/highland/highland.back.webp",
+    "images/mahoosuc/mahoosuc.hero.webp"
   ],
   "maxFileSize": 2097152,
   "autoSync": false,
