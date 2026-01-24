@@ -30,23 +30,9 @@
       z-index: 1;
     }
 
-    .piece-hero-image-container {
-      position: relative;
-      z-index: 2;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 var(--space-6);
-    }
+    .piece-hero-image-container { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 var(--space-6); }
 
-    .piece-hero-image {
-      width: 100%;
-      height: auto;
-      display: block;
-      /* Box-shadow removed - interferes with transparent PNG/WebP backgrounds */
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1.8s ease 0.2s forwards;
-    }
+    .piece-hero-image { max-width: 100%; max-height: 1000px; width: auto; height: auto; display: block; /* Box-shadow removed - interferes with transparent PNG/WebP backgrounds */ opacity: 0; transform: translateY(20px); animation: fadeInUp 1.8s ease 0.2s forwards; }
 
     /* Gallery Placard - Title and Location */
     .piece-hero-content {
@@ -196,7 +182,7 @@
     .back-arrow { display: inline-block; transition: transform 0.3s ease; }
     .back-to-gallery:hover .back-arrow { transform: translateX(-4px); }
     @media (max-width: 900px) { .back-to-gallery { left: var(--space-4); } }
-    @media (max-width: 767px) { .piece-hero { padding: 80px var(--space-3) 40px; } .piece-hero-image-container { padding: 0 var(--space-3); } .piece-hero-content { padding: 0 calc(var(--space-3) + var(--space-2)); } .piece-hero-title { font-size: var(--text-lg); } .gallery-images { gap: var(--space-6); } .back-to-gallery { top: 70px; left: var(--space-3); font-size: var(--text-xs); }  .details-specs { font-size: 0.7rem; gap: 0; } .detail-item::after { margin: 0 var(--space-1); }}
+    @media (max-width: 767px) { .piece-hero { padding: 80px var(--space-3) 40px; } .piece-hero-image-container { padding: 0 var(--space-3); } .piece-hero-image { max-height: 600px; } .piece-hero-content { padding: 0 calc(var(--space-3) + var(--space-2)); } .piece-hero-title { font-size: var(--text-lg); } .gallery-images { gap: var(--space-6); } .back-to-gallery { top: 70px; left: var(--space-3); font-size: var(--text-xs); }  .details-specs { font-size: 0.7rem; gap: 0; } .detail-item::after { margin: 0 var(--space-1); }}
 
     /* Animation Keyframes */
     @keyframes fadeInUp {
@@ -434,6 +420,8 @@
   </script>
 </body>
 </html>
+
+
 
 
 
