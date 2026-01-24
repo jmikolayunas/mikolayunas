@@ -13,7 +13,7 @@
       position: relative;
       background: transparent; /* Preserves transparent PNG/WebP backgrounds */
       padding: 120px var(--space-4) 60px;
-      min-height: auto;
+      min-height: auto; text-align: center;
     }
     
     /* Subtle vignette to draw eye to center */
@@ -29,18 +29,20 @@
       pointer-events: none;
       z-index: 1;
     }
+
+    .piece-hero-inner { display: inline-block; max-width: 100%; text-align: left; }
     
-    .piece-hero-image-container { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; padding: 0 var(--space-6); }
+    .piece-hero-image-container { position: relative; z-index: 2; max-width: 1400px; display: inline-block; margin: 0; padding: 0 var(--space-6); }
     
-    .piece-hero-image { max-width: 100%; max-height: 1000px; width: auto; height: auto; display: block; /* Box-shadow removed - interferes with transparent PNG/WebP backgrounds */ opacity: 0; transform: translateY(20px); animation: fadeInUp 1.8s ease 0.2s forwards; }
+    .piece-hero-image { max-width: 100%; max-height: 1000px; width: auto; height: auto; display: block; margin: 0; /* Box-shadow removed - interferes with transparent PNG/WebP backgrounds */ opacity: 0; transform: translateY(20px); animation: fadeInUp 1.8s ease 0.2s forwards; }
     
     /* Gallery Placard - Title and Location */
     .piece-hero-content {
       position: relative;
       z-index: 2;
       max-width: 1400px;
-      margin: var(--space-6) auto 0;
-      padding: 0 calc(var(--space-6) + var(--space-2));
+      margin: var(--space-6) 0 0;
+      padding: 0 var(--space-6);
       text-align: left;
     }
     
@@ -84,7 +86,7 @@
 .gallery-images {
       display: flex;
       flex-direction: column;
-      gap: var(--space-8);
+      gap: calc(var(--space-8) * 1.5);
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 var(--space-4);
@@ -191,14 +193,14 @@
       .piece-hero-image-container { padding: 0 var(--space-3); } .piece-hero-image { max-height: 600px; }
 
       .piece-hero-content {
-        padding: 0 calc(var(--space-3) + var(--space-2));
+        padding: 0 var(--space-3);
       }
 
       .piece-hero-title {
         font-size: var(--text-lg);
       }
 
-      .gallery-images { gap: var(--space-6); }
+      .gallery-images { gap: calc(var(--space-6) * 1.5); }
 
       .back-to-gallery { top: 70px; left: var(--space-3); font-size: var(--text-xs); }
     
@@ -245,17 +247,16 @@
 
     <!-- HERO SECTION - GALLERY WALL PRESENTATION -->
     <section class="piece-hero" id="piece-hero">
-      <div class="piece-hero-image-container">
+      <div class="piece-hero-inner"><div class="piece-hero-image-container">
         <img 
           src="../images/mahoosuc/mahoosuc.hero.webp" 
           alt="Mahoosuc Range topographic relief map" 
           class="piece-hero-image" 
         />
-      </div>
-      <div class="piece-hero-content">
+      </div><div class="piece-hero-content">
         <h1 class="piece-hero-title">Mahoosuc Range</h1>
         <p class="piece-hero-location">Newry, Maine</p>
-      </div>
+      </div></div>
     </section>
 
     <!-- DETAILS SECTION -->
@@ -438,6 +439,12 @@
   </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
