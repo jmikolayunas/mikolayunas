@@ -1181,7 +1181,7 @@ ul {
   font-style: italic;
   color: var(--color-text-secondary);
   text-align: center;
-  margin: var(--space-4) 0 var(--space-6);
+  margin: calc(var(--space-4) * 0.75) 0 var(--space-6);
   opacity: 0.7;
   letter-spacing: 0.02em;
 }
