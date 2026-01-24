@@ -1181,9 +1181,17 @@ ul {
   font-style: italic;
   color: var(--color-text-secondary);
   text-align: center;
-  margin: calc(var(--space-4) * 0.75) 0 var(--space-6);
+  margin: calc(var(--space-4) * 0.75) 0 calc(var(--space-6) * 0.75);
   opacity: 0.7;
   letter-spacing: 0.02em;
+}
+
+.gallery-scale-note + .gallery-section.section-padded {
+  padding-top: calc(var(--section-padding-y) * 0.75);
+}
+
+.gallery-scale-note + .gallery-section .gallery-grid {
+  padding-top: calc(var(--space-8) * 0.75);
 }
 
 @media (max-width: 640px) {
