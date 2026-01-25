@@ -1,0 +1,62 @@
+/* ============================================
+   PIECE PAGES STYLES
+   Back to Gallery Button and Piece-specific Layouts
+   ============================================ */
+
+/* =============================================================
+   BACK TO GALLERY BUTTON
+   (Hidden by default; scripts.js toggles .is-visible)
+   ============================================================= */
+
+.back-to-gallery {
+  position: fixed;
+  top: 100px;
+  left: var(--space-6);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  z-index: 10;
+
+  /* Hidden by default */
+  opacity: 0;
+  pointer-events: none;
+  transition: color 0.3s ease, opacity 0.2s ease;
+}
+
+.back-to-gallery.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-gallery:hover {
+  color: var(--color-brass);
+}
+
+.back-arrow {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.back-to-gallery:hover .back-arrow {
+  transform: translateX(-4px);
+}
+
+@media (max-width: 900px) {
+  .back-to-gallery {
+    left: var(--space-4);
+  }
+}
+
+@media (max-width: 767px) {
+  .back-to-gallery {
+    top: 70px;
+    left: var(--space-3);
+    font-size: var(--text-xs);
+  }
+}
