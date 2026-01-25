@@ -174,6 +174,8 @@
 │   ├── viewer-scripts.js
 │   ├── hdri/
 │   └── models/
+├── GoodWords/
+│   └── nomenclature.md (business entity definitions)
 └── images/
     └── [piece-name]/ (organized by piece)
 ```
@@ -271,6 +273,19 @@
 - Client viewer: `clients/viewer.html`, `clients/viewer-scripts.js`
 - Stories: `stories/stories.html`, `stories/stories.js`
 - Explore: `explore/explore.html`, `explore/explore.js`
+
+### Business Nomenclature
+Named business entities that map to specific HTML/CSS structures. Use these terms in conversation to reference complete component patterns:
+
+- **Reference**: `GoodWords/nomenclature.md`
+- **Page Entities**: Site Shell, Hero, Section, CTA
+- **Gallery Entities**: Gallery Item, Work Item, Filter Bar
+- **Piece Entities**: Piece Hero, Details Grid, Piece Gallery, Artist's Note, Back Button
+- **Navigation**: Header, Footer
+- **Forms**: Form (with row, group, label, input patterns)
+- **Viewer**: Review Header, Model Viewer, Viewer Controls, Lighting Controls
+- **Components**: Button, Split Layout, Section Divider
+- **Animations**: Fade In Scroll, FadeInUp Keyframe
 
 ---
 
