@@ -1,0 +1,250 @@
+/* ============================================
+   ABOUT PAGE STYLES
+   Founder Story, Philosophy, Glimpse, Values
+   ============================================ */
+
+/* About Main */
+.about-main {
+  padding-top: calc(var(--space-7) + 60px); /* Account for fixed header */
+}
+
+/* About Header */
+.about-header {
+  text-align: center;
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-6);
+}
+
+/* ============================================
+   FOUNDER STORY SECTION
+   ============================================ */
+.founder-story {
+  background: var(--color-bg-primary);
+}
+
+.story-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .story-layout {
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-8);
+  }
+}
+
+.story-image-wrapper {
+  position: relative;
+}
+
+.story-image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--color-border);
+  background: linear-gradient(135deg, #2E2E2E 0%, #121212 100%);
+}
+
+.story-content {
+  padding: var(--space-4) 0;
+}
+
+.story-content .section-title {
+  text-align: left;
+  margin-bottom: var(--space-5);
+}
+
+.story-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.story-text p {
+  margin: 0;
+}
+
+.story-text em {
+  color: var(--color-brass);
+  font-style: italic;
+}
+
+/* ============================================
+   STUDIO PHILOSOPHY SECTION
+   ============================================ */
+.studio-philosophy {
+  background: var(--color-bg-dark);
+}
+
+.studio-philosophy .section-title {
+  color: var(--color-text-inverse);
+  margin-bottom: var(--space-7);
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .philosophy-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+.philosophy-item {
+  text-align: center;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  background: rgba(247, 246, 243, 0.02);
+  transition: all 0.3s ease;
+}
+
+.philosophy-item:hover {
+  border-color: var(--color-brass);
+  transform: translateY(-4px);
+}
+
+.studio-philosophy .philosophy-grid.fade-in-scroll {
+  transition-duration: 1.6s;
+}
+
+.studio-philosophy .philosophy-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-regular);
+  color: var(--color-brass);
+  margin: 0 0 var(--space-3);
+}
+
+.studio-philosophy .philosophy-text {
+  color: var(--color-text-inverse);
+  font-size: 1.25rem;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  font-weight: 300;
+  opacity: 0.95;
+}
+
+/* ============================================
+   STUDIO GLIMPSE SECTION
+   ============================================ */
+.studio-glimpse {
+  background: var(--color-bg-primary);
+}
+
+.glimpse-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .glimpse-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .glimpse-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.glimpse-item {
+  text-align: center;
+}
+
+.glimpse-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  margin-bottom: var(--space-2);
+  border: 1px solid var(--color-border);
+  transition: transform 0.4s ease;
+  background: linear-gradient(135deg, #2E2E2E 0%, #121212 100%);
+}
+
+.glimpse-item:hover .glimpse-image {
+  transform: scale(1.03);
+}
+
+.glimpse-caption {
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  color: var(--color-text-secondary);
+  margin: 0;
+  font-style: italic;
+}
+
+/* ============================================
+   STUDIO VALUES SECTION
+   ============================================ */
+.studio-values {
+  background: var(--color-bg-primary);
+}
+
+.values-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.value-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.value-marker {
+  width: 8px;
+  height: 8px;
+  background: var(--color-brass);
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.value-content {
+  flex: 1;
+}
+
+.value-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.value-text {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .story-layout {
+    gap: var(--space-5);
+  }
+
+  .philosophy-item {
+    padding: var(--space-4);
+  }
+
+  .value-item {
+    gap: var(--space-3);
+  }
+}
