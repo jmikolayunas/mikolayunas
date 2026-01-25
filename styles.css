@@ -348,23 +348,10 @@ ul {
   justify-content: center;
   overflow: hidden;
   background: var(--color-charcoal);
+  box-shadow: 0 8px 30px rgba(26, 26, 26, 0.15); /* Gallery-style shadow beneath hero */
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    var(--color-bg-primary) 100%
-  );
-  pointer-events: none;
-  z-index: 5;
-}
+/* Gradient fade removed - using box-shadow on .hero instead for gallery-style presentation */
 
 .hero-media {
   position: absolute;
