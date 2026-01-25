@@ -152,12 +152,30 @@
 ### File Structure
 ```
 /
-├── index.html, gallery.html, process.html, etc.
-├── styles.css (global design system)
+├── index.html, gallery.html, process.html, about.html, commission.html, contact.html
 ├── scripts.js (global navigation, scroll effects)
-├── commission.js, gallery.js, etc. (page-specific)
-├── pieces_[name].html (individual artwork pages)
-└── images/[piece-name]/ (organized by piece)
+├── commission.js, gallery.js, contact.js, process.js (page-specific scripts)
+├── css/
+│   ├── global.css (global design system)
+│   └── pages/
+│       ├── about.css, commission.css, contact.css, gallery.css
+│       ├── home.css, piece.css, process.css, stories.css
+│       └── viewer-styles.css
+├── pieces/
+│   └── [piece-name].html (individual artwork pages)
+├── stories/
+│   ├── stories.html
+│   └── stories.js
+├── explore/
+│   ├── explore.html
+│   └── explore.js
+├── clients/
+│   ├── viewer.html
+│   ├── viewer-scripts.js
+│   ├── hdri/
+│   └── models/
+└── images/
+    └── [piece-name]/ (organized by piece)
 ```
 
 ### Development Workflow
@@ -235,9 +253,10 @@
 ## File Naming Conventions
 
 ### Pages
-- Lowercase with underscores: `pieces_mahoosuc.html`
+- Lowercase with hyphens: `pieces/mahoosuc.html`, `pieces/cape-ann.html`
 - Descriptive: `commission.html`, `gallery.html`, `contact.html`
-- Consistent structure for piece pages: `pieces_[location-name].html`
+- Piece pages in folder: `pieces/[piece-name].html`
+- Stories and explore in subfolders: `stories/stories.html`, `explore/explore.html`
 
 ### Assets
 - Lowercase with hyphens: `mahoosuc-hero.webp`
@@ -245,10 +264,13 @@
 - Descriptive suffixes: `-hero`, `-detail`, `-full`, `-bb` (black background)
 
 ### Code Files
-- Component-specific: `commission.js`, `gallery.js`
+- Component-specific: `commission.js`, `gallery.js`, `contact.js`, `process.js`
 - Global utilities: `scripts.js` (navigation, scroll effects)
-- Styles: `styles.css` (global design system)
-- Specialized viewers: `clients_viewer.html`, `clients_viewer-scripts.js`
+- Global styles: `css/global.css` (design system)
+- Page styles: `css/pages/[page].css` (page-specific styles)
+- Client viewer: `clients/viewer.html`, `clients/viewer-scripts.js`
+- Stories: `stories/stories.html`, `stories/stories.js`
+- Explore: `explore/explore.html`, `explore/explore.js`
 
 ---
 
