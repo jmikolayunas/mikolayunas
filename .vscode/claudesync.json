@@ -33,7 +33,8 @@
     "images/mahoosuc/mahoosuc.hero.webp",
     "images/highland/highland.hero.pad.webp",
     "images/mansfield/mansfield.hero.webp",
-    "images/cannon/cannon.hero.webp"
+    "images/cannon/cannon.hero.webp",
+    "images/highland/highland.hero.webp"
   ],
   "maxFileSize": 2097152,
   "autoSync": false,
