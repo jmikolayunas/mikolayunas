@@ -25,11 +25,8 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  background: var(--color-gallery-white); /* #F7F6F3 */
-  box-shadow: 0 8px 30px rgba(26, 26, 26, 0.15);
+  background: transparent;
 }
-
-/* Gradient fade removed - using box-shadow on .hero instead for gallery-style presentation */
 
 .hero-media {
   position: relative;
@@ -47,7 +44,9 @@
   object-position: center;
   transform: translateY(var(--hero-parallax, 0px));
   animation: subtleZoom 20s ease-out forwards;
-  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.15);
+  filter:
+    drop-shadow(0 7px 14px rgba(42, 42, 42, 0.20))
+    drop-shadow(0 22px 50px rgba(26, 26, 26, 0.16));
 }
 
 .hero-media,
@@ -191,7 +190,7 @@
   }
   to {
     opacity: 1;
-    transform: translateY(-8vh); /* Ends at -8vh instead of 0 */
+    transform: translateY(0);
   }
 }
 
@@ -247,7 +246,7 @@
     }
     to {
       opacity: 1;
-      transform: translateY(-5vh); /* Less offset on mobile */
+      transform: translateY(0);
     }
   }
 
