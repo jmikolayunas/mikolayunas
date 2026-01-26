@@ -36,7 +36,8 @@
     "images/cannon/cannon.hero.webp",
     "images/highland/highland.hero.webp",
     "images/nantucket/nantucket.hero.webp",
-    "images/block/block.hero.webp"
+    "images/block/block.hero.webp",
+    "images/nantucket/nantucket.hero.trim.webp"
   ],
   "maxFileSize": 2097152,
   "autoSync": false,

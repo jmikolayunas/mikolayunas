@@ -5,7 +5,7 @@
 
 /* Gallery-like spacing for home page sections */
 .philosophy.section-padded {
-  padding-top: clamp(6rem, 12vw, 12rem);
+  padding-top: calc((clamp(6rem, 12vw, 12rem) + 40px) * 1.125);
   padding-bottom: clamp(5rem, 10vw, 8rem);
 }
 
@@ -19,13 +19,14 @@
    ============================================ */
 .hero {
   position: relative;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  max-width: 1920px;
+  margin: calc(var(--header-height) + 1% + 5px) auto 0;
   display: grid;
   place-items: center;
-  overflow: visible;
-  background: var(--color-charcoal);
-  box-shadow: 0 8px 30px rgba(26, 26, 26, 0.15); /* Gallery-style shadow beneath hero */
+  overflow: hidden;
+  background: var(--color-gallery-white); /* #F7F6F3 */
+  box-shadow: 0 8px 30px rgba(26, 26, 26, 0.15);
 }
 
 /* Gradient fade removed - using box-shadow on .hero instead for gallery-style presentation */
@@ -33,19 +34,20 @@
 .hero-media {
   position: relative;
   width: 100%;
-  height: 100%;
+  max-height: calc(100vh - var(--header-height));
   overflow: visible;
-  background: #0a0a0a; /* Dark background for Nantucket piece */
+  background: transparent;
 }
 
 .hero-image {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: contain; /* Ensures full frame is visible */
+  height: auto;
+  object-fit: contain;
   object-position: center;
-  transform: none;
-  animation: none;
+  transform: translateY(var(--hero-parallax, 0px));
+  animation: subtleZoom 20s ease-out forwards;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.15);
 }
 
 .hero-media,
@@ -54,35 +56,22 @@
   grid-area: 1 / 1;
 }
 
-/* Gradient overlay for text readability */
-.hero-media::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(18, 18, 18, 0.3) 0%,
-    rgba(18, 18, 18, 0.5) 100%
-  );
-  pointer-events: none;
-}
 
 .hero-content {
   position: relative;
   z-index: 10;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: var(--space-4);
   max-width: 900px;
   margin: 0 auto;
-  transform: translate(-12%, -8.5vh);
 }
 
 @media (max-width: 767px) {
   .hero-content {
-    transform: translateY(-6.5vh);
+    padding: var(--space-3);
   }
 }
 
@@ -104,21 +93,15 @@
   font-weight: var(--weight-light);
   line-height: var(--leading-relaxed);
   color: var(--color-text-inverse);
-  margin: 0;
+  margin: var(--space-2) 0 0;
   opacity: 0;
   animation: fadeInUp 3s ease 1.5s forwards;
   text-shadow: 0 2px 12px rgba(0,0,0,0.4);
-  position: absolute;
-  top: 31rem;
-  left: 10%;
-  width: 100%;
   max-width: 600px;
-  transform: translateX(-50%);
 }
 
 @media (max-width: 767px) {
   .hero-subtitle {
-    top: 16rem;
     max-width: 90%;
   }
 }
@@ -217,7 +200,7 @@
     transform: translateY(var(--hero-parallax, 0px)) scale(1);
   }
   100% {
-    transform: translateY(var(--hero-parallax, 0px)) scale(1.05);
+    transform: translateY(var(--hero-parallax, 0px)) scale(1.02);
   }
 }
 
@@ -382,12 +365,6 @@
   margin: 0;
   line-height: 0;
   background-color: transparent;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.7s ease-out;
-}
-
-.featured-work .work-link:hover .work-media {
-  box-shadow: 0 15px 60px rgba(0, 0, 0, 0.15);
 }
 
 .featured-work .work-image {
@@ -396,6 +373,13 @@
   height: auto;
   object-fit: cover;
   transition: none;
+}
+
+/* Home Page Featured Work */
+.work-image {
+  filter:
+    drop-shadow(0 6px 11px rgba(42, 42, 42, 0.20))
+    drop-shadow(0 17px 40px rgba(26, 26, 26, 0.16));
 }
 
 .featured-work .work-image--detail {
