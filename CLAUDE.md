@@ -159,7 +159,7 @@
 │   ├── global.css (global design system)
 │   └── pages/
 │       ├── about.css, commission.css, contact.css, gallery.css
-│       ├── home.css, piece.css, process.css, stories.css
+│       ├── index.css, piece.css, process.css, stories.css
 │       └── viewer.css
 ├── pieces/
 │   └── [piece-name].html (individual artwork pages)

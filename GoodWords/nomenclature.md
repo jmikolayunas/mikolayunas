@@ -16,7 +16,7 @@ The global page wrapper structure present on all pages.
 Full-viewport opening section with primary imagery and messaging.
 - **HTML**: `.hero`, `.hero-media`, `.hero-content`, `.hero-title`, `.hero-tagline`, `.hero-subtitle`, `.hero-scroll-indicator`
 - **CSS**: Full-height, centered content, fade-in animations
-- **Files**: `css/pages/home.css`
+- **Files**: `css/pages/index.css`
 
 ### Section
 Standard content block with consistent spacing and containment.
