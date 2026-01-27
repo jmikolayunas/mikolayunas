@@ -37,7 +37,7 @@
   max-width: 1400px;
   display: inline-block;
   margin: 0;
-  padding: 0 var(--space-6);
+  padding: 0 64px;
 }
 
 .piece-hero-image {
