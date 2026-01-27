@@ -5,13 +5,13 @@
 
 /* Gallery-like spacing for home page sections */
 .philosophy.section-padded {
-  padding-top: calc((clamp(6rem, 12vw, 12rem) + 40px) * 1.125);
+  padding-top: clamp(8rem, 14vw, 14rem);
   padding-bottom: clamp(5rem, 10vw, 8rem);
 }
 
 .featured-work.section-padded {
   padding-top: clamp(6rem, 10vw, 10rem);
-  padding-bottom: clamp(6rem, 10vw, 10rem);
+  padding-bottom: calc(clamp(6rem, 10vw, 10rem) + var(--space-6));
 }
 
 /* ============================================
@@ -19,40 +19,49 @@
    ============================================ */
 .hero {
   position: relative;
-  width: 100%;
-  max-width: 1920px;
-  margin: calc(var(--header-height) + 1% + 5px) auto 0;
-  display: grid;
-  place-items: center;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  background: transparent;
+  background: var(--color-charcoal);
 }
 
 .hero-media {
-  position: relative;
-  width: 100%;
-  max-height: calc(100vh - var(--header-height));
-  overflow: visible;
-  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0a0a;
+  z-index: 1;
+  transform: translateX(-50%);
 }
 
 .hero-image {
   display: block;
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  object-position: center;
-  transform: translateY(var(--hero-parallax, 0px));
-  animation: subtleZoom 20s ease-out forwards;
-  filter:
-    drop-shadow(0 7px 14px rgba(42, 42, 42, 0.20))
-    drop-shadow(0 22px 50px rgba(26, 26, 26, 0.16));
+  height: 100%;
+  object-fit: cover;
+  object-position: center calc(60% + 40px);
+  will-change: transform;
 }
 
-.hero-media,
-.hero-content,
-.hero-scroll-indicator {
-  grid-area: 1 / 1;
+.hero-media::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 18, 18, 0.3) 0%,
+    rgba(18, 18, 18, 0.5) 100%
+  );
+  pointer-events: none;
 }
 
 
@@ -66,6 +75,11 @@
   padding: var(--space-4);
   max-width: 900px;
   margin: 0 auto;
+  transform: translateY(80px);
+}
+
+.hero-heading {
+  transform: translate(-130px, -70px);
 }
 
 @media (max-width: 767px) {
@@ -76,11 +90,11 @@
 
 .hero-title {
   font-family: var(--font-primary);
-  font-size: var(--text-3xl);
+  font-size: calc(clamp(2.125rem, 1.7rem + 2.125vw, 3.825rem) - 10px);
   font-weight: var(--weight-regular);
   line-height: var(--leading-tight);
   color: var(--color-text-inverse);
-  margin: 0 0 var(--space-3);
+  margin: 20px 0 var(--space-3);
   opacity: 0;
   animation: fadeInUp 3s ease 0.3s forwards;
   text-shadow: 0 2px 12px rgba(0,0,0,0.4); /* Readability over resin */
@@ -92,7 +106,9 @@
   font-weight: var(--weight-light);
   line-height: var(--leading-relaxed);
   color: var(--color-text-inverse);
-  margin: var(--space-2) 0 0;
+  position: relative;
+  left: -130px;
+  margin: calc(var(--space-2) + 165px) 0 0;
   opacity: 0;
   animation: fadeInUp 3s ease 1.5s forwards;
   text-shadow: 0 2px 12px rgba(0,0,0,0.4);
@@ -122,7 +138,7 @@
 /* Scroll Indicator */
 .hero-scroll-indicator {
   position: absolute;
-  bottom: 105px;
+  bottom: 5px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
@@ -269,7 +285,12 @@
    PHILOSOPHY SECTION
    ============================================ */
 .philosophy {
-  background: var(--color-bg-primary);
+  background: linear-gradient(
+    180deg,
+    rgba(247, 246, 243, 0) 0%,
+    rgba(247, 246, 243, 1) 150px,
+    rgba(247, 246, 243, 1) 100%
+  );
 }
 
 .philosophy-text {
@@ -289,7 +310,6 @@
 .featured-work {
   position: relative;
   background-color: #F7F6F3;
-  padding: 8rem 0;
 }
 
 .featured-work::after {
@@ -372,13 +392,7 @@
   height: auto;
   object-fit: cover;
   transition: none;
-}
-
-/* Home Page Featured Work */
-.work-image {
-  filter:
-    drop-shadow(0 6px 11px rgba(42, 42, 42, 0.20))
-    drop-shadow(0 17px 40px rgba(26, 26, 26, 0.16));
+  filter: none;
 }
 
 .featured-work .work-image--detail {
@@ -480,4 +494,28 @@
   .featured-work .work-grid {
     gap: 4rem;
   }
+}
+
+/* ============================================
+   PROCESS TEASER
+   ============================================ */
+.process-teaser {
+  position: relative;
+  background: var(--color-bg-dark);
+  overflow: hidden;
+}
+
+.process-teaser::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.process-teaser > * {
+  position: relative;
+  z-index: 1;
 }

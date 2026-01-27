@@ -58,28 +58,11 @@ window.addEventListener('resize', () => {
 // HERO PARALLAX EFFECT
 // ============================================
 
-const heroImage = document.querySelector('.hero-image');
-let parallaxTicking = false;
-
-function updateParallax() {
-  if (!heroImage) return;
-
-  const scrolled = window.pageYOffset;
-  const heroHeight = document.querySelector('.hero')?.offsetHeight || 0;
-
-  // Only apply parallax while hero is in view
-  if (scrolled < heroHeight) {
-    const parallaxSpeed = 0.3;
-    heroImage.style.setProperty('--hero-parallax', `${scrolled * parallaxSpeed}px`);
-  }
-
-  parallaxTicking = false;
-}
-
 window.addEventListener('scroll', () => {
-  if (!parallaxTicking) {
-    window.requestAnimationFrame(updateParallax);
-    parallaxTicking = true;
+  const scrolled = window.pageYOffset;
+  const heroImage = document.querySelector('.hero-image');
+  if (heroImage && scrolled < window.innerHeight) {
+    heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
   }
 });
 
@@ -187,10 +170,11 @@ let lastScroll = 0;
 const header = document.querySelector('.site-header');
 
 if (header) {
-  window.addEventListener('scroll', () => {
+  const updateHeaderState = () => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
+      header.classList.add('scrolled');
       if (currentScroll > lastScroll) {
         // Scrolling down
         header.style.transform = 'translateY(-100%)';
@@ -199,11 +183,15 @@ if (header) {
         header.style.transform = 'translateY(0)';
       }
     } else {
+      header.classList.remove('scrolled');
       header.style.transform = 'translateY(0)';
     }
 
     lastScroll = currentScroll;
-  });
+  };
+
+  updateHeaderState();
+  window.addEventListener('scroll', updateHeaderState, { passive: true });
 }
 
 // ============================================
