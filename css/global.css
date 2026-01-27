@@ -340,8 +340,8 @@ ul {
 
 .work-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: clamp(4rem, 8vw, 8rem);
+  grid-template-columns: 1fr;
+  gap: 2rem;
   padding: 0;
 }
 
@@ -450,68 +450,65 @@ ul {
   font-style: italic;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Responsive adjustments - mobile-first */
+@media (min-width: 768px) {
   .work-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 1024px) {
   .work-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: clamp(4rem, 8vw, 8rem);
   }
 }
 
 /* ============================================
    LUXURY DROP SHADOWS - DUAL SHADOW SYSTEM
    Gallery Standard Enhancement - Authentic museum depth
+   Mobile-first: lighter shadows as base, enhanced for desktop
    ============================================ */
 
-/* Individual Piece Pages - Hero Images (Large Format - Gallery Standard)
-   Matches how 1400px framed artwork appears in actual galleries */
-.piece-hero-image {
-  filter:
-    drop-shadow(0 7px 14px rgba(42, 42, 42, 0.20))    /* Contact shadow - defined edge where artwork "touches" wall */
-    drop-shadow(0 22px 50px rgba(26, 26, 26, 0.16));  /* Ambient shadow - soft halo from overhead gallery lighting */
-}
-
-/* Individual Piece Pages - Gallery Section Images (Medium Format)
-   Proportionally scaled for 800-1200px images */
-.gallery-image-wrapper img {
-  filter:
-    drop-shadow(0 6px 11px rgba(42, 42, 42, 0.20))    /* Contact shadow */
-    drop-shadow(0 17px 40px rgba(26, 26, 26, 0.16));  /* Ambient shadow */
-}
-
-/* Home Page - Featured Work Items (Medium Format)
-   Matches gallery section for consistency */
-.work-image {
-  filter:
-    drop-shadow(0 6px 11px rgba(42, 42, 42, 0.20))    /* Contact shadow */
-    drop-shadow(0 17px 40px rgba(26, 26, 26, 0.16));  /* Ambient shadow */
-}
-
-/* Gallery Page - Grid Items (Variable Sizes)
-   Slightly stronger opacity compensates for smaller display scale */
+/* Mobile base - Lighter shadows for smaller screens */
+.piece-hero-image,
+.gallery-image-wrapper img,
+.work-image,
 .gallery-item-image {
   filter:
-    drop-shadow(0 4px 9px rgba(42, 42, 42, 0.21))     /* Contact shadow - stronger for small scale */
-    drop-shadow(0 14px 34px rgba(26, 26, 26, 0.18)); /* Ambient shadow */
+    drop-shadow(0 4px 8px rgba(42, 42, 42, 0.16))   /* Lighter contact shadow */
+    drop-shadow(0 10px 26px rgba(26, 26, 26, 0.13)); /* Lighter ambient shadow */
 }
 
-/* Mobile Optimization - Reduce shadow intensity on smaller screens
-   Prevents overwhelming mobile viewports while maintaining presence */
-@media (max-width: 767px) {
-  .piece-hero-image,
-  .gallery-image-wrapper img,
-  .work-image,
+/* Desktop - Full gallery-quality shadows */
+@media (min-width: 768px) {
+  /* Individual Piece Pages - Hero Images (Large Format - Gallery Standard) */
+  .piece-hero-image {
+    filter:
+      drop-shadow(0 7px 14px rgba(42, 42, 42, 0.20))    /* Contact shadow */
+      drop-shadow(0 22px 50px rgba(26, 26, 26, 0.16));  /* Ambient shadow */
+  }
+
+  /* Individual Piece Pages - Gallery Section Images (Medium Format) */
+  .gallery-image-wrapper img {
+    filter:
+      drop-shadow(0 6px 11px rgba(42, 42, 42, 0.20))    /* Contact shadow */
+      drop-shadow(0 17px 40px rgba(26, 26, 26, 0.16));  /* Ambient shadow */
+  }
+
+  /* Home Page - Featured Work Items (Medium Format) */
+  .work-image {
+    filter:
+      drop-shadow(0 6px 11px rgba(42, 42, 42, 0.20))    /* Contact shadow */
+      drop-shadow(0 17px 40px rgba(26, 26, 26, 0.16));  /* Ambient shadow */
+  }
+
+  /* Gallery Page - Grid Items (Variable Sizes) */
   .gallery-item-image {
     filter:
-      drop-shadow(0 4px 8px rgba(42, 42, 42, 0.16))   /* Lighter contact shadow */
-      drop-shadow(0 10px 26px rgba(26, 26, 26, 0.13)); /* Lighter ambient shadow */
+      drop-shadow(0 4px 9px rgba(42, 42, 42, 0.21))     /* Contact shadow */
+      drop-shadow(0 14px 34px rgba(26, 26, 26, 0.18)); /* Ambient shadow */
   }
 }
 
@@ -749,22 +746,20 @@ ul {
 }
 
 .footer-attribution--lower-left {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding-top: 0;
+  position: static;
+  padding-top: var(--space-4);
   margin-top: 0;
   justify-content: flex-start;
   opacity: 0.75;
   text-align: left;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .footer-attribution--lower-left {
-    position: static;
-    padding-top: var(--space-4);
-    justify-content: flex-start;
-    text-align: left;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-top: 0;
   }
 }
 
@@ -883,7 +878,7 @@ ul {
   gap: var(--space-4);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 768px) {
   .form-row {
     grid-template-columns: 1fr 1fr;
   }

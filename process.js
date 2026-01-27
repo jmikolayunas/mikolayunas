@@ -37,26 +37,37 @@ if (processJourney) {
   let progressBar = document.createElement('div');
   progressBar.className = 'process-progress-bar';
   progressBar.innerHTML = '<div class="process-progress-fill"></div>';
-  
-  // Only show on desktop
-  if (window.innerWidth >= 1024) {
+
+  const desktopQuery = window.matchMedia('(min-width: 1024px)');
+
+  // Initialize on desktop
+  if (desktopQuery.matches) {
     document.body.appendChild(progressBar);
   }
-  
+
+  // Handle resize with matchMedia
+  desktopQuery.addEventListener('change', (e) => {
+    if (e.matches && !document.body.contains(progressBar)) {
+      document.body.appendChild(progressBar);
+    } else if (!e.matches && document.body.contains(progressBar)) {
+      progressBar.remove();
+    }
+  });
+
   const progressFill = progressBar.querySelector('.process-progress-fill');
-  
+
   window.addEventListener('scroll', () => {
-    if (window.innerWidth < 1024) return; // Don't calculate on mobile
-    
+    if (!desktopQuery.matches) return; // Don't calculate on mobile
+
     const journeyTop = processJourney.offsetTop;
     const journeyHeight = processJourney.offsetHeight;
     const scrollTop = window.pageYOffset;
     const windowHeight = window.innerHeight;
-    
+
     // Calculate progress through the journey section
     const scrollProgress = (scrollTop - journeyTop + windowHeight) / (journeyHeight + windowHeight);
     const clampedProgress = Math.max(0, Math.min(1, scrollProgress));
-    
+
     progressFill.style.height = `${clampedProgress * 100}%`;
   });
 }

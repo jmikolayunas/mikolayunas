@@ -37,7 +37,7 @@
    CONTACT FORM
    ============================================ */
 .contact-form-wrapper {
-  padding: var(--space-6);
+  padding: var(--space-4);
   border: 1px solid var(--color-border);
   background: var(--color-bg-primary);
 }
@@ -62,11 +62,11 @@
 .contact-info-wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-4);
 }
 
 .contact-info-block {
-  padding: var(--space-4);
+  padding: var(--space-3);
   border-left: 2px solid var(--color-brass);
   background: rgba(199, 168, 106, 0.02);
 }
@@ -161,17 +161,17 @@
   opacity: 0.9;
 }
 
-/* Mobile Adjustments */
-@media (max-width: 1023px) {
+/* Desktop Enhancements */
+@media (min-width: 1024px) {
   .contact-form-wrapper {
-    padding: var(--space-4);
+    padding: var(--space-6);
   }
 
   .contact-info-wrapper {
-    gap: var(--space-4);
+    gap: var(--space-6);
   }
 
   .contact-info-block {
-    padding: var(--space-3);
+    padding: var(--space-4);
   }
 }
