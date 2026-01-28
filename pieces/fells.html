@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/pages/gallery.css">
   <link rel="stylesheet" href="../css/pages/piece.css">
+  <link rel="preload" as="image" href="../images/fells/fells-front-full-1800w.jpg" media="(min-width: 1024px)">
+  <link rel="preload" as="image" href="../images/fells/fells-front-full-1200w.jpg" media="(min-width: 768px) and (max-width: 1023px)">
+  <link rel="preload" as="image" href="../images/fells/fells-front-full-800w.jpg" media="(max-width: 767px)">
 </head>
 <body class="site-body">
   <header class="site-header" id="site-header">
@@ -28,7 +31,25 @@
   <main class="site-main">
     <section class="piece-hero" id="piece-hero">
       <div class="piece-hero-inner"><div class="piece-hero-image-container">
-        <img src="../images/fells/fells-front-full.jpg" alt="Middlesex Fells Reservation topographic relief map" class="piece-hero-image" />
+        <img
+          srcset="
+            ../images/fells/fells-front-full-800w.jpg 800w,
+            ../images/fells/fells-front-full-1200w.jpg 1200w,
+            ../images/fells/fells-front-full-1800w.jpg 1800w,
+            ../images/fells/fells-front-full-2400w.jpg 2400w
+          "
+          sizes="
+            (min-width: 1440px) 2400px,
+            (min-width: 1024px) 1800px,
+            (min-width: 768px) 1200px,
+            800px
+          "
+          src="../images/fells/fells-front-full-800w.jpg"
+          alt="Middlesex Fells Reservation topographic relief map"
+          class="piece-hero-image"
+          loading="eager"
+          fetchpriority="high"
+        />
       </div><div class="piece-hero-content">
         <h1 class="piece-hero-title">Middlesex Fells Reservation</h1>
         <p class="piece-hero-location">Greater Boston, Massachusetts</p>
