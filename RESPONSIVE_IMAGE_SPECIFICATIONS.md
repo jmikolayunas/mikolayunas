@@ -67,10 +67,10 @@ block.hero.crop-1200w.webp (350 KB max)
 
 ## Gallery Section Images (Pieces Pages)
 **Location:** Detail images below hero on individual piece pages  
-**Aspect Ratio:** Mixed - Portrait, Square, Landscape  
+**Aspect Ratio:** Mixed - all orientations treated equally  
 **Purpose:** Showcase craftsmanship details, various angles
 
-### Portrait Orientation (3:4, 4:5 aspect ratio)
+### Unified Sizing (All Orientations)
 
 | Breakpoint | Viewport Range | Image Width | Max File Size | Quality |
 |------------|---------------|-------------|---------------|---------|
@@ -81,72 +81,18 @@ block.hero.crop-1200w.webp (350 KB max)
 
 **File Naming Convention:**
 ```
-[image-name]-portrait-600w.webp
-[image-name]-portrait-800w.webp
-[image-name]-portrait-1000w.webp
-[image-name]-portrait-1200w.webp
+[image-name]-600w.webp
+[image-name]-800w.webp
+[image-name]-1000w.webp
+[image-name]-1200w.webp
 ```
 
 **Example:**
 ```
-block-detail-relief-portrait-600w.webp (150 KB max)
-block-detail-relief-portrait-800w.webp (250 KB max)
-block-detail-relief-portrait-1000w.webp (350 KB max)
-block-detail-relief-portrait-1200w.webp (400 KB max)
-```
-
----
-
-### Square Orientation (1:1 aspect ratio)
-
-| Breakpoint | Viewport Range | Image Width | Max File Size | Quality |
-|------------|---------------|-------------|---------------|---------|
-| **Mobile** (default) | 320-767px | 600px | 130 KB | 85% |
-| **Tablet** | 768-1023px | 800px | 220 KB | 88% |
-| **Desktop** | 1024-1439px | 1000px | 300 KB | 92% |
-| **Large Desktop** | 1440px+ | 1200px | 350 KB | 95% |
-
-**File Naming Convention:**
-```
-[image-name]-square-600w.webp
-[image-name]-square-800w.webp
-[image-name]-square-1000w.webp
-[image-name]-square-1200w.webp
-```
-
-**Example:**
-```
-block-detail-texture-square-600w.webp (130 KB max)
-block-detail-texture-square-800w.webp (220 KB max)
-block-detail-texture-square-1000w.webp (300 KB max)
-block-detail-texture-square-1200w.webp (350 KB max)
-```
-
----
-
-### Landscape Orientation (4:3, 16:9 aspect ratio)
-
-| Breakpoint | Viewport Range | Image Width | Max File Size | Quality |
-|------------|---------------|-------------|---------------|---------|
-| **Mobile** (default) | 320-767px | 800px | 180 KB | 85% |
-| **Tablet** | 768-1023px | 1000px | 300 KB | 88% |
-| **Desktop** | 1024-1439px | 1400px | 500 KB | 92% |
-| **Large Desktop** | 1440px+ | 1800px | 700 KB | 95% |
-
-**File Naming Convention:**
-```
-[image-name]-landscape-800w.webp
-[image-name]-landscape-1000w.webp
-[image-name]-landscape-1400w.webp
-[image-name]-landscape-1800w.webp
-```
-
-**Example:**
-```
-block-detail-full-landscape-800w.webp (180 KB max)
-block-detail-full-landscape-1000w.webp (300 KB max)
-block-detail-full-landscape-1400w.webp (500 KB max)
-block-detail-full-landscape-1800w.webp (700 KB max)
+block-detail-600w.webp (150 KB max)
+block-detail-800w.webp (250 KB max)
+block-detail-1000w.webp (350 KB max)
+block-detail-1200w.webp (400 KB max)
 ```
 
 ---
@@ -157,9 +103,7 @@ block-detail-full-landscape-1800w.webp (700 KB max)
 |------------|--------|--------|---------|---------------|
 | **Hero** | 800px | 1200px | 1800px | 2400px |
 | **Recent Works** | 600px | 800px | 1000px | 1200px |
-| **Gallery Portrait** | 600px | 800px | 1000px | 1200px |
-| **Gallery Square** | 600px | 800px | 1000px | 1200px |
-| **Gallery Landscape** | 800px | 1000px | 1400px | 1800px |
+| **Gallery (Unified)** | 600px | 800px | 1000px | 1200px |
 
 ---
 
@@ -169,9 +113,7 @@ block-detail-full-landscape-1800w.webp (700 KB max)
 |------------|--------|--------|---------|---------------|
 | **Hero** | 200 KB | 400 KB | 700 KB | 1000 KB |
 | **Recent Works** | 120 KB | 200 KB | 300 KB | 350 KB |
-| **Gallery Portrait** | 150 KB | 250 KB | 350 KB | 400 KB |
-| **Gallery Square** | 130 KB | 220 KB | 300 KB | 350 KB |
-| **Gallery Landscape** | 180 KB | 300 KB | 500 KB | 700 KB |
+| **Gallery (Unified)** | 150 KB | 250 KB | 350 KB | 400 KB |
 
 ---
 
