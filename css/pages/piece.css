@@ -64,7 +64,7 @@
 
 .piece-hero-title {
   font-family: var(--font-primary);
-  font-size: 1.75rem;
+  font-size: 1.4rem;
   font-weight: var(--weight-regular);
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -201,6 +201,20 @@
   height: auto;
   display: block;
   /* Box-shadow removed - interferes with transparent PNG/WebP backgrounds */
+}
+
+.gallery-image-wrapper--narrow {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gallery-image-wrapper--narrow img {
+  width: 100%;
+  height: auto;
+}
+
+.gallery-image-wrapper--narrow .gallery-caption {
+  padding: 0;
 }
 
 .gallery-caption {
@@ -367,7 +381,7 @@
   }
 
   .piece-hero-title {
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: -0.025em;
   }
 

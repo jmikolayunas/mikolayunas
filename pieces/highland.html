@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="../css/global.css">
   <link rel="stylesheet" href="../css/pages/gallery.css">
   <link rel="stylesheet" href="../css/pages/piece.css">
-  <link rel="preload" as="image" href="../images/highland/highland.hero-1800w.webp" media="(min-width: 1024px)">
-  <link rel="preload" as="image" href="../images/highland/highland.hero-1200w.webp" media="(min-width: 768px) and (max-width: 1023px)">
-  <link rel="preload" as="image" href="../images/highland/highland.hero-800w.webp" media="(max-width: 767px)">
+  <link rel="preload" as="image" href="../images/highland/highland-hero-1800w.webp" media="(min-width: 1024px)">
+  <link rel="preload" as="image" href="../images/highland/highland-hero-1200w.webp" media="(min-width: 768px) and (max-width: 1023px)">
+  <link rel="preload" as="image" href="../images/highland/highland-hero-800w.webp" media="(max-width: 767px)">
 </head>
 <body class="site-body">
   <header class="site-header" id="site-header">
@@ -44,7 +44,7 @@
             (min-width: 768px) 1200px,
             800px
           "
-          src="../images/highland/highland-hero-1800w.webp"
+          src="../images/highland/highland-hero-800w.webp"
           alt="Highland Mountain Bike Trails topographic relief map"
           class="piece-hero-image"
           loading="eager"
@@ -96,6 +96,26 @@
           <div class="gallery-image-wrapper fade-in-scroll">
             <img
               srcset="
+                ../images/highland/highland-hero-600w.webp 600w,
+                ../images/highland/highland-hero-800w.webp 800w,
+                ../images/highland/highland-hero-1000w.webp 1000w,
+                ../images/highland/highland-hero-1200w.webp 1200w
+              "
+              sizes="
+                (min-width: 1440px) 1200px,
+                (min-width: 1024px) 1000px,
+                (min-width: 768px) 800px,
+                600px
+              "
+              src="../images/highland/highland-hero-600w.webp"
+              alt="Highland Mountain side angle"
+              loading="lazy"
+            />
+            <p class="gallery-caption">Detail of trail network</p>
+          </div>
+          <div class="gallery-image-wrapper fade-in-scroll">
+            <img
+              srcset="
                 ../images/highland/highland-detail-600w.webp 600w,
                 ../images/highland/highland-detail-800w.webp 800w,
                 ../images/highland/highland-detail-1000w.webp 1000w,
@@ -108,10 +128,10 @@
                 600px
               "
               src="../images/highland/highland-detail-600w.webp"
-              alt="Highland Mountain side angle"
+              alt="Highland Mountain wood grain"
               loading="lazy"
             />
-            <p class="gallery-caption">Detail of trail network</p>
+            <p class="gallery-caption">View from base to summit</p>
           </div>
           <div class="gallery-image-wrapper fade-in-scroll">
             <img
@@ -128,12 +148,12 @@
                 600px
               "
               src="../images/highland/highland-base-600w.webp"
-              alt="Highland Mountain wood grain"
+              alt="Highland Mountain detail"
               loading="lazy"
             />
-            <p class="gallery-caption">View from base to summit</p>
-          </div>
-          <div class="gallery-image-wrapper fade-in-scroll">
+            <p class="gallery-caption">Back side relief</p>
+          </div>        
+          <div class="gallery-image-wrapper gallery-image-wrapper--narrow fade-in-scroll">
             <img
               srcset="
                 ../images/highland/highland-back-600w.webp 600w,
@@ -148,11 +168,11 @@
                 600px
               "
               src="../images/highland/highland-back-600w.webp"
-              alt="Highland Mountain detail"
+              alt="Highland Mountain back relief"
               loading="lazy"
             />
-            <p class="gallery-caption">Back side relief</p>
-          </div>        
+            <p class="gallery-caption">Full back relief</p>
+          </div>
         </div>
       </div>
     </section>
