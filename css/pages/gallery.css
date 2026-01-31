@@ -177,7 +177,7 @@
   position: relative;
   overflow: visible;
   background: transparent;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: none;
   box-shadow: none;
   transition: transform var(--transition-slow), border-color var(--transition-slow);
   /* Width and height will be set by JavaScript */

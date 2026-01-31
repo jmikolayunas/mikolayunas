@@ -369,7 +369,6 @@
   height: auto;
   object-fit: cover;
   transition: none;
-  filter: none;
 }
 
 .featured-work .work-image--detail {
