@@ -56,40 +56,6 @@ const galleryData = [
 ];
 
 // ============================================
-// SET TRUE SCALE FOR GALLERY ITEMS
-// ============================================
-
-function setGalleryTrueScale() {
-  const galleryItems = document.querySelectorAll('.gallery-item[data-width][data-height]');
-
-  // Define scale: 1 inch = X pixels
-  // Adjust this value to make all pieces larger or smaller
-  const SCALE = 11; // 11 pixels per inch (adjust as needed)
-
-  galleryItems.forEach(item => {
-    const widthInches = parseFloat(item.dataset.width);
-    const heightInches = parseFloat(item.dataset.height);
-    const media = item.querySelector('.gallery-item-media');
-
-    if (media && widthInches && heightInches) {
-      // Calculate pixel dimensions based on scale
-      const widthPixels = widthInches * SCALE;
-      const heightPixels = heightInches * SCALE;
-
-      // Set dimensions on the item container
-      item.style.width = `${widthPixels}px`;
-      item.style.maxWidth = `${widthPixels}px`;
-
-      // Set dimensions on the media container (width AND height)
-      media.style.width = `${widthPixels}px`;
-      media.style.height = `${heightPixels}px`;
-
-      console.log(`Scaled ${widthInches}"×${heightInches}" to ${widthPixels}px×${heightPixels}px`);
-    }
-  });
-}
-
-// ============================================
 // GALLERY FILTER FUNCTIONALITY
 // ============================================
 
@@ -153,72 +119,14 @@ function initGalleryFilter() {
 }
 
 // ============================================
-// GALLERY ASPECT RATIOS
-// ============================================
-
-function setGalleryAspectRatios() {
-  const galleryItems = document.querySelectorAll('.gallery-item[data-width][data-height]');
-
-  galleryItems.forEach(item => {
-    const width = parseFloat(item.dataset.width);
-    const height = parseFloat(item.dataset.height);
-    const media = item.querySelector('.gallery-item-media');
-
-    if (media && width && height) {
-      media.style.aspectRatio = `${width} / ${height}`;
-    }
-  });
-}
-
-// ============================================
-// VARIED SPACING FOR CURATORIAL FEEL
-// ============================================
-
-function setVariedSpacing() {
-  const items = document.querySelectorAll('.gallery-item');
-
-  items.forEach((item, index) => {
-    const category = item.dataset.category;
-    const nextItem = items[index + 1];
-
-    if (nextItem) {
-      const nextCategory = nextItem.dataset.category;
-
-      // Tighter spacing if same category (thematic grouping)
-      if (category === nextCategory) {
-        item.style.marginBottom = '4rem';
-      } else {
-        // Larger gap between different categories (visual break)
-        item.style.marginBottom = '8rem';
-      }
-    }
-  });
-}
-
-// ============================================
 // INITIALIZE ON PAGE LOAD
 // ============================================
 
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    setGalleryTrueScale();
-    setGalleryAspectRatios();
-    setVariedSpacing();
-    initGalleryFilter();
-  });
+  document.addEventListener('DOMContentLoaded', initGalleryFilter);
 } else {
-  setGalleryTrueScale();
-  setGalleryAspectRatios();
-  setVariedSpacing();
   initGalleryFilter();
 }
-
-// Recalculate on window resize
-let resizeTimeout;
-window.addEventListener('resize', () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(setGalleryTrueScale, 150);
-});
 
 // ============================================
 // LIGHTBOX FUNCTIONALITY

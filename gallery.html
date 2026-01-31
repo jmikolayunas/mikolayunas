@@ -52,18 +52,27 @@
         <button class="filter-btn" data-filter="urban" type="button">Urban</button>
       </div>
     </div>
-    <p class="gallery-scale-note fade-in-scroll">Works shown at relative scale to convey physical presence</p>
 
     <!-- GALLERY GRID -->
     <section class="gallery-section section-padded">
       <div class="section-container">
         <div class="gallery-grid" id="gallery-grid">
-
-          <!-- Gallery Item 1: Mount Mansfield - 20" x 24" portrait -->
-          <article class="gallery-item" data-category="alpine" data-width="20" data-height="24">
+          <article class="gallery-item" data-category="alpine" data-aspect="portrait">
             <a href="pieces/mansfield.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/mansfield/mansfield-hero-salon-1200w.webp" alt="Mount Mansfield" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/mansfield/mansfield.hero.crop-260w.webp 260w,
+                    images/mansfield/mansfield.hero.crop-340w.webp 340w,
+                    images/mansfield/mansfield.hero.crop-510w.webp 510w,
+                    images/mansfield/mansfield.hero.crop-680w.webp 680w
+                  "
+                  sizes="(min-width: 1440px) 510px, (min-width: 1024px) 510px, (min-width: 768px) 340px, 260px"
+                  src="images/mansfield/mansfield.hero.crop-340w.webp"
+                  alt="Mount Mansfield topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Mount Mansfield</h3>
@@ -72,11 +81,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 2: Nantucket - 32" x 20" landscape -->
-          <article class="gallery-item" data-category="coastal" data-width="32" data-height="20">
+          <article class="gallery-item" data-category="coastal" data-aspect="landscape">
             <a href="pieces/nantucket.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/nantucket/nantucket-hero-salon-1200w.webp" alt="Nantucket" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/nantucket/nantucket.hero.crop-300w.webp 300w,
+                    images/nantucket/nantucket.hero.crop-400w.webp 400w,
+                    images/nantucket/nantucket.hero.crop-600w.webp 600w,
+                    images/nantucket/nantucket.hero.crop-800w.webp 800w
+                  "
+                  sizes="(min-width: 1440px) 600px, (min-width: 1024px) 600px, (min-width: 768px) 400px, 300px"
+                  src="images/nantucket/nantucket.hero.crop-400w.webp"
+                  alt="Nantucket Island topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Nantucket Island</h3>
@@ -85,11 +105,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 4: Mahoosuc Range - 33" x 22" landscape -->
-          <article class="gallery-item" data-category="alpine" data-width="33" data-height="22">
+          <article class="gallery-item" data-category="alpine" data-aspect="landscape">
             <a href="pieces/mahoosuc.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/mahoosuc/mahoosuc-hero-salon-1200w.webp" alt="Mahoosuc Mountain Range" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/mahoosuc/mahoosuc-salon-300w.webp 300w,
+                    images/mahoosuc/mahoosuc-salon-400w.webp 400w,
+                    images/mahoosuc/mahoosuc-salon-600w.webp 600w,
+                    images/mahoosuc/mahoosuc-salon-800w.webp 800w
+                  "
+                  sizes="(min-width: 1440px) 600px, (min-width: 1024px) 600px, (min-width: 768px) 400px, 300px"
+                  src="images/mahoosuc/mahoosuc-salon-400w.webp"
+                  alt="Mahoosuc Mountain Range topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Mahoosuc Range</h3>
@@ -98,11 +129,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 5: Middlesex Fells - 36" x 36" portrait -->
-          <article class="gallery-item" data-category="urban" data-width="36" data-height="36">
+          <article class="gallery-item" data-category="urban" data-aspect="square">
             <a href="pieces/fells.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/fells/fells-front-full.jpg" alt="Middlesex Fells" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/fells/fells.hero.crop-270w.webp 270w,
+                    images/fells/fells.hero.crop-360w.webp 360w,
+                    images/fells/fells.hero.crop-540w.webp 540w,
+                    images/fells/fells.hero.crop-720w.webp 720w
+                  "
+                  sizes="(min-width: 1440px) 540px, (min-width: 1024px) 540px, (min-width: 768px) 360px, 270px"
+                  src="images/fells/fells.hero.crop-360w.webp"
+                  alt="Middlesex Fells Reservation topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Middlesex Fells Reservation</h3>
@@ -111,11 +153,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 6: Block Island - 27" x 32" portrait -->
-          <article class="gallery-item" data-category="coastal" data-width="27" data-height="32">
+          <article class="gallery-item" data-category="coastal" data-aspect="portrait">
             <a href="pieces/block.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/block/block-hero-crop-1200w.webp" alt="Block Island" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/block/block-salon-260w.webp 260w,
+                    images/block/block-salon-340w.webp 340w,
+                    images/block/block-salon-510w.webp 510w,
+                    images/block/block-salon-680w.webp 680w
+                  "
+                  sizes="(min-width: 1440px) 510px, (min-width: 1024px) 510px, (min-width: 768px) 340px, 260px"
+                  src="images/block/block-salon-340w.webp"
+                  alt="Block Island topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Block Island</h3>
@@ -124,11 +177,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 7: Cape Ann - 31" x 31" landscape -->
-          <article class="gallery-item" data-category="coastal" data-width="31" data-height="31">
+          <article class="gallery-item" data-category="coastal" data-aspect="landscape">
             <a href="pieces/cape-ann.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/cape ann/cape-ann-full.jpg" alt="Cape Ann" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/cape ann/cape-ann.hero.crop-300w.webp 300w,
+                    images/cape ann/cape-ann.hero.crop-400w.webp 400w,
+                    images/cape ann/cape-ann.hero.crop-600w.webp 600w,
+                    images/cape ann/cape-ann.hero.crop-800w.webp 800w
+                  "
+                  sizes="(min-width: 1440px) 600px, (min-width: 1024px) 600px, (min-width: 768px) 400px, 300px"
+                  src="images/cape ann/cape-ann.hero.crop-400w.webp"
+                  alt="Cape Ann topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Cape Ann</h3>
@@ -137,11 +201,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 8: Cannon Mountain - 23" x 23" portrait -->
-          <article class="gallery-item" data-category="alpine" data-width="23" data-height="23">
+          <article class="gallery-item" data-category="alpine" data-aspect="square">
             <a href="pieces/cannon.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/cannon/cannon.hero.webp" alt="Cannon Mountain" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/cannon/cannon.hero.crop-270w.webp 270w,
+                    images/cannon/cannon.hero.crop-360w.webp 360w,
+                    images/cannon/cannon.hero.crop-540w.webp 540w,
+                    images/cannon/cannon.hero.crop-720w.webp 720w
+                  "
+                  sizes="(min-width: 1440px) 540px, (min-width: 1024px) 540px, (min-width: 768px) 360px, 270px"
+                  src="images/cannon/cannon.hero.crop-360w.webp"
+                  alt="Cannon Mountain topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Cannon Mountain</h3>
@@ -150,11 +225,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 9: Bromley Mountain - 17" x 28" landscape -->
-          <article class="gallery-item" data-category="alpine" data-width="17" data-height="28">
+          <article class="gallery-item" data-category="alpine" data-aspect="portrait">
             <a href="pieces/bromley.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/bromley/bromley-front-full.jpg" alt="Bromley Mountain" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/bromley/bromley.hero.crop-260w.webp 260w,
+                    images/bromley/bromley.hero.crop-340w.webp 340w,
+                    images/bromley/bromley.hero.crop-510w.webp 510w,
+                    images/bromley/bromley.hero.crop-680w.webp 680w
+                  "
+                  sizes="(min-width: 1440px) 510px, (min-width: 1024px) 510px, (min-width: 768px) 340px, 260px"
+                  src="images/bromley/bromley.hero.crop-340w.webp"
+                  alt="Bromley Mountain topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Bromley Mountain</h3>
@@ -163,11 +249,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 10: Highland Mountain Bike Trails - 24" x 24" portrait -->
-          <article class="gallery-item" data-category="alpine" data-width="24" data-height="24">
+          <article class="gallery-item" data-category="alpine" data-aspect="square">
             <a href="pieces/highland.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/highland/highland-hero-salon-1200w.webp" alt="Highland Mountain" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/highland/highland.hero.crop-270w.webp 270w,
+                    images/highland/highland.hero.crop-360w.webp 360w,
+                    images/highland/highland.hero.crop-540w.webp 540w,
+                    images/highland/highland.hero.crop-720w.webp 720w
+                  "
+                  sizes="(min-width: 1440px) 540px, (min-width: 1024px) 540px, (min-width: 768px) 360px, 270px"
+                  src="images/highland/highland.hero.crop-360w.webp"
+                  alt="Highland Mountain topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Highland Mountain</h3>
@@ -176,11 +273,22 @@
             </a>
           </article>
 
-          <!-- Gallery Item 11: Okemo Mountain - 26" x 23" portrait -->
-          <article class="gallery-item" data-category="alpine" data-width="26" data-height="23">
+          <article class="gallery-item" data-category="alpine" data-aspect="portrait">
             <a href="pieces/okemo.html" class="gallery-item-link">
               <div class="gallery-item-media">
-                <img src="images/bromley/bromley-front-full.jpg" alt="Okemo Mountain" class="gallery-item-image" />
+                <img 
+                  srcset="
+                    images/okemo/okemo.hero.crop-260w.webp 260w,
+                    images/okemo/okemo.hero.crop-340w.webp 340w,
+                    images/okemo/okemo.hero.crop-510w.webp 510w,
+                    images/okemo/okemo.hero.crop-680w.webp 680w
+                  "
+                  sizes="(min-width: 1440px) 510px, (min-width: 1024px) 510px, (min-width: 768px) 340px, 260px"
+                  src="images/okemo/okemo.hero.crop-340w.webp"
+                  alt="Mount Okemo topographic relief map"
+                  class="gallery-item-image"
+                  loading="lazy"
+                />
               </div>
               <div class="gallery-item-overlay">
                 <h3 class="gallery-item-title">Mount Okemo</h3>
@@ -188,7 +296,6 @@
               </div>
             </a>
           </article>
-
         </div>
       </div>
     </section>
@@ -235,6 +342,8 @@
   <script src="gallery.js"></script>
 </body>
 </html>
+
+
 
 
 
