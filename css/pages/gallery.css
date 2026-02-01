@@ -133,11 +133,11 @@
 }
 
 .gallery-item[data-aspect="square"] {
-  max-width: 360px;
+  max-width: 327px;
 }
 
 .gallery-item[data-aspect="portrait"] {
-  max-width: 340px;
+  max-width: 267px;
 }
 
 /* Mobile: smaller versions */
