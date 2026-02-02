@@ -100,29 +100,4 @@ window.addEventListener('resize', updateActiveStage);
 // Initial check
 setTimeout(updateActiveStage, 100);
 
-// ============================================
-// PARALLAX EFFECT ON STAGE IMAGES (Subtle)
-// ============================================
-
-const stageImages = document.querySelectorAll('.stage-image');
-
-window.addEventListener('scroll', () => {
-  stageImages.forEach(image => {
-    const stage = image.closest('.process-stage');
-    const rect = stage.getBoundingClientRect();
-
-    // Only apply parallax when stage is in viewport AND entrance animation has completed
-    if (stage.classList.contains('in-view') && rect.top < window.innerHeight && rect.bottom > 0) {
-      // Calculate parallax offset (very subtle)
-      const scrolled = rect.top;
-      const parallaxSpeed = 0.1;
-      const offset = scrolled * parallaxSpeed;
-
-      // Preserve zoom state while applying parallax
-      const currentScale = stage.classList.contains('in-view') ? 1.08 : 1;
-      image.style.transform = `translateY(${offset}px) scale(${currentScale})`;
-    }
-  });
-});
-
 console.log('✓ Process scrollytelling scripts loaded');
