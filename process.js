@@ -118,7 +118,9 @@ window.addEventListener('scroll', () => {
       const parallaxSpeed = 0.1;
       const offset = scrolled * parallaxSpeed;
 
-      image.style.transform = `translateY(${offset}px) scale(1)`;
+      // Preserve zoom state while applying parallax
+      const currentScale = stage.classList.contains('in-view') ? 1.08 : 1;
+      image.style.transform = `translateY(${offset}px) scale(${currentScale})`;
     }
   });
 });
