@@ -242,6 +242,7 @@ a {
    ============================================ */
 .model-viewer-section {
   background: var(--color-bg-primary);
+  padding-bottom: calc(var(--section-padding-y) * 2.8);
 }
 
 .viewer-instructions {
