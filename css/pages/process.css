@@ -76,8 +76,9 @@
 
 @media (min-width: 1024px) {
   .stage-media {
-    height: 100%;
-    aspect-ratio: auto;
+    max-height: 800px;
+    width: auto;
+    aspect-ratio: 4 / 5;
   }
 }
 
