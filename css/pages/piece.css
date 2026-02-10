@@ -57,7 +57,7 @@
   position: relative;
   z-index: 2;
   max-width: 1400px;
-  margin: var(--space-6) 0 0;
+  margin: calc(var(--space-6) * 0.525) 0 0;
   padding: 0 var(--space-3);
   text-align: left;
 }
@@ -69,7 +69,7 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
-  margin: 0 0 var(--space-2);
+  margin: 0 0 calc(var(--space-2) * 0.7);
   opacity: 0;
   animation: fadeInUp 1.8s ease 0.5s forwards;
 }
@@ -96,7 +96,7 @@
 }
 
 .piece-details.section-padded {
-  padding-top: var(--section-padding-y);
+  padding-top: calc(var(--section-padding-y) * 0.7);
   padding-bottom: var(--section-padding-y);
 }
 
@@ -373,7 +373,7 @@
   }
 
   .piece-hero-image {
-    max-height: 500px;
+    max-height: 650px;
   }
 
   .piece-hero-content {
