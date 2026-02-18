@@ -452,62 +452,62 @@ ul {
 }
 
 /* ============================================
-   LUXURY DROP SHADOWS - DUAL SHADOW SYSTEM
-   Gallery Standard Enhancement - Authentic museum depth
-   Mobile-first: lighter shadows as base, enhanced for desktop
+   LUXURY DROP SHADOWS - DUAL-ANGLE SYSTEM
+   Light from upper-left: key shadow falls lower-right (+X, +Y),
+   fill shadow uses slight counter-direction (-X, +Y).
+   Mobile-first: lighter base, four tiers on desktop by image category.
    ============================================ */
 
-/* Mobile base - Lighter shadows for smaller screens */
+/* Mobile base - shared lighter values across all four image types */
 .piece-hero-image,
 .gallery-image-wrapper img,
 .work-image,
 .gallery-item-image {
   filter:
-    drop-shadow(0 4px 8px rgba(42, 42, 42, 0.16))   /* Lighter contact shadow */
-    drop-shadow(0 10px 26px rgba(26, 26, 26, 0.13)); /* Lighter ambient shadow */
+    drop-shadow( 4px  5px 10px rgba(42, 42, 42, 0.14))  /* Key (upper-left) */
+    drop-shadow(-3px 10px 20px rgba(26, 26, 26, 0.09));  /* Fill (upper-right) */
 }
 
-/* Desktop - Full gallery-quality shadows */
+/* Desktop - four tiers scaled by image category */
 @media (min-width: 768px) {
-  /* Individual Piece Pages - Hero Images (Large Format - Gallery Standard) */
+  /* Tier 1 — Piece hero images (largest format) */
   .piece-hero-image {
     filter:
-      drop-shadow(0 7px 14px rgba(42, 42, 42, 0.20))    /* Contact shadow */
-      drop-shadow(0 22px 50px rgba(26, 26, 26, 0.16));  /* Ambient shadow */
+      drop-shadow( 8px 10px 20px rgba(42, 42, 42, 0.20))  /* Key (upper-left) */
+      drop-shadow(-6px 20px 44px rgba(26, 26, 26, 0.13)); /* Fill (upper-right) */
   }
 
-  /* Individual Piece Pages - Gallery Section Images (Medium Format) */
+  /* Tier 2 — Piece page gallery section images */
   .gallery-image-wrapper img {
     filter:
-      drop-shadow(0 6px 11px rgba(42, 42, 42, 0.20))    /* Contact shadow */
-      drop-shadow(0 17px 40px rgba(26, 26, 26, 0.16));  /* Ambient shadow */
+      drop-shadow( 7px  8px 16px rgba(42, 42, 42, 0.20))  /* Key (upper-left) */
+      drop-shadow(-5px 16px 36px rgba(26, 26, 26, 0.13)); /* Fill (upper-right) */
   }
 
-  /* Home Page - Featured Work Items (Medium Format) */
+  /* Tier 3 — Home page featured work images */
   .work-image {
     filter:
-      drop-shadow(0 6px 11px rgba(42, 42, 42, 0.20))    /* Contact shadow */
-      drop-shadow(0 17px 40px rgba(26, 26, 26, 0.16));  /* Ambient shadow */
+      drop-shadow( 6px  8px 14px rgba(42, 42, 42, 0.18))  /* Key (upper-left) */
+      drop-shadow(-4px 14px 30px rgba(26, 26, 26, 0.11)); /* Fill (upper-right) */
   }
 
-  /* Gallery Page - Grid Items (Variable Sizes) */
+  /* Tier 4 — Gallery page grid items (most numerous, smallest) */
   .gallery-item-image {
     filter:
-      drop-shadow(0 4px 9px rgba(42, 42, 42, 0.21))     /* Contact shadow */
-      drop-shadow(0 14px 34px rgba(26, 26, 26, 0.18)); /* Ambient shadow */
+      drop-shadow( 5px  6px 11px rgba(42, 42, 42, 0.18))  /* Key (upper-left) */
+      drop-shadow(-3px 12px 24px rgba(26, 26, 26, 0.12)); /* Fill (upper-right) */
   }
 }
 
-/* High-DPI Display Enhancement (Retina/4K)
-   Subtle increase in shadow quality appears correct on premium displays */
+/* High-DPI Display Enhancement (Retina/4K) — shared refinement */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .piece-hero-image,
   .gallery-image-wrapper img,
   .work-image,
   .gallery-item-image {
     filter:
-      drop-shadow(0 5px 10px rgba(42, 42, 42, 0.19))   /* Enhanced contact definition */
-      drop-shadow(0 15px 38px rgba(26, 26, 26, 0.15)); /* Enhanced ambient depth */
+      drop-shadow( 4px  6px 12px rgba(42, 42, 42, 0.17))  /* Key (upper-left) */
+      drop-shadow(-3px 12px 24px rgba(26, 26, 26, 0.12)); /* Fill (upper-right) */
   }
 }
 
