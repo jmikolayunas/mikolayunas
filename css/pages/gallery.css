@@ -217,13 +217,16 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
-  filter: none;
-  transition: box-shadow var(--transition-slow);
+  filter:
+    drop-shadow(0 4px 9px rgba(42, 42, 42, 0.21))
+    drop-shadow(0 14px 34px rgba(26, 26, 26, 0.18));
+  transition: filter var(--transition-slow);
 }
 
 .gallery-item-link:hover .gallery-item-image {
-  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.18);
+  filter:
+    drop-shadow(0 6px 12px rgba(42, 42, 42, 0.24))
+    drop-shadow(0 18px 42px rgba(26, 26, 26, 0.2));
 }
 
 /* Gallery Item Overlay */
