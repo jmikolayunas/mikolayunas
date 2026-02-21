@@ -255,7 +255,7 @@
 ## File Naming Conventions
 
 ### Pages
-- Lowercase with hyphens: `pieces/mahoosuc.html`, `pieces/cape-ann.html`
+- Lowercase with hyphens: `pieces/mahoosuc.html`, `pieces/capeann.html`
 - Descriptive: `commission.html`, `gallery.html`, `contact.html`
 - Piece pages in folder: `pieces/[piece-name].html`
 - Stories and explore in subfolders: `stories/stories.html`, `explore/explore.html`
