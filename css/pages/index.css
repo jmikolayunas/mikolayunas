@@ -64,7 +64,7 @@
 }
 
 .hero-heading {
-  transform: translate(-130px, -70px);
+  transform: translate(-130px, -270px);
 }
 
 @media (min-width: 768px) {

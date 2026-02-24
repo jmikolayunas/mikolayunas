@@ -27,6 +27,113 @@ processStages.forEach(stage => {
 });
 
 // ============================================
+// SCROLL-DRIVEN IMAGE PARALLAX (SCALE)
+// scale(1) → scale(1.08) tied to scroll position.
+// Completes when lastBullet.bottom === image.bottom.
+// Desktop only (≥1024px).
+// ============================================
+
+const desktopParallaxQuery = window.matchMedia('(min-width: 1024px)');
+const stageParallaxData = [];
+
+function buildParallaxCache() {
+  stageParallaxData.length = 0;
+  processStages.forEach(stage => {
+    const mediaContainer = stage.querySelector('.stage-media-container');
+    const stageMedia     = stage.querySelector('.stage-media');
+    const stageImage     = stage.querySelector('.stage-image');
+    const lastBullet     = stage.querySelector('.stage-details li:last-child');
+    if (!mediaContainer || !stageMedia || !stageImage || !lastBullet) return;
+    stageParallaxData.push({ stage, mediaContainer, stageMedia, stageImage, lastBullet });
+  });
+}
+
+function updateImageParallax() {
+  if (!desktopParallaxQuery.matches) {
+    stageParallaxData.forEach(({ stageImage, mediaContainer }) => {
+      stageImage.style.transform = '';
+      mediaContainer.style.transform = '';
+    });
+    return;
+  }
+
+  const windowHeight = window.innerHeight;
+
+  // Phase A: Clear all container transforms before measuring (prevents layout thrashing)
+  stageParallaxData.forEach(({ mediaContainer }) => {
+    mediaContainer.style.transform = '';
+  });
+
+  // Phase B: Batch-read all measurements with transforms cleared
+  const measurements = stageParallaxData.map(({ stage, stageMedia, lastBullet }) => {
+    if (!stage.classList.contains('in-view')) return null;
+    return {
+      stageMediaRect: stageMedia.getBoundingClientRect(),
+      stageRect:      stage.getBoundingClientRect(),
+      bulletRect:     lastBullet.getBoundingClientRect()
+    };
+  });
+
+  // Phase C: Compute and apply all transforms
+  stageParallaxData.forEach(({ stageImage, mediaContainer }, i) => {
+    const m = measurements[i];
+
+    if (!m) {
+      stageImage.style.transform = 'scale(1)';
+      return;
+    }
+
+    const { stageMediaRect, stageRect, bulletRect } = m;
+    const naturalImageBottom       = stageMediaRect.bottom;
+    const lastBulletRelativeBottom = bulletRect.bottom - stageRect.top;
+    const initialGap               = windowHeight + lastBulletRelativeBottom - naturalImageBottom;
+    const currentGap               = bulletRect.bottom - naturalImageBottom;
+
+    // Scale: 1.0 → 1.08 proportional to scroll progress
+    if (initialGap <= 0) {
+      stageImage.style.transform = 'scale(1.08)';
+    } else {
+      const progress = Math.max(0, Math.min(1, (initialGap - currentGap) / initialGap));
+      stageImage.style.transform = `scale(${(1 + 0.08 * progress).toFixed(4)})`;
+    }
+
+    // Pull image up once the last bullet has scrolled a set distance above image bottom
+    const pullOffset = 80; // px above image bottom before image starts moving
+    if (currentGap < -pullOffset) {
+      mediaContainer.style.transform = `translateY(${(currentGap + pullOffset).toFixed(2)}px)`;
+    }
+  });
+}
+
+// rAF-throttled scroll listener (passive for performance)
+let parallaxTicking = false;
+window.addEventListener('scroll', () => {
+  if (!parallaxTicking) {
+    window.requestAnimationFrame(() => {
+      updateImageParallax();
+      parallaxTicking = false;
+    });
+    parallaxTicking = true;
+  }
+}, { passive: true });
+
+// Debounced resize: rebuild cache then re-run
+let parallaxResizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(parallaxResizeTimer);
+  parallaxResizeTimer = setTimeout(() => {
+    buildParallaxCache();
+    updateImageParallax();
+  }, 150);
+});
+
+// Bootstrap after DOM settles
+document.addEventListener('DOMContentLoaded', () => {
+  buildParallaxCache();
+  setTimeout(updateImageParallax, 100);
+});
+
+// ============================================
 // SMOOTH SCROLL PROGRESS INDICATOR (Optional)
 // ============================================
 
