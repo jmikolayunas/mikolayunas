@@ -228,9 +228,8 @@ document.addEventListener("DOMContentLoaded", () => {
       box.getSize(size);
       box.getCenter(center);
 
-      // Offset target down by 10% of model height to shift model up in view
-      const targetOffset = size.y * 0.1;
-      controls.target.set(center.x, center.y - targetOffset, center.z);
+      // Offset target down by 20% of model height to push model up in frame
+      controls.target.set(center.x, center.y - size.y * 0.2, center.z);
       controls.update();
       ground.position.set(center.x, 0, center.z);
 
@@ -238,13 +237,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const fov = (camera.fov * Math.PI) / 180;
       const dist = (maxDim / 2) / Math.tan(fov / 2);
 
-      camera.position.set(center.x + dist * 0.9, center.y + dist * 0.55, center.z + dist * 0.9);
+      camera.position.set(center.x + dist * 1.2, center.y + dist * 0.6, center.z + dist * 1.2);
       camera.near = Math.max(0.01, dist / 200);
       camera.far = dist * 50;
       camera.updateProjectionMatrix();
 
       initialCameraPosition.copy(camera.position);
-      modelCenter.set(center.x, center.y - targetOffset, center.z);
+      modelCenter.set(center.x, center.y - size.y * 0.2, center.z);
 
       const r = maxDim * 1.3;
       const sc = sun.shadow.camera;
@@ -313,7 +312,7 @@ document.addEventListener("DOMContentLoaded", () => {
             camera.position.set(center.x, center.y + dist * 1.2, center.z);
             break;
           case "angle":
-            camera.position.set(center.x + dist * 0.9, center.y + dist * 0.55, center.z + dist * 0.9);
+            camera.position.set(center.x + dist * 1.2, center.y + dist * 0.6, center.z + dist * 1.2);
             break;
           case "side":
             camera.position.set(center.x + dist * 1.2, center.y + dist * 0.3, center.z);
