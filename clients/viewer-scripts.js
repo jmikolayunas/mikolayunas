@@ -228,8 +228,8 @@ document.addEventListener("DOMContentLoaded", () => {
       box.getSize(size);
       box.getCenter(center);
 
-      // Offset target down by 20% of model height to push model up in frame
-      controls.target.set(center.x, center.y - size.y * 0.2, center.z);
+      // Offset target down by 10% of model height to push model up in frame
+      controls.target.set(center.x, center.y - size.y * 0.1, center.z);
       controls.update();
       ground.position.set(center.x, 0, center.z);
 
@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
       camera.updateProjectionMatrix();
 
       initialCameraPosition.copy(camera.position);
-      modelCenter.set(center.x, center.y - size.y * 0.2, center.z);
+      modelCenter.set(center.x, center.y - size.y * 0.1, center.z);
 
       const r = maxDim * 1.3;
       const sc = sun.shadow.camera;

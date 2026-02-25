@@ -82,6 +82,11 @@
     width: auto;
     aspect-ratio: 4 / 5;
   }
+
+  .process-stage:not(:nth-child(even)) .stage-media {
+    margin-left: auto;
+    transform: translateX(-120px);
+  }
 }
 
 .stage-viewer-iframe {
