@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const sunPos = readRange(sunSlider, 50);
       const t = THREE.MathUtils.clamp(sunPos / 100, 0, 1);
       const azDeg = 180 * (1 - t);
-      const elDeg = SEASON.elevationMinDeg + Math.sin(Math.PI * t) * SEASON.elevationAmpDeg;
+      const elDeg = SEASON.elevationMinDeg + Math.pow(Math.sin(Math.PI * t), 1.5) * SEASON.elevationAmpDeg;
 
       // Fixed at max intensity ("Very High")
       sun.intensity = SEASON.sunIntensityMax;
