@@ -170,6 +170,85 @@
     input[type="file"]:valid {
       color: rgba(247, 246, 243, 0.4);
     }
+
+    .commission-collection {
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      background: transparent;
+    }
+
+    .commission-collection .section-title {
+      text-align: center;
+    }
+
+    .commission-collection-subheading {
+      margin: var(--space-3) 0 0;
+      text-align: center;
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .commission-collection-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-8);
+      margin-top: var(--space-8);
+    }
+
+    @media (min-width: 768px) {
+      .commission-collection-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-6);
+      }
+    }
+
+    .commission-collection-card {
+      border: 0;
+      box-shadow: none;
+      background: transparent;
+    }
+
+    .collection-card-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: var(--color-border);
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: var(--space-3);
+    }
+
+    .collection-card-image-caption {
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+    }
+
+    .collection-card-quote {
+      margin: var(--space-3) 0 0;
+      font-family: var(--font-primary);
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+      font-style: italic;
+      line-height: 1.75;
+      color: var(--color-text-primary);
+    }
+
+    .collection-card-quote::before {
+      content: "\201C";
+      font-size: 1.9em;
+      color: rgba(199, 168, 106, 0.5);
+      line-height: 0;
+      vertical-align: -0.15em;
+      margin-right: 0.08em;
+    }
+
+    .collection-card-attribution {
+      margin: var(--space-2) 0 0;
+      font-family: var(--font-secondary);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+    }
   </style>
 </head>
 
@@ -327,6 +406,63 @@
     </div>
   </div>
 </section>
+
+    <section class="commission-collection section-padded">
+      <div class="section-container">
+        <h2 class="section-title fade-in-scroll">From the Collection</h2>
+        <p class="commission-collection-subheading fade-in-scroll">Placed in private homes and collections.</p>
+
+        <div class="commission-collection-grid">
+          <article class="commission-collection-card fade-in-scroll">
+            <div class="collection-card-image">
+              <img
+                srcset="
+                  images/capeann/capeann-collector-400w.webp 400w,
+                  images/capeann/capeann-collector-600w.webp 600w,
+                  images/capeann/capeann-collector-800w.webp 800w,
+                  images/capeann/capeann-collector-1200w.webp 1200w
+                "
+                sizes="(min-width: 768px) 33vw, 100vw"
+                src="images/capeann/capeann-collector-600w.webp"
+                alt="Cape Ann topographic relief piece in collector's home"
+                loading="lazy"
+                style="width: 100%; height: 100%; object-fit: cover;"
+              />
+            </div>
+            <blockquote class="collection-card-quote">
+               Our magnificent piece of topographic art came to us as a 50th wedding anniversary gift from our "kids." 
+               It's such a palpable and touching signifier of our milestone anniversary and it represents where we've lived for those fifty years and where we continue to choose to live and explore. 
+               We chose to hang the piece on a wall where everyone who enters our home will see it, where it can be viewed up close, where there is space for more than one person at a time to admire and exclaim, and where it can also be enjoyed from our dining area! 
+               At least once a day, it catches our eye actively for conscious reflective viewing.
+            </blockquote>
+            <p class="collection-card-attribution">— Dotty & David · Cape Ann</p>
+          </article>
+
+          <article class="commission-collection-card fade-in-scroll">
+            <div class="collection-card-image">
+              <span class="collection-card-image-caption">[Piece image placeholder]</span>
+            </div>
+            <blockquote class="collection-card-quote">
+              This piece hangs near the entrance of my home as a daily reminder of the friendships and experiences that have shaped my life.
+              It reflects the incredible moments I've shared with great friends, rides, adventures, and memories that mean far more than the trails themselves.
+              At the same time, it symbolizes the journey that continues ahead.
+              Every time I pass it, I'm reminded to stay connected to the people who matter, to remain true to myself, and to keep looking forward to the many moments and adventures that are still waiting to unfold.
+            </blockquote>
+            <p class="collection-card-attribution">— Justin · Highland Mountain</p>
+          </article>
+
+          <article class="commission-collection-card fade-in-scroll">
+            <div class="collection-card-image">
+              <span class="collection-card-image-caption">[Piece image placeholder]</span>
+            </div>
+            <blockquote class="collection-card-quote">
+              Blah blah blah
+            </blockquote>
+            <p class="collection-card-attribution">—  · Mahoosuc Range</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <!-- 5) INQUIRY / FORM -->
     <section class="commission-form-section section-padded bg-dark">

@@ -10,6 +10,61 @@
   <link rel="preload" as="image" href="../images/highland/highland-hero-1800w.webp" media="(min-width: 1024px)">
   <link rel="preload" as="image" href="../images/highland/highland-hero-1200w.webp" media="(min-width: 768px) and (max-width: 1023px)">
   <link rel="preload" as="image" href="../images/highland/highland-hero-800w.webp" media="(max-width: 767px)">
+  <style>
+    .piece-collector-note-rule {
+      width: 100%;
+      border: 0;
+      border-top: 1px solid rgba(199, 168, 106, 0.4);
+      margin: 0 0 var(--space-4);
+    }
+
+    .piece-collector-note-label {
+      margin: 0 0 var(--space-4);
+      font-family: var(--font-secondary);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      color: var(--color-text-secondary);
+      font-variant-caps: all-small-caps;
+    }
+
+    .piece-collector-note-quote {
+      margin: 0;
+      font-family: var(--font-primary);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--color-text-primary);
+      position: relative;
+    }
+
+    .piece-collector-note-quote::before,
+    .piece-collector-note-quote::after {
+      font-family: var(--font-primary);
+      font-size: 2em;
+      color: rgba(199, 168, 106, 0.6);
+      position: absolute;
+      line-height: 1;
+    }
+
+    .piece-collector-note-quote::before {
+      content: "\201C";
+      left: -0.35em;
+      top: -0.25em;
+    }
+
+    .piece-collector-note-quote::after {
+      content: "\201D";
+      right: -0.1em;
+      bottom: -0.7em;
+    }
+
+    .piece-collector-note-attribution {
+      margin: var(--space-4) 0 0;
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+  </style>
 </head>
 <body class="site-body">
   <header class="site-header" id="site-header">
