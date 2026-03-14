@@ -217,16 +217,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: 
-    drop-shadow(0 8px 28px rgba(0, 0, 0, 0.08))
-    drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06));
   transition: filter var(--transition-slow);
-}
-
-.gallery-item-link:hover .gallery-item-image {
-  filter: 
-    drop-shadow(0 12px 40px rgba(0, 0, 0, 0.12))
-    drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
 /* Gallery Item Overlay */
