@@ -421,3 +421,24 @@
     font-size: var(--text-sm);
   }
 }
+
+.artists-note-collection-link {
+  font-family: var(--font-secondary);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  text-align: right;
+  margin-top: var(--space-3);
+}
+
+.collection-thread-link {
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  opacity: 0.45;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.collection-thread-link:hover {
+  opacity: 1;
+  color: var(--color-brass);
+}
