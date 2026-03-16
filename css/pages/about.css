@@ -61,9 +61,8 @@
   }
 }
 
-.story-content .section-title {
-  text-align: left;
-  margin-bottom: var(--space-5);
+.story-content .story-text {
+  margin-top: var(--space-2);
 }
 
 .story-text {
