@@ -1,0 +1,501 @@
+/* ============================================
+   COMMISSION AGREEMENT PAGE STYLES
+   Password gate, summary form, signature capture, terms
+   ============================================ */
+
+/* ============================================
+   PASSWORD GATE
+   ============================================ */
+.password-gate {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--color-bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.password-gate.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.password-container {
+  max-width: 500px;
+  width: 100%;
+  padding: var(--space-6);
+  text-align: center;
+}
+
+.password-form {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.password-error {
+  color: #c83232;
+  font-size: var(--text-sm);
+  min-height: 20px;
+  font-family: var(--font-secondary);
+}
+
+/* ============================================
+   AGREEMENT CONTENT
+   ============================================ */
+.agreement-content.hidden {
+  display: none;
+}
+
+.agreement-main {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-9);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.agreement-header {
+  margin-bottom: var(--space-7);
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+.agreement-section {
+  margin-bottom: var(--space-8);
+}
+
+.section-heading {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ============================================
+   SUMMARY GRID
+   ============================================ */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  .summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.summary-item--full {
+  grid-column: 1 / -1;
+}
+
+.summary-label {
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-1);
+}
+
+.summary-input,
+.summary-textarea {
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  background: rgba(199, 168, 106, 0.03);
+  border: 1px solid var(--color-border);
+  border-bottom: 2px solid var(--color-brass);
+  transition: all 0.3s ease;
+}
+
+.summary-input:focus,
+.summary-textarea:focus {
+  outline: none;
+  background: rgba(199, 168, 106, 0.06);
+  border-color: var(--color-brass);
+}
+
+.summary-input[readonly] {
+  background: rgba(0, 0, 0, 0.02);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+}
+
+.summary-textarea {
+  resize: vertical;
+  min-height: 80px;
+  line-height: var(--leading-relaxed);
+  font-family: var(--font-secondary);
+}
+
+.authorization-note {
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: var(--space-4) 0 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ============================================
+   SIGNATURE SECTION
+   ============================================ */
+.signature-section {
+  margin-bottom: var(--space-7);
+  padding: var(--space-5);
+  background: rgba(199, 168, 106, 0.03);
+  border: 1px solid var(--color-border);
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .signature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.signature-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.signature-heading {
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Signature Pad */
+.signature-pad-container {
+  position: relative;
+  background: white;
+  border: 2px solid var(--color-border);
+  border-radius: 2px;
+}
+
+.signature-canvas {
+  display: block;
+  width: 100%;
+  height: 150px;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.signature-clear {
+  position: absolute;
+  top: var(--space-1);
+  right: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-secondary);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+  background: rgba(247, 246, 243, 0.95);
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.signature-clear:hover {
+  color: var(--color-brass);
+  border-color: var(--color-brass);
+}
+
+/* Signature Date */
+.signature-date {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.signature-label {
+  font-family: var(--font-secondary);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+.signature-input {
+  padding: var(--space-2);
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  background: rgba(199, 168, 106, 0.05);
+  border: 1px solid var(--color-border);
+  border-bottom: 2px solid var(--color-brass);
+}
+
+/* Static Studio Signature */
+.signature-static {
+  padding: var(--space-4);
+  background: rgba(199, 168, 106, 0.05);
+  border: 1px solid var(--color-border);
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.signature-name {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.signature-address {
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* ============================================
+   AGREEMENT DIVIDER
+   ============================================ */
+.agreement-divider {
+  text-align: center;
+  color: var(--color-brass);
+  font-size: var(--text-lg);
+  letter-spacing: 0.5em;
+  margin: var(--space-7) 0;
+  opacity: 0.6;
+}
+
+/* ============================================
+   TERMS SECTION
+   ============================================ */
+.terms-section {
+  margin-bottom: var(--space-8);
+}
+
+.term-article {
+  margin-bottom: var(--space-6);
+}
+
+.term-heading {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.term-text {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--space-3);
+}
+
+.term-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Checkbox Group */
+.checkbox-group {
+  margin: var(--space-3) 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+}
+
+.checkbox-input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: var(--color-brass);
+}
+
+.checkbox-text {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+}
+
+/* ============================================
+   ACTIONS SECTION
+   ============================================ */
+.actions-section {
+  text-align: center;
+  margin-bottom: var(--space-7);
+}
+
+.closing-statement {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-style: italic;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-6);
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--color-brass);
+  color: var(--color-charcoal);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #D4B87A;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--color-brass);
+  border: 2px solid var(--color-brass);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(199, 168, 106, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.agreement-footer {
+  text-align: center;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-studio {
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-1);
+}
+
+.footer-address {
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ============================================
+   MOBILE OPTIMIZATIONS
+   ============================================ */
+@media (max-width: 767px) {
+  .agreement-main {
+    padding-top: var(--space-5);
+    padding-bottom: var(--space-7);
+  }
+
+  .agreement-header {
+    margin-bottom: var(--space-5);
+  }
+
+  .agreement-section {
+    margin-bottom: var(--space-6);
+  }
+
+  .signature-section {
+    padding: var(--space-3);
+  }
+
+  .signature-canvas {
+    height: 120px;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+@media print {
+  .password-gate,
+  .action-buttons,
+  .signature-clear {
+    display: none;
+  }
+
+  .agreement-content {
+    opacity: 1 !important;
+  }
+
+  body {
+    background: white;
+  }
+}

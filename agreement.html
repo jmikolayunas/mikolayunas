@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commission Agreement — Bonas Studio</title>
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/pages/agreement.css">
+</head>
+<body>
+  <!-- Password Gate -->
+  <div id="passwordGate" class="password-gate">
+    <div class="password-container">
+      <h1 class="text-h1 text-center">Commission Agreement</h1>
+      <p class="text-body text-center" style="color: var(--color-brass); margin-bottom: var(--space-5);">Bonas Studio</p>
+      
+      <div class="password-form">
+        <input 
+          type="password" 
+          id="passwordInput" 
+          class="form-input" 
+          placeholder="Enter your access code"
+          autocomplete="off"
+        >
+        <p class="form-helper">Your access code was provided in your commission email</p>
+        <div id="passwordError" class="password-error"></div>
+        <button id="passwordSubmit" class="btn btn-primary">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Agreement Content -->
+  <div id="agreementContent" class="agreement-content hidden">
+    <main class="agreement-main">
+      <!-- Header -->
+      <header class="agreement-header section-container--narrow">
+        <h1 class="text-h1 text-center">Commission Agreement</h1>
+        <p class="text-body text-center" style="color: var(--color-brass); margin-bottom: var(--space-3);">Bonas Studio</p>
+        <p class="text-meta text-center" style="color: var(--color-text-secondary);">
+          Agreement Date: <span id="agreementDate"></span>
+        </p>
+      </header>
+
+      <!-- Commission Summary -->
+      <section class="agreement-section section-container--narrow">
+        <h2 class="section-heading">Commission Summary</h2>
+        
+        <div class="summary-grid">
+          <div class="summary-item">
+            <label class="summary-label">Client Name</label>
+            <input type="text" id="clientName" class="summary-input" placeholder="Full name">
+          </div>
+          
+          <div class="summary-item">
+            <label class="summary-label">Contact Email</label>
+            <input type="email" id="clientEmail" class="summary-input" placeholder="email@example.com">
+          </div>
+          
+          <div class="summary-item">
+            <label class="summary-label">Telephone</label>
+            <input type="tel" id="clientPhone" class="summary-input" placeholder="(000) 000-0000">
+          </div>
+          
+          <div class="summary-item">
+            <label class="summary-label">Location/Subject</label>
+            <input type="text" id="projectLocation" class="summary-input" placeholder="e.g., Nantucket Island">
+          </div>
+          
+          <div class="summary-item">
+            <label class="summary-label">Dimensions</label>
+            <input type="text" id="projectDimensions" class="summary-input" placeholder="e.g., 24\" × 36\"">
+          </div>
+          
+          <div class="summary-item summary-item--full">
+            <label class="summary-label">Design Notes</label>
+            <textarea id="projectNotes" class="summary-textarea" rows="3" placeholder="Special requests, materials preferences, or custom details"></textarea>
+          </div>
+          
+          <div class="summary-item">
+            <label class="summary-label">Commission Price</label>
+            <input type="text" id="commissionPrice" class="summary-input" placeholder="$0,000">
+          </div>
+          
+          <div class="summary-item">
+            <label class="summary-label">Deposit (50%)</label>
+            <input type="text" id="depositAmount" class="summary-input" placeholder="$0,000" readonly>
+          </div>
+          
+          <div class="summary-item">
+            <label class="summary-label">Balance Due</label>
+            <input type="text" id="balanceAmount" class="summary-input" placeholder="$0,000" readonly>
+          </div>
+          
+          <div class="summary-item">
+            <label class="summary-label">Expected Completion</label>
+            <input type="text" id="expectedCompletion" class="summary-input" placeholder="e.g., 12-16 weeks">
+          </div>
+        </div>
+
+        <p class="authorization-note">Your signature and deposit authorize fabrication under the agreement terms.</p>
+      </section>
+
+      <!-- Signature Section -->
+      <section class="signature-section section-container--narrow">
+        <div class="signature-grid">
+          <div class="signature-block">
+            <h3 class="signature-heading">Client Authorization</h3>
+            <div class="signature-pad-container">
+              <canvas id="clientSignature" class="signature-canvas"></canvas>
+              <button id="clearClientSig" class="signature-clear">Clear</button>
+            </div>
+            <div class="signature-date">
+              <label class="signature-label">Date</label>
+              <input type="text" id="clientDate" class="signature-input" readonly>
+            </div>
+          </div>
+
+          <div class="signature-block">
+            <h3 class="signature-heading">Bonas Studio</h3>
+            <div class="signature-static">
+              <p class="signature-name">Jonas Mikolayunas</p>
+              <p class="signature-address">780 Worcester St.<br>Natick, MA 01760</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <div class="section-container--narrow">
+        <div class="agreement-divider">• • •</div>
+      </div>
+
+      <!-- Agreement Terms -->
+      <section class="terms-section section-container--narrow">
+        <article class="term-article">
+          <h2 class="term-heading">The Commission</h2>
+          <p class="term-text">Bonas Studio designs and handcrafts custom 3D topographic artworks using CNC carving, laser etching, hand finishing, epoxy resin water features, and custom framing—refined through collaborative process.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Our Collaborative Approach</h2>
+          <p class="term-text">Your piece evolves through design milestones. Not all decisions finalize at the outset—together we refine composition, orientation, materials, finishes, resin characteristics, typography, and framing.</p>
+          <p class="term-text">When new concepts emerge, we explore them through studio testing and share results with you. Timely feedback ensures the project stays on schedule.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Timeline & Design Changes</h2>
+          <p class="term-text">Completion timelines vary based on material availability, curing times, and craft complexity. We welcome design changes during early phases; however, as fabrication proceeds, modifications can become more limited or incur additional cost or time. We present any change-related costs in writing for your approval before proceeding.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Client-Supplied Content</h2>
+          <p class="term-text">If you provide reference materials, coordinates, trails, text, or logos, you confirm the rights to use them and grant us permission to incorporate them. We interpret topographic data as art, not technical cartography. Your commission is a handcrafted work of art.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Ownership & Portfolio Rights</h2>
+          <p class="term-text">You own the physical work upon full payment. We retain all copyright and reproduction rights, including designs, models, CNC files, and process documentation. You may not reproduce the work commercially (prints, merchandise, marketing) without written permission.</p>
+          <p class="term-text">We may photograph and film your piece—including in-progress—for portfolio, website, editorial, and promotional use. Your identity remains confidential. We never share names, contact information, or identifying details publicly without explicit permission.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Private Commission</h2>
+          <p class="term-text">By default, we photograph your completed piece for portfolio, website, and editorial use. Your identity always remains confidential—we never share client names or contact information publicly.</p>
+          <p class="term-text">For complete confidentiality (no photography or public sharing of the work itself), please indicate below:</p>
+          <div class="checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="privateCommission" class="checkbox-input">
+              <span class="checkbox-text">Keep this commission private</span>
+            </label>
+          </div>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Communication & Approvals</h2>
+          <p class="term-text">Please respond to design reviews within 7 days. We'll communicate via email, text, secure web portal, or other written formats as agreed. Extended inactivity (over 30 days) may require rescheduling due to reserved production capacity.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Delivery, Shipping & Risk</h2>
+          <p class="term-text">After final payment, we coordinate delivery or shipping. Professional packaging and insured shipping are included. Risk of loss transfers when the work is tendered to the carrier (or at delivery handoff). Report any shipping damage within 48 hours with photographs of packaging and contents—retain all materials for claim processing. Installation is your responsibility unless otherwise agreed in writing.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Materials & Natural Character</h2>
+          <p class="term-text">Natural materials possess inherent variations in grain, figure, tone, and mineral character. These contribute to your piece's uniqueness. Epoxy may exhibit subtle surface textures or optical shifts depending on viewing angle and lighting—hallmarks of handcrafted work.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Payment Terms</h2>
+          <p class="term-text">Your signed agreement, accompanied by the 50% deposit, initiates fabrication. This deposit secures production capacity, material sourcing, and custom procurement—making it non-refundable due to the bespoke nature of the work. The remaining 50% balance is due before delivery.</p>
+          <p class="term-text">We accept bank transfer, check, or card. Your commission price is all-inclusive—no processing or delivery fees.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Cancellation</h2>
+          <p class="term-text">Once signed and deposit submitted, the deposit is non-refundable and you remain responsible for costs incurred. Should you cancel after fabrication begins, we may complete the work as a studio piece without obligation to refund.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Returns & Craftsmanship Warranty</h2>
+          <p class="term-text">Custom commissions are final. We remedy verified workmanship defects reported within 7 days of delivery through repair or refinishing at our discretion. Normal wear, misuse, improper installation, environmental damage (humidity, heat, sunlight), and shipping damage are excluded.</p>
+        </article>
+
+        <article class="term-article">
+          <h2 class="term-heading">Legal Terms</h2>
+          <p class="term-text">Our liability shall not exceed amounts you've paid for the work. This agreement is governed by Massachusetts law. This agreement constitutes our entire understanding and supersedes all prior discussions. Modifications require mutual written agreement (email acceptable for approvals and change orders).</p>
+        </article>
+      </section>
+
+      <!-- Final Actions -->
+      <section class="actions-section section-container--narrow">
+        <p class="closing-statement">Looking forward to creating an exceptional work of art together.</p>
+        
+        <div class="action-buttons">
+          <button id="downloadPDF" class="btn btn-primary" disabled>Download Agreement PDF</button>
+          <button id="submitAgreement" class="btn btn-secondary" disabled>Submit & Send to Email</button>
+        </div>
+
+        <p class="form-helper text-center">Both signature and email are required to submit</p>
+      </section>
+
+      <!-- Footer -->
+      <footer class="agreement-footer section-container--narrow">
+        <p class="footer-studio">Bonas Studio</p>
+        <p class="footer-address">780 Worcester St. • Natick, MA 01760</p>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/signature_pad/4.1.7/signature_pad.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="agreement.js"></script>
+</body>
+</html>
