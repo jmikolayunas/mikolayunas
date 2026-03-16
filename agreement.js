@@ -377,7 +377,7 @@ function generatePDF(forEmail = false) {
     },
     {
       heading: 'Private Commission',
-      text: `Complete confidentiality requested: ${data.privateCommission ? 'YES' : 'NO'}`
+      text: 'By default, we photograph your completed piece for portfolio, website, and editorial use. Your identity always remains confidential—we never share client names or contact information publicly.\n\nComplete confidentiality requested: ' + (data.privateCommission ? 'YES' : 'NO')
     },
     {
       heading: 'Communication & Approvals',
