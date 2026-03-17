@@ -19,7 +19,7 @@ const SEASONS = {
     exposureLow: 0.65,
     exposureHigh: 1.00,
     intensityScaleDivisor: 100,
-    hemisphereIntensity: 0.20,
+    hemisphereIntensity: 0.04,
     shadowMapSize: 4096,
     shadowBias: -0.00025,
     shadowNormalBias: 0.02
@@ -33,7 +33,7 @@ const SEASONS = {
     exposureLow: 0.70,
     exposureHigh: 1.10,
     intensityScaleDivisor: 100,
-    hemisphereIntensity: 0.25,
+    hemisphereIntensity: 0.05,
     shadowMapSize: 2048,
     shadowBias: -0.0002,
     shadowNormalBias: 0.02
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(80, 80),
-      new THREE.ShadowMaterial({ opacity: 0.22 })
+      new THREE.ShadowMaterial({ opacity: 1.00 })
     );
     ground.rotation.x = -Math.PI / 2;
     ground.receiveShadow = true;
@@ -213,6 +213,9 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           if (o.material && "metalness" in o.material) {
             o.material.metalness = Math.min(o.material.metalness ?? 0.0, 0.0);
+          }
+          if (o.material && o.material.color) {
+            o.material.color.set(0xB8895A);
           }
         }
       });
