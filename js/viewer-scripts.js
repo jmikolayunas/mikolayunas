@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewResetButton = document.querySelector(".view-reset");
 
   const glbPath = "models/stowe.glb";
-  const hdrPath = "models/hdri/kloppenheim_06_1k.hdr";
+  const hdrPath = "hdri/kloppenheim_06_1k.hdr";
 
   const setLoading = (on) => { if (loadingEl) loadingEl.style.display = on ? "flex" : "none"; };
 
