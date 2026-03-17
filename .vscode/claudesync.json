@@ -330,7 +330,11 @@
     "images/fells/fells-detail-2-600w.webp",
     "images/fells/fells-detail-2-1200w.webp",
     "images/fells/fells-detail-2-1000w.webp",
-    "images/fells/fells-detail-2-800w.webp"
+    "images/fells/fells-detail-2-800w.webp",
+    "images/bromley/bromley-detail-800w.webp",
+    "images/bromley/bromley-detail-600w.webp",
+    "images/bromley/bromley-detail-1200w.webp",
+    "images/bromley/bromley-detail-1000w.webp"
   ],
   "maxFileSize": 2097152,
   "autoSync": false,
