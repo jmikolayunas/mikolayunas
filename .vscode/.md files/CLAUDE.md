@@ -1,339 +1,175 @@
-# Bonas Studio Project Guidelines
+# CLAUDE.md — Bonas Studio
 
-## Brand Philosophy & Luxury Positioning
-
-### Core Principles
-- **Commission-based model**: Every piece requires client collaboration through an intentionally iterative process
-- **Gallery-style presentation**: Emphasize contemplation and breathing room over typical web conventions
-- **"Slowing visitors down"**: Create museum-quality experiences that prioritize thoughtfulness over energy
-- **Exclusive atelier positioning**: Position as custom studio, not e-commerce operation
-- **Heirloom quality**: Every decision reinforces craftsmanship and legacy over mass production
-
-### Psychology of Luxury Clientele
-- Wealthy clients prefer **confident, direct language** over defensive or apologetic phrasing
-- Avoid corporate-sounding justifications or excessive meta-commentary
-- Position custom work as **collaborative creative partnership** between equals
-- Use warm, accessible tone while maintaining exclusivity
-- Never apologize for pricing, timelines, or process requirements
-- Eliminate defensive language like "I understand this may seem..." or "Please note that..."
+**Last updated:** March 2026 | Static site: HTML/CSS/JS only — no frameworks, no build tools, no npm.
 
 ---
 
-## Design System
+## Brand & Voice
 
-### Color Palette
-```css
---color-gallery-white: #F7F6F3    /* Primary background */
---color-graphite: #2E2E2E         /* Primary text */
---color-charcoal: #121212         /* Dark backgrounds */
---color-black: #000000            /* Accents */
---color-brass: #C7A86A            /* Accent color */
-```
-
-### Typography
-- **Primary**: Libre Baskerville (serif) - Headlines, titles, gallery placards
-- **Secondary**: Source Sans 3 (sans-serif) - Body text, UI elements
-- **Type Scale**: Fluid responsive (clamp functions, 320px–1440px)
-- **Line Heights**: 1.1 (tight), 1.3 (snug), 1.5 (normal), 1.7 (relaxed)
-
-### Spacing Rhythm
-- **Base unit**: 8px scale
-- **Section padding**: clamp(4rem, 8vw, 8rem) vertical
-- **Grid gap**: 2rem (32px)
-- **Container max-width**: 1440px
-- **Narrow container**: 800px
-
-### Transitions & Effects
-- **Fast**: 0.2s ease (hover states)
-- **Smooth**: 0.3s ease (standard transitions)
-- **Slow**: 0.6s ease (larger movements)
-- **Luxury**: 0.8s ease-out (hero animations, scrollytelling)
-
-### Gallery-Style Presentation
-- Generous breathing room between elements
-- Neutral backgrounds (gallery-white or charcoal)
-- Minimal drop shadows (subtle depth, not heavy)
-- **Remove box-shadows from transparent PNG/WebP images**
-- Contemplative pacing (fade-in animations, scroll triggers)
+- Bonas Studio makes handcrafted topographic relief maps as bespoke, investment-grade objects
+- Tone: unhurried, precise, materially grounded — never salesy, never hyperbolic
+- Use investment language: "commission" not "order", "piece" not "product", "studio" not "shop"
+- Avoid: "beautiful", "stunning", "amazing", "luxury" — let the work speak through specificity
+- Hero copy pattern: geography + material + process, one breath; no taglines, no exclamation marks
+- Artist notes are first-person, observational, specific to this piece — not brand messaging
 
 ---
 
-## Tone & Voice Guidelines
+## Site Architecture
 
-### Language Standards
-✅ **DO:**
-- Use confident, direct assertions: "We transform terrain into heirloom artwork"
-- Emphasize collaboration: "Together, we refine...", "You shape the vision"
-- Lead with value: "Precision-built, hand-finished, artist-guided"
-- Use active voice: "I'll guide you through..." not "Guidance will be provided"
-- Be warm but professional: "Let's explore options" not "Please consider..."
-
-❌ **DON'T:**
-- Use defensive language: "I understand this may seem expensive, but..."
-- Apologize for process: "Please note that revisions are limited..."
-- Use corporate jargon: "Going forward", "At this time", "Please be advised"
-- Over-explain decisions: "This is important because... and here's why..."
-- Use tentative phrasing: "I hope to...", "We try to...", "Ideally we'd..."
-
-### Avoiding "Investment" Language
-- The term "investment" can feel sales-y to luxury clients
-- Use contextually: "Investment breakdown" in proposals is acceptable
-- Prefer alternatives: "pricing", "cost", "commission range", or simply state the price
-- Never use "investment in quality" or similar justifications
-
-### Artist-Guided Process Language
-- Emphasize **guided exploration** vs. unlimited revisions
-- "I'll test options and share results" not "You can request changes"
-- "We'll refine at key milestones" not "Revisions available upon request"
-- "Decisions made as the piece evolves" not "Subject to approval"
+- `index.html` — hero, philosophy, 3 featured pieces, process teaser, CTA
+- `gallery.html` — filterable grid of all pieces (filter: alpine / ocean / trail / urban)
+- `process.html` — studio process, step by step
+- `commission.html` — multi-step commission form with validation
+- `about.html` — artist background
+- `contact.html` — contact information
+- `explore.html` — discovery interface
+- `pieces/{name}.html` — individual piece detail pages (hero, specs, story, materials, detail shots)
+- `styles.css` — single flat CSS file, full design system (~66k lines)
+- `scripts.js` — global: nav, scroll effects, parallax, fade-ins
+- `gallery.js` — gallery: filtering, lightbox, aspect ratio helpers
+- `commission.js`, `process.js`, `contact.js`, `explore.js` — page-specific scripts
+- `images/{piece-name}/` — photos per piece (folder names use spaces: `block island/`)
+- `reviews/` — testimonials; `viewtest/` — dev/test files
 
 ---
 
-## Content Patterns
+## Nomenclature
 
-### Hero Messaging
-- **Primary tagline**: "Where Landscape Becomes Legacy"
-- **Supporting**: "The art of place, handcrafted and captured in collaboration"
-- Lead with emotion and meaning, follow with precision and craft
-
-### Process Descriptions
-- Balance technical precision with emotional resonance
-- Structure: What happens → Why it matters → How it serves the story
-- Use specific details: "12–36 hours of carving time" vs. "extended carving process"
-- Include sensory language: "The surface is sanded through multiple grits, following the terrain's natural flow"
-
-### Artist's Notes (Individual Pieces)
-- **Format**: Gallery voice + personal narrative
-- **Opening**: Drop cap on first letter (3.5em, brass color)
-- **Structure**: Context → Technical approach → Personal reflection
-- **Length**: 3–5 paragraphs, conversational but thoughtful
-- **Example opening**: "This piece began as a question about scale..."
-
-### Commission Copy
-- Emphasize **collaborative exploration** over transactional process
-- "Fill out the form to begin the conversation" not "Submit your inquiry"
-- "We'll refine the design together until it feels right" not "Design revisions included"
-- "I'll guide you toward the right scale" not "I will help you determine..."
+- **Piece** (`.piece`, `.gallery-item`) — a single finished artwork; never "product" or "work"
+- **Commission** (`.commission-form`) — the client engagement process; never "order" or "purchase"
+- **Studio** (`.studio-*`) — refers to Bonas Studio as entity; never "shop" or "store"
+- **Hero** (`.hero`, `.piece-hero`) — full-bleed top section of any page
+- **Gallery item** (`.gallery-item`) — one piece card in the filterable grid
+- **Filter** (`.filter-btn`, `data-filter`) — category selector above gallery
+- **Lightbox** (`#lightbox`) — full-screen overlay image viewer
+- **Process step** (`.process-step`) — numbered studio workflow stage
+- Full entity reference: `GoodWords/nomenclature.md`
 
 ---
 
-## Business Model
+## Design Tokens (styles.css `:root`)
 
-### Pricing Structure
-- **Small** (18" × 24"): $4,500–$6,500
-- **Signature** (24" × 36" to 30" × 40"): $6,500–$9,500
-- **Statement** (36" × 48"): $8,500–$14,000
-- **Installation** (48"+ / multi-panel): $15,000+
-- All pieces include artist-made frame + custom-engraved nameplate
-
-### Payment Terms
-- **Initial consultation**: No charge (private, 30–45 minutes)
-- **Retainer**: 50% after design approval (reserves build window)
-- **Final balance**: Due before delivery/dispatch
-- **Delivery**: Crated to art-shipping standards, white-glove available
-
-### Timeline & Process
-- **Typical lead time**: 8–12 weeks from consultation
-- **Phase 1**: Consultation + design proposal (2–3 days after call)
-- **Phase 2**: Iterative refinement at key milestones (ongoing during build)
-- **Phase 3**: Fabrication (precision carving + hand-finishing)
-- **Phase 4**: Crating + delivery
-
-### Collaboration Model
-- **No fixed revision limits** - process is guided and iterative
-- Decisions made at **key checkpoints**: mockups, materials, finish, final detailing
-- Artist shares options, tests, and samples as work progresses
-- Client involvement is required (not optional) - this is a collaborative commission
+- Colors: `--color-charcoal`, `--color-brass`, `--color-text-primary`, `--color-text-secondary`
+- Spacing: `--space-1` through `--space-8`
+- Type scale: `--text-xs` through `--text-3xl`
+- Fonts: `--font-primary` (serif, display), `--font-secondary` (sans, UI)
+- Always use tokens — never hardcode colors or spacing values
 
 ---
 
-## Technical Architecture
+## Breakpoint Standards
 
-### File Structure
-```
-/
-├── index.html, gallery.html, process.html, about.html, commission.html, contact.html
-├── scripts.js (global navigation, scroll effects)
-├── commission.js, gallery.js, contact.js, process.js (page-specific scripts)
-├── css/
-│   ├── global.css (global design system)
-│   └── pages/
-│       ├── about.css, commission.css, contact.css, gallery.css
-│       ├── index.css, piece.css, process.css, stories.css
-│       └── viewer.css
-├── pieces/
-│   └── [piece-name].html (individual artwork pages)
-├── stories/
-│   ├── stories.html
-│   └── stories.js
-├── explore/
-│   ├── explore.html
-│   └── explore.js
-├── clients/
-│   ├── viewer.html
-│   ├── viewer-scripts.js
-│   ├── hdri/
-│   └── models/
-├── GoodWords/
-│   └── nomenclature.md (business entity definitions)
-└── images/
-    └── [piece-name]/ (organized by piece)
-```
+Four standardized breakpoints, mobile-first cascade only:
 
-### Development Workflow
-- **Editor**: VS Code with Live Server for local preview
-- **Version control**: Git with commits, push to GitHub
-- **Hosting**: GitHub Pages (automatic deployment)
-- **Domain**: Managed via Namecheap, Google Workspace for email
+| Name    | Value            |
+|---------|------------------|
+| Mobile  | base (no query)  |
+| Tablet  | `min-width: 768px`  |
+| Desktop | `min-width: 1024px` |
+| Wide    | `min-width: 1440px` |
 
-### Technology Stack
-- Custom HTML/CSS/JavaScript (no frameworks)
-- Model-viewer web components for 3D terrain display
-- Flatpickr for date selection (commission forms)
-- Lucide Icons for minimal UI elements
-- Three.js for advanced 3D interactions
-
-### CSS Standards
-- **Design tokens**: CSS custom properties in `:root`
-- **Mobile-first**: clamp() for fluid typography and spacing
-- **Animations**: Intersection Observer for scroll-triggered fade-ins
-- **Components**: Modular, reusable patterns (buttons, cards, forms)
+**Rules:**
+- Write base styles for mobile first; layer up with `min-width` only
+- `max-width` queries are forbidden — remove any found in styles.css
+- No arbitrary breakpoints (e.g. 640px, 480px, 1200px) — use only the four above
+- JavaScript breakpoint detection: use `window.matchMedia('(min-width: 768px)')` — never `window.innerWidth`
+- Philosophy: design thinking is desktop-first (sketch desktop layout first); code is mobile-first (write mobile styles first)
 
 ---
 
-## UX & Interactive Elements
+## Gallery Image System
 
-### Navigation
-- Fixed header with subtle background blur on scroll
-- "Commission" link styled as CTA (brass accent)
-- Mobile: Hamburger menu with smooth slide-in
-- Footer: Minimal, elegant, consistent across all pages
+Gallery sizing is **CSS-driven via `aspect-ratio` property** — not JavaScript.
 
-### Gallery & Lightbox
-- Filterable by location, materials, scale
-- Click to open full-screen lightbox
-- Keyboard navigation (arrow keys, ESC to close)
-- Gallery-style spacing with brass separators
+**Three aspect ratio classes:**
+- `.gallery-item--landscape` — 3:2 ratio (wider than tall pieces)
+- `.gallery-item--square` — 1:1 ratio (equal dimensions)
+- `.gallery-item--portrait` — 2:3 ratio (taller than wide pieces)
 
-### Scrollytelling (Process Page)
-- Stage-by-stage progression with sticky media
-- Fade-in animations triggered by scroll position
-- Brass stage numbers for visual hierarchy
-- Content reveals as user scrolls through narrative
+**HTML pattern:** `<article class="gallery-item gallery-item--landscape" data-category="alpine" data-aspect="landscape">`
 
-### Forms (Commission Inquiry)
-- Dark graphite background with brass accents
-- Custom-styled select boxes (no default browser chrome)
-- Flatpickr date picker (graphite theme, brass highlights)
-- Arrow bullets (→) instead of standard bullets for lists
-- File upload with custom-styled button
+**Removed:** `setGalleryTrueScale()`, `setGalleryAspectRatios()`, `setVariedSpacing()` — do not re-add JS sizing functions
+
+**Gallery images:** box-shadow on `.gallery-item-media img` for depth; no borders
 
 ---
 
-## Photography Standards
+## Responsive Image Specs
 
-### Image Treatment
-- **Background**: Transparent PNG/WebP when possible (gallery-wall presentation)
-- **NO box-shadows** on transparent images (interferes with clean edges)
-- **Format**: WebP for web delivery, fallback to JPG
-- **Naming**: Descriptive, lowercase, hyphenated (e.g., `mahoosuc-hero.webp`)
+**Hero images** (`loading="eager"`, `fetchpriority="high"`):
+- srcset: 800w, 1200w, 1800w, 2400w
+- sizes: `100vw`
+- File naming: `[piece].hero.crop-[width]w.webp`
 
-### Lighting Strategy
-- Strategic lighting to **reveal topographic relief**
-- Bathymetric (ocean) pieces: dramatic side lighting to show depth
-- Arc lighting setups: demonstrate how light reveals terrain throughout day
-- Cross-polarization for epoxy resin (eliminates glare)
-
-### Studio Setup
-- Professional strip lights and softboxes
-- C-stand and boom arm configurations for overhead angles
-- Controlled backgrounds (white seamless or neutral)
-- High-resolution capture for detail and cropping flexibility
+**Gallery images** (`loading="lazy"`):
+- Landscape: 300w, 400w, 600w, 800w
+- Square: 270w, 360w, 540w, 720w
+- Portrait: 260w, 340w, 510w, 680w
+- sizes: `(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw`
+- File naming: `[piece].gallery.[width]w.webp`
 
 ---
 
-## File Naming Conventions
+## CSS & JavaScript Conventions
 
-### Pages
-- Lowercase with hyphens: `pieces/mahoosuc.html`, `pieces/capeann.html`
-- Descriptive: `commission.html`, `gallery.html`, `contact.html`
-- Piece pages in folder: `pieces/[piece-name].html`
-- Stories and explore in subfolders: `stories/stories.html`, `explore/explore.html`
+**CSS:**
+- Single flat file: `styles.css` (root level) — no subdirectory CSS
+- BEM-style naming: `.component`, `.component-element`, `.component--modifier`
+- State classes: `.is-active`, `.is-visible`, `.hidden`
+- No inline styles except JS-applied dynamic values
 
-### Assets
-- Lowercase with hyphens: `mahoosuc-hero.webp`
-- Organized in subdirectories: `images/mahoosuc/`, `images/process/`
-- Descriptive suffixes: `-hero`, `-detail`, `-full`, `-bb` (black background)
-
-### Code Files
-- Component-specific: `commission.js`, `gallery.js`, `contact.js`, `process.js`
-- Global utilities: `scripts.js` (navigation, scroll effects)
-- Global styles: `css/global.css` (design system)
-- Page styles: `css/pages/[page].css` (page-specific styles)
-- Client viewer: `clients/viewer.html`, `clients/viewer-scripts.js`
-- Stories: `stories/stories.html`, `stories/stories.js`
-- Explore: `explore/explore.html`, `explore/explore.js`
-
-### Business Nomenclature
-Named business entities that map to specific HTML/CSS structures. Use these terms in conversation to reference complete component patterns:
-
-- **Reference**: `GoodWords/nomenclature.md`
-- **Page Entities**: Site Shell, Hero, Section, CTA
-- **Gallery Entities**: Gallery Item, Work Item, Filter Bar
-- **Piece Entities**: Piece Hero, Details Grid, Piece Gallery, Artist's Note, Back Button
-- **Navigation**: Header, Footer
-- **Forms**: Form (with row, group, label, input patterns)
-- **Viewer**: Review Header, Model Viewer, Viewer Controls, Lighting Controls
-- **Components**: Button, Split Layout, Section Divider
-- **Animations**: Fade In Scroll, FadeInUp Keyframe
+**JavaScript:**
+- ES6+: `const`/`let`, arrow functions, template literals — no jQuery
+- Null-check every DOM element before use
+- IntersectionObserver for scroll animations (`.fade-in-scroll` → `.is-visible`)
+- `requestAnimationFrame` for scroll/animation loops
+- Each page script logs: `console.log('✓ [Page] scripts loaded')`
+- DOMContentLoaded guard pattern on every page script
 
 ---
 
-## Critical Reminders
+## Adding Pieces — Checklist
 
-### Luxury Psychology First
-- **ALWAYS** evaluate decisions through the lens of high-end craftsmanship
-- Ask: "Does this reinforce exclusivity and quality, or does it feel mass-market?"
-- Generous spacing beats information density
-- Confidence beats defensive explanation
-
-### Language Audit Checklist
-- [ ] No apologetic phrasing ("Please understand...", "We try to...")
-- [ ] No corporate jargon ("going forward", "at this time")
-- [ ] No defensive explanations (justify through value, not excuses)
-- [ ] Active voice throughout
-- [ ] Collaborative language ("we", "together", "I'll guide you")
-
-### Gallery-Quality Presentation
-- [ ] Ample breathing room around all visual elements
-- [ ] Neutral backgrounds (gallery-white or charcoal)
-- [ ] Contemplative pacing (slow animations, scroll reveals)
-- [ ] No busy web effects (parallax, auto-carousels, pop-ups)
-- [ ] Typography appropriate for art context (readable, elegant)
-
-### Technical Patterns
-- [ ] Clean separation: HTML, CSS, JavaScript in separate files
-- [ ] Modular components (reusable, maintainable)
-- [ ] Mobile-responsive with luxury feel maintained
-- [ ] Performance: optimized images, minimal dependencies
-- [ ] Accessibility: semantic HTML, keyboard navigation, ARIA labels
-
-### Content Quality Standards
-- [ ] Artist's notes: gallery voice + personal narrative
-- [ ] Process descriptions: precision + emotional resonance
-- [ ] Commission copy: collaborative exploration, not transaction
-- [ ] No over-formatting (avoid bullets/headers unless essential)
-- [ ] Lead with value, follow with details
+1. Add images to `images/[piece-name]/` (use spaces in folder name to match convention)
+2. Create `pieces/[piece-name].html` from existing piece as template
+3. Add entry to `galleryData` array in `gallery.js`
+4. Add `<article>` to `gallery.html` with `data-category`, `data-aspect`, and correct aspect-ratio class
+5. Add `<img>` with srcset/sizes per responsive image spec above
+6. Update `index.html` featured works if promoting as recent piece
 
 ---
 
-## Version Control
+## Common Tasks
 
-- **Repository**: GitHub (private or public as specified)
-- **Commit messages**: Clear, descriptive (e.g., "Refine commission page pricing section")
-- **Branch strategy**: Main branch for production, feature branches for development
-- **Deployment**: Automatic via GitHub Pages on push to main
+- **New nav link:** Add `<li class="nav-item">` to `.site-nav .nav-list` and `.footer-nav-list` in all HTML files
+- **Color change:** Edit `--color-*` tokens in `styles.css :root {}` — propagates site-wide
+- **Scroll animation:** Add `.fade-in-scroll` to element — `scripts.js` handles the rest (fires once at 50% visibility)
+- **Commission form:** `commission.html` for structure, `commission.js` for validation; configure Formspree endpoint in submit handler
+- **Gallery filter:** `data-category` on `.gallery-item` must match `data-filter` on `.filter-btn`; categories: `alpine`, `ocean`, `trail`, `urban`
 
 ---
 
-*Last updated: January 2026*
+## DO / DON'T
+
+✅ Use CSS tokens for all colors and spacing
+✅ Write mobile-first with `min-width` breakpoints only
+✅ Use `data-aspect` + CSS `aspect-ratio` for gallery sizing
+✅ Use `matchMedia` for JS breakpoint checks
+✅ Null-check all DOM queries
+✅ Use `loading="lazy"` for gallery, `eager` + `fetchpriority="high"` for heroes
+
+❌ No `max-width` media queries
+❌ No arbitrary breakpoints (640px, 480px, 1200px, etc.)
+❌ No JS-driven gallery sizing functions
+❌ No frameworks, no npm, no build tools
+❌ No jQuery
+❌ No hardcoded hex colors or pixel spacing values
+
+---
+
+## Git / Deploy
+
+- Branch: `claude/claude-md-mkk3y8nlqqf3p74c-6wwOZ` — push with `git push -u origin <branch>`
+- Static hosting: GitHub Pages, Netlify, Vercel — no build step needed
+- Pre-deploy: verify Formspree ID in `commission.js`, meta tags on all pages, all image paths resolve
