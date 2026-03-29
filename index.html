@@ -128,11 +128,29 @@
         <div class="split-layout">
           <div class="split-content text-center">
             <h2 class="section-title fade-in-scroll">From Geography to Art</h2>
-            <p class="text-body fade-in-scroll">Geospatial data becomes sculptural relief through precision carving and hand finishing. </p>
+            <p class="text-body fade-in-scroll">Terrain data becomes sculptural form through precision machining and meticulous hand finishing. </p>
             <a href="process.html" class="btn btn--primary fade-in-scroll">View the Process</a>
           </div>
           <div class="split-media">
-            <img src="images/process-preview.jpg" alt="Fabrication process" class="split-image" />
+            <div class="process-slider" id="process-slider" aria-label="Drag to explore the transformation from terrain data to finished art">
+              <div class="process-slider__track">
+                <img src="images/discovery/discover1.png" alt="Geographic terrain data" class="process-slider__img process-slider__img--1" draggable="false" />
+                <img src="images/discovery/discover2.png" alt="Heightmap data" class="process-slider__img process-slider__img--2" draggable="false" />
+                <img src="images/discovery/discover3.png" alt="3D relief model" class="process-slider__img process-slider__img--3" draggable="false" />
+                <img src="images/discovery/discover4.webp" alt="Finished sculptural piece" class="process-slider__img process-slider__img--4" draggable="false" />
+              </div>
+              <div class="process-slider__handle" id="process-slider-handle" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0" aria-label="Drag to reveal transformation stages">
+                <div class="process-slider__grip">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                    <path d="M6 4L2 9L6 14" stroke="#C7A86A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 4L16 9L12 14" stroke="#C7A86A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="process-slider__hint" id="process-slider-hint" aria-hidden="true">
+                <span>Drag to explore</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -178,6 +196,51 @@
   </footer>
 
   <script src="js/scripts.js"></script>
+  <script>
+    (function () {
+      const slider  = document.getElementById('process-slider');
+      const handle  = document.getElementById('process-slider-handle');
+      const hint    = document.getElementById('process-slider-hint');
+      if (!slider || !handle) return;
+
+      const imgs = slider.querySelectorAll('.process-slider__img');
+      let dragging = false;
+      let progress = 0;
+
+      function applyProgress(p) {
+        progress = Math.max(0, Math.min(1, p));
+        handle.style.left = (progress * 100) + '%';
+        handle.setAttribute('aria-valuenow', Math.round(progress * 100));
+        imgs.forEach(function(img, i) {
+          if (i === 0) { img.style.opacity = 1; return; }
+          const start = (i - 1) / 3;
+          const end   = i / 3;
+          const alpha = Math.max(0, Math.min(1, (progress - start) / (end - start)));
+          img.style.opacity = alpha;
+        });
+        if (progress > 0.02 && hint) hint.style.opacity = '0';
+      }
+
+      function progressFromEvent(e) {
+        const rect = slider.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        return (clientX - rect.left) / rect.width;
+      }
+
+      handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
+      window.addEventListener('mousemove', function(e) { if (dragging) applyProgress(progressFromEvent(e)); });
+      window.addEventListener('mouseup',   function()  { dragging = false; });
+      handle.addEventListener('touchstart', function()  { dragging = true; }, { passive: true });
+      window.addEventListener('touchmove',  function(e) { if (dragging) applyProgress(progressFromEvent(e)); }, { passive: true });
+      window.addEventListener('touchend',   function()  { dragging = false; });
+      handle.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight') applyProgress(progress + 0.05);
+        if (e.key === 'ArrowLeft')  applyProgress(progress - 0.05);
+      });
+
+      applyProgress(0);
+    })();
+  </script>
 </body>
 </html>
 

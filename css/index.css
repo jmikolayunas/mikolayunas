@@ -499,3 +499,73 @@
   position: relative;
   z-index: 1;
 }
+
+/* ============================================
+   PROCESS SLIDER — Geography to Art
+   ============================================ */
+.process-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+  border: 1px solid rgba(199, 168, 106, 0.18);
+}
+.process-slider__track { position: absolute; inset: 0; }
+.process-slider__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.08s linear;
+  pointer-events: none;
+}
+.process-slider__img--1 { z-index: 1; }
+.process-slider__img--2 { z-index: 2; }
+.process-slider__img--3 { z-index: 3; }
+.process-slider__img--4 { z-index: 4; }
+.process-slider__handle {
+  position: absolute;
+  top: 0; bottom: 0; left: 0;
+  width: 2px;
+  background: var(--color-brass);
+  z-index: 10;
+  transform: translateX(-50%);
+}
+.process-slider__grip {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 2.75rem; height: 2.75rem;
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-brass);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  transition: background 0.2s ease;
+}
+.process-slider__handle:hover .process-slider__grip,
+.process-slider__handle:focus .process-slider__grip { background: #1e1e1e; }
+.process-slider__handle:focus { outline: none; }
+.process-slider__handle:focus-visible .process-slider__grip { box-shadow: 0 0 0 2px var(--color-brass); }
+.process-slider__hint {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  font-family: var(--font-secondary);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247, 246, 243, 0.55);
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  white-space: nowrap;
+}
