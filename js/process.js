@@ -222,9 +222,13 @@ console.log('✓ Process scrollytelling scripts loaded');
   let dragging = false;
   let progress = 0;
 
+  // Rail spans 10%–90% of container width
+  const RAIL_START = 10;
+  const RAIL_END   = 90;
+
   function applyProgress(p) {
     progress = Math.max(0, Math.min(1, p));
-    handle.style.left = (progress * 100) + '%';
+    handle.style.left = (RAIL_START + progress * (RAIL_END - RAIL_START)) + '%';
     handle.setAttribute('aria-valuenow', Math.round(progress * 100));
     imgs.forEach(function(img, i) {
       if (i === 0) { img.style.opacity = 1; return; }
@@ -233,19 +237,21 @@ console.log('✓ Process scrollytelling scripts loaded');
       const alpha = Math.max(0, Math.min(1, (progress - start) / (end - start)));
       img.style.opacity = alpha;
     });
-    if (progress > 0.02 && hint) hint.style.opacity = '0';
   }
 
   function progressFromEvent(e) {
     const rect = slider.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    return (clientX - rect.left) / rect.width;
+    const pct = (clientX - rect.left) / rect.width * 100;
+    return (pct - RAIL_START) / (RAIL_END - RAIL_START);
   }
 
   handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
+  slider.addEventListener('mousedown', function(e) { dragging = true; applyProgress(progressFromEvent(e)); e.preventDefault(); });
   window.addEventListener('mousemove', function(e) { if (dragging) applyProgress(progressFromEvent(e)); });
   window.addEventListener('mouseup',   function()  { dragging = false; });
   handle.addEventListener('touchstart', function()  { dragging = true; }, { passive: true });
+  slider.addEventListener('touchstart', function(e)  { dragging = true; applyProgress(progressFromEvent(e)); }, { passive: true });
   window.addEventListener('touchmove',  function(e) { if (dragging) applyProgress(progressFromEvent(e)); }, { passive: true });
   window.addEventListener('touchend',   function()  { dragging = false; });
   handle.addEventListener('keydown', function(e) {

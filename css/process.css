@@ -338,9 +338,20 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  cursor: ew-resize;
   user-select: none;
   -webkit-user-select: none;
+}
+/* Static horizontal brass rail near the bottom */
+.process-slider::after {
+  content: '';
+  position: absolute;
+  bottom: 8%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: var(--color-brass);
+  z-index: 10;
+  pointer-events: none;
 }
 .process-slider__track { position: absolute; inset: 0; }
 .process-slider__img {
@@ -357,19 +368,22 @@
 .process-slider__img--2 { z-index: 2; }
 .process-slider__img--3 { z-index: 3; }
 .process-slider__img--4 { z-index: 4; }
+/* Zero-size anchor that moves along the rail */
 .process-slider__handle {
   position: absolute;
-  top: 0; bottom: 0; left: 0;
-  width: 2px;
-  background: var(--color-brass);
-  z-index: 10;
-  transform: translateX(-50%);
+  bottom: 8%;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 11;
 }
 .process-slider__grip {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 0;
+  left: 0;
   transform: translate(-50%, -50%);
-  width: 2.75rem; height: 2.75rem;
+  width: 2.75rem;
+  height: 2.75rem;
   background: var(--color-charcoal);
   border: 1px solid var(--color-brass);
   border-radius: 50%;
@@ -378,24 +392,11 @@
   justify-content: center;
   box-shadow: 0 2px 12px rgba(0,0,0,0.4);
   transition: background 0.2s ease;
+  cursor: ew-resize;
 }
 .process-slider__handle:hover .process-slider__grip,
 .process-slider__handle:focus .process-slider__grip { background: #1e1e1e; }
 .process-slider__handle:focus { outline: none; }
 .process-slider__handle:focus-visible .process-slider__grip { box-shadow: 0 0 0 2px var(--color-brass); }
-.process-slider__hint {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 11;
-  font-family: var(--font-secondary);
-  font-size: 0.65rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(247, 246, 243, 0.55);
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-  white-space: nowrap;
-}
+.process-slider__hint { display: none; }
 

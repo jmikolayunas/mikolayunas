@@ -19,7 +19,7 @@ const SEASONS = {
     exposureLow: 0.65,
     exposureHigh: 1.00,
     intensityScaleDivisor: 100,
-    hemisphereIntensity: 0.04,
+    hemisphereIntensity: 0.01,
     shadowMapSize: 4096,
     shadowBias: -0.00025,
     shadowNormalBias: 0.02
@@ -33,7 +33,7 @@ const SEASONS = {
     exposureLow: 0.70,
     exposureHigh: 1.10,
     intensityScaleDivisor: 100,
-    hemisphereIntensity: 0.05,
+    hemisphereIntensity: 0.01,
     shadowMapSize: 2048,
     shadowBias: -0.0002,
     shadowNormalBias: 0.02
@@ -144,6 +144,18 @@ document.addEventListener("DOMContentLoaded", () => {
     controls.enableDamping = true;
     controls.dampingFactor = 0.06;
     controls.screenSpacePanning = true;
+    controls.enableZoom = false;
+
+    // Custom wheel zoom: fixed step per tick, ignoring browser deltaY magnitude
+    renderer.domElement.addEventListener('wheel', function(e) {
+      e.preventDefault();
+      const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
+      const currentDist = camera.position.distanceTo(controls.target);
+      const step = currentDist * 0.10 * (e.deltaY > 0 ? 1 : -1);
+      const newDist = THREE.MathUtils.clamp(currentDist + step, controls.minDistance, controls.maxDistance);
+      camera.position.copy(controls.target).addScaledVector(dir, newDist);
+      controls.update();
+    }, { passive: false });
 
     const hemi = new THREE.HemisphereLight(0xffffff, 0x101010, SEASON.hemisphereIntensity);
     scene.add(hemi);
@@ -244,6 +256,9 @@ document.addEventListener("DOMContentLoaded", () => {
       camera.near = Math.max(0.01, dist / 200);
       camera.far = dist * 50;
       camera.updateProjectionMatrix();
+
+      controls.minDistance = Math.max(0.05, dist * 0.15);
+      controls.maxDistance = dist * 6;
 
       initialCameraPosition.copy(camera.position);
       modelCenter.set(center.x, center.y - size.y * 0.1, center.z);

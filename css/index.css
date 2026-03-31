@@ -500,4 +500,85 @@
   z-index: 1;
 }
 
+/* Override aspect ratio to match native 5:4 landscape images */
+.process-teaser .split-media {
+  aspect-ratio: 5 / 4;
+}
+
+/* ============================================
+   DISCOVERY SLIDER — 2-image diagonal reveal
+   ============================================ */
+.discovery-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: ew-resize;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.discovery-slider__track { position: absolute; inset: 0; }
+.discovery-slider__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+.discovery-slider__img--1 { z-index: 1; }
+.discovery-slider__img--2 { z-index: 2; }
+.discovery-slider__handle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 10;
+  transform: translate(-50%, -50%);
+}
+/* Diagonal "/" line through the grip */
+.discovery-slider__handle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 150vh;
+  background: var(--color-brass);
+  transform: translate(-50%, -50%) rotate(30deg);
+  pointer-events: none;
+}
+.discovery-slider__grip {
+  position: relative;
+  width: 2.75rem;
+  height: 2.75rem;
+  background: var(--color-charcoal);
+  border: 1px solid var(--color-brass);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  transition: background 0.2s ease;
+}
+.discovery-slider__handle:hover .discovery-slider__grip,
+.discovery-slider__handle:focus .discovery-slider__grip { background: #1e1e1e; }
+.discovery-slider__handle:focus { outline: none; }
+.discovery-slider__handle:focus-visible .discovery-slider__grip { box-shadow: 0 0 0 2px var(--color-brass); }
+.discovery-slider__hint {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  font-family: var(--font-secondary);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(247, 246, 243, 0.55);
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+  white-space: nowrap;
+}
+
 

@@ -128,11 +128,44 @@
         <div class="split-layout">
           <div class="split-content text-center">
             <h2 class="section-title fade-in-scroll">From Geography to Art</h2>
-            <p class="text-body fade-in-scroll">Terrain data becomes sculptural form through precision machining and meticulous hand finishing. </p>
+            <p class="text-body fade-in-scroll">Geographic data becomes sculptural form through precision machining and meticulous hand finishing. </p>
             <a href="process.html" class="btn btn--primary fade-in-scroll">View the Process</a>
           </div>
           <div class="split-media">
-            <img src="images/process-preview.jpg" alt="Fabrication process" class="split-image" />
+            <div class="discovery-slider" id="discovery-slider"
+                 aria-label="Drag to reveal the transformation from geography to art">
+              <div class="discovery-slider__track">
+                <img src="images/teaser/teaser1-800w.webp"
+                     srcset="images/teaser/teaser1-480w.webp 480w,
+                             images/teaser/teaser1-800w.webp 800w,
+                             images/teaser/teaser1-1200w.webp 1200w,
+                             images/teaser/teaser1-1600w.webp 1600w"
+                     sizes="(max-width: 767px) 100vw, 50vw"
+                     alt="Geographic terrain source"
+                     class="discovery-slider__img discovery-slider__img--1" draggable="false" />
+                <img src="images/teaser/teaser2-800w.webp"
+                     srcset="images/teaser/teaser2-480w.webp 480w,
+                             images/teaser/teaser2-800w.webp 800w,
+                             images/teaser/teaser2-1200w.webp 1200w,
+                             images/teaser/teaser2-1600w.webp 1600w"
+                     sizes="(max-width: 767px) 100vw, 50vw"
+                     alt="Finished sculptural relief"
+                     class="discovery-slider__img discovery-slider__img--2" draggable="false" />
+              </div>
+              <div class="discovery-slider__handle" id="discovery-slider-handle"
+                   role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                   tabindex="0" aria-label="Drag to reveal transformation">
+                <div class="discovery-slider__grip">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                    <path d="M6 4L2 9L6 14" stroke="#C7A86A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M12 4L16 9L12 14" stroke="#C7A86A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+              <div class="discovery-slider__hint" id="discovery-slider-hint" aria-hidden="true">
+                <span>Drag to explore</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -178,6 +211,63 @@
   </footer>
 
   <script src="js/scripts.js"></script>
+  <script>
+    (function () {
+      const slider = document.getElementById('discovery-slider');
+      const handle = document.getElementById('discovery-slider-handle');
+      const hint   = document.getElementById('discovery-slider-hint');
+      if (!slider || !handle) return;
+
+      const img2 = slider.querySelector('.discovery-slider__img--2');
+
+      // 30° forward ("/") slant in a 5:4 container
+      // offset = tan(30°) × 50% × (height/width) = 0.5774 × 50 × 0.8 = 23.09% of width
+      const OFFSET = Math.tan(30 * Math.PI / 180) * 50 * (4 / 5);
+      const FRAC   = OFFSET / 100;
+
+      let dragging = false;
+      let progress = 0;
+
+      function applyProgress(p) {
+        progress = Math.max(0, Math.min(1, p));
+        handle.setAttribute('aria-valuenow', Math.round(progress * 100));
+
+        // Remap: p=0 → img2 fully hidden, p=1 → img2 fully visible
+        const vp      = progress * (1 + 2 * FRAC) - FRAC;
+        const centerX = vp * 100;
+        // "/" slant: divider is RIGHT of center at top, LEFT at bottom
+        const topX    = centerX + OFFSET;
+        const bottomX = centerX - OFFSET;
+        img2.style.clipPath = `polygon(0% 0%, ${topX}% 0%, ${bottomX}% 100%, 0% 100%)`;
+
+        // Handle sits exactly on the diagonal midpoint (y=50%)
+        handle.style.left = centerX + '%';
+
+        if (progress > 0.02 && hint) hint.style.opacity = '0';
+      }
+
+      function progressFromEvent(e) {
+        const rect    = slider.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        // Invert centerX → progress
+        const centerX = (clientX - rect.left) / rect.width;
+        return (centerX + FRAC) / (1 + 2 * FRAC);
+      }
+
+      handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
+      window.addEventListener('mousemove', function(e) { if (dragging) applyProgress(progressFromEvent(e)); });
+      window.addEventListener('mouseup',   function()  { dragging = false; });
+      handle.addEventListener('touchstart', function()  { dragging = true; }, { passive: true });
+      window.addEventListener('touchmove',  function(e) { if (dragging) applyProgress(progressFromEvent(e)); }, { passive: true });
+      window.addEventListener('touchend',   function()  { dragging = false; });
+      handle.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight') applyProgress(progress + 0.05);
+        if (e.key === 'ArrowLeft')  applyProgress(progress - 0.05);
+      });
+
+      applyProgress(0.25);
+    })();
+  </script>
 </body>
 </html>
 
