@@ -208,3 +208,50 @@ window.addEventListener('resize', updateActiveStage);
 setTimeout(updateActiveStage, 100);
 
 console.log('✓ Process scrollytelling scripts loaded');
+
+// ============================================
+// PROCESS SLIDER — Data Crafting (Stage 03)
+// ============================================
+(function () {
+  const slider  = document.getElementById('process-slider');
+  const handle  = document.getElementById('process-slider-handle');
+  const hint    = document.getElementById('process-slider-hint');
+  if (!slider || !handle) return;
+
+  const imgs = slider.querySelectorAll('.process-slider__img');
+  let dragging = false;
+  let progress = 0;
+
+  function applyProgress(p) {
+    progress = Math.max(0, Math.min(1, p));
+    handle.style.left = (progress * 100) + '%';
+    handle.setAttribute('aria-valuenow', Math.round(progress * 100));
+    imgs.forEach(function(img, i) {
+      if (i === 0) { img.style.opacity = 1; return; }
+      const start = (i - 1) / 3;
+      const end   = i / 3;
+      const alpha = Math.max(0, Math.min(1, (progress - start) / (end - start)));
+      img.style.opacity = alpha;
+    });
+    if (progress > 0.02 && hint) hint.style.opacity = '0';
+  }
+
+  function progressFromEvent(e) {
+    const rect = slider.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    return (clientX - rect.left) / rect.width;
+  }
+
+  handle.addEventListener('mousedown', function(e) { dragging = true; e.preventDefault(); });
+  window.addEventListener('mousemove', function(e) { if (dragging) applyProgress(progressFromEvent(e)); });
+  window.addEventListener('mouseup',   function()  { dragging = false; });
+  handle.addEventListener('touchstart', function()  { dragging = true; }, { passive: true });
+  window.addEventListener('touchmove',  function(e) { if (dragging) applyProgress(progressFromEvent(e)); }, { passive: true });
+  window.addEventListener('touchend',   function()  { dragging = false; });
+  handle.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight') applyProgress(progress + 0.05);
+    if (e.key === 'ArrowLeft')  applyProgress(progress - 0.05);
+  });
+
+  applyProgress(0);
+})();
