@@ -261,3 +261,75 @@ console.log('✓ Process scrollytelling scripts loaded');
 
   applyProgress(0);
 })();
+
+// Discovery Stage: Your Place Reflection Interactive
+(function() {
+  const reflectionContainer = document.getElementById('reflectionContainer');
+  
+  // Only run if the reflection container exists on this page
+  if (!reflectionContainer) return;
+
+  const prompts = [
+    'Close your eyes. What place appears?',
+    'Is it a place you return to... or a place that stays with you?',
+    'What do you see first? Summit, shoreline, horizon?',
+    'Who shares this place with you?',
+    "That's where we begin."
+  ];
+
+  let currentPrompt = 0;
+  const FADE_OUT_MS = 900;
+  const FADE_IN_MS = 1400;
+  const BUTTON_DELAY_MS = 700;
+  const promptText = document.getElementById('promptText');
+  const nextButton = document.getElementById('nextButton');
+  const contentArea = document.getElementById('contentArea');
+  const dots = document.querySelectorAll('.dot');
+
+  if (!promptText || !nextButton || !contentArea || dots.length === 0) return;
+
+  nextButton.addEventListener('click', () => {
+    if (currentPrompt < prompts.length - 1) {
+      currentPrompt++;
+      updatePrompt();
+    }
+  });
+
+  function updatePrompt() {
+    // Fade out
+    promptText.style.opacity = '0';
+    nextButton.style.opacity = '0';
+
+    setTimeout(() => {
+      // Update text
+      promptText.textContent = prompts[currentPrompt];
+      promptText.style.animation = 'none';
+      
+      // Update progress dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index <= currentPrompt);
+      });
+
+      // Handle final prompt
+      if (currentPrompt === prompts.length - 1) {
+        reflectionContainer.classList.add('final');
+        nextButton.style.display = 'none';
+        
+        // Add CTA
+        const cta = document.createElement('a');
+        cta.href = 'commission.html';
+        cta.className = 'cta-link';
+        cta.textContent = 'Schedule Consultation';
+        contentArea.appendChild(cta);
+      }
+
+      // Fade in
+      setTimeout(() => {
+        promptText.style.animation = `fadeInPrompt ${FADE_IN_MS}ms ease forwards`;
+        if (currentPrompt < prompts.length - 1) {
+          nextButton.style.animation = `fadeInPrompt ${FADE_IN_MS}ms ease ${BUTTON_DELAY_MS}ms forwards`;
+        }
+      }, 50);
+    }, FADE_OUT_MS);
+  }
+})();
