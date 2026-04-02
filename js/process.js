@@ -215,7 +215,6 @@ console.log('✓ Process scrollytelling scripts loaded');
 (function () {
   const slider  = document.getElementById('process-slider');
   const handle  = document.getElementById('process-slider-handle');
-  const hint    = document.getElementById('process-slider-hint');
   if (!slider || !handle) return;
 
   const imgs = slider.querySelectorAll('.process-slider__img');
@@ -270,10 +269,10 @@ console.log('✓ Process scrollytelling scripts loaded');
   if (!reflectionContainer) return;
 
   const prompts = [
-    'Close your eyes. What place appears?',
-    'Is it a place you return to... or a place that stays with you?',
-    'What do you see first? Summit, shoreline, horizon?',
-    'Who shares this place with you?',
+    'Close your eyes.<br>What place appears?',
+    'Is it a place you return to...<br>or a place that stays with you?',
+    'What do you see first?<br>Summit, shoreline, horizon?',
+    'Who shares this place<br>with you?',
     "That's where we begin."
   ];
 
@@ -302,7 +301,7 @@ console.log('✓ Process scrollytelling scripts loaded');
 
     setTimeout(() => {
       // Update text
-      promptText.textContent = prompts[currentPrompt];
+      promptText.innerHTML = prompts[currentPrompt];
       promptText.style.animation = 'none';
       
       // Update progress dots
