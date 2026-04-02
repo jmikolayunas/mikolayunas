@@ -537,9 +537,9 @@
 }
 
 /* ============================================
-   DISCOVERY SLIDER — 2-image diagonal reveal
+   GEOTEASER SLIDER — 2-image diagonal reveal
    ============================================ */
-.discovery-slider {
+.geoteaser-slider {
   position: relative;
   width: 100%;
   height: 100%;
@@ -548,8 +548,8 @@
   user-select: none;
   -webkit-user-select: none;
 }
-.discovery-slider__track { position: absolute; inset: 0; }
-.discovery-slider__img {
+.geoteaser-slider__track { position: absolute; inset: 0; }
+.geoteaser-slider__img {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -558,9 +558,9 @@
   display: block;
   pointer-events: none;
 }
-.discovery-slider__img--1 { z-index: 1; }
-.discovery-slider__img--2 { z-index: 2; }
-.discovery-slider__handle {
+.geoteaser-slider__img--1 { z-index: 1; }
+.geoteaser-slider__img--2 { z-index: 2; }
+.geoteaser-slider__handle {
   position: absolute;
   top: 50%;
   left: 0;
@@ -568,7 +568,7 @@
   transform: translate(-50%, -50%);
 }
 /* Diagonal "/" line through the grip */
-.discovery-slider__handle::before {
+.geoteaser-slider__handle::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -579,7 +579,7 @@
   transform: translate(-50%, -50%) rotate(30deg);
   pointer-events: none;
 }
-.discovery-slider__grip {
+.geoteaser-slider__grip {
   position: relative;
   width: 2.75rem;
   height: 2.75rem;
@@ -592,11 +592,11 @@
   box-shadow: 0 2px 12px rgba(0,0,0,0.4);
   transition: background 0.2s ease;
 }
-.discovery-slider__handle:hover .discovery-slider__grip,
-.discovery-slider__handle:focus .discovery-slider__grip { background: #1e1e1e; }
-.discovery-slider__handle:focus { outline: none; }
-.discovery-slider__handle:focus-visible .discovery-slider__grip { box-shadow: 0 0 0 2px var(--color-brass); }
-.discovery-slider__hint {
+.geoteaser-slider__handle:hover .geoteaser-slider__grip,
+.geoteaser-slider__handle:focus .geoteaser-slider__grip { background: #1e1e1e; }
+.geoteaser-slider__handle:focus { outline: none; }
+.geoteaser-slider__handle:focus-visible .geoteaser-slider__grip { box-shadow: 0 0 0 2px var(--color-brass); }
+.geoteaser-slider__hint {
   position: absolute;
   bottom: 1.25rem;
   left: 50%;

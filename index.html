@@ -132,37 +132,37 @@
             <a href="process.html" class="btn btn--primary fade-in-scroll">View the Process</a>
           </div>
           <div class="split-media">
-            <div class="discovery-slider" id="discovery-slider"
+            <div class="geoteaser-slider" id="geoteaser-slider"
                  aria-label="Drag to reveal the transformation from geography to art">
-              <div class="discovery-slider__track">
-                <img src="images/teaser/teaser2-800w.webp"
-                     srcset="images/teaser/teaser2-480w.webp 480w,
-                             images/teaser/teaser2-800w.webp 800w,
-                             images/teaser/teaser2-1200w.webp 1200w,
-                             images/teaser/teaser2-1600w.webp 1600w"
+              <div class="geoteaser-slider__track">
+                <img src="images/geoteaser/teaser2-1200w.webp"
+                     srcset="images/geoteaser/teaser2-480w.webp 480w,
+                             images/geoteaser/teaser2-800w.webp 800w,
+                             images/geoteaser/teaser2-1200w.webp 1200w,
+                             images/geoteaser/teaser2-1600w.webp 1600w"
                      sizes="(max-width: 767px) 100vw, 50vw"
                      alt="Finished sculptural relief"
-                     class="discovery-slider__img discovery-slider__img--1" draggable="false" />
-                <img src="images/teaser/teaser1-800w.webp"
-                     srcset="images/teaser/teaser1-480w.webp 480w,
-                             images/teaser/teaser1-800w.webp 800w,
-                             images/teaser/teaser1-1200w.webp 1200w,
-                             images/teaser/teaser1-1600w.webp 1600w"
+                     class="geoteaser-slider__img geoteaser-slider__img--1" draggable="false" />
+                <img src="images/geoteaser/teaser1-800w.webp"
+                     srcset="images/geoteaser/teaser1-480w.webp 480w,
+                             images/geoteaser/teaser1-800w.webp 800w,
+                             images/geoteaser/teaser1-1200w.webp 1200w,
+                             images/geoteaser/teaser1-1600w.webp 1600w"
                      sizes="(max-width: 767px) 100vw, 50vw"
                      alt="Geographic terrain source"
-                     class="discovery-slider__img discovery-slider__img--2" draggable="false" />
+                     class="geoteaser-slider__img geoteaser-slider__img--2" draggable="false" />
               </div>
-              <div class="discovery-slider__handle" id="discovery-slider-handle"
+              <div class="geoteaser-slider__handle" id="geoteaser-slider-handle"
                    role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
                    tabindex="0" aria-label="Drag to reveal transformation">
-                <div class="discovery-slider__grip">
+                <div class="geoteaser-slider__grip">
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                     <path d="M6 4L2 9L6 14" stroke="#C7A86A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 4L16 9L12 14" stroke="#C7A86A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>
                 </div>
               </div>
-              <div class="discovery-slider__hint" id="discovery-slider-hint" aria-hidden="true">
+              <div class="geoteaser-slider__hint" id="geoteaser-slider-hint" aria-hidden="true">
                 <span>Drag to explore</span>
               </div>
             </div>
@@ -213,12 +213,12 @@
   <script src="js/scripts.js"></script>
   <script>
     (function () {
-      const slider = document.getElementById('discovery-slider');
-      const handle = document.getElementById('discovery-slider-handle');
-      const hint   = document.getElementById('discovery-slider-hint');
+      const slider = document.getElementById('geoteaser-slider');
+      const handle = document.getElementById('geoteaser-slider-handle');
+      const hint   = document.getElementById('geoteaser-slider-hint');
       if (!slider || !handle) return;
 
-      const img2 = slider.querySelector('.discovery-slider__img--2');
+      const img2 = slider.querySelector('.geoteaser-slider__img--2');
 
       // 30° forward ("/") slant in a 5:4 container
       // offset = tan(30°) × 50% × (height/width) = 0.5774 × 50 × 0.8 = 23.09% of width
