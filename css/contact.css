@@ -175,3 +175,37 @@
     padding: var(--space-4);
   }
 }
+
+/* ========================================
+   Luxury-Coded Inline Commission Link
+   ======================================== */
+
+.commission-link {
+  color: var(--color-brass, #C7A86A);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.commission-link:hover {
+  color: var(--color-graphite, #2E2E2E);
+  border-bottom-color: var(--color-brass, #C7A86A);
+}
+
+/* Optional: subtle underline animation */
+.commission-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-brass, #C7A86A);
+  transition: width 0.3s ease;
+}
+
+.commission-link:hover::after {
+  width: 100%;
+}
