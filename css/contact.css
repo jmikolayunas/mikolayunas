@@ -209,3 +209,39 @@
 .commission-link:hover::after {
   width: 100%;
 }
+
+/* ========================================
+   Contact Form Select Optimization
+   ======================================== */
+
+/* Override global select to constrain width and improve arrow accessibility */
+.contact-form .form-select {
+  width: auto;
+  min-width: 280px;
+  max-width: 400px;
+  padding-right: var(--space-6);
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23C7A86A' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-3) center;
+  background-size: 14px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.contact-form .form-select:hover {
+  border-color: var(--color-brass);
+}
+
+.contact-form .form-select:focus {
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%232E2E2E' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+/* Responsive: Full width on mobile */
+@media (max-width: 768px) {
+  .contact-form .form-select {
+    width: 100%;
+    max-width: none;
+  }
+}
