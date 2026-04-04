@@ -44,11 +44,18 @@
   padding: 0;
   border: none;
   background: transparent;
-  aspect-ratio: 1 / 1;
   box-shadow:
     4px 6px 12px rgba(42, 42, 42, 0.10),
     -2px 8px 20px rgba(26, 26, 26, 0.07);
   overflow: hidden;
+}
+
+.collector-entry-figure[data-aspect="square"] {
+  aspect-ratio: 1 / 1;
+}
+
+.collector-entry-figure[data-aspect="portrait"] {
+  aspect-ratio: 4 / 5;
 }
 
 .collector-entry-figure img {
