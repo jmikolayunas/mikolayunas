@@ -171,129 +171,6 @@
       color: rgba(247, 246, 243, 0.4);
     }
 
-    /* ── File Upload Drop Zone ── */
-    .file-drop-zone {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 7rem;
-      border: 1px dashed rgba(199, 168, 106, 0.35);
-      background: rgba(199, 168, 106, 0.03);
-      cursor: pointer;
-      transition: border-color 0.25s ease, background 0.25s ease;
-      padding: var(--space-4);
-    }
-
-    .file-drop-zone:hover,
-    .file-drop-zone:focus,
-    .file-drop-zone.drag-over {
-      border-color: var(--color-brass);
-      background: rgba(199, 168, 106, 0.07);
-      outline: none;
-    }
-
-    .file-drop-input {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0;
-      cursor: pointer;
-    }
-
-    .file-drop-prompt {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.35rem;
-      pointer-events: none;
-      text-align: center;
-    }
-
-    .file-drop-icon {
-      font-size: 1.5rem;
-      color: var(--color-brass);
-      line-height: 1;
-    }
-
-    .file-drop-label {
-      font-family: var(--font-secondary);
-      font-size: var(--text-sm);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-brass);
-    }
-
-    .file-drop-types {
-      font-family: var(--font-secondary);
-      font-size: 0.7rem;
-      color: rgba(247, 246, 243, 0.35);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    /* ── File List ── */
-    .file-list {
-      list-style: none;
-      padding: 0;
-      margin: var(--space-2) 0 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .file-list-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.5rem 0.75rem;
-      background: rgba(199, 168, 106, 0.06);
-      border-left: 2px solid var(--color-brass);
-      font-family: var(--font-secondary);
-      font-size: var(--text-sm);
-      color: rgba(247, 246, 243, 0.75);
-    }
-
-    .file-list-name {
-      flex: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      padding-right: 0.75rem;
-    }
-
-    .file-list-size {
-      font-size: 0.7rem;
-      color: rgba(247, 246, 243, 0.35);
-      white-space: nowrap;
-      margin-right: 0.75rem;
-      flex-shrink: 0;
-    }
-
-    .file-list-remove {
-      background: none;
-      border: none;
-      color: rgba(247, 246, 243, 0.3);
-      cursor: pointer;
-      font-size: 1rem;
-      line-height: 1;
-      padding: 0 0.1rem;
-      flex-shrink: 0;
-      transition: color 0.2s ease;
-    }
-
-    .file-list-remove:hover {
-      color: var(--color-brass);
-    }
-
-    .file-list-error {
-      font-family: var(--font-secondary);
-      font-size: var(--text-sm);
-      color: #c0392b;
-      padding: 0.4rem 0;
-    }
-
   </style>
 </head>
 
@@ -433,20 +310,21 @@
 
     <div class="investment-pricing fade-in-scroll">
       <p class="pricing-statement">
-        Pieces begin at $4,500 and scale with size, complexity, materials, and finish level.
-        <strong style="color: #2E2E2E;">Every work is delivered with an artist-made frame and a custom-engraved stainless-steel nameplate.</strong><br>
+        Each commission is priced according to scale, materials, and complexity — 
+        and delivered with an artist-made frame and a custom-engraved nameplate.</strong><br>
       </p>
 
       <p class="pricing-details">
-        Small (18" × 24") - <strong>$4,500–$6,500</strong><br>
-        Signature (approx. 24" × 36" to 30" × 40") - <strong>$6,500–$9,500</strong><br>
-        Statement (36" × 48") - <strong>$8,500–$14,000</strong><br>
-        Installation (48"+ / multi-panel) - from <strong>$15,000+</strong>
+        Study &nbsp;·&nbsp; 24" × 24" &nbsp;·&nbsp; <strong>$8,500–$12,000</strong><br>
+        Signature &nbsp;·&nbsp; 36" × 36" &nbsp;·&nbsp; <strong>$12,000–$18,000</strong><br>
+        Statement &nbsp;·&nbsp; 48" × 48" &nbsp;·&nbsp; <strong>$18,000–$28,000</strong><br>
+        Installation &nbsp;·&nbsp; 48"+ / multi-panel &nbsp;·&nbsp; from <strong>$35,000</strong>
       </p>
 
       <p class="pricing-note">
-        <em>Final pricing is determined during consultation based on your specific vision, materials,
-        and complexity. I'll provide a detailed quote before any commitment.</em>
+        <em>Final pricing is confirmed during consultation based on your specific vision, materials, and complexity. 
+          Dimensions follow the geography of the place—nominal sizes are reference anchors, not constraints. 
+          A detailed quote is provided before any commitment.</em>
       </p>
     </div>
   </div>
@@ -542,7 +420,7 @@
               <label for="size-preference" class="form-label">Size Preference *</label>
               <select id="size-preference" name="size-preference" class="form-select" required>
                 <option value="">Select a size</option>
-                <option value="small">Small (18&quot; × 24&quot;)</option>
+                <option value="small">Study (24&quot; × 24&quot;)</option>
                 <option value="signature">Signature (24&quot; × 36&quot; to 30&quot; × 40&quot;)</option>
                 <option value="statement">Statement (36&quot; × 48&quot;)</option>
                 <option value="installation">Installation (48&quot;+ / multi-panel)</option>
@@ -564,17 +442,6 @@
               <span class="form-helper">Select the date you need the piece in hand. Typical lead time is <strong>8–12 weeks</strong>; feasibility will be confirmed during consultation.</span>
             </div>
 
-            <div class="form-group">
-              <label for="deadline-flexibility" class="form-label">Deadline Flexibility (Optional)</label>
-              <select id="deadline-flexibility" name="deadline-flexibility" class="form-select">
-                <option value="">Select flexibility</option>
-                <option value="hard">Exact date (hard deadline)</option>
-                <option value="flex-1-2">Flexible by 1–2 weeks</option>
-                <option value="flex-3-4">Flexible by 3–4 weeks</option>
-                <option value="recommendations">No deadline / flexible</option>
-              </select>
-              <span class="form-helper">Helps me confirm whether your deadline aligns with the current 8–12 week lead time</span>
-            </div>
 
             <div class="form-group">
               <label for="occasion" class="form-label">Occasion (Optional)</label>
@@ -607,9 +474,7 @@
                 placeholder="What draws you to this place—memory, milestone, home, or heritage? If there's an occasion, date, or name you'd like honored (including for the nameplate), share it here. A few lines is perfect."
                 required
               ></textarea>
-              <span class="form-helper">Share as much—or as little—as you wish.
-               This informs my approach to the design, and details can evolve as the work progresses.
-               Your story stays private and is used only to guide the work.</span>
+              <span class="form-helper">Share as much—or as little—as you wish. Reference photos and sketches are welcome by reply email after submission.</span>
             </div>
 
             <div class="form-group">
@@ -623,28 +488,6 @@
               ></textarea>
             </div>
 
-            <div class="form-group">
-              <label class="form-label">Upload Reference Files (Optional)</label>
-              <div class="file-drop-zone" id="file-drop-zone" role="button" tabindex="0" aria-label="Upload reference files">
-                <input
-                  type="file"
-                  id="files"
-                  name="files"
-                  class="file-drop-input"
-                  multiple
-                  accept="image/*,.pdf,.doc,.docx"
-                  aria-hidden="true"
-                  tabindex="-1"
-                />
-                <div class="file-drop-prompt">
-                  <span class="file-drop-icon">↑</span>
-                  <span class="file-drop-label">Choose files or drag and drop</span>
-                  <span class="file-drop-types">Images, PDF, Word documents</span>
-                </div>
-              </div>
-              <ul class="file-list" id="file-list" aria-label="Selected files" aria-live="polite"></ul>
-              <span class="form-helper">Share photos, sketches, or documents that inspire your vision — max 10MB per file</span>
-            </div>
           </div>
 
           <!-- Submit -->
@@ -691,7 +534,7 @@
             <p class="faq-answer-expanded">
               There's no fixed revision limit.
               The process is guided and iterative—at key milestones I'll share options, tests, and real-world samples (when helpful), and decisions are made as the piece evolves.
-              My role is to keep the exploration clear, curated, and moving toward a finished work you'll live with for decades.
+              My role is to keep the exploration clear, curated, and deliberate.
             </p>
           </div>
 
