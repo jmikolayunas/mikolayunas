@@ -171,10 +171,133 @@
       color: rgba(247, 246, 243, 0.4);
     }
 
+    /* ── File Upload Drop Zone ── */
+    .file-drop-zone {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 7rem;
+      border: 1px dashed rgba(199, 168, 106, 0.35);
+      background: rgba(199, 168, 106, 0.03);
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease;
+      padding: var(--space-4);
+    }
+
+    .file-drop-zone:hover,
+    .file-drop-zone:focus,
+    .file-drop-zone.drag-over {
+      border-color: var(--color-brass);
+      background: rgba(199, 168, 106, 0.07);
+      outline: none;
+    }
+
+    .file-drop-input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .file-drop-prompt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+      pointer-events: none;
+      text-align: center;
+    }
+
+    .file-drop-icon {
+      font-size: 1.5rem;
+      color: var(--color-brass);
+      line-height: 1;
+    }
+
+    .file-drop-label {
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-brass);
+    }
+
+    .file-drop-types {
+      font-family: var(--font-secondary);
+      font-size: 0.7rem;
+      color: rgba(247, 246, 243, 0.35);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── File List ── */
+    .file-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--space-2) 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .file-list-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.75rem;
+      background: rgba(199, 168, 106, 0.06);
+      border-left: 2px solid var(--color-brass);
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      color: rgba(247, 246, 243, 0.75);
+    }
+
+    .file-list-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 0.75rem;
+    }
+
+    .file-list-size {
+      font-size: 0.7rem;
+      color: rgba(247, 246, 243, 0.35);
+      white-space: nowrap;
+      margin-right: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .file-list-remove {
+      background: none;
+      border: none;
+      color: rgba(247, 246, 243, 0.3);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0 0.1rem;
+      flex-shrink: 0;
+      transition: color 0.2s ease;
+    }
+
+    .file-list-remove:hover {
+      color: var(--color-brass);
+    }
+
+    .file-list-error {
+      font-family: var(--font-secondary);
+      font-size: var(--text-sm);
+      color: #c0392b;
+      padding: 0.4rem 0;
+    }
+
   </style>
 </head>
 
-<body class="site-body">
+<body>
 
   <!-- GLOBAL NAVIGATION -->
   <header class="site-header" id="site-header">
@@ -501,16 +624,26 @@
             </div>
 
             <div class="form-group">
-              <label for="files" class="form-label">Upload Reference Files (Optional)</label>
-              <input
-                type="file"
-                id="files"
-                name="files"
-                class="form-input"
-                multiple
-                accept="image/*,.pdf,.doc,.docx"
-              />
-              <span class="form-helper">Share photos, sketches, or documents that inspire your vision (max 10MB per file)</span>
+              <label class="form-label">Upload Reference Files (Optional)</label>
+              <div class="file-drop-zone" id="file-drop-zone" role="button" tabindex="0" aria-label="Upload reference files">
+                <input
+                  type="file"
+                  id="files"
+                  name="files"
+                  class="file-drop-input"
+                  multiple
+                  accept="image/*,.pdf,.doc,.docx"
+                  aria-hidden="true"
+                  tabindex="-1"
+                />
+                <div class="file-drop-prompt">
+                  <span class="file-drop-icon">↑</span>
+                  <span class="file-drop-label">Choose files or drag and drop</span>
+                  <span class="file-drop-types">Images, PDF, Word documents</span>
+                </div>
+              </div>
+              <ul class="file-list" id="file-list" aria-label="Selected files" aria-live="polite"></ul>
+              <span class="form-helper">Share photos, sketches, or documents that inspire your vision — max 10MB per file</span>
             </div>
           </div>
 
@@ -603,8 +736,8 @@
         <ul class="footer-nav-list">
           <li class="footer-nav-item"><a href="gallery.html" class="footer-link">Gallery</a></li>
           <li class="footer-nav-item"><a href="process.html" class="footer-link">Process</a></li>
-          <li class="footer-nav-item"><a href="about.html" class="footer-link">About</a></li>
           <li class="footer-nav-item"><a href="commission.html" class="footer-link">Commission</a></li>
+          <li class="footer-nav-item"><a href="about.html" class="footer-link">About</a></li>
           <li class="footer-nav-item"><a href="contact.html" class="footer-link">Contact</a></li>
           <li class="footer-nav-item"><a href="collectors.html" class="footer-link">In the Collection</a></li>
         </ul>
@@ -653,5 +786,6 @@
     });
   </script>
   <script src="js/scripts.js"></script>
+  <script src="js/commission.js"></script>
 </body>
 </html>
