@@ -32,149 +32,38 @@
   <!-- MAIN CONTENT -->
   <main class="site-main contact-main">
 
-    <!-- CONTACT HEADER -->
-    <section class="contact-header section-padded">
+    <section class="contact-hero section-padded">
       <div class="section-container section-container--narrow">
-        <h1 class="page-title fade-in-scroll">Get in Touch</h1>
-        <p class="page-subtitle fade-in-scroll">
-          For commissions, press, or private inquiries—reach out below.<br>I respond personally within 1–2 business days.
+
+        <h1 class="page-title fade-in-scroll">Contact</h1>
+
+        <p class="contact-intro fade-in-scroll">
+          All inquiries are answered personally. For commissions, the <a href="commission.html" class="contact-commission-link">Commission Inquiry</a> form is the most direct path — it gathers the details needed to begin a conversation about your piece.
         </p>
-      </div>
-    </section>
 
-    <!-- CONTACT CONTENT -->
-    <section class="contact-content section-padded">
-      <div class="section-container">
-        <div class="contact-layout">
+        <div class="contact-channels fade-in-scroll">
 
-          <!-- Contact Form -->
-          <div class="contact-form-wrapper" id="general-inquiry">
-            <h2 class="contact-section-title fade-in-scroll">How can I help?</h2>
-
-            <div class="contact-intent fade-in-scroll" style="margin-bottom: var(--space-5);">
-              <p class="text-body" style="margin: 0; color: var(--color-text-secondary);">
-                For commissions, the <a href="commission.html" class="commission-link">Commission Inquiry</a> form is the fastest way to confirm scope, timeline, and a precise quote.
-              </p>
-            </div>
-
-            <form class="contact-form fade-in-scroll" id="contact-form">
-              <div id="general-inquiry-form"></div>
-
-              <div class="form-row fade-in-scroll">
-                <div class="form-group fade-in-scroll">
-                  <label for="name" class="form-label">Name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    class="form-input"
-                    required
-                    autocomplete="name"
-                  />
-                </div>
-
-                <div class="form-group fade-in-scroll">
-                  <label for="email" class="form-label">Email *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form-input"
-                    required
-                    autocomplete="email"
-                  />
-                </div>
-              </div>
-
-              <!-- Subject becomes a dropdown for triage + reduced friction -->
-              <div class="form-group fade-in-scroll">
-                <label for="subject" class="form-label">Inquiry Type *</label>
-                <select
-                  id="subject"
-                  name="subject"
-                  class="form-select"
-                  required
-                >
-                  <option value="" selected disabled>Select one</option>
-                  <option value="commission">Commission / Gift</option>
-                  <option value="studio-visit">Studio visit</option>
-                  <option value="trade">Designer / Architect / Gallery</option>
-                  <option value="press">Press</option>
-                  <option value="general">General question</option>
-                </select>
-              </div>
-
-              <div class="form-group fade-in-scroll">
-                <label for="message" class="form-label">Message *</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  class="form-textarea"
-                  rows="8"
-                  required
-                  placeholder="A few lines is perfect."
-                ></textarea>
-              </div>
-
-              <div class="form-actions fade-in-scroll">
-                <button type="submit" class="btn btn--accent">Send Message</button>
-              </div>
-
-              <!-- Success/Error Messages -->
-              <div class="form-message form-message--success fade-in-scroll" id="form-success">
-                <p>✓ Thank you—message received. I'll reply within 1–2 business days.</p>
-              </div>
-              <div class="form-message form-message--error fade-in-scroll" id="form-error">
-                <p>Something went wrong. Please email me directly at <a href="mailto:jonas@bonasstudio.com">jonas@bonasstudio.com</a></p>
-              </div>
-
-            </form>
+          <div class="contact-channel">
+            <span class="contact-channel-label">Email</span>
+            <a href="mailto:jonas@bonasstudio.com" class="contact-channel-value">jonas@bonasstudio.com</a>
           </div>
 
-          <!-- Contact Info Sidebar -->
-          <div class="contact-info-wrapper">
+          <div class="contact-channel">
+            <span class="contact-channel-label">Instagram</span>
+            <a href="https://instagram.com/bonas.studio" class="contact-channel-value" target="_blank" rel="noopener">@bonas.studio</a>
+          </div>
 
-            <!-- Direct Contact -->
-            <div class="contact-info-block fade-in-scroll">
-              <h3 class="contact-info-title">Direct Contact</h3>
-              <div class="contact-info-items">
-                <a href="mailto:jonas@bonasstudio.com" class="contact-info-link">
-                  <span class="contact-info-text">jonas@bonasstudio.com</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Social Links -->
-            <div class="contact-info-block fade-in-scroll">
-              <h3 class="contact-info-title">Follow Along</h3>
-              <div class="contact-info-items">
-                <a href="https://instagram.com/bonas.studio" target="_blank" rel="noopener" class="contact-info-link">
-                  <span class="contact-info-text">Instagram · @bonas.studio</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Studio Location (Optional) -->
-            <div class="contact-info-block fade-in-scroll">
-              <h3 class="contact-info-title">Studio</h3>
-              <p class="contact-info-text">
-                Natick, Massachusetts<br>
-                <em>By appointment only</em>
-              </p>
-            </div>
-
-            <!-- Response Time -->
-            <div class="contact-info-block fade-in-scroll">
-              <h3 class="contact-info-title">What to Expect</h3>
-              <p class="contact-info-text">
-                I respond within 1–2 business days.
-                For commissions, we begin with a short consultation to discuss place, scale, and timeline.
-              </p>
-            </div>
-
+          <div class="contact-channel">
+            <span class="contact-channel-label">Studio</span>
+            <span class="contact-channel-value contact-channel-value--muted">Natick, Massachusetts · By appointment</span>
           </div>
 
         </div>
+
+        <p class="contact-response fade-in-scroll">
+          I respond within one to two business days.
+        </p>
+
       </div>
     </section>
 
@@ -209,6 +98,6 @@
   </footer>
 
   <script src="js/scripts.js"></script>
-  <script src="js/contact.js"></script>
+
 </body>
 </html>
