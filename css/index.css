@@ -78,7 +78,7 @@
   font-size: var(--text-2xl);
   font-weight: var(--weight-regular);
   line-height: var(--leading-tight);
-  color: var(--color-text-inverse);
+  color: var(--color-brass);
   margin: 20px 0 var(--space-3);
   opacity: 0;
   animation: fadeInUpMobile 3s ease 0.3s forwards;
