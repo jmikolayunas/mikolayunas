@@ -1,5 +1,5 @@
 /* ============================================
-   BONAS STUDIO - COMMISSION AGREEMENT
+   JONAS MIKOLAYUNAS - COMMISSION AGREEMENT
    Password protection, signature capture, PDF generation
    ============================================ */
 
@@ -264,7 +264,7 @@ function generatePDF(forEmail = false) {
 
   doc.setFontSize(11);
   doc.setTextColor(199, 168, 106);
-  doc.text('Bonas Studio', pageWidth / 2, y, { align: 'center' });
+  doc.text('Jonas Mikolayunas', pageWidth / 2, y, { align: 'center' });
   y += 20;
 
   doc.setTextColor(0, 0, 0);
@@ -320,7 +320,7 @@ function generatePDF(forEmail = false) {
   doc.setFontSize(10);
   doc.setFont('helvetica', 'bold');
   doc.text('Client Authorization', margin, y);
-  doc.text('Bonas Studio', margin + contentWidth / 2 + 20, y);
+  doc.text('Jonas Mikolayunas', margin + contentWidth / 2 + 20, y);
   y += 15;
 
   // Client signature image
@@ -357,7 +357,7 @@ function generatePDF(forEmail = false) {
   const terms = [
     {
       heading: 'The Commission',
-      text: 'Bonas Studio designs and handcrafts custom 3D topographic artworks using CNC carving, laser etching, hand finishing, epoxy resin water features, and custom framing—refined through collaborative process.'
+      text: 'Jonas Mikolayunas designs and handcrafts custom 3D topographic artworks using CNC carving, laser etching, hand finishing, epoxy resin water features, and custom framing—refined through collaborative process.'
     },
     {
       heading: 'Our Collaborative Approach',
@@ -435,7 +435,7 @@ function generatePDF(forEmail = false) {
   // Footer
   doc.setFontSize(9);
   doc.setFont('helvetica', 'normal');
-  doc.text('Bonas Studio', pageWidth / 2, y, { align: 'center' });
+  doc.text('Jonas Mikolayunas', pageWidth / 2, y, { align: 'center' });
   y += 12;
   doc.setFontSize(8);
   doc.setTextColor(107, 107, 107);
@@ -486,7 +486,7 @@ document.getElementById('submitAgreement').addEventListener('click', async funct
     btn.style.background = '#4CAF50';
     
     // Show confirmation
-    alert(`Agreement sent to ${agreementData.clientEmail}!\n\nA copy has been emailed to you and Bonas Studio.`);
+    alert(`Agreement sent to ${agreementData.clientEmail}!\n\nA copy has been emailed to you and Jonas Mikolayunas.`);
     
     // Reset button after 3 seconds
     setTimeout(() => {
@@ -527,7 +527,7 @@ document.getElementById('submitAgreement').addEventListener('click', async funct
    Backend should:
    1. Receive PDF blob and form data
    2. Send email to client with PDF attached
-   3. Send copy to Bonas Studio
+   3. Send copy to Jonas Mikolayunas
    4. Store agreement in database
    5. Return success/error response
    

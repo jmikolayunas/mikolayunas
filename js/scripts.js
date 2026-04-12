@@ -1,5 +1,5 @@
 // ============================================
-// BONAS STUDIO - GLOBAL INTERACTIONS
+// JONAS MIKOLAYUNAS - GLOBAL INTERACTIONS
 // ============================================
 
 // ============================================
@@ -269,4 +269,4 @@ if (document.readyState === 'loading') {
 }
 
 // Log to confirm JS is loaded
-console.log('✓ Bonas Studio global scripts loaded');
+console.log('✓ Jonas Mikolayunas global scripts loaded');
