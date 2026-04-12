@@ -56,7 +56,7 @@ if (contactForm) {
       contactForm.reset();
       
       // For now, also create a mailto link as backup
-      const mailtoLink = `mailto:hello@bonasstudio.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
+      const mailtoLink = `mailto:hello@mikolayunas.com?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(`From: ${data.name} (${data.email})\n\n${data.message}`)}`;
       console.log('Mailto link:', mailtoLink);
       
     } catch (error) {
