@@ -236,56 +236,6 @@
 }
 
 /* ============================================
-   WHAT TO EXPECT SECTION
-   ============================================ */
-.expect-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
-  margin-top: var(--space-6);
-}
-
-@media (min-width: 768px) {
-  .expect-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.expect-item {
-  text-align: center;
-  padding: var(--space-5);
-  border: 1px solid var(--color-border);
-  background: rgba(199, 168, 106, 0.02);
-  transition: all 0.3s ease;
-}
-
-.expect-item:hover {
-  border-color: var(--color-brass);
-  transform: translateY(-4px);
-}
-
-.expect-icon {
-  font-size: 48px;
-  margin-bottom: var(--space-3);
-}
-
-.expect-title {
-  font-family: var(--font-primary);
-  font-size: var(--text-lg);
-  font-weight: var(--weight-regular);
-  color: var(--color-text-primary);
-  margin: 0 0 var(--space-2);
-}
-
-.expect-text {
-  font-family: var(--font-secondary);
-  font-size: var(--text-base);
-  line-height: var(--leading-relaxed);
-  color: var(--color-text-secondary);
-  margin: 0;
-}
-
-/* ============================================
    FAQ ACCORDION
    ============================================ */
 .faq-accordion {
@@ -336,4 +286,44 @@
   .investment-pricing {
     padding: var(--space-5);
   }
+}
+
+/* ============================================
+   WHAT TO EXPECT SECTION
+   ============================================ */
+
+.commission-expect {
+  /* inherits section-padded spacing */
+}
+
+.expect-list {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .expect-list {
+    gap: var(--space-8);
+  }
+}
+
+.expect-item {
+  /* No special styling needed - clean and simple */
+}
+
+.expect-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.expect-text {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
 }
