@@ -432,7 +432,10 @@
     "images/collection/highland-collector-600w.webp",
     "images/collection/capeann-collector-600w.webp",
     "images/collection/capeann-collector-400w.webp",
-    "images/collection/capeann-collector-1200w.webp"
+    "images/collection/capeann-collector-1200w.webp",
+    "images/process/04/jm-contem-800w.webp",
+    "images/process/04/jm-contem-480w.webp",
+    "images/about/jm-1200w.webp"
   ],
   "maxFileSize": 2097152,
   "autoSync": false,

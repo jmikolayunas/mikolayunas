@@ -270,7 +270,7 @@ console.log('✓ Process scrollytelling scripts loaded');
 
   const prompts = [
     'Close your eyes.<br>What place appears?',
-    'Is it a place you return to...<br>or a place that stays with you?',
+    'Is it a place you return to...<br>or one you revisit in memory?',
     'What do you see first?<br>Summit, shoreline, horizon?',
     'Who shares this place<br>with you?',
     "That's where we begin."
