@@ -1,12 +1,15 @@
-# CLAUDE.md — Bonas Studio
+# CLAUDE.md — Jonas Mikolayunas
 
-**Last updated:** March 2026 | Static site: HTML/CSS/JS only — no frameworks, no build tools, no npm.
+**Last updated:** April 2026 | Static site: HTML/CSS/JS only — no frameworks, no build tools, no npm.
 
 ---
 
-## Brand & Voice
+## Brand & Identity
 
-- Bonas Studio makes handcrafted topographic relief maps as bespoke, investment-grade objects
+- **Jonas Mikolayunas** creates handcrafted topographic relief maps as bespoke, investment-grade objects
+- **Domain:** mikolayunas.com (primary), jonasmikolayunas.com (secondary)
+- **Email:** jonas@mikolayunas.com
+- **Instagram:** @jonasmikolayunas
 - Tone: unhurried, precise, materially grounded — never salesy, never hyperbolic
 - Use investment language: "commission" not "order", "piece" not "product", "studio" not "shop"
 - Avoid: "beautiful", "stunning", "amazing", "luxury" — let the work speak through specificity
@@ -38,13 +41,12 @@
 
 - **Piece** (`.piece`, `.gallery-item`) — a single finished artwork; never "product" or "work"
 - **Commission** (`.commission-form`) — the client engagement process; never "order" or "purchase"
-- **Studio** (`.studio-*`) — refers to Bonas Studio as entity; never "shop" or "store"
+- **Studio** (`.studio-*`) — refers to Jonas Mikolayunas's practice; never "shop" or "store"
 - **Hero** (`.hero`, `.piece-hero`) — full-bleed top section of any page
 - **Gallery item** (`.gallery-item`) — one piece card in the filterable grid
 - **Filter** (`.filter-btn`, `data-filter`) — category selector above gallery
 - **Lightbox** (`#lightbox`) — full-screen overlay image viewer
 - **Process step** (`.process-step`) — numbered studio workflow stage
-- Full entity reference: `GoodWords/nomenclature.md`
 
 ---
 
@@ -129,6 +131,20 @@ Gallery sizing is **CSS-driven via `aspect-ratio` property** — not JavaScript.
 
 ---
 
+## Brand Replacement Checklist
+
+When removing legacy "Bonas Studio" references:
+
+1. **HTML files** — Replace in `<title>`, `.site-logo`, `.footer-logo`, `.footer-copyright`
+2. **About page** — Update founder story narrative to use "Jonas Mikolayunas" throughout
+3. **Scripts.js** — Update comment headers and console log messages
+4. **Contact page** — Update email to jonas@mikolayunas.com
+5. **Social links** — Update Instagram handle to @jonasmikolayunas
+6. **Footer** — Update copyright to "© 2026 Jonas Mikolayunas. All rights reserved."
+7. **Meta tags** — Update SEO descriptions to reference Jonas Mikolayunas
+
+---
+
 ## Adding Pieces — Checklist
 
 1. Add images to `images/[piece-name]/` (use spaces in folder name to match convention)
@@ -147,6 +163,8 @@ Gallery sizing is **CSS-driven via `aspect-ratio` property** — not JavaScript.
 - **Scroll animation:** Add `.fade-in-scroll` to element — `scripts.js` handles the rest (fires once at 50% visibility)
 - **Commission form:** `commission.html` for structure, `commission.js` for validation; configure Formspree endpoint in submit handler
 - **Gallery filter:** `data-category` on `.gallery-item` must match `data-filter` on `.filter-btn`; categories: `alpine`, `ocean`, `trail`, `urban`
+- **Update email:** Change all instances of contact email to jonas@mikolayunas.com
+- **Update social:** Instagram handle is @jonasmikolayunas
 
 ---
 
@@ -158,6 +176,8 @@ Gallery sizing is **CSS-driven via `aspect-ratio` property** — not JavaScript.
 ✅ Use `matchMedia` for JS breakpoint checks
 ✅ Null-check all DOM queries
 ✅ Use `loading="lazy"` for gallery, `eager` + `fetchpriority="high"` for heroes
+✅ Reference "Jonas Mikolayunas" as the artist/creator
+✅ Use mikolayunas.com as primary domain reference
 
 ❌ No `max-width` media queries
 ❌ No arbitrary breakpoints (640px, 480px, 1200px, etc.)
@@ -165,11 +185,25 @@ Gallery sizing is **CSS-driven via `aspect-ratio` property** — not JavaScript.
 ❌ No frameworks, no npm, no build tools
 ❌ No jQuery
 ❌ No hardcoded hex colors or pixel spacing values
+❌ Never use "Bonas" or "Bonas Studio" — use "Jonas Mikolayunas"
+❌ Don't use salesy language ("beautiful", "stunning", "luxury")
 
 ---
 
 ## Git / Deploy
 
 - Branch: `claude/claude-md-mkk3y8nlqqf3p74c-6wwOZ` — push with `git push -u origin <branch>`
+- Primary domain: mikolayunas.com
+- Secondary domain: jonasmikolayunas.com
 - Static hosting: GitHub Pages, Netlify, Vercel — no build step needed
-- Pre-deploy: verify Formspree ID in `commission.js`, meta tags on all pages, all image paths resolve
+- Pre-deploy: verify Formspree ID in `commission.js`, meta tags on all pages, all image paths resolve, email set to jonas@mikolayunas.com
+
+---
+
+## Contact Information
+
+- **Email:** jonas@mikolayunas.com
+- **Instagram:** @jonasmikolayunas
+- **Domain:** mikolayunas.com (primary), jonasmikolayunas.com (secondary)
+- Update all footer social links to point to correct handles
+- Formspree endpoint should forward to jonas@mikolayunas.com
