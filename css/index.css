@@ -275,10 +275,14 @@
   );
 }
 
+.philosophy .section-container--narrow {
+  max-width: 860px;
+}
+
 .philosophy-text {
   color: var(--color-graphite);
   text-align: center;
-  max-width: 800px;
+  max-width: 860px;
   margin-left: auto;
   margin-right: auto;
   font-size: clamp(0.945rem, 0.82rem + 0.63vw, 1.42rem);
