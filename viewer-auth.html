@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Review — Jonas Mikolayunas</title>
+
+  <!-- Viewer styles -->
+  <link rel="stylesheet" href="css/viewer.css">
+
+  <!-- Three.js Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body class="review-body">
+  <!-- Password Gate -->
+  <div id="passwordGate" class="password-gate">
+    <div class="password-container">
+      <h1 class="password-title">Design Review</h1>
+      <p class="password-subtitle">Jonas Mikolayunas</p>
+      
+      <div class="password-form">
+        <input 
+          type="password" 
+          id="passwordInput" 
+          class="password-input" 
+          placeholder="Your code"
+          autocomplete="off"
+        >
+        <p class="password-helper">The code was provided in your design review email</p>
+        <div id="passwordError" class="password-error"></div>
+        <button id="passwordSubmit" class="password-btn">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Content (Hidden Until Unlocked) -->
+  <div id="reviewContent" class="review-content hidden">
+    <!-- Minimal Header -->
+    <header class="review-header">
+      <div class="review-header-container">
+        <a href="index.html" class="review-logo">Jonas Mikolayunas</a>
+        <span class="review-status">Design Review</span>
+      </div>
+    </header>
+
+    <!-- Main Review Content -->
+    <main class="review-main">
+      <!-- Project Title Section -->
+      <section class="review-intro section-padded">
+        <div class="section-container section-container--narrow">
+          <p class="review-meta fade-in-scroll">Iteration 3 · January 2026</p>
+          <h1 class="review-title fade-in-scroll">
+            <span class="review-title-line">Mt. Mansfield</span>
+          </h1>
+        </div>
+      </section>
+
+      <!-- 3D Model Viewer -->
+      <section class="model-viewer-section section-padded">
+        <div class="section-container">
+          <!-- Viewing Instructions -->
+          <div class="viewer-instructions fade-in-scroll">
+            <p class="text-meta">Interactive 3D Model</p>
+            <p class="text-body">
+              Click and drag to rotate · Scroll to zoom · Right-click drag to pan
+            </p>
+          </div>
+
+          <!-- The 3D Viewer Container -->
+          <div class="model-viewer-container fade-in-scroll">
+            <div class="viewer-stage">
+              <canvas id="viewer-canvas"></canvas>
+
+              <!-- Loading Indicator -->
+              <div class="loading-indicator" id="loading-indicator">
+                <p>Loading your design...</p>
+              </div>
+
+              <!-- View Controls (4 buttons INSIDE viewer window) -->
+              <div class="viewer-controls">
+                <button class="view-preset" data-view="top">Top View</button>
+                <button class="view-preset" data-view="angle">Angle View</button>
+                <button class="view-preset" data-view="side">Side View</button>
+                <button class="view-reset">Reset View</button>
+              </div>
+
+              <!-- Season Toggle (inside viewer window) -->
+              <div class="viewer-season-toggle">
+                <span class="season-label">Winter</span>
+                <label class="switch" aria-label="Toggle season">
+                  <input id="season-toggle" type="checkbox" checked />
+                  <span class="slider-switch"></span>
+                </label>
+                <span class="season-label">Summer</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lighting Controls -->
+          <div class="lighting-controls">
+            <!-- Sun Position Slider -->
+            <div class="light-control">
+              <span class="light-label-text">Sun Position</span>
+              <input
+                type="range"
+                id="sun-position-slider"
+                class="light-slider"
+                min="0"
+                max="100"
+                value="50"
+                step="1">
+              <span class="light-value" id="sun-position-value">Noon</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="review-footer">
+      <div class="review-footer-container">
+        <p class="footer-copyright">© 2026 Jonas Mikolayunas · Client Review</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/viewer-auth.js"></script>
+  <script type="module" src="js/viewer-scripts.js"></script>
+</body>
+</html>

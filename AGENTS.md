@@ -1,48 +1,12 @@
 # AGENTS.md — Jonas Mikolayunas Website
 
-Before changing code, read:
-- PROJECT_CONTEXT.md
-- CLAUDE.md
-- The relevant HTML/CSS/JS files for the task
+Primary project guidance lives in CLAUDE.md.
 
-This is a static HTML/CSS/JS artist website. No frameworks, no build tools, no npm app dependencies.
+Before making changes:
+1. Read CLAUDE.md.
+2. Read PROJECT_CONTEXT.md for current ChatGPT project decisions.
+3. Read only the relevant HTML/CSS/JS files for the task.
 
-Use the current split CSS architecture:
-- css/global.css
-- css/index.css
-- css/gallery.css
-- css/piece.css
-- css/process.css
-- css/commission.css
-- css/contact.css
-- css/about.css
-- css/collectors.css
-- css/viewer.css
-- css/agreement.css
+Follow CLAUDE.md unless the user explicitly says otherwise.
 
-Brand:
-- Artist name: Jonas Mikolayunas
-- Primary domain: mikolayunas.com
-- Email: jonas@mikolayunas.com
-- Instagram: @jonasmikolayunas
-- Never use Bonas Studio unless explicitly working on legacy replacement.
-
-Tone:
-- Unhurried, precise, materially grounded.
-- Avoid salesy language.
-- Use “commission,” “piece,” “studio,” and “collector.”
-- Avoid “product,” “order,” “shop,” “beautiful,” “stunning,” “amazing,” and overt “luxury” language.
-
-Coding rules:
-- Keep HTML/CSS/JS simple and static.
-- Use existing CSS tokens from global.css.
-- Keep mobile-first CSS.
-- Prefer min-width breakpoints: 768px, 1024px, 1440px.
-- Do not introduce frameworks or build steps.
-- Preserve responsive image srcset/sizes patterns.
-- Null-check JavaScript DOM queries.
-- Do not rewrite large files unnecessarily.
-
-When asked for copy changes:
-- Preserve the existing contemplative gallery tone.
-- Keep artist notes specific to the piece, not generic brand messaging.
+Do not duplicate or override CLAUDE.md here. This file exists so Codex and other OpenAI coding agents know where the real project instructions live.
