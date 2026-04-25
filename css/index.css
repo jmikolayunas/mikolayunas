@@ -540,6 +540,14 @@
   aspect-ratio: 5 / 4;
 }
 
+.process-teaser .section-title {
+  margin-bottom: var(--space-5);
+}
+
+.process-teaser .split-content .btn {
+  margin-top: var(--space-5);
+}
+
 /* ============================================
    GEOTEASER SLIDER — 2-image diagonal reveal
    ============================================ */
