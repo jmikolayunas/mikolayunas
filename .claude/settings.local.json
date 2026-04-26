@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude doctor *)",
+      "Bash(node -e ' *)",
+      "Read(//c/Users/DELL/AppData/Roaming/Code/User/**)"
+    ]
+  },
+  "projectId": "019b9db3-875f-70fc-bccb-5b64e5511eec"
+}

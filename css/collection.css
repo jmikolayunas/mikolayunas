@@ -29,7 +29,7 @@
   gap: var(--space-5);
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .collector-entry {
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
@@ -83,7 +83,7 @@
   justify-content: center;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1024px) {
   .collector-entry-content {
     padding-top: var(--space-3);
   }

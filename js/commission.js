@@ -34,38 +34,26 @@ if (commissionForm) {
     submitBtn.disabled = true;
     
     try {
-      // ============================================
-      // INTEGRATE WITH FORMSPREE OR YOUR BACKEND
-      // ============================================
-      // Sign up at formspree.io and replace YOUR_FORM_ID
-      // const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify(data)
-      // });
-      
-      // if (!response.ok) {
-      //   throw new Error('Form submission failed');
-      // }
-      
-      // ============================================
-      // TEMPORARY: Simulate success
-      // ============================================
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
+      const response = await fetch('https://formspree.io/f/xwvwwdnl', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
+
       // Show success message
       formSuccess.classList.add('show');
-      
+
       // Scroll to success message
       formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      
+
       // Reset form
       commissionForm.reset();
-      
-      // Log for debugging (remove in production)
-      console.log('Commission inquiry:', data);
       
     } catch (error) {
       // Show error message

@@ -8,7 +8,7 @@ const CONFIG = {
   // Password format: first initial + last name (lowercase, no spaces)
   // Example: "John Smith" = "jsmith"
   validPasswords: [
-    'bonas2026',
+    'jmikolayunas',
     // Add client passwords here, or set dynamically via URL parameter
     // Format: first initial + last name (lowercase) e.g. "jsmith"
   ]
@@ -445,7 +445,7 @@ function generatePDF(forEmail = false) {
   if (forEmail) {
     return doc.output('blob');
   } else {
-    const filename = `Bonas_Studio_Commission_Agreement_${data.clientName.replace(/\s+/g, '_')}.pdf`;
+    const filename = `Jonas_Mikolayunas_Commission_Agreement_${data.clientName.replace(/\s+/g, '_')}.pdf`;
     doc.save(filename);
   }
 }
