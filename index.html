@@ -100,7 +100,15 @@
           <article class="work-item fade-in-scroll" data-aspect="3-2">
             <a href="gallery.html#work-1" class="work-link">
               <div class="work-media">
-                <img src="images/maui/maui-recent-1600w.webp" alt="Maui topographic map" class="work-image" />
+                <img srcset="
+                    images/maui/maui-recent-480w.webp 480w,
+                    images/maui/maui-recent-800w.webp 800w,
+                    images/maui/maui-recent-1200w.webp 1200w,
+                    images/maui/maui-recent-1600w.webp 1600w
+                  "
+                  sizes="(min-width: 1024px) 750px, (min-width: 768px) 600px, 500px"
+                  src="images/maui/maui-recent-800w.webp"
+                  alt="Maui topographic map" class="work-image" />
               </div>
               <div class="work-info">
                 <h3 class="work-title">The Valley Isle</h3>
@@ -113,7 +121,15 @@
           <article class="work-item fade-in-scroll" data-aspect="1-1">
             <a href="gallery.html#work-3" class="work-link">
               <div class="work-media">
-                <img src="images/fells/fells-recent-1600w.webp" alt="Middlesex Fells Reservation" class="work-image" />
+                <img srcset="
+                    images/fells/fells-recent-480w.webp 480w,
+                    images/fells/fells-recent-800w.webp 800w,
+                    images/fells/fells-recent-1200w.webp 1200w,
+                    images/fells/fells-recent-1600w.webp 1600w
+                  "
+                  sizes="(min-width: 1024px) 750px, (min-width: 768px) 600px, 500px"
+                  src="images/fells/fells-recent-800w.webp"
+                  alt="Middlesex Fells Reservation" class="work-image" />
               </div>
               <div class="work-info">
                 <h3 class="work-title">Middlesex Fells Reservation</h3>
