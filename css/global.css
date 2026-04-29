@@ -293,6 +293,8 @@ ul {
   border: none;
   cursor: pointer;
   padding: var(--space-1);
+  position: relative;
+  z-index: 201;
 }
 
 .nav-toggle-icon,
@@ -322,6 +324,42 @@ ul {
 
 .nav-toggle-icon::after {
   bottom: -8px;
+}
+
+/* Mobile nav open state */
+.site-nav.is-active {
+  display: flex;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--color-charcoal);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-nav.is-active .nav-list {
+  flex-direction: column;
+  gap: var(--space-5);
+  text-align: center;
+}
+
+.site-nav.is-active .nav-link {
+  font-size: var(--text-lg);
+}
+
+.nav-toggle.is-active .nav-toggle-icon {
+  background: transparent;
+}
+
+.nav-toggle.is-active .nav-toggle-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.nav-toggle.is-active .nav-toggle-icon::after {
+  transform: rotate(-45deg);
+  bottom: 0;
 }
 
 /* Desktop Navigation */
