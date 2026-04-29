@@ -293,8 +293,6 @@ ul {
   border: none;
   cursor: pointer;
   padding: var(--space-1);
-  position: relative;
-  z-index: 201;
 }
 
 .nav-toggle-icon,
@@ -331,7 +329,7 @@ ul {
   display: flex;
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 999;
   background: var(--color-charcoal);
   flex-direction: column;
   align-items: center;

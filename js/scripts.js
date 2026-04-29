@@ -136,17 +136,29 @@ document.addEventListener('DOMContentLoaded', initSite);
 
 const navToggle = document.querySelector('.nav-toggle');
 const siteNav = document.querySelector('.site-nav');
+const headerContainer = document.querySelector('.header-container');
 const body = document.body;
+
+function closeNav() {
+  siteNav.classList.remove('is-active');
+  navToggle.classList.remove('is-active');
+  // Return nav to header so desktop layout stays intact
+  headerContainer.insertBefore(siteNav, navToggle);
+  body.style.overflow = '';
+}
 
 if (navToggle && siteNav) {
   navToggle.addEventListener('click', () => {
     const isActive = siteNav.classList.toggle('is-active');
     navToggle.classList.toggle('is-active');
 
-    // Prevent scroll when mobile menu is open
     if (isActive) {
+      // Move nav to body level — escapes site-header's backdrop-filter
+      // stacking context so position:fixed covers the full viewport
+      document.body.appendChild(siteNav);
       body.style.overflow = 'hidden';
     } else {
+      headerContainer.insertBefore(siteNav, navToggle);
       body.style.overflow = '';
     }
   });
@@ -154,11 +166,7 @@ if (navToggle && siteNav) {
   // Close menu when clicking nav links
   const navLinks = siteNav.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      siteNav.classList.remove('is-active');
-      navToggle.classList.remove('is-active');
-      body.style.overflow = '';
-    });
+    link.addEventListener('click', closeNav);
   });
 }
 
