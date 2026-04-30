@@ -19,3 +19,15 @@ Misc:
 /autofix-pr                   Monitor and autofix any issues with the current PR
 
 
+Usage:
+/usage: Displays your current session cost, token consumption, and remaining plan limits.
+/context: Provides a visual breakdown of your current context window usage as a color-coded grid and identifies which files are consuming the most space.
+/stats: Shows your all-time (lifetime) token usage for the CLI tool.
+
+
+
+
+
+
+
+

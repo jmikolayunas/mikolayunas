@@ -139,6 +139,30 @@
   }
 }
 
+/* INTENTIONAL: force all four filter buttons onto one line
+   at mobile. flex-wrap: nowrap is required — without it
+   buttons spill to a second row. Reduced padding and gap
+   create sufficient room on a 375px screen.
+   Do not change flex-wrap: nowrap to wrap.
+   Do not increase padding or gap values at mobile. */
+@media (max-width: 767px) {
+  .filter-bar {
+    padding: var(--space-4) var(--space-2);
+  }
+
+  .filter-controls {
+    flex-wrap: nowrap;
+    gap: var(--space-1);
+    width: 100%;
+  }
+
+  .filter-btn {
+    padding: var(--space-2);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+}
+
 @media (min-width: 768px) {
   .filter-select-wrapper {
     display: none;

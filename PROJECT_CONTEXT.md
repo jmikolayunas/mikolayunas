@@ -2,9 +2,8 @@
 
 Last updated: April 2026
 
-This file is the authoritative reference for the Claude Code CLI and
-all AI coding agents working on this project. Where this file conflicts
-with CLAUDE.md, this file takes precedence.
+This file is the authoritative reference for the Claude Code CLI.
+Where this file conflicts with CLAUDE.md, this file takes precedence.
 
 ---
 
@@ -14,8 +13,9 @@ CLAUDE.md contains outdated information. Apply these corrections:
 
 - CSS is NOT a single styles.css file. All CSS lives in the css/
   subdirectory. Do not reference styles.css — it does not exist.
-- Piece pages are in the pieces/ subdirectory as pieces/block.html,
-  pieces/nantucket.html, etc. Do not use a pieces_ root-level prefix.
+- Piece pages are NOT at pieces/block.html or pieces/{name}.html.
+  They are at the project root as pieces_nantucket.html, pieces_maui.html,
+  etc. Always use the pieces_ prefix at root level.
 - max-width media queries ARE used in this project for mobile overrides
   (specifically @media (max-width: 767px)). Do not remove them.
 - Gallery item aspect ratio classes use data-aspect attribute
@@ -35,7 +35,7 @@ New England.
 
 ## Current site structure
 
-### Core pages (all in project root)
+### Core pages (all at project root)
 - index.html
 - gallery.html
 - process.html
@@ -48,17 +48,17 @@ New England.
 - viewer-auth.html
 - process-viewer.html
 
-### Piece pages (all in pieces/ subdirectory)
-- pieces/block.html
-- pieces/bromley.html
-- pieces/cannon.html
-- pieces/capeann.html
-- pieces/fells.html
-- pieces/highland.html
-- pieces/mahoosuc.html
-- pieces/mansfield.html
-- pieces/maui.html
-- pieces/nantucket.html
+### Piece pages (all at project root, prefixed pieces_)
+- pieces_block.html
+- pieces_bromley.html
+- pieces_cannon.html
+- pieces_capeann.html
+- pieces_fells.html
+- pieces_highland.html
+- pieces_mahoosuc.html
+- pieces_mansfield.html
+- pieces_maui.html
+- pieces_nantucket.html
 
 ### CSS files (all in css/ subdirectory)
 - css/global.css — design system, nav, header, footer, buttons, shared layout
@@ -75,7 +75,7 @@ New England.
 
 ### JS files (all in js/ subdirectory)
 - js/scripts.js — global nav, scroll, fade-ins
-- js/gallery.js — filtering, lightbox, aspect ratio
+- js/gallery.js — filtering, lightbox
 - js/process.js — process page scrollytelling
 - js/commission.js — form validation
 - js/agreement.js — signature and PDF
@@ -141,26 +141,26 @@ exists in css/global.css and css/index.css. Do not remove it.
 - Mobile uses display: flex; flex-direction: column; align-items: center
 - .gallery-section.section-padded and .gallery-section .section-container
   both have padding-inline: 0 on mobile
-- Gallery items: width: 100%; max-width: 300px — do NOT increase max-width
-  beyond container width or centering breaks
+- Gallery items: width: 100%; max-width: 300px
 - Gallery item media: aspect-ratio: unset; height: 260px on mobile
 - .gallery-section has overflow-x: hidden
+- Mobile filter: single <select> dropdown replaces button row
+  (button row hidden at max-width: 767px, select hidden at min-width: 768px)
 
-### Piece page (css/piece.css)
+### Piece pages (css/piece.css)
 - .details-specs is flex-wrap: wrap at mobile, nowrap at min-width: 768px
 - .piece-hero-inner is display: block; text-align: center at mobile
 - .piece-hero-content is text-align: center at mobile
 - Desktop left-aligned layout restored at min-width: 768px
 - .back-to-gallery is display: none at mobile; restored at min-width: 768px
 - .piece-bottom-nav appears on mobile only; hidden at min-width: 768px
-- Gallery detail images: padding: 0 on .gallery-images (intentional)
-- First gallery image uses .gallery-image-wrapper--hero class for
-  full-bleed treatment at mobile
+- .gallery-images padding: 0 (intentional — parent provides horizontal spacing)
+- First gallery image uses .gallery-image-wrapper--hero for full-bleed mobile
 
 ### Piece bottom nav
 - Sits inside the dark .piece-artists-note section as the final element
 - Gallery White text at 0.45 opacity, brass on hover
-- No border — space alone creates separation from content above
+- No border — space alone separates from content above
 - Circular sequence newest to oldest:
   Maui → Fells → Highland → Cape Ann → Cannon → Block →
   Mahoosuc → Bromley → Mansfield → Nantucket → (wraps to Maui)
@@ -170,18 +170,33 @@ exists in css/global.css and css/index.css. Do not remove it.
 - .footer-nav-list align-items: center at mobile
 - .footer-social justify-content: center at mobile
 - Desktop restores left-aligned layout at min-width: 768px
-- .footer-logo wraps an <a class="footer-logo-link" href="index.html">
+- .footer-logo wraps <a class="footer-logo-link" href="index.html">
   on main pages and href="../index.html" on piece pages
-- .footer-logo-link styles in css/global.css: color inherit, no underline,
-  brass hover
+- .footer-logo-link in css/global.css: color inherit, no underline, brass hover
+
+### Process page (css/process.css)
+- .stage-number, .stage-title, .stage-subtitle centered at mobile
+- .stage-number needs display: block at mobile for text-align: center to work
+- Body text and bullet lists remain left-aligned
+
+### Commission page (css/commission.css)
+- .pricing-statement, .pricing-details, .pricing-note centered at mobile
+- .form-section-title centered at mobile
+- .expect-title centered at mobile
+- Pricing tiers 1–3 restructured: "from $X,XXX" on its own line below
+  the tier name and dimensions
+
+### Collection page (css/collection.css)
+- .collector-entry-caption, .collector-label, .collector-attribution,
+  .collector-closing-text centered at mobile
+- .collector-quote stays left-aligned (long-form text)
+
+### Contact page (css/contact.css)
+- .contact-response centered at mobile
 
 ---
 
 ## Voice and positioning
-
-The work should not feel like generic "custom topo maps."
-It should read as sculptural, story-based, place-based artwork using
-terrain, material, and craft to hold memory.
 
 Use: commission, piece, studio, collector, artist note, place, terrain,
 relief, material, story
