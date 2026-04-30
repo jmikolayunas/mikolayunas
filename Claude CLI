@@ -1,0 +1,21 @@
+Claude CLI
+
+Login:
+cd C:\website\mikolayunas
+claude
+
+
+Efforts:
+/effort medium
+/effort high
+
+
+Misc:
+/update-config                Use this skill to configure the Claude Code harness via settings.json. Automated behaviors ("from now      
+                              on when X", "each time X", "whenever X", "before/after X") require hooks configured in settings.json -…
+/add-dir                      Add a new working directory
+/advisor                      Configure the Advisor Tool to consult a stronger model for guidance at key moments during a task
+/agents                       Manage agent configurations
+/autofix-pr                   Monitor and autofix any issues with the current PR
+
+

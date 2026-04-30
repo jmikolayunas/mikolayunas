@@ -14,9 +14,8 @@ CLAUDE.md contains outdated information. Apply these corrections:
 
 - CSS is NOT a single styles.css file. All CSS lives in the css/
   subdirectory. Do not reference styles.css — it does not exist.
-- Piece pages are NOT at pieces/block.html or pieces/{name}.html.
-  They are at the project root as pieces_nantucket.html, pieces_maui.html,
-  etc. Always use the pieces_ prefix at root level.
+- Piece pages are in the pieces/ subdirectory as pieces/block.html,
+  pieces/nantucket.html, etc. Do not use a pieces_ root-level prefix.
 - max-width media queries ARE used in this project for mobile overrides
   (specifically @media (max-width: 767px)). Do not remove them.
 - Gallery item aspect ratio classes use data-aspect attribute
@@ -49,17 +48,17 @@ New England.
 - viewer-auth.html
 - process-viewer.html
 
-### Piece pages (all in project root, prefixed pieces_)
-- pieces_block.html
-- pieces_bromley.html
-- pieces_cannon.html
-- pieces_capeann.html
-- pieces_fells.html
-- pieces_highland.html
-- pieces_mahoosuc.html
-- pieces_mansfield.html
-- pieces_maui.html
-- pieces_nantucket.html
+### Piece pages (all in pieces/ subdirectory)
+- pieces/block.html
+- pieces/bromley.html
+- pieces/cannon.html
+- pieces/capeann.html
+- pieces/fells.html
+- pieces/highland.html
+- pieces/mahoosuc.html
+- pieces/mansfield.html
+- pieces/maui.html
+- pieces/nantucket.html
 
 ### CSS files (all in css/ subdirectory)
 - css/global.css — design system, nav, header, footer, buttons, shared layout
