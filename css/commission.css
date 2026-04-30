@@ -279,6 +279,26 @@
   margin: 0;
 }
 
+/* INTENTIONAL: mobile centering for pricing box content,
+   form section titles, and What to Expect titles.
+   Body text, form labels, and form inputs stay left-aligned.
+   Do not remove text-align: center from these rules. */
+@media (max-width: 767px) {
+  .pricing-statement,
+  .pricing-details,
+  .pricing-note {
+    text-align: center;
+  }
+
+  .form-section-title {
+    text-align: center;
+  }
+
+  .expect-title {
+    text-align: center;
+  }
+}
+
 /* Desktop Enhancements */
 @media (min-width: 768px) {
   .timeline-step {

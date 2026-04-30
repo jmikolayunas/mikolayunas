@@ -687,6 +687,10 @@ ul {
   .philosophy.section-padded {
     padding-top: clamp(5rem, 10vw, 8rem);
   }
+
+  .cta-title {
+    font-size: var(--text-xl);
+  }
 }
 
 /* ============================================
@@ -706,12 +710,18 @@ ul {
   grid-template-columns: 1fr;
   gap: var(--space-5);
   position: relative;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .footer-container {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-6);
+    text-align: left;
+  }
+
+  .footer-nav-list {
+    align-items: flex-start;
   }
 
   .footer-social {

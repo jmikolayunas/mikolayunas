@@ -117,3 +117,9 @@ a.contact-channel-value:hover {
   font-style: italic;
   margin: 0;
 }
+
+@media (max-width: 767px) {
+  .contact-response {
+    text-align: center;
+  }
+}

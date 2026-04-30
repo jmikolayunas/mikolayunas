@@ -240,6 +240,23 @@
   font-weight: var(--weight-bold);
 }
 
+/* INTENTIONAL: center stage number, title, and subtitle
+   on mobile only. Body text and bullet lists stay left-aligned.
+   display: block on .stage-number is required — without it
+   text-align: center has no effect on inline-block elements.
+   Do not remove display: block or text-align: center. */
+@media (max-width: 767px) {
+  .stage-number {
+    display: block;
+    text-align: center;
+  }
+
+  .stage-title,
+  .stage-subtitle {
+    text-align: center;
+  }
+}
+
 /* Alternate layout for odd stages */
 @media (min-width: 1024px) {
   .process-stage:nth-child(even) {
