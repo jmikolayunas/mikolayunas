@@ -49,7 +49,7 @@
   margin: 0;
   /* Box-shadow removed - interferes with transparent PNG/WebP backgrounds */
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(10px);
   animation: fadeInUp 1.8s ease 0.2s forwards;
 }
 
@@ -208,7 +208,7 @@
   position: relative;
   width: 100%;
   opacity: 0;
-  transform: translateY(40px);
+  transform: translateY(20px);
   transition: opacity 1.8s ease, transform 1.8s ease;
 }
 

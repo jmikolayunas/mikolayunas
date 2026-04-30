@@ -444,6 +444,11 @@
   margin-top: 0.5rem;
 }
 
+/* Restore home-page fade-in-scroll travel distance (global halved for other pages) */
+.fade-in-scroll {
+  transform: translateY(60px);
+}
+
 /* Luxurious rise animation for images */
 .featured-work .work-item.fade-in-scroll {
   opacity: 0;
