@@ -70,15 +70,20 @@
 @media (min-width: 768px) {
   .hero-content {
     padding: var(--space-4);
+  }
+
+  .hero-image {
+    object-position: center calc(60% + 40px);
+  }
+}
+
+@media (min-width: 768px) and (min-height: 500px) {
+  .hero-content {
     transform: translateY(-80px);
   }
 
   .hero-heading {
     transform: translate(-130px, -170px);
-  }
-
-  .hero-image {
-    object-position: center calc(60% + 40px);
   }
 }
 
@@ -113,6 +118,11 @@
   .hero-subtitle {
     font-size: var(--text-lg);
     max-width: 600px;
+  }
+}
+
+@media (min-width: 768px) and (min-height: 500px) {
+  .hero-subtitle {
     left: -130px;
     margin: calc(var(--space-2) + 165px) 0 0;
   }
@@ -633,6 +643,53 @@
   pointer-events: none;
   transition: opacity 0.6s ease;
   white-space: nowrap;
+}
+
+/* ============================================
+   LANDSCAPE PHONE PROTECTION
+   Fires when viewport is short (≤ 500px tall)
+   and in landscape orientation.
+   Prevents hero and sections from clipping or
+   feeling cramped on a rotated phone.
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding-block: 5rem 3rem;
+  }
+
+  .hero-content {
+    transform: none;
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .hero-heading {
+    transform: none;
+  }
+
+  .hero-subtitle {
+    left: 0;
+    margin: var(--space-1) 0 0;
+  }
+
+  .hero-title {
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+    margin: var(--space-1) 0 var(--space-2);
+  }
+
+  .hero-tagline {
+    margin: 0 0 var(--space-1);
+  }
+
+  .hero-scroll-indicator {
+    display: none;
+  }
+
+  .philosophy.section-padded,
+  .featured-work.section-padded {
+    padding-top: clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
 }
 
 

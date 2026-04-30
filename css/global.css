@@ -1010,3 +1010,32 @@ ul {
   font-style: italic;
   opacity: 0.8;
 }
+
+/* ============================================
+   LANDSCAPE PHONE PROTECTION
+   Fires when viewport is short (≤ 500px tall)
+   and in landscape orientation.
+   Prevents section padding, nav overlay, and
+   shared layout from clipping on a rotated phone.
+   ============================================ */
+@media (max-height: 500px) and (orientation: landscape) {
+  .section-padded {
+    padding-block: clamp(3rem, 6vw, 5rem);
+  }
+
+  .site-nav.is-active {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    padding-top: 4.5rem;
+    padding-bottom: 2rem;
+  }
+
+  .site-nav.is-active .nav-link {
+    font-size: var(--text-base);
+  }
+
+  .site-nav.is-active .nav-list {
+    gap: var(--space-2);
+  }
+}
