@@ -1,6 +1,6 @@
 # PROJECT_CONTEXT.md — Current Site State
 
-Last updated: April 2026
+Last updated: April 2026 poo
 
 This file is the authoritative reference for the Claude Code CLI and
 all AI coding agents working on this project. Where this file conflicts

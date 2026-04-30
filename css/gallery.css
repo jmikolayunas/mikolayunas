@@ -98,7 +98,52 @@
   border-bottom-color: var(--color-brass);
 }
 
+/* INTENTIONAL: mobile shows dropdown, desktop shows button row.
+   Do not change these display values — they are the mechanism
+   that prevents both controls showing simultaneously.
+   filter-select-wrapper is display: none at tablet and up.
+   filter-controls is display: none at mobile. */
+@media (max-width: 767px) {
+  .filter-controls {
+    display: none;
+  }
+
+  .filter-select-wrapper {
+    display: block;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .filter-select {
+    width: 100%;
+    font-family: var(--font-secondary);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-primary);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-brass);
+    padding: var(--space-2) var(--space-1);
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .filter-select:focus {
+    outline: none;
+    border-bottom-color: var(--color-brass);
+    background: transparent;
+  }
+}
+
 @media (min-width: 768px) {
+  .filter-select-wrapper {
+    display: none;
+  }
+
   .filter-controls {
     gap: var(--space-3);
   }

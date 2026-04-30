@@ -80,42 +80,68 @@ function initGalleryFilter() {
       filterButtons.forEach(btn => btn.classList.remove('active'));
       button.classList.add('active');
 
-      // STEP 1: Fade out ALL items (regardless of filter match)
-      galleryItems.forEach(item => {
-        item.classList.remove('is-visible');
-      });
+      // Sync dropdown to match button state
+      const filterSelect = document.getElementById('filter-select');
+      if (filterSelect) filterSelect.value = filterValue;
 
-      // STEP 2: After fade-out completes, update hidden states
-      setTimeout(() => {
-        galleryItems.forEach(item => {
-          const itemCategory = item.dataset.category;
-
-          if (filterValue !== 'all' && itemCategory !== filterValue) {
-            item.classList.add('hidden');
-          } else {
-            item.classList.remove('hidden');
-          }
-        });
-
-        // STEP 3: Stagger fade-in of ALL visible items
-        setTimeout(() => {
-          let visibleIndex = 0;
-
-          galleryItems.forEach(item => {
-            const itemCategory = item.dataset.category;
-
-            if (filterValue === 'all' || itemCategory === filterValue) {
-              setTimeout(() => {
-                item.classList.add('is-visible');
-              }, visibleIndex * 80);
-
-              visibleIndex++;
-            }
-          });
-        }, 50);
-      }, 1500); // Wait for fade-out transition to complete
+      applyFilter(filterValue, galleryItems);
     });
   });
+
+  // Mobile dropdown listener — mirrors button filter logic exactly
+  const filterSelect = document.getElementById('filter-select');
+  if (filterSelect) {
+    filterSelect.addEventListener('change', () => {
+      const filterValue = filterSelect.value;
+
+      // Sync buttons to match dropdown state
+      filterButtons.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filterValue);
+      });
+
+      applyFilter(filterValue, galleryItems);
+    });
+  }
+}
+
+// INTENTIONAL: extracted shared filter logic so both button and
+// select listeners call the same function. Do not inline this
+// back into the button listener or remove it.
+function applyFilter(filterValue, galleryItems) {
+  // STEP 1: Fade out ALL items
+  galleryItems.forEach(item => {
+    item.classList.remove('is-visible');
+  });
+
+  // STEP 2: After fade-out, update hidden states
+  setTimeout(() => {
+    galleryItems.forEach(item => {
+      const itemCategory = item.dataset.category;
+
+      if (filterValue !== 'all' && itemCategory !== filterValue) {
+        item.classList.add('hidden');
+      } else {
+        item.classList.remove('hidden');
+      }
+    });
+
+    // STEP 3: Stagger fade-in of visible items
+    setTimeout(() => {
+      let visibleIndex = 0;
+
+      galleryItems.forEach(item => {
+        const itemCategory = item.dataset.category;
+
+        if (filterValue === 'all' || itemCategory === filterValue) {
+          setTimeout(() => {
+            item.classList.add('is-visible');
+          }, visibleIndex * 80);
+
+          visibleIndex++;
+        }
+      });
+    }, 50);
+  }, 1500);
 }
 
 // ============================================

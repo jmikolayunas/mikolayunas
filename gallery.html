@@ -52,11 +52,21 @@
 
     <!-- GALLERY FILTERS -->
     <div class="filter-bar fade-in-scroll" aria-label="Filter">
+      <!-- Desktop: button row (hidden on mobile) -->
       <div class="filter-controls">
         <button class="filter-btn active" data-filter="all" type="button">All Works</button>
         <button class="filter-btn" data-filter="alpine" type="button">Alpine</button>
         <button class="filter-btn" data-filter="coastal" type="button">Coastal</button>
         <button class="filter-btn" data-filter="urban" type="button">Urban</button>
+      </div>
+      <!-- Mobile: single dropdown (hidden on tablet and up) -->
+      <div class="filter-select-wrapper">
+        <select class="filter-select form-select" id="filter-select" aria-label="Filter works by series">
+          <option value="all" selected>All Works</option>
+          <option value="alpine">Alpine</option>
+          <option value="coastal">Coastal</option>
+          <option value="urban">Urban</option>
+        </select>
       </div>
     </div>
 
