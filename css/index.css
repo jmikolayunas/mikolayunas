@@ -9,6 +9,12 @@
   padding-bottom: clamp(5rem, 10vw, 8rem);
 }
 
+@media (max-width: 767px) {
+  .philosophy.section-padded {
+    padding-top: clamp(5rem, 10vw, 8rem);
+  }
+}
+
 .featured-work.section-padded {
   padding-top: clamp(7.5rem, 12.5vw, 12.5rem);
   padding-bottom: calc(clamp(6rem, 10vw, 10rem) + var(--space-6));
