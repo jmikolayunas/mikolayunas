@@ -108,7 +108,7 @@
 
 .details-specs {
   display: flex;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   gap: 0;
   padding: var(--space-3) 0;
   font-family: var(--font-secondary);
@@ -376,6 +376,7 @@
 
   .details-specs {
     font-size: var(--text-xs);
+    flex-wrap: nowrap;
   }
 
   .detail-item::after {
