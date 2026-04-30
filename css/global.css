@@ -673,6 +673,22 @@ ul {
   margin: 0 0 var(--space-5);
 }
 
+.philosophy.section-padded {
+  padding-top: clamp(8rem, 14vw, 14rem);
+  padding-bottom: clamp(5rem, 10vw, 8rem);
+}
+
+/* INTENTIONAL: reduce top padding on mobile so the
+   transition from the 100vh hero into the philosophy
+   text does not feel like a dead zone.
+   Desktop spacing is preserved at min-width: 768px.
+   Do not remove this block or increase the mobile value. */
+@media (max-width: 767px) {
+  .philosophy.section-padded {
+    padding-top: clamp(5rem, 10vw, 8rem);
+  }
+}
+
 /* ============================================
    FOOTER
    ============================================ */
@@ -707,7 +723,6 @@ ul {
   font-family: var(--font-primary);
   font-size: var(--text-lg);
   margin: 0 0 var(--space-1);
-  text-align: center;
 }
 
 .footer-logo-link {
