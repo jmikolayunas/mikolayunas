@@ -2,43 +2,46 @@
 
 Last updated: April 2026
 
+This file is the authoritative reference for the Claude Code CLI and
+all AI coding agents working on this project. Where this file conflicts
+with CLAUDE.md, this file takes precedence.
+
 ---
 
-## CLAUDE.md OVERRIDES — read these first
+## CLAUDE.md OVERRIDES
 
-CLAUDE.md contains outdated information. Where it conflicts with this file,
-this file takes precedence.
+CLAUDE.md contains outdated information. Apply these corrections:
 
-- CSS is NOT a single styles.css file. It is split across css/global.css
-  and css/pages/ subdirectories (css_gallery.css, css_index.css, etc.).
-  Do not consolidate. Do not reference styles.css — it does not exist.
-- Piece pages are NOT at pieces/{name}.html. They are at the root level
-  as pieces_nantucket.html, pieces_maui.html, etc.
+- CSS is NOT a single styles.css file. All CSS lives in the css/
+  subdirectory. Do not reference styles.css — it does not exist.
+- Piece pages are NOT at pieces/block.html or pieces/{name}.html.
+  They are at the project root as pieces_nantucket.html, pieces_maui.html,
+  etc. Always use the pieces_ prefix at root level.
 - max-width media queries ARE used in this project for mobile overrides
-  (specifically @media (max-width: 767px)). The CLAUDE.md prohibition
-  is outdated. Do not remove them.
-- gallery-item aspect ratio classes are set via data-aspect attribute
-  (data-aspect="landscape" / "square" / "portrait"), not BEM modifier
-  classes. Do not add --landscape / --square / --portrait class variants.
+  (specifically @media (max-width: 767px)). Do not remove them.
+- Gallery item aspect ratio classes use data-aspect attribute
+  (data-aspect="landscape" / "square" / "portrait"). Do not add
+  BEM modifier class variants.
 
 ---
 
 ## Current direction
 
 The site has rebranded from Bonas Studio to Jonas Mikolayunas.
-Positioning: artist-led, commission-based, contemplative, materially specific,
-story-based. Target audience: affluent collectors, primarily New England.
+Positioning: artist-led, commission-based, contemplative, materially
+specific, story-based. Target audience: affluent collectors, primarily
+New England.
 
 ---
 
 ## Current site structure
 
-Core pages (all in root):
+### Core pages (all in project root)
 - index.html
 - gallery.html
 - process.html
 - commission.html
-- collection.html (formerly collectors.html)
+- collection.html
 - about.html
 - contact.html
 - agreement.html
@@ -46,7 +49,7 @@ Core pages (all in root):
 - viewer-auth.html
 - process-viewer.html
 
-Piece pages (all in root, prefixed pieces_):
+### Piece pages (all in project root, prefixed pieces_)
 - pieces_block.html
 - pieces_bromley.html
 - pieces_cannon.html
@@ -58,7 +61,7 @@ Piece pages (all in root, prefixed pieces_):
 - pieces_maui.html
 - pieces_nantucket.html
 
-CSS (split files):
+### CSS files (all in css/ subdirectory)
 - css/global.css — design system, nav, header, footer, buttons, shared layout
 - css/index.css — home page only
 - css/gallery.css — gallery grid, filters, lightbox
@@ -71,7 +74,7 @@ CSS (split files):
 - css/agreement.css — agreement page
 - css/viewer.css — 3D viewer
 
-JS:
+### JS files (all in js/ subdirectory)
 - js/scripts.js — global nav, scroll, fade-ins
 - js/gallery.js — filtering, lightbox, aspect ratio
 - js/process.js — process page scrollytelling
@@ -100,82 +103,76 @@ Always use tokens. Never hardcode hex values or pixel spacing.
 
 ## Breakpoints in use
 
-| Name      | Query                                          |
-|-----------|------------------------------------------------|
-| Mobile    | base (no query) — portrait phone first         |
-| Mobile lg | @media (max-width: 767px) — mobile overrides  |
-| Tablet    | @media (min-width: 768px)                     |
-| Desktop   | @media (min-width: 1024px)                    |
-| Wide      | @media (min-width: 1440px)                    |
+| Name      | Query                                               |
+|-----------|-----------------------------------------------------|
+| Mobile    | base (no query) — portrait phone first              |
+| Mobile lg | @media (max-width: 767px) — mobile-specific rules   |
+| Tablet    | @media (min-width: 768px)                           |
+| Desktop   | @media (min-width: 1024px)                          |
+| Wide      | @media (min-width: 1440px)                          |
 | Landscape | @media (max-height: 500px) and (orientation: landscape) |
 
 ---
 
 ## Mobile optimization — completed April 2026
 
-The following mobile fixes have been implemented. Do not revert them.
+The following mobile fixes are in place. Do not revert them.
 
 ### Strategy
-Primary target: portrait phone. Design carefully here.
-Secondary target: landscape phone. Protect against clipping, not redesign.
-The landscape protection query (@media (max-height: 500px) and
-(orientation: landscape)) exists in css/global.css and css/index.css.
-Do not remove it.
+Primary target: portrait phone. Landscape phone is a protection pass only.
+The landscape query (@media (max-height: 500px) and (orientation: landscape))
+exists in css/global.css and css/index.css. Do not remove it.
 
 ### Nav overlay (css/global.css)
 - .site-nav.is-active uses position: fixed; inset: 0 — full-screen overlay
 - Background: var(--color-charcoal)
-- .site-nav.is-active .nav-link color is var(--color-gallery-white) — NOT
-  inherited graphite. If this appears dark text on dark background, this
-  is the rule to check.
+- .site-nav.is-active .nav-link color is var(--color-gallery-white)
 - Nav is moved to <body> via JS when open to escape backdrop-filter
   stacking context on the header
-- Landscape protection reduces font-size and gap on nav links at low height
-
-### Header safe area (css/global.css)
-- .site-header has padding-top: env(safe-area-inset-top)
-- This clears the Dynamic Island and notch on all iPhones
-- Do not remove this rule
+- header has padding-top: env(safe-area-inset-top) for Dynamic Island
 
 ### Hero — home page (css/index.css)
 - Mobile base: .hero-content transform: none; .hero-heading transform: none
-- Desktop restore at @media (min-width: 768px) AND (min-height: 500px)
-  — the min-height guard prevents offset transforms from firing on
-  landscape phones where width exceeds 768px but height is short
-- .hero-image object-position: center 35% at mobile (favors upper teal
-  composition of Nantucket piece)
-- .hero-content has translateY(-10vh) at max-width: 767px to lift the
-  title to approximately 40% from top
-- Landscape protection: transforms zeroed, hero min-height auto,
-  scroll indicator hidden
+- Desktop transforms restored at @media (min-width: 768px) AND (min-height: 500px)
+- .hero-image object-position: center 35% at mobile
+- .hero-content has translateY(-10vh) at max-width: 767px
+- Landscape protection: transforms zeroed, hero min-height auto
 
 ### Gallery grid (css/gallery.css)
 - Mobile uses display: flex; flex-direction: column; align-items: center
-  — NOT display: grid. This is intentional for centering.
 - .gallery-section.section-padded and .gallery-section .section-container
-  both have padding-inline: 0 on mobile — the double padding from these
-  two wrappers was collapsing available width to ~294px, preventing
-  visible centering. All horizontal spacing is now controlled at the
-  gallery-grid level only.
-- Gallery items on mobile: width: 100%; max-width: 300px — the max-width
-  creates the centering gap that align-items: center acts on.
-  Do NOT change max-width to a value larger than the flex container
-  or centering will not be visible.
-- Gallery item media containers on mobile: aspect-ratio: unset;
-  height: 260px — uniform height across all aspect ratios so pieces
-  have equal visual mass while scrolling.
-- .gallery-section has overflow-x: hidden to contain drop shadows.
-- Base grid uses minmax(min(280px, 100%), 1fr) — the min() guard
-  prevents forced overflow on screens narrower than 280px.
+  both have padding-inline: 0 on mobile
+- Gallery items: width: 100%; max-width: 300px — do NOT increase max-width
+  beyond container width or centering breaks
+- Gallery item media: aspect-ratio: unset; height: 260px on mobile
+- .gallery-section has overflow-x: hidden
 
-### Piece page spec bar (css/piece.css)
-- .details-specs is flex-wrap: wrap at mobile
-- Restored to flex-wrap: nowrap at min-width: 768px
-- Prevents spec items from scrolling off-screen on narrow phones
+### Piece page (css/piece.css)
+- .details-specs is flex-wrap: wrap at mobile, nowrap at min-width: 768px
+- .piece-hero-inner is display: block; text-align: center at mobile
+- .piece-hero-content is text-align: center at mobile
+- Desktop left-aligned layout restored at min-width: 768px
+- .back-to-gallery is display: none at mobile; restored at min-width: 768px
+- .piece-bottom-nav appears on mobile only; hidden at min-width: 768px
+- Gallery detail images: padding: 0 on .gallery-images (intentional)
+- First gallery image uses .gallery-image-wrapper--hero class for
+  full-bleed treatment at mobile
 
-### Footer logo — home link (all HTML files)
-- .footer-logo now wraps an <a href="index.html" class="footer-logo-link">
-- Allows users to tap the name in the footer to return to the home page
+### Piece bottom nav
+- Sits inside the dark .piece-artists-note section as the final element
+- Gallery White text at 0.45 opacity, brass on hover
+- No border — space alone creates separation from content above
+- Circular sequence newest to oldest:
+  Maui → Fells → Highland → Cape Ann → Cannon → Block →
+  Mahoosuc → Bromley → Mansfield → Nantucket → (wraps to Maui)
+
+### Footer (css/global.css)
+- text-align: center on .footer-container at mobile
+- .footer-nav-list align-items: center at mobile
+- .footer-social justify-content: center at mobile
+- Desktop restores left-aligned layout at min-width: 768px
+- .footer-logo wraps an <a class="footer-logo-link" href="index.html">
+  on main pages and href="../index.html" on piece pages
 - .footer-logo-link styles in css/global.css: color inherit, no underline,
   brass hover
 
@@ -215,7 +212,7 @@ discussion, but not the center.
 
 ## Technical preferences
 
-- Split CSS files — do not consolidate
+- Split CSS in css/ subdirectory — do not consolidate
 - No frameworks, no npm, no build tools
 - ES6+ JS only — no jQuery
 - Formspree ID: xdappvry
