@@ -141,7 +141,7 @@
   max-width: 267px;
 }
 
-/* Mobile: uniform width and height — consistent visual mass across aspect ratios */
+/* Mobile: uniform width, height, and explicit centering */
 @media (max-width: 767px) {
   .gallery-grid {
     grid-template-columns: 1fr;
@@ -152,6 +152,7 @@
   .gallery-item[data-aspect="square"],
   .gallery-item[data-aspect="portrait"] {
     max-width: min(88vw, 340px);
+    margin-inline: auto;
   }
 
   .gallery-item[data-aspect="landscape"] .gallery-item-media,
