@@ -376,7 +376,6 @@
    ============================================================= */
 
 .back-to-gallery {
-  display: none;
   position: fixed;
   top: 70px;
   left: var(--space-3);
