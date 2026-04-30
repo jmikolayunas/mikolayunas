@@ -6,6 +6,12 @@
   padding-top: calc(var(--space-7) + 60px);
 }
 
+@media (max-width: 767px) {
+  .contact-main {
+    padding-top: 0;
+  }
+}
+
 .contact-hero {
   min-height: 60vh;
   display: flex;
@@ -14,8 +20,20 @@
   padding-bottom: var(--space-10);
 }
 
+@media (max-width: 767px) {
+  .contact-hero {
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: calc(var(--section-padding-y) * 2);
+  }
+}
+
 .contact-hero .section-container--narrow {
   width: 100%;
+}
+
+.contact-hero .page-title {
+  text-align: center;
 }
 
 /* Intro paragraph */
