@@ -697,12 +697,17 @@ ul {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-6);
   }
+
+  .footer-social {
+    justify-content: flex-start;
+  }
 }
 
 .footer-logo {
   font-family: var(--font-primary);
   font-size: var(--text-lg);
   margin: 0 0 var(--space-1);
+  text-align: center;
 }
 
 .footer-logo-link {
@@ -725,6 +730,7 @@ ul {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  align-items: center;
 }
 
 .footer-link {
@@ -744,6 +750,7 @@ ul {
   display: flex;
   gap: var(--space-2);
   align-items: center;
+  justify-content: center;
   font-family: var(--font-secondary);
   font-size: var(--text-xs);
   text-transform: uppercase;
