@@ -332,3 +332,44 @@ console.log('✓ Process scrollytelling scripts loaded');
     }, FADE_OUT_MS);
   }
 })();
+
+/* ============================================
+   STAGE EXPAND TOGGLE — mobile only
+   Toggles .is-expanded on .stage-text and
+   .is-expanded on the toggle button.
+   Runs on all screen sizes but the CSS only
+   shows the toggle at max-width: 767px so
+   desktop is unaffected.
+   ============================================ */
+function initStageExpandToggles() {
+  const toggles = document.querySelectorAll('.stage-expand-toggle');
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const targetId = toggle.getAttribute('aria-controls');
+      const stageText = document.getElementById(targetId);
+
+      if (!stageText) return;
+
+      const isExpanded = toggle.classList.contains('is-expanded');
+
+      if (isExpanded) {
+        toggle.classList.remove('is-expanded');
+        stageText.classList.remove('is-expanded');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.querySelector('.stage-expand-toggle__label').textContent = 'About this stage';
+      } else {
+        toggle.classList.add('is-expanded');
+        stageText.classList.add('is-expanded');
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.querySelector('.stage-expand-toggle__label').textContent = 'Close';
+      }
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initStageExpandToggles);
+} else {
+  initStageExpandToggles();
+}

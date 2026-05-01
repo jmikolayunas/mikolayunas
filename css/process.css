@@ -200,6 +200,34 @@
   margin-bottom: var(--space-5);
 }
 
+/* INTENTIONAL: hide stage body text on mobile behind
+   an expand toggle. Bullets remain visible at all times
+   as the structural anchor for each stage.
+   max-height: 0 with overflow: hidden and a transition
+   creates a smooth expand/collapse animation.
+   Do not change max-height: 0 to display: none —
+   display: none cannot be CSS-transitioned.
+   Do not remove overflow: hidden or the transition. */
+@media (max-width: 767px) {
+  .stage-text {
+    max-height: 0;
+    overflow: hidden;
+    margin-bottom: 0;
+    opacity: 0;
+    transition: max-height 0.5s ease, opacity 0.4s ease, margin-bottom 0.3s ease;
+  }
+
+  .stage-text.is-expanded {
+    /* INTENTIONAL: 2000px is a safe large value that exceeds
+       the tallest stage text block. Do not reduce this value
+       or Stage 04 (7 paragraphs) will clip mid-expansion.
+       The actual rendered height determines the visual result. */
+    max-height: 2000px;
+    opacity: 1;
+    margin-bottom: var(--space-5);
+  }
+}
+
 .stage-text p {
   font-family: var(--font-secondary);
   font-size: var(--text-base);
@@ -222,6 +250,57 @@
   gap: var(--space-2);
   padding-top: var(--space-4);
   border-top: 1px solid var(--color-border);
+}
+
+/* Stage expand toggle — mobile only */
+.stage-expand-toggle {
+  display: none;
+}
+
+/* INTENTIONAL: toggle appears on mobile only, below bullet list.
+   Uses brass color at reduced opacity matching the site's
+   secondary link treatment. display: none at min-width: 768px.
+   Do not show this element on desktop. */
+@media (max-width: 767px) {
+  .stage-expand-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    margin-top: var(--space-4);
+    font-family: var(--font-secondary);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-brass);
+    opacity: 0.7;
+    background: none;
+    border: none;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: opacity 0.3s ease, border-bottom-color 0.3s ease;
+  }
+
+  .stage-expand-toggle:hover {
+    opacity: 1;
+    border-bottom-color: var(--color-brass);
+  }
+
+  .stage-expand-toggle__arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-style: normal;
+  }
+
+  .stage-expand-toggle.is-expanded .stage-expand-toggle__arrow {
+    transform: rotate(180deg);
+  }
+}
+
+@media (min-width: 768px) {
+  .stage-expand-toggle {
+    display: none;
+  }
 }
 
 .stage-details li {
