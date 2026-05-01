@@ -3,21 +3,9 @@
    Founder Story, Philosophy, Glimpse, Values
    ============================================ */
 
-/* About Main */
-.about-main {
-  padding-top: calc(var(--space-7) + 60px); /* Account for fixed header */
-}
-
-@media (max-width: 767px) {
-  .about-main {
-    padding-top: 0;
-  }
-}
-
 /* About Header */
 .about-header {
   text-align: center;
-  padding-top: var(--space-8);
   padding-bottom: var(--space-6);
 }
 

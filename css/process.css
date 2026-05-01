@@ -3,21 +3,9 @@
    Scrollytelling Journey and Summary Timeline
    ============================================ */
 
-/* Process Main */
-.process-main {
-  padding-top: calc(var(--space-7) + 60px);
-}
-
-@media (max-width: 767px) {
-  .process-main {
-    padding-top: 0;
-  }
-}
-
 /* Process Header */
 .process-header {
   text-align: center;
-  padding-top: var(--space-8);
   padding-bottom: var(--space-6);
 }
 
