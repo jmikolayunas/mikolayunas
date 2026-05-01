@@ -159,53 +159,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { capture: true, passive: false });
 
     // Pinch-to-zoom for mobile.
-    // OrbitControls registers pointermove on domElement in bubble phase.
-    // Our capture-phase listener fires first at the target; stopImmediatePropagation()
-    // prevents OrbitControls' bubble-phase handler from running so it can't pan/dolly.
-    const activePointers = new Map();
+    // Disabling controls entirely when 2 fingers are down means OrbitControls cannot
+    // interfere at all — no event interception required. touchstart fires before the
+    // synthesised pointerdown, so controls.enabled = false is already set before
+    // OrbitControls sees the second finger's pointerdown event.
     let pinchStartDist = null;
 
-    renderer.domElement.addEventListener('pointerdown', function(e) {
-      if (e.pointerType !== 'touch') return;
-      activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (activePointers.size === 2) {
-        const pts = [...activePointers.values()];
-        const dx = pts[0].x - pts[1].x;
-        const dy = pts[0].y - pts[1].y;
+    renderer.domElement.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 2) {
+        controls.enabled = false;
+        const dx = e.touches[0].clientX - e.touches[1].clientX;
+        const dy = e.touches[0].clientY - e.touches[1].clientY;
         pinchStartDist = Math.sqrt(dx * dx + dy * dy);
       }
-    });
+    }, { passive: true });
 
-    renderer.domElement.addEventListener('pointermove', function(e) {
-      if (e.pointerType !== 'touch' || !activePointers.has(e.pointerId)) return;
-      activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-      if (activePointers.size !== 2 || pinchStartDist === null) return;
-
-      const pts = [...activePointers.values()];
-      const dx = pts[0].x - pts[1].x;
-      const dy = pts[0].y - pts[1].y;
+    renderer.domElement.addEventListener('touchmove', function(e) {
+      if (e.touches.length !== 2 || pinchStartDist === null) return;
+      e.preventDefault();
+      const dx = e.touches[0].clientX - e.touches[1].clientX;
+      const dy = e.touches[0].clientY - e.touches[1].clientY;
       const dist = Math.sqrt(dx * dx + dy * dy);
       const scale = pinchStartDist / dist;
       const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
       const currentDist = camera.position.distanceTo(controls.target);
       const newDist = THREE.MathUtils.clamp(currentDist * scale, controls.minDistance, controls.maxDistance);
       camera.position.copy(controls.target).addScaledVector(dir, newDist);
-      controls.update();
       pinchStartDist = dist;
+    }, { passive: false });
 
-      e.stopImmediatePropagation();
-    }, { capture: true });
+    renderer.domElement.addEventListener('touchend', function(e) {
+      if (e.touches.length < 2) {
+        controls.enabled = true;
+        pinchStartDist = null;
+      }
+    }, { passive: true });
 
-    renderer.domElement.addEventListener('pointerup', function(e) {
-      if (e.pointerType !== 'touch') return;
-      activePointers.delete(e.pointerId);
-      if (activePointers.size < 2) pinchStartDist = null;
-    });
-
-    renderer.domElement.addEventListener('pointercancel', function(e) {
-      activePointers.delete(e.pointerId);
-      if (activePointers.size < 2) pinchStartDist = null;
-    });
+    renderer.domElement.addEventListener('touchcancel', function() {
+      controls.enabled = true;
+      pinchStartDist = null;
+    }, { passive: true });
 
     const hemi = new THREE.HemisphereLight(0xffffff, 0x101010, SEASON.hemisphereIntensity);
     scene.add(hemi);
