@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="css/index.css">
   <link rel="preload" as="image" href="images/nantucket/nantucket-hero-crop-1800w.webp" media="(min-width: 1024px)">
   <link rel="preload" as="image" href="images/nantucket/nantucket-hero-crop-1200w.webp" media="(min-width: 768px) and (max-width: 1023px)">
-  <link rel="preload" as="image" href="images/nantucket/nantucket-hero-crop-800w.webp" media="(max-width: 767px)">
+  <link rel="preload" as="image" href="images/block/block-hero-crop-800w.webp" media="(max-width: 767px)">
 </head>
 
 <body class="site-body">
@@ -44,25 +44,35 @@
     <!-- HERO SECTION -->
     <section class="hero" id="hero">
       <div class="hero-media">
-        <img 
-          srcset="
-            images/nantucket/nantucket-hero-crop-800w.webp 800w,
-            images/nantucket/nantucket-hero-crop-1200w.webp 1200w,
-            images/nantucket/nantucket-hero-crop-1800w.webp 1800w,
-            images/nantucket/nantucket-hero-crop-2400w.webp 2400w
-          "
-          sizes="
-            (min-width: 1440px) 2400px,
-            (min-width: 1024px) 1800px,
-            (min-width: 768px) 1200px,
-            800px
-          "
-          src="images/nantucket/nantucket-hero-crop-1200w.webp"
-          alt="Custom topographic relief map artwork" 
-          class="hero-image"
-          loading="eager"
-          fetchpriority="high"
-        />
+        <picture>
+          <source
+            media="(max-width: 767px)"
+            srcset="
+              images/block/block-hero-crop-800w.webp 800w,
+              images/block/block-hero-crop-1200w.webp 1200w
+            "
+            sizes="100vw"
+          />
+          <img
+            srcset="
+              images/nantucket/nantucket-hero-crop-800w.webp 800w,
+              images/nantucket/nantucket-hero-crop-1200w.webp 1200w,
+              images/nantucket/nantucket-hero-crop-1800w.webp 1800w,
+              images/nantucket/nantucket-hero-crop-2400w.webp 2400w
+            "
+            sizes="
+              (min-width: 1440px) 2400px,
+              (min-width: 1024px) 1800px,
+              (min-width: 768px) 1200px,
+              800px
+            "
+            src="images/nantucket/nantucket-hero-crop-1200w.webp"
+            alt="Custom topographic relief map artwork"
+            class="hero-image"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </picture>
       </div>
       <div class="hero-content">
         <div class="hero-heading">

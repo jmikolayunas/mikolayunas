@@ -75,7 +75,7 @@
 
 @media (max-width: 767px) {
   .hero-content {
-    transform: translateY(-10vh);
+    transform: translateY(-30vh);
   }
 }
 
@@ -91,7 +91,7 @@
 
 @media (min-width: 768px) and (min-height: 500px) {
   .hero-content {
-    transform: translateY(-80px);
+    transform: translateY(0);
   }
 
   .hero-heading {
