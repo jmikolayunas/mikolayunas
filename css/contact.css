@@ -2,21 +2,10 @@
    CONTACT PAGE
    ============================================ */
 
-.contact-main {
-  padding-top: calc(var(--space-7) + 60px);
-}
-
-@media (max-width: 767px) {
-  .contact-main {
-    padding-top: 0;
-  }
-}
-
 .contact-hero {
   min-height: 60vh;
   display: flex;
-  align-items: center;
-  padding-top: var(--space-10);
+  align-items: flex-start;
   padding-bottom: var(--space-10);
 }
 
@@ -32,8 +21,10 @@
   width: 100%;
 }
 
-.contact-hero .page-title {
-  text-align: center;
+@media (max-width: 767px) {
+  .contact-hero .page-title {
+    text-align: center;
+  }
 }
 
 /* Intro paragraph */

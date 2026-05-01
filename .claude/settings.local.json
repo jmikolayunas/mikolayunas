@@ -7,7 +7,8 @@
       "Bash(grep -n 'from \\\\$8,500' commission.html)",
       "Bash(grep -n 'from \\\\$12,500' commission.html)",
       "Bash(grep -n 'from \\\\$19,500' commission.html)",
-      "WebFetch(domain:unpkg.com)"
+      "WebFetch(domain:unpkg.com)",
+      "PowerShell(winget upgrade *)"
     ]
   },
   "projectId": "019b9db3-875f-70fc-bccb-5b64e5511eec"
