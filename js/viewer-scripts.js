@@ -146,16 +146,66 @@ document.addEventListener("DOMContentLoaded", () => {
     controls.screenSpacePanning = true;
     controls.enableZoom = false;
 
-    // Custom wheel zoom: fixed step per tick, ignoring browser deltaY magnitude
+    // Custom wheel zoom — capture phase fires before OrbitControls' bubble-phase handler
     renderer.domElement.addEventListener('wheel', function(e) {
       e.preventDefault();
+      e.stopImmediatePropagation();
       const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
       const currentDist = camera.position.distanceTo(controls.target);
       const step = currentDist * 0.10 * (e.deltaY > 0 ? 1 : -1);
       const newDist = THREE.MathUtils.clamp(currentDist + step, controls.minDistance, controls.maxDistance);
       camera.position.copy(controls.target).addScaledVector(dir, newDist);
       controls.update();
-    }, { passive: false });
+    }, { capture: true, passive: false });
+
+    // Pinch-to-zoom for mobile.
+    // OrbitControls registers pointermove on domElement in bubble phase.
+    // Our capture-phase listener fires first at the target; stopImmediatePropagation()
+    // prevents OrbitControls' bubble-phase handler from running so it can't pan/dolly.
+    const activePointers = new Map();
+    let pinchStartDist = null;
+
+    renderer.domElement.addEventListener('pointerdown', function(e) {
+      if (e.pointerType !== 'touch') return;
+      activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (activePointers.size === 2) {
+        const pts = [...activePointers.values()];
+        const dx = pts[0].x - pts[1].x;
+        const dy = pts[0].y - pts[1].y;
+        pinchStartDist = Math.sqrt(dx * dx + dy * dy);
+      }
+    });
+
+    renderer.domElement.addEventListener('pointermove', function(e) {
+      if (e.pointerType !== 'touch' || !activePointers.has(e.pointerId)) return;
+      activePointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      if (activePointers.size !== 2 || pinchStartDist === null) return;
+
+      const pts = [...activePointers.values()];
+      const dx = pts[0].x - pts[1].x;
+      const dy = pts[0].y - pts[1].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const scale = pinchStartDist / dist;
+      const dir = new THREE.Vector3().subVectors(camera.position, controls.target).normalize();
+      const currentDist = camera.position.distanceTo(controls.target);
+      const newDist = THREE.MathUtils.clamp(currentDist * scale, controls.minDistance, controls.maxDistance);
+      camera.position.copy(controls.target).addScaledVector(dir, newDist);
+      controls.update();
+      pinchStartDist = dist;
+
+      e.stopImmediatePropagation();
+    }, { capture: true });
+
+    renderer.domElement.addEventListener('pointerup', function(e) {
+      if (e.pointerType !== 'touch') return;
+      activePointers.delete(e.pointerId);
+      if (activePointers.size < 2) pinchStartDist = null;
+    });
+
+    renderer.domElement.addEventListener('pointercancel', function(e) {
+      activePointers.delete(e.pointerId);
+      if (activePointers.size < 2) pinchStartDist = null;
+    });
 
     const hemi = new THREE.HemisphereLight(0xffffff, 0x101010, SEASON.hemisphereIntensity);
     scene.add(hemi);

@@ -6,7 +6,8 @@
       "Read(//c/Users/DELL/AppData/Roaming/Code/User/**)",
       "Bash(grep -n 'from \\\\$8,500' commission.html)",
       "Bash(grep -n 'from \\\\$12,500' commission.html)",
-      "Bash(grep -n 'from \\\\$19,500' commission.html)"
+      "Bash(grep -n 'from \\\\$19,500' commission.html)",
+      "WebFetch(domain:unpkg.com)"
     ]
   },
   "projectId": "019b9db3-875f-70fc-bccb-5b64e5511eec"

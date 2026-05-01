@@ -25,7 +25,8 @@ Usage:
 /stats: Shows your all-time (lifetime) token usage for the CLI tool.
 
 
-
+ Update available! 
+ Run: winget upgrade Anthropic.ClaudeCode
 
 
 
