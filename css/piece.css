@@ -50,6 +50,11 @@
     justify-items: center;
     margin: 0 auto;
   }
+
+  .piece-description p,
+  .commission-note-text {
+    font-size: var(--text-sm);
+  }
 }
 
 .piece-hero::after {
