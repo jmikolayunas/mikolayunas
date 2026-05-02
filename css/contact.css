@@ -82,7 +82,9 @@
 
 .contact-channel-label {
   font-family: var(--font-secondary);
-  font-size: 0.7rem;
+  /* INTENTIONAL: increased from 0.7rem to var(--text-sm)
+     for legibility. Do not revert to 0.7rem. */
+  font-size: var(--text-sm);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--color-brass);

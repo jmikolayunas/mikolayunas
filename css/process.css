@@ -246,15 +246,17 @@
   border-top: 1px solid var(--color-border);
 }
 
-/* Stage expand toggle — mobile only */
+/* INTENTIONAL: hidden at all sizes by default.
+   Shown only at max-width: 767px below.
+   Do not show on desktop. */
 .stage-expand-toggle {
   display: none;
 }
 
-/* INTENTIONAL: toggle appears on mobile only, below bullet list.
-   Uses brass color at reduced opacity matching the site's
-   secondary link treatment. display: none at min-width: 768px.
-   Do not show this element on desktop. */
+/* INTENTIONAL: full opacity and var(--text-sm) weight
+   are required for legibility on white background.
+   Do not reduce opacity below 1 or font-size below
+   var(--text-sm). Do not change color away from brass. */
 @media (max-width: 767px) {
   .stage-expand-toggle {
     display: inline-flex;
@@ -262,28 +264,29 @@
     gap: var(--space-1);
     margin-top: var(--space-4);
     font-family: var(--font-secondary);
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-semibold);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--color-brass);
-    opacity: 0.7;
+    opacity: 1;
     background: none;
     border: none;
-    border-bottom: 1px solid transparent;
+    border-bottom: 1px solid rgba(199, 168, 106, 0.4);
     cursor: pointer;
-    padding: 0;
-    transition: opacity 0.3s ease, border-bottom-color 0.3s ease;
+    padding: 0 0 2px;
+    transition: border-bottom-color 0.3s ease;
   }
 
-  .stage-expand-toggle:hover {
-    opacity: 1;
+  .stage-expand-toggle:hover,
+  .stage-expand-toggle:focus {
     border-bottom-color: var(--color-brass);
+    outline: none;
   }
 
   .stage-expand-toggle__arrow {
     display: inline-block;
     transition: transform 0.3s ease;
-    font-style: normal;
   }
 
   .stage-expand-toggle.is-expanded .stage-expand-toggle__arrow {
