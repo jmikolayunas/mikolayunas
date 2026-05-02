@@ -62,9 +62,9 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .story-image {
-    aspect-ratio: unset;
-    max-height: 50vh;
+  .story-image-wrapper {
+    width: 85%;
+    margin: 0 auto;
   }
 }
 
