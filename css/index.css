@@ -80,13 +80,18 @@
   transform: none;
 }
 
-/* INTENTIONAL: lifts hero content upward on portrait mobile
-   so title reads at approximately 40% from top of screen.
-   translateY(-10vh) is correct — do not change to none or 0.
-   This rule must remain separate from the desktop block. */
+/* INTENTIONAL: positions hero content with top edge at ~20%
+   from viewport top on portrait mobile. Uses absolute
+   positioning rather than translateY so the target position
+   is viewport-anchored, not offset from flex center.
+   Reset to relative in landscape block below. */
 @media (max-width: 767px) {
   .hero-content {
-    transform: translateY(-10vh);
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
   }
 }
 
@@ -106,11 +111,24 @@
    min-height: 500px excludes landscape phones which are wide
    but short. Do not remove the min-height condition.
    Do not merge this into the min-width: 768px block above. */
+/* Tablet: vertical offsets only — horizontal transform
+   would clip heading at narrow tablet widths */
 @media (min-width: 768px) and (min-height: 500px) {
   .hero-content {
     transform: translateY(-80px);
   }
 
+  /* INTENTIONAL: no horizontal offset at tablet.
+     Heading stays centered at 768px viewport width.
+     Horizontal offset restored at min-width: 1024px below.
+     Do not add translate(-130px) back to this block. */
+  .hero-heading {
+    transform: translateY(-170px);
+  }
+}
+
+/* Desktop: restore full horizontal + vertical offset */
+@media (min-width: 1024px) and (min-height: 500px) {
   .hero-heading {
     transform: translate(-130px, -170px);
   }
@@ -314,8 +332,12 @@
     animation-name: fadeInUp;
   }
 
+  /* INTENTIONAL: -10px subtraction removed at tablet.
+     At 768px this resolves to ~44px — appropriate for
+     a tablet hero title. Do not revert to the calc
+     with -10px subtraction at this breakpoint. */
   .hero-title {
-    font-size: calc(clamp(2.125rem, 1.7rem + 2.125vw, 3.825rem) - 10px);
+    font-size: clamp(2.125rem, 1.7rem + 2.125vw, 3.825rem);
   }
 }
 
@@ -696,7 +718,11 @@
   }
 
   .hero-content {
+    position: relative;
+    top: auto;
+    left: auto;
     transform: none;
+    width: auto;
     padding: var(--space-2) var(--space-3);
   }
 

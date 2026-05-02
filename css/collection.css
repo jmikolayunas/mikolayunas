@@ -41,11 +41,22 @@
   gap: var(--space-5);
 }
 
-@media (min-width: 1024px) {
+/* INTENTIONAL: two-column activates at tablet (768px)
+   not just desktop. At single-column, a 4:5 portrait
+   image fills ~920px height on a tablet viewport —
+   the quote appears only after significant scrolling.
+   Do not revert this to min-width: 1024px only. */
+@media (min-width: 768px) {
   .collector-entry {
     grid-template-columns: 1fr 1fr;
-    gap: var(--space-8);
+    gap: var(--space-6);
     align-items: start;
+  }
+}
+
+@media (min-width: 1024px) {
+  .collector-entry {
+    gap: var(--space-8);
   }
 }
 
@@ -95,7 +106,7 @@
   justify-content: center;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .collector-entry-content {
     padding-top: var(--space-3);
   }
@@ -103,7 +114,10 @@
 
 .collector-label {
   font-family: var(--font-secondary);
-  font-size: 0.65rem;
+  /* INTENTIONAL: changed from hardcoded 0.65rem to
+     var(--text-xs) (14px) for legibility.
+     Do not revert to 0.65rem. */
+  font-size: var(--text-xs);
   letter-spacing: 0.15em;
   color: var(--color-text-secondary);
   text-transform: uppercase;
