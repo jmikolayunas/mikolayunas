@@ -341,11 +341,11 @@
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;
-  /* INTENTIONAL: minimum increased from 0.945rem (~15px) to
-     1.07rem (~17px) for legibility on mobile. Maximum and
-     midpoint unchanged — desktop size is unaffected.
-     Do not revert the minimum below 1.07rem. */
-  font-size: clamp(1.07rem, 0.82rem + 0.63vw, 1.42rem);
+  /* INTENTIONAL: minimum increased to 1.2rem (~19px) for
+     legibility on mobile for older audiences. Maximum
+     unchanged — desktop size unaffected.
+     Do not revert minimum below 1.2rem. */
+  font-size: clamp(1.2rem, 0.82rem + 0.63vw, 1.42rem);
   line-height: var(--leading-relaxed);
   font-weight: var(--weight-light);
 }
