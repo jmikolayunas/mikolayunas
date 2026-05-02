@@ -182,6 +182,7 @@
 
 @media (min-width: 1024px) {
   .stage-content {
+    text-align: left;
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 1s ease, transform 1s ease;
@@ -357,7 +358,7 @@
    display: block on .stage-number is required — without it
    text-align: center has no effect on inline-block elements.
    Do not remove display: block or text-align: center. */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .stage-number {
     display: block;
     text-align: center;
@@ -371,6 +372,7 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .stage-content {
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
   }
