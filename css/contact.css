@@ -6,7 +6,17 @@
   min-height: 60vh;
   display: flex;
   align-items: flex-start;
+  /* INTENTIONAL: bottom padding reduced at tablet via
+     media query below. Do not increase base value. */
   padding-bottom: var(--space-10);
+}
+
+/* Tablet: reduce dead zone below contact channels */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contact-hero {
+    padding-bottom: var(--space-6);
+    min-height: auto;
+  }
 }
 
 @media (min-width: 1024px) {

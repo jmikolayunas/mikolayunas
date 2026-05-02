@@ -504,7 +504,10 @@
   }
 
   .details-specs {
-    font-size: var(--text-xs);
+    /* INTENTIONAL: var(--text-sm) not var(--text-xs) —
+       keeps spec text legible at tablet. Do not revert
+       to var(--text-xs) at this breakpoint. */
+    font-size: var(--text-sm);
   }
 }
 

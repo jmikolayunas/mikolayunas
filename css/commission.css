@@ -312,6 +312,23 @@
   .investment-pricing {
     padding: var(--space-5);
   }
+
+  /* INTENTIONAL: restore left-alignment at tablet.
+     These elements are centered on mobile only.
+     Do not remove these rules. */
+  .pricing-statement,
+  .pricing-details,
+  .pricing-note {
+    text-align: left;
+  }
+
+  .form-section-title {
+    text-align: left;
+  }
+
+  .expect-title {
+    text-align: left;
+  }
 }
 
 /* ============================================
