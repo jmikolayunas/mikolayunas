@@ -66,16 +66,27 @@
   padding: var(--space-3);
   max-width: 900px;
   margin: 0 auto;
+  /* INTENTIONAL: transform removed from base rule.
+     Applied only at min-width: 768px + min-height: 500px
+     so it does not fire on portrait or landscape phones.
+     Do not add transform back to this base rule. */
   transform: none;
 }
 
 .hero-heading {
+  /* INTENTIONAL: transform removed from base rule.
+     Applied only at min-width: 768px + min-height: 500px.
+     Do not add transform back to this base rule. */
   transform: none;
 }
 
+/* INTENTIONAL: lifts hero content upward on portrait mobile
+   so title reads at approximately 40% from top of screen.
+   translateY(-10vh) is correct — do not change to none or 0.
+   This rule must remain separate from the desktop block. */
 @media (max-width: 767px) {
   .hero-content {
-    transform: translateY(-30vh);
+    transform: translateY(-10vh);
   }
 
   .hero-image {
@@ -94,9 +105,15 @@
   }
 }
 
+/* INTENTIONAL: transforms restored only when BOTH conditions
+   are met — wide enough for tablet layout AND tall enough
+   that the offsets have room to work without clipping.
+   min-height: 500px excludes landscape phones which are wide
+   but short. Do not remove the min-height condition.
+   Do not merge this into the min-width: 768px block above. */
 @media (min-width: 768px) and (min-height: 500px) {
   .hero-content {
-    transform: translateY(0);
+    transform: translateY(-80px);
   }
 
   .hero-heading {
@@ -123,6 +140,9 @@
   line-height: var(--leading-relaxed);
   color: var(--color-text-inverse);
   position: relative;
+  /* INTENTIONAL: left and margin offsets removed from base rule.
+     Restored only at min-width: 768px + min-height: 500px.
+     Do not add left: -130px or large margin back to this rule. */
   left: 0;
   margin: var(--space-2) 0 0;
   opacity: 0;
@@ -138,6 +158,9 @@
   }
 }
 
+/* INTENTIONAL: left and margin offsets restored only when
+   both wide and tall enough. Do not remove min-height: 500px.
+   Do not merge into the min-width: 768px block above. */
 @media (min-width: 768px) and (min-height: 500px) {
   .hero-subtitle {
     left: -130px;
