@@ -15,6 +15,12 @@
   padding-bottom: var(--space-6);
 }
 
+@media (min-width: 768px) {
+  .gallery-header {
+    padding-top: var(--space-10);
+  }
+}
+
 @media (min-width: 1024px) {
   .gallery-header {
     padding-top: calc(var(--section-padding-y) * 1.3);
