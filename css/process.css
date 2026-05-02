@@ -111,16 +111,15 @@
   background: linear-gradient(135deg, #2E2E2E 0%, #121212 100%);
 }
 
-/* INTENTIONAL: max-height caps the 4:5 image at tablet
-   so it doesn't exceed the viewport height.
-   Without this, a ~370px wide column at 4:5 = ~462px tall
-   which is manageable — but the cap adds safety for
-   narrower tablet viewports. Do not remove max-height.
-   No translateX offset at tablet — desktop flourish only. */
+/* INTENTIONAL: portrait tablet — single column with height
+   cap. Full-width image stays prominent without dominating
+   the viewport. aspect-ratio: unset allows max-height to
+   take effect. Two-column layout activates at 1024px below.
+   Do not remove max-height or aspect-ratio: unset. */
 @media (min-width: 768px) and (max-width: 1023px) {
   .stage-media {
-    max-height: 55vh;
     aspect-ratio: unset;
+    max-height: 50vh;
   }
 }
 
@@ -717,7 +716,7 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .reflection-container {
     min-height: 100%;
   }
