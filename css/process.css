@@ -42,6 +42,19 @@
   padding: var(--space-6) 0;
 }
 
+/* INTENTIONAL: two-column activates at tablet (768px).
+   No sticky positioning at tablet — both columns scroll.
+   min-height: 120vh is desktop-only (required for sticky).
+   Do not add sticky or min-height: 120vh to this block. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .process-stage {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    padding: var(--space-4) 0;
+    align-items: start;
+  }
+}
+
 @media (min-width: 1024px) {
   .process-stage {
     grid-template-columns: 1fr 1fr;
@@ -57,6 +70,17 @@
   width: 100%;
   padding: 0 var(--section-padding-x);
   margin-bottom: var(--space-4);
+}
+
+/* INTENTIONAL: at tablet remove bottom margin since
+   media sits beside content in two-column layout.
+   No sticky positioning at tablet — that is desktop only.
+   Do not add position: sticky to this block. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .stage-media-container {
+    margin-bottom: 0;
+    padding: 0 0 0 var(--section-padding-x);
+  }
 }
 
 @media (min-width: 1024px) {
@@ -85,6 +109,19 @@
   overflow: hidden;
   border: 1px solid var(--color-border);
   background: linear-gradient(135deg, #2E2E2E 0%, #121212 100%);
+}
+
+/* INTENTIONAL: max-height caps the 4:5 image at tablet
+   so it doesn't exceed the viewport height.
+   Without this, a ~370px wide column at 4:5 = ~462px tall
+   which is manageable — but the cap adds safety for
+   narrower tablet viewports. Do not remove max-height.
+   No translateX offset at tablet — desktop flourish only. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .stage-media {
+    max-height: 55vh;
+    aspect-ratio: unset;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -137,6 +174,16 @@
   padding: var(--space-6) var(--section-padding-x);
   display: flex;
   align-items: center;
+}
+
+/* INTENTIONAL: at tablet reduce left padding since
+   content sits beside the image, not below it.
+   Right padding provides breathing room from viewport edge. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .stage-content-container {
+    padding: var(--space-4) var(--section-padding-x) var(--space-4) var(--space-4);
+    align-items: start;
+  }
 }
 
 @media (min-width: 1024px) {
