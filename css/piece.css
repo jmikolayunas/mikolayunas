@@ -491,18 +491,6 @@
     padding: 0 var(--space-4);
   }
 
-  /* INTENTIONAL: restore desktop left-anchored layout.
-     Do not remove these — they override the mobile
-     centering rules set at max-width: 767px above. */
-  .piece-hero-inner {
-    display: inline-block;
-    text-align: left;
-  }
-
-  .piece-hero-content {
-    text-align: left;
-  }
-
   .back-to-gallery {
     display: inline-flex;
     left: var(--space-4);
@@ -516,6 +504,21 @@
   }
 }
 
+/* INTENTIONAL: tablet keeps centered layout.
+   Base .piece-hero-inner is text-align: left; this
+   overrides it at tablet. Left-aligned layout
+   restores at 1024px below. */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .piece-hero-inner {
+    display: block;
+    text-align: center;
+  }
+
+  .piece-hero-content {
+    text-align: center;
+  }
+}
+
 /* Desktop enhancements */
 @media (min-width: 1024px) {
   .piece-hero {
@@ -524,6 +527,15 @@
 
   .piece-hero-image-container {
     padding: 0 64px;
+  }
+
+  .piece-hero-inner {
+    display: inline-block;
+    text-align: left;
+  }
+
+  .piece-hero-content {
+    text-align: left;
   }
 
   .piece-hero-image {

@@ -318,10 +318,12 @@
   .investment-pricing {
     padding: var(--space-5);
   }
+}
 
-  /* INTENTIONAL: restore left-alignment at tablet.
-     These elements are centered on mobile only.
-     Do not remove these rules. */
+@media (min-width: 1024px) {
+  /* INTENTIONAL: restore left-alignment at desktop only.
+     Tablet keeps mobile centered layout.
+     Do not change to 768px. */
   .pricing-statement,
   .pricing-details,
   .pricing-note {

@@ -378,8 +378,10 @@ ul {
   bottom: 0;
 }
 
-/* Desktop Navigation */
-@media (min-width: 768px) {
+/* INTENTIONAL: horizontal nav activates at 1024px not 768px.
+   Portrait tablet (768-1023px) uses hamburger overlay.
+   Do not revert to 768px. */
+@media (min-width: 1024px) {
   .site-nav {
     display: block;
   }
@@ -715,12 +717,13 @@ ul {
   text-align: center;
 }
 
-@media (min-width: 768px) {
+/* INTENTIONAL: footer three-column activates at 1024px.
+   At tablet footer stays single-column centered.
+   Do not revert to 768px. */
+@media (min-width: 1024px) {
   .footer-container {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-6);
-    /* INTENTIONAL: restores left-aligned desktop layout.
-       Do not remove text-align: left. */
     text-align: left;
   }
 
@@ -845,7 +848,9 @@ ul {
   text-align: left;
 }
 
-@media (min-width: 768px) {
+/* INTENTIONAL: absolute positioning only at desktop.
+   At tablet stays in normal document flow. */
+@media (min-width: 1024px) {
   .footer-attribution--lower-left {
     position: absolute;
     left: 0;
