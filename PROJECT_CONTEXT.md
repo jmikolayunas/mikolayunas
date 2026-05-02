@@ -13,9 +13,8 @@ CLAUDE.md contains outdated information. Apply these corrections:
 
 - CSS is NOT a single styles.css file. All CSS lives in the css/
   subdirectory. Do not reference styles.css — it does not exist.
-- Piece pages are NOT at pieces/block.html or pieces/{name}.html.
-  They are at the project root as pieces_nantucket.html, pieces_maui.html,
-  etc. Always use the pieces_ prefix at root level.
+- - Piece pages ARE in the pieces/ subdirectory as pieces/block.html,
+  pieces/nantucket.html, etc. Always use the pieces/ path prefix.
 - max-width media queries ARE used in this project for mobile overrides
   (specifically @media (max-width: 767px)). Do not remove them.
 - Gallery item aspect ratio classes use data-aspect attribute
