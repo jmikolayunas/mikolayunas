@@ -370,14 +370,18 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .stage-content {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .stage-number {
     display: block;
     text-align: center;
   }
 
   .stage-title,
-  .stage-subtitle,
-  .stage-text p {
+  .stage-subtitle {
     text-align: center;
   }
 
@@ -386,6 +390,10 @@
     max-width: 42rem;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .stage-text p {
+    text-align: left;
   }
 
   .stage-details li {
