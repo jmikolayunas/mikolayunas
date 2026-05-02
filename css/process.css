@@ -151,6 +151,22 @@
   transform: translateY(0);
 }
 
+/* INTENTIONAL: flex column reorder — stage-text paragraphs
+   appear above stage-details bullets at tablet and desktop.
+   DOM order has bullets before text; order: 1 on .stage-details
+   pushes them after all order: 0 siblings (text included).
+   Do not remove — mobile is unaffected (collapse/expand still works). */
+@media (min-width: 768px) {
+  .stage-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stage-details {
+    order: 1;
+  }
+}
+
 @media (min-width: 1024px) {
   .stage-content {
     opacity: 0;
