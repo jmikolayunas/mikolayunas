@@ -17,7 +17,7 @@
 
 @media (min-width: 768px) {
   .gallery-header {
-    padding-top: var(--space-10);
+    padding-top: 20vh;
   }
 }
 

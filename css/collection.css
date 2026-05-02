@@ -9,6 +9,12 @@
   text-align: center;
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  .collector-header {
+    padding-top: 20vh;
+  }
+}
+
 @media (min-width: 1024px) {
   .collector-header {
     padding-top: calc(var(--section-padding-y) * 1.3);

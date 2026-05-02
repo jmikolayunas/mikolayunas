@@ -11,7 +11,7 @@
 
 @media (min-width: 768px) {
   .commission-header {
-    padding-top: var(--space-10);
+    padding-top: 20vh;
   }
 }
 
