@@ -710,6 +710,8 @@ ul {
   grid-template-columns: 1fr;
   gap: var(--space-5);
   position: relative;
+  /* INTENTIONAL: centers all footer content on mobile.
+     Do not remove text-align: center from this rule. */
   text-align: center;
 }
 
@@ -717,6 +719,8 @@ ul {
   .footer-container {
     grid-template-columns: 2fr 1fr 1fr;
     gap: var(--space-6);
+    /* INTENTIONAL: restores left-aligned desktop layout.
+       Do not remove text-align: left. */
     text-align: left;
   }
 
@@ -755,6 +759,8 @@ ul {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  /* INTENTIONAL: centers nav links on mobile.
+     Do not remove align-items: center. */
   align-items: center;
 }
 
@@ -775,6 +781,8 @@ ul {
   display: flex;
   gap: var(--space-2);
   align-items: center;
+  /* INTENTIONAL: centers social links on mobile.
+     Do not remove justify-content: center. */
   justify-content: center;
   font-family: var(--font-secondary);
   font-size: var(--text-xs);

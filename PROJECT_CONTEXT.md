@@ -48,17 +48,17 @@ New England.
 - viewer-auth.html
 - process-viewer.html
 
-### Piece pages (all at project root, prefixed pieces_)
-- pieces_block.html
-- pieces_bromley.html
-- pieces_cannon.html
-- pieces_capeann.html
-- pieces_fells.html
-- pieces_highland.html
-- pieces_mahoosuc.html
-- pieces_mansfield.html
-- pieces_maui.html
-- pieces_nantucket.html
+### Piece pages (all in pieces/ subdirectory)
+- pieces/block.html
+- pieces/bromley.html
+- pieces/cannon.html
+- pieces/capeann.html
+- pieces/fells.html
+- pieces/highland.html
+- pieces/mahoosuc.html
+- pieces/mansfield.html
+- pieces/maui.html
+- pieces/nantucket.html
 
 ### CSS files (all in css/ subdirectory)
 - css/global.css — design system, nav, header, footer, buttons, shared layout
