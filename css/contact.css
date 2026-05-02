@@ -14,7 +14,7 @@
 /* Tablet: reduce dead zone below contact channels */
 @media (min-width: 768px) and (max-width: 1023px) {
   .contact-hero {
-    padding-top: 20vh;
+    padding-top: 15vh;
     padding-bottom: var(--space-6);
     min-height: auto;
   }
