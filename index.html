@@ -45,15 +45,20 @@
     <section class="hero" id="hero">
       <div class="hero-media">
         <picture>
+          <!-- Mobile portrait: Block Island crop (max-width: 767px) -->
           <source
             media="(max-width: 767px)"
             srcset="
               images/block/block-hero-crop-800w.webp 800w,
-              images/block/block-hero-crop-1200w.webp 1200w
+              images/block/block-hero-crop-1200w.webp 1200w,
+              images/block/block-hero-crop-1800w.webp 1800w,
+              images/block/block-hero-crop-2400w.webp 2400w
             "
             sizes="100vw"
           />
-          <img
+          <!-- Tablet and up: Nantucket landscape crop -->
+          <source
+            media="(min-width: 768px)"
             srcset="
               images/nantucket/nantucket-hero-crop-800w.webp 800w,
               images/nantucket/nantucket-hero-crop-1200w.webp 1200w,
@@ -63,11 +68,13 @@
             sizes="
               (min-width: 1440px) 2400px,
               (min-width: 1024px) 1800px,
-              (min-width: 768px) 1200px,
-              800px
+              100vw
             "
+          />
+          <!-- Fallback img — always required inside <picture> -->
+          <img
             src="images/nantucket/nantucket-hero-crop-1200w.webp"
-            alt="Custom topographic relief map artwork"
+            alt="Topographic sculptural relief artwork"
             class="hero-image"
             loading="eager"
             fetchpriority="high"
