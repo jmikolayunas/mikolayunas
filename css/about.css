@@ -61,6 +61,13 @@
   background: linear-gradient(135deg, #2E2E2E 0%, #121212 100%);
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  .story-image {
+    aspect-ratio: unset;
+    max-height: 50vh;
+  }
+}
+
 .story-content {
   padding: var(--space-4) 0;
 }
@@ -256,13 +263,6 @@
 /* Tablet/Desktop enhancements */
 @media (min-width: 768px) {
   .story-layout {
-    /* INTENTIONAL: two-column activates at tablet not just
-       desktop. At single-column, a 4:5 portrait image fills
-       ~920px height on a tablet viewport — the story text
-       appears only after significant scrolling.
-       Do not revert grid-template-columns to 1fr only.
-       Desktop refines the ratio to 6fr/5fr at 1024px. */
-    grid-template-columns: 1fr 1fr;
     gap: var(--space-6);
   }
 
