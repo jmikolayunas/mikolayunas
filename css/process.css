@@ -376,22 +376,26 @@
   }
 
   .stage-title,
-  .stage-subtitle {
+  .stage-subtitle,
+  .stage-text p {
     text-align: center;
   }
 
+  .stage-text,
   .stage-details {
-    align-items: center;
+    max-width: 42rem;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .stage-details li {
-    text-align: center;
-    padding-left: 0;
+    text-align: left;
+    padding-left: var(--space-3);
   }
 
   .stage-details li::before {
-    position: static;
-    margin-right: 0.45em;
+    position: absolute;
+    left: 0;
   }
 }
 
