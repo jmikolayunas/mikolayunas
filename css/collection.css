@@ -48,6 +48,11 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .collector-entry-image {
+    display: flex;
+    justify-content: center;
+  }
+
   .collector-entry-figure {
     aspect-ratio: unset;
     max-height: 50vh;

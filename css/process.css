@@ -94,8 +94,9 @@
    Do not remove max-height or aspect-ratio: unset. */
 @media (min-width: 768px) and (max-width: 1023px) {
   .stage-media {
-    aspect-ratio: unset;
-    max-height: 50vh;
+    aspect-ratio: 4 / 5;
+    width: 85%;
+    margin: 0 auto;
   }
 }
 
@@ -365,6 +366,32 @@
   .stage-title,
   .stage-subtitle {
     text-align: center;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .stage-number {
+    display: block;
+    text-align: center;
+  }
+
+  .stage-title,
+  .stage-subtitle {
+    text-align: center;
+  }
+
+  .stage-details {
+    align-items: center;
+  }
+
+  .stage-details li {
+    text-align: center;
+    padding-left: 0;
+  }
+
+  .stage-details li::before {
+    position: static;
+    margin-right: 0.45em;
   }
 }
 
