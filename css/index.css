@@ -88,11 +88,6 @@
   .hero-content {
     transform: translateY(-10vh);
   }
-
-  .hero-image {
-    object-fit: contain;
-    object-position: center top;
-  }
 }
 
 @media (min-width: 768px) {
