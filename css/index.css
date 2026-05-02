@@ -88,7 +88,7 @@
 @media (max-width: 767px) {
   .hero-content {
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
