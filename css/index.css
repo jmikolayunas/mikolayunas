@@ -130,7 +130,7 @@
 /* Desktop: restore full horizontal + vertical offset */
 @media (min-width: 1024px) and (min-height: 500px) {
   .hero-heading {
-    transform: translate(-130px, -170px);
+    transform: translate(-130px, -153px);
   }
 }
 
