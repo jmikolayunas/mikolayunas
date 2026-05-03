@@ -491,6 +491,13 @@
     padding: 0 var(--space-4);
   }
 
+  /* iPad Mini portrait fit pass:
+     keeps hero restrained so specs/details are visible
+     without cropping on first view across all 10 pieces. */
+  .piece-hero-image {
+    max-height: 490px;
+  }
+
   .back-to-gallery {
     display: inline-flex;
     left: var(--space-4);
