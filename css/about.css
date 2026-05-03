@@ -72,6 +72,18 @@
   }
 }
 
+/* INTENTIONAL: cap story image height at desktop so it
+   doesn't exceed viewport height in the 6fr column.
+   At ~655px column width, 4:5 ratio = ~820px tall which
+   clips on shorter laptop displays. object-fit: cover
+   is already set on .story-image so the crop is clean.
+   Do not remove max-height at desktop. */
+@media (min-width: 1024px) {
+  .story-image {
+    max-height: 75vh;
+  }
+}
+
 .story-content {
   padding: var(--space-4) 0;
   text-align: center;

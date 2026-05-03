@@ -337,6 +337,14 @@
   .expect-title {
     text-align: left;
   }
+
+  /* INTENTIONAL: cap form width at desktop so it doesn't
+     stretch to full container width on wide viewports.
+     Do not remove max-width or margin-inline. */
+  .commission-form {
+    max-width: 860px;
+    margin-inline: auto;
+  }
 }
 
 /* ============================================

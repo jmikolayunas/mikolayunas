@@ -171,10 +171,21 @@
   }
 }
 
-/* INTENTIONAL: left and margin offsets restored only when
-   both wide and tall enough. Do not remove min-height: 500px.
+/* INTENTIONAL: left and margin offsets restored at tablet
+   and desktop when both wide and tall enough.
+   Do not remove min-height: 500px.
    Do not merge into the min-width: 768px block above. */
-@media (min-width: 768px) and (min-height: 500px) {
+@media (min-width: 768px) and (max-width: 1023px) and (min-height: 500px) {
+  .hero-subtitle {
+    left: -130px;
+    margin: calc(var(--space-2) + 165px) 0 0;
+  }
+}
+
+/* INTENTIONAL: desktop subtitle offset — wider viewport
+   gives more room so offset reads correctly at full scale.
+   Do not remove or reduce left value at desktop. */
+@media (min-width: 1024px) and (min-height: 500px) {
   .hero-subtitle {
     left: -130px;
     margin: calc(var(--space-2) + 165px) 0 0;

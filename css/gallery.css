@@ -50,7 +50,10 @@
   margin: 0 auto;
   padding: var(--space-5) var(--section-padding-x);
   background: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  /* INTENTIONAL: border-bottom removed — .gallery-filters
+     already provides the section separator. Two borders
+     created a visually thick or doubled line.
+     Do not add border-bottom back to this rule. */
 }
 
 .filter-label {
@@ -182,8 +185,19 @@
   max-width: 327px;
 }
 
+/* INTENTIONAL: 267px at mobile/base, increased to 310px
+   at desktop where grid cells are ~345px wide. Portrait
+   pieces at 267px in 345px cells leave excessive gaps.
+   310px fills the cell more appropriately while keeping
+   portrait pieces visibly narrower than landscape. */
 .gallery-item[data-aspect="portrait"] {
   max-width: 267px;
+}
+
+@media (min-width: 1024px) {
+  .gallery-item[data-aspect="portrait"] {
+    max-width: 310px;
+  }
 }
 
 /* Mobile: collapse inherited double-padding, use flexbox for centering.

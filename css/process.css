@@ -455,7 +455,12 @@
   }
 }
 
-@media (min-width: 1024px) {
+/* INTENTIONAL: 4-column delayed to 1440px from 1024px.
+   At 1024px the four cards are cramped (~235px each).
+   2-column at 1024px–1439px gives each card ~460px —
+   comfortable for the copy weight inside each card.
+   Do not revert 4-column to 1024px. */
+@media (min-width: 1440px) {
   .summary-timeline {
     grid-template-columns: repeat(4, 1fr);
   }

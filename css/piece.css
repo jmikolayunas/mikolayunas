@@ -578,8 +578,12 @@
     letter-spacing: 0.25em;
   }
 
+  /* INTENTIONAL: reduced from var(--space-10) to
+     var(--space-6) — images read as a sequential
+     study rather than disconnected elements.
+     Do not increase back to var(--space-10). */
   .gallery-images {
-    gap: var(--space-10);
+    gap: var(--space-6);
   }
 
   .back-to-gallery {
