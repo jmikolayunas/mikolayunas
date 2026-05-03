@@ -521,6 +521,11 @@
     text-align: center;
   }
 
+  .piece-hero-image {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .piece-hero-content {
     text-align: center;
   }
@@ -531,6 +536,8 @@
      the first gallery close-up image. */
   .piece-hero-image.piece-hero-image--tablet-reduced {
     max-width: 85%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

@@ -228,6 +228,7 @@ function initTabletPieceHeroConstraint() {
   const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1023px)');
   const reducedClass = 'piece-hero-image--tablet-reduced';
   const tabletHeroMaxHeight = 490;
+  const fullWidthThreshold = 0.9;
 
   const updateHeroConstraint = () => {
     heroImage.classList.remove(reducedClass);
@@ -241,7 +242,7 @@ function initTabletPieceHeroConstraint() {
     const widthAtTabletMaxHeight = (heroImage.naturalWidth / heroImage.naturalHeight) * tabletHeroMaxHeight;
 
     // Apply a 15% reduction only when max-height would otherwise allow full width.
-    if (widthAtTabletMaxHeight >= (availableImageWidth - 1)) {
+    if (widthAtTabletMaxHeight >= (availableImageWidth * fullWidthThreshold)) {
       heroImage.classList.add(reducedClass);
     }
   };
