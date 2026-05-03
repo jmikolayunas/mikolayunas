@@ -257,11 +257,18 @@ function initTabletPieceHeroConstraint() {
   tabletQuery.addEventListener('change', updateHeroConstraint);
 }
 
+function initCopyrightYear() {
+  document.querySelectorAll('.footer-copyright').forEach(el => {
+    el.innerHTML = el.innerHTML.replace('2026', new Date().getFullYear());
+  });
+}
+
 function initSite() {
   initFadeInOnScroll();
   initBackToGalleryButton();
   initPieceGalleryLightbox();
   initTabletPieceHeroConstraint();
+  initCopyrightYear();
 }
 
 // Ensure DOM exists before querying for page features

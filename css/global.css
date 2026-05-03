@@ -826,6 +826,21 @@ ul {
   margin: 0;
 }
 
+.footer-legal-divider {
+  opacity: 0.5;
+}
+
+.footer-privacy-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-privacy-link:hover {
+  color: var(--color-brass);
+  opacity: 1;
+}
+
 .footer-attribution {
   display: flex;
   align-items: center;
