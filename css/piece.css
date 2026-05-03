@@ -524,6 +524,14 @@
   .piece-hero-content {
     text-align: center;
   }
+
+  /* Tablet conditional size-down:
+     when max-height would allow a full-width hero, apply a
+     proportional 15% reduction so hero reads smaller than
+     the first gallery close-up image. */
+  .piece-hero-image.piece-hero-image--tablet-reduced {
+    max-width: 85%;
+  }
 }
 
 /* Desktop enhancements */

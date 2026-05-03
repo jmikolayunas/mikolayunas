@@ -219,10 +219,48 @@ function initPieceGalleryLightbox() {
   updateMobileImageAffordance();
 }
 
+function initTabletPieceHeroConstraint() {
+  const heroImage = document.querySelector('.piece-hero-image');
+  const heroInner = document.querySelector('.piece-hero-inner');
+  const heroImageContainer = document.querySelector('.piece-hero-image-container');
+  if (!heroImage || !heroInner || !heroImageContainer) return;
+
+  const tabletQuery = window.matchMedia('(min-width: 768px) and (max-width: 1023px)');
+  const reducedClass = 'piece-hero-image--tablet-reduced';
+  const tabletHeroMaxHeight = 490;
+
+  const updateHeroConstraint = () => {
+    heroImage.classList.remove(reducedClass);
+    if (!tabletQuery.matches) return;
+    if (!heroImage.naturalWidth || !heroImage.naturalHeight) return;
+
+    const containerStyles = window.getComputedStyle(heroImageContainer);
+    const containerPaddingLeft = parseFloat(containerStyles.paddingLeft) || 0;
+    const containerPaddingRight = parseFloat(containerStyles.paddingRight) || 0;
+    const availableImageWidth = heroInner.getBoundingClientRect().width - containerPaddingLeft - containerPaddingRight;
+    const widthAtTabletMaxHeight = (heroImage.naturalWidth / heroImage.naturalHeight) * tabletHeroMaxHeight;
+
+    // Apply a 15% reduction only when max-height would otherwise allow full width.
+    if (widthAtTabletMaxHeight >= (availableImageWidth - 1)) {
+      heroImage.classList.add(reducedClass);
+    }
+  };
+
+  if (heroImage.complete) {
+    updateHeroConstraint();
+  } else {
+    heroImage.addEventListener('load', updateHeroConstraint, { once: true });
+  }
+
+  window.addEventListener('resize', updateHeroConstraint);
+  tabletQuery.addEventListener('change', updateHeroConstraint);
+}
+
 function initSite() {
   initFadeInOnScroll();
   initBackToGalleryButton();
   initPieceGalleryLightbox();
+  initTabletPieceHeroConstraint();
 }
 
 // Ensure DOM exists before querying for page features
