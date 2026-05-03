@@ -129,6 +129,11 @@ a.contact-channel-value:hover {
 }
 
 @media (max-width: 767px) {
+  .contact-channels {
+    position: relative;
+    top: -10%;
+  }
+
   .contact-response {
     text-align: center;
   }
