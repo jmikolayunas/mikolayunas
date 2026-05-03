@@ -130,8 +130,7 @@ a.contact-channel-value:hover {
 
 @media (max-width: 767px) {
   .contact-channels {
-    position: relative;
-    top: -20%;
+    margin-top: -10vh;
   }
 
   .contact-response {
