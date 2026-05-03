@@ -204,7 +204,7 @@ Do NOT use BEM modifier classes (gallery-item--landscape). Use data-aspect only.
 
 - Static hosting: Vercel (connected to GitHub)
 - Primary domain: mikolayunas.com
-- Pre-deploy: verify Formspree ID (xdappvry) in commission form, meta tags on all pages,
+- Pre-deploy: verify Formspree ID (xwvwwdnl) in commission form, meta tags on all pages,
   all image paths resolve, email set to jonas@mikolayunas.com
 
 ---

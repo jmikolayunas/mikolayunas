@@ -228,7 +228,7 @@ discussion, but not the center.
 - Split CSS in css/ subdirectory — do not consolidate
 - No frameworks, no npm, no build tools
 - ES6+ JS only — no jQuery
-- Formspree ID: xdappvry
+- Formspree ID: xwvwwdnl
 - Primary domain: mikolayunas.com
 - Email: jonas@mikolayunas.com
 - Instagram: @jonasmikolayunas
