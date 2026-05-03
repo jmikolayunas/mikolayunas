@@ -185,10 +185,10 @@
   max-width: 327px;
 }
 
-/* INTENTIONAL: 267px at mobile/base, increased to 310px
+/* INTENTIONAL: 267px at mobile/base, increased to 285px
    at desktop where grid cells are ~345px wide. Portrait
    pieces at 267px in 345px cells leave excessive gaps.
-   310px fills the cell more appropriately while keeping
+   285px fills the cell more appropriately while keeping
    portrait pieces visibly narrower than landscape. */
 .gallery-item[data-aspect="portrait"] {
   max-width: 267px;
@@ -196,7 +196,7 @@
 
 @media (min-width: 1024px) {
   .gallery-item[data-aspect="portrait"] {
-    max-width: 310px;
+    max-width: 285px;
   }
 }
 
