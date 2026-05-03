@@ -603,7 +603,7 @@
    Section padding handles all spacing above —
    no margin-top needed. Gallery White at low opacity
    reads cleanly on dark background; brass on hover.
-   Appears on mobile only.
+   Appears across all breakpoints.
    ============================================================= */
 
 .piece-bottom-nav {
@@ -612,7 +612,8 @@
   align-items: center;
   padding: var(--space-3) var(--space-4);
   border-top: 1px solid rgba(247, 246, 243, 0.1);
-  margin-top: var(--space-4);
+  margin: var(--space-4) auto 0;
+  max-width: 800px;
   min-height: 3.5rem;
 }
 
@@ -656,10 +657,4 @@
 
 .piece-bottom-nav-link--forward {
   text-align: right;
-}
-
-@media (min-width: 768px) {
-  .piece-bottom-nav {
-    display: none;
-  }
 }
