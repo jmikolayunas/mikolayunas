@@ -254,6 +254,7 @@
        The actual rendered height determines the visual result. */
     max-height: 2000px;
     opacity: 1;
+    margin-top: var(--space-5);
     margin-bottom: var(--space-5);
   }
 }
