@@ -4,7 +4,9 @@
 
 // Intersection Observer for stage animations
 const stageObserverOptions = {
-  threshold: 0.3,
+  // Stage 04 has significantly more copy; on some laptop viewports a 0.3 ratio
+  // can fail to trigger, leaving desktop images at opacity: 0.
+  threshold: 0.1,
   rootMargin: '-100px 0px -100px 0px'
 };
 
