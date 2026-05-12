@@ -50,15 +50,15 @@
 <body class="site-body">
   <header class="site-header" id="site-header">
     <div class="header-container">
-      <a href="../index.html" class="site-logo">Jonas Mikolayunas</a>
+      <a href="/" class="site-logo">Jonas Mikolayunas</a>
       <nav class="site-nav">
                 <ul class="nav-list">
-          <li class="nav-item"><a href="../gallery.html" class="nav-link">Gallery</a></li>
-          <li class="nav-item"><a href="../process.html" class="nav-link">Process</a></li>
-          <li class="nav-item"><a href="../commission.html" class="nav-link">Commission</a></li>
-          <li class="nav-item"><a href="../collection.html" class="nav-link">Collection</a></li>
-          <li class="nav-item"><a href="../about.html" class="nav-link">About</a></li>
-          <li class="nav-item"><a href="../contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item"><a href="/gallery" class="nav-link">Gallery</a></li>
+          <li class="nav-item"><a href="/process" class="nav-link">Process</a></li>
+          <li class="nav-item"><a href="/commission" class="nav-link">Commission</a></li>
+          <li class="nav-item"><a href="/collection" class="nav-link">Collection</a></li>
+          <li class="nav-item"><a href="/about" class="nav-link">About</a></li>
+          <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
       <button class="nav-toggle" aria-label="Toggle navigation"><span class="nav-toggle-icon"></span></button>
@@ -93,7 +93,7 @@
     </section>
 
     <section class="piece-details section-padded" id="details">
-      <a href="../gallery.html" class="back-to-gallery" id="back-to-gallery"><span class="back-arrow">←</span> Back to Gallery</a>
+      <a href="/gallery" class="back-to-gallery" id="back-to-gallery"><span class="back-arrow">←</span> Back to Gallery</a>
       <div class="section-container section-container--narrow">
         <div class="details-grid">
           <div class="details-specs">
@@ -234,11 +234,11 @@
         <p class="artists-note-attribution fade-in-scroll">Artist's Note</p>
       </div>
       <nav class="piece-bottom-nav" aria-label="Piece navigation">
-        <a href="../gallery.html" class="piece-bottom-nav-link piece-bottom-nav-link--back">
+        <a href="/gallery" class="piece-bottom-nav-link piece-bottom-nav-link--back">
           <span class="piece-bottom-nav-arrow" aria-hidden="true">←</span>
           <span class="piece-bottom-nav-label">Gallery</span>
         </a>
-        <a href="../pieces/block.html" class="piece-bottom-nav-link piece-bottom-nav-link--forward">
+        <a href="/pieces/block" class="piece-bottom-nav-link piece-bottom-nav-link--forward">
           <span class="piece-bottom-nav-label">Next Piece</span>
           <span class="piece-bottom-nav-arrow" aria-hidden="true">→</span>
         </a>
@@ -249,15 +249,15 @@
 
   <footer class="site-footer" id="site-footer">
     <div class="footer-container">
-      <div class="footer-brand"><p class="footer-logo"><a href="../index.html" class="footer-logo-link">Jonas Mikolayunas</a></p></div>
+      <div class="footer-brand"><p class="footer-logo"><a href="/" class="footer-logo-link">Jonas Mikolayunas</a></p></div>
       <nav class="footer-nav">
         <ul class="footer-nav-list">
-          <li class="footer-nav-item"><a href="../gallery.html" class="footer-link">Gallery</a></li>
-          <li class="footer-nav-item"><a href="../process.html" class="footer-link">Process</a></li>
-          <li class="footer-nav-item"><a href="../commission.html" class="footer-link">Commission</a></li>
-          <li class="footer-nav-item"><a href="../about.html" class="footer-link">About</a></li>
-          <li class="footer-nav-item"><a href="../contact.html" class="footer-link">Contact</a></li>
-          <li class="footer-nav-item"><a href="../collection.html" class="footer-link">In the Collection</a></li>
+          <li class="footer-nav-item"><a href="/gallery" class="footer-link">Gallery</a></li>
+          <li class="footer-nav-item"><a href="/process" class="footer-link">Process</a></li>
+          <li class="footer-nav-item"><a href="/commission" class="footer-link">Commission</a></li>
+          <li class="footer-nav-item"><a href="/about" class="footer-link">About</a></li>
+          <li class="footer-nav-item"><a href="/contact" class="footer-link">Contact</a></li>
+          <li class="footer-nav-item"><a href="/collection" class="footer-link">In the Collection</a></li>
         </ul>
       </nav>
       <div class="footer-social">
@@ -268,7 +268,7 @@
       <div class="footer-legal">
         <p class="footer-copyright">&copy; 2026 Jonas Mikolayunas. All rights reserved.
           <span class="footer-legal-divider"> · </span>
-          <a href="../privacy.html" class="footer-privacy-link">Privacy Policy</a>
+          <a href="/privacy" class="footer-privacy-link">Privacy Policy</a>
         </p>
       </div>
       <div class="footer-attribution footer-attribution--lower-left">
@@ -309,6 +309,10 @@
     window.addEventListener('load', updateButtonVisibility);
     setTimeout(updateButtonVisibility, 100);
   </script>
+<!-- Vercel Analytics -->
+<script defer src="/_vercel/insights/script.js"></script>
+<!-- Vercel Speed Insights -->
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </body>
 </html>
 
