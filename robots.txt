@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /agreement.html
+Disallow: /viewer.html
+Disallow: /viewer-auth.html
+Disallow: /process-viewer.html
+Disallow: /clients/
+
+Sitemap: https://mikolayunas.com/sitemap.xml
