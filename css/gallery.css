@@ -258,7 +258,13 @@
   width: 100%;
   color: inherit;
   text-decoration: none;
-  cursor: pointer;
+  cursor: default;
+}
+
+@media (min-width: 1024px) {
+  .gallery-item-link {
+    cursor: pointer;
+  }
 }
 
 /* Gallery Item Media Container */

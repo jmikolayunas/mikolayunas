@@ -169,14 +169,16 @@ const lightboxNext = document.getElementById('lightbox-next');
 
 let currentIndex = 0;
 
-// Open lightbox
-const galleryLinks = document.querySelectorAll('.gallery-item-link');
-galleryLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    currentIndex = parseInt(link.dataset.index);
-    openLightbox(currentIndex);
+// Open lightbox — desktop only (≥ 1024px); mobile/tablet uses native pinch-zoom
+if (window.matchMedia('(min-width: 1024px)').matches) {
+  const galleryLinks = document.querySelectorAll('.gallery-item-link');
+  galleryLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      currentIndex = parseInt(link.dataset.index);
+      openLightbox(currentIndex);
+    });
   });
-});
+}
 
 function openLightbox(index) {
   const item = galleryData[index];
