@@ -5,11 +5,13 @@
       "source": "/index.html",
       "destination": "/",
       "permanent": true
-    },
+    }
+  ],
+  "headers": [
     {
-      "source": "/:path*.html",
-      "destination": "/:path*",
-      "permanent": true
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "mikolayunas.vercel.app" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
     }
   ]
 }
