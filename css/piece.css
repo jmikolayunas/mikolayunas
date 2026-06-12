@@ -681,7 +681,7 @@
 /* Geologic Context Section */
 .piece-geologic-land {
   background-color: var(--color-bg-primary);
-  padding: var(--space-8) 0;
+  border-top: 1px solid var(--color-brass);
 }
 
 .geologic-land-title {
@@ -697,7 +697,7 @@
   color: var(--color-text-primary);
   font-family: var(--font-secondary);
   font-size: var(--text-base);
-  line-height: 1.7;
+  line-height: var(--leading-relaxed);
 }
 
 .geologic-land-text p {
