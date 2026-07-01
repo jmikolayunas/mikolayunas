@@ -4,13 +4,13 @@
   <!-- Core pages -->
   <url>
     <loc>https://mikolayunas.com/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://mikolayunas.com/gallery</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-07-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -46,6 +46,12 @@
   </url>
 
   <!-- Piece pages -->
+  <url>
+    <loc>https://mikolayunas.com/pieces/capecod</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://mikolayunas.com/pieces/maui</loc>
     <lastmod>2026-05-12</lastmod>
