@@ -365,11 +365,11 @@ function generatePDF(forEmail = false) {
     },
     {
       heading: 'Timeline & Design Changes',
-      text: 'Completion timelines vary based on material availability, curing times, and craft complexity. We welcome design changes during early phases; however, as fabrication proceeds, modifications can become more limited or incur additional cost or time. We present any change-related costs in writing for your approval before proceeding.'
+      text: 'Completion timelines vary based on material availability, curing times, and material complexity. We welcome design changes during early phases; however, as fabrication proceeds, modifications can become more limited or incur additional cost or time. We present any change-related costs in writing for your approval before proceeding.'
     },
     {
       heading: 'Client-Supplied Content',
-      text: 'If you provide reference materials, coordinates, trails, text, or logos, you confirm the rights to use them and grant us permission to incorporate them. We interpret topographic data as art, not technical cartography. Your commission is a handcrafted work of art.'
+      text: 'If you provide reference materials, coordinates, trails, text, or logos, you confirm the rights to use them and grant us permission to incorporate them. We interpret topographic data as art, not technical cartography. Your commission is an original work of art.'
     },
     {
       heading: 'Ownership & Portfolio Rights',
@@ -389,7 +389,7 @@ function generatePDF(forEmail = false) {
     },
     {
       heading: 'Materials & Natural Character',
-      text: 'Natural materials possess inherent variations in grain, figure, tone, and mineral character. These contribute to your piece\'s uniqueness. Epoxy may exhibit subtle surface textures or optical shifts depending on viewing angle and lighting—hallmarks of handcrafted work.'
+      text: 'Natural materials possess inherent variations in grain, figure, tone, and mineral character. These contribute to your piece\'s uniqueness. Epoxy may exhibit subtle surface textures or optical shifts depending on viewing angle and lighting—characteristics of original works in natural materials.'
     },
     {
       heading: 'Payment Terms',
