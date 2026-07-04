@@ -224,14 +224,6 @@
       </div>
     </section>
 
-    <!-- CTA SECTION -->
-    <section class="cta section-padded" id="cta">
-      <div class="section-container section-container--narrow text-center">
-        <h2 class="cta-title fade-in-scroll">Begin With a Conversation</h2>
-        <a href="/commission" class="btn btn--accent fade-in-scroll">Commission a Work</a>
-      </div>
-    </section>
-
   </main>
 
   <!-- GLOBAL FOOTER -->
@@ -274,10 +266,21 @@
 
       const img2 = slider.querySelector('.geoteaser-slider__img--2');
 
-      // 30° forward ("/") slant in a 5:4 container
-      // offset = tan(30°) × 50% × (height/width) = 0.5774 × 50 × 0.8 = 23.09% of width
-      const OFFSET = Math.tan(30 * Math.PI / 180) * 50 * (4 / 5);
-      const FRAC   = OFFSET / 100;
+      // 30° forward ("/") slant, sized to the container's own aspect ratio.
+      // The handle's diagonal bar is a true 30° line in screen space (fixed
+      // height rotated by CSS), but the clip-path runs in the container's
+      // own percentage coordinate space — so the offset must be rescaled
+      // whenever height/width changes (geo-moment__wrap is 5:4 on mobile,
+      // 16:9 from 768px up). Recomputed on resize so the seam stays on the bar.
+      let OFFSET = 0;
+      let FRAC   = 0;
+
+      function computeGeometry() {
+        const rect = slider.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        OFFSET = Math.tan(30 * Math.PI / 180) * 50 * (rect.height / rect.width);
+        FRAC   = OFFSET / 100;
+      }
 
       let dragging = false;
       let progress = 0;
@@ -319,6 +322,12 @@
         if (e.key === 'ArrowLeft')  applyProgress(progress - 0.05);
       });
 
+      window.addEventListener('resize', function() {
+        computeGeometry();
+        applyProgress(progress);
+      });
+
+      computeGeometry();
       applyProgress(0.50);
     })();
   </script>
