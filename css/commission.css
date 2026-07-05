@@ -1,0 +1,388 @@
+/* ============================================
+   COMMISSION PAGE STYLES
+   Investment, Timeline, Form, What to Expect
+   ============================================ */
+
+/* Commission Header */
+.commission-header {
+  text-align: center;
+  padding-bottom: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .commission-header {
+    padding-top: 15vh;
+  }
+}
+
+@media (min-width: 1024px) {
+  .commission-header {
+    padding-top: calc(var(--section-padding-y) * 1.3);
+  }
+}
+
+@media (max-width: 767px) {
+  .commission-header {
+    padding-top: calc(var(--section-padding-y) * 2);
+  }
+}
+
+/* ============================================
+   INVESTMENT SECTION
+   ============================================ */
+.commission-investment {
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.investment-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.investment-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.investment-list li {
+  padding-left: var(--space-4);
+  position: relative;
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+}
+
+.investment-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--color-brass);
+  font-weight: var(--weight-bold);
+}
+
+.investment-pricing {
+  padding: var(--space-4);
+  border: 2px solid var(--color-brass);
+  background: rgba(199, 168, 106, 0.05);
+}
+
+.pricing-statement {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4);
+}
+
+.pricing-statement strong {
+  color: var(--color-brass);
+}
+
+.pricing-details {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-3);
+}
+
+.pricing-note {
+  font-family: var(--font-secondary);
+  font-size: var(--text-sm);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ============================================
+   TIMELINE SECTION
+   ============================================ */
+.timeline-steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin: var(--space-6) 0;
+}
+
+.timeline-step {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+}
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--color-brass);
+  color: var(--color-charcoal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  font-weight: var(--weight-bold);
+  flex-shrink: 0;
+}
+
+.step-content {
+  padding-top: var(--space-1);
+}
+
+.step-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.step-description {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.timeline-note {
+  padding: var(--space-4);
+  background: rgba(199, 168, 106, 0.08);
+  border-left: 3px solid var(--color-brass);
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  margin-top: var(--space-4);
+}
+
+/* ============================================
+   COMMISSION FORM
+   ============================================ */
+.commission-form-section {
+  background: var(--color-bg-dark);
+}
+
+.commission-form-section .section-title {
+  color: var(--color-text-inverse);
+}
+
+.form-intro {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-inverse);
+  opacity: 0.9;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto var(--space-7);
+}
+
+.commission-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  padding: var(--space-4);
+  background: rgba(247, 246, 243, 0.03);
+  border: 1px solid var(--color-border);
+}
+
+.commission-form.fade-in-scroll {
+  transition-duration: 2.6s;
+  transition-delay: 0.2s;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.form-section-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-regular);
+  color: var(--color-brass);
+  margin: 0;
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Dark form inputs */
+.commission-form .form-input,
+.commission-form .form-textarea,
+.commission-form .form-select {
+  background: rgba(247, 246, 243, 0.05);
+  border-color: rgba(199, 168, 106, 0.2);
+  color: var(--color-text-inverse);
+}
+
+.commission-form .form-input::placeholder,
+.commission-form .form-textarea::placeholder {
+  color: rgba(247, 246, 243, 0.4);
+}
+
+.commission-form .form-input:focus,
+.commission-form .form-textarea:focus,
+.commission-form .form-select:focus {
+  background: rgba(247, 246, 243, 0.08);
+  border-color: var(--color-brass);
+}
+
+.commission-form .form-label {
+  color: var(--color-text-inverse);
+}
+
+.commission-form .form-actions {
+  justify-content: center;
+}
+
+/* ============================================
+   FAQ ACCORDION
+   ============================================ */
+.faq-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.faq-item-expanded {
+  padding: var(--space-4);
+  border-left: 3px solid var(--color-brass);
+  background: rgba(199, 168, 106, 0.03);
+}
+
+.faq-question-expanded {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.faq-answer-expanded {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* INTENTIONAL: mobile centering for pricing box content,
+   form section titles, and What to Expect titles.
+   Body text, form labels, and form inputs stay left-aligned.
+   Do not remove text-align: center from these rules. */
+@media (max-width: 767px) {
+  .pricing-statement,
+  .pricing-details,
+  .pricing-note {
+    text-align: center;
+  }
+
+  .form-section-title {
+    text-align: center;
+  }
+
+  .expect-title {
+    text-align: center;
+  }
+}
+
+/* Desktop Enhancements */
+@media (min-width: 768px) {
+  .timeline-step {
+    gap: var(--space-4);
+  }
+
+  .step-number {
+    width: 60px;
+    height: 60px;
+    font-size: var(--text-lg);
+  }
+
+  .commission-form {
+    padding: var(--space-6);
+  }
+
+  .investment-pricing {
+    padding: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  /* INTENTIONAL: restore left-alignment at desktop only.
+     Tablet keeps mobile centered layout.
+     Do not change to 768px. */
+  .pricing-statement,
+  .pricing-details,
+  .pricing-note {
+    text-align: left;
+  }
+
+  .form-section-title {
+    text-align: left;
+  }
+
+  .expect-title {
+    text-align: left;
+  }
+
+  /* INTENTIONAL: cap form width at desktop so it doesn't
+     stretch to full container width on wide viewports.
+     Do not remove max-width or margin-inline. */
+  .commission-form {
+    max-width: 860px;
+    margin-inline: auto;
+  }
+}
+
+/* ============================================
+   WHAT TO EXPECT SECTION
+   ============================================ */
+
+.commission-expect {
+  /* inherits section-padded spacing */
+}
+
+.expect-list {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+@media (min-width: 768px) {
+  .expect-list {
+    gap: var(--space-8);
+  }
+}
+
+.expect-item {
+  /* No special styling needed - clean and simple */
+}
+
+.expect-title {
+  font-family: var(--font-primary);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.expect-text {
+  font-family: var(--font-secondary);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
