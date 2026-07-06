@@ -44,8 +44,7 @@ I don't have a tidy single sentence that unifies all of this yet, and I'm not su
 
 **Suggested new philosophy-grid entry**, alongside the existing four ("Place as Identity," "One-of-One," "Data Meets Artistry," "Built to Last") — replacing or supplementing "Data Meets Artistry":
 
-> **In Motion, Not At Rest**
-> A finished landform is not a finished process. Each piece is built from the same logic that shapes the land itself: water and geology moving toward the path of least resistance, over a timescale rendered visible for the first time.
+The material and subject continue to change as the inquiry deepens. Wood and resin are the current vocabulary for a study that began in motion and geologic time, not its final form.
 
 ---
 
