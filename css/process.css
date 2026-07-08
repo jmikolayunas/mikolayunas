@@ -437,6 +437,36 @@
 }
 
 /* ============================================
+   PROCESS CLOSING STATEMENT
+   ============================================ */
+.process-closing {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-9);
+}
+
+.process-closing-text {
+  font-family: var(--font-secondary);
+  font-size: 1.0625rem;
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  max-width: 44ch;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .process-closing-text {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .process-closing-text {
+    font-size: 1.25rem;
+  }
+}
+
+/* ============================================
    PROCESS SUMMARY TIMELINE
    ============================================ */
 .process-summary {
