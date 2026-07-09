@@ -148,17 +148,22 @@
   }
 }
 
+/* INTENTIONAL: iPad Mini landscape specifically (1024px is Mini's
+   landscape width; other iPads land wider in landscape - Air ~1180px,
+   Pro 11" ~1194px, Pro 12.9" 1366px - so an exact 1024px landscape
+   match targets Mini only, without affecting the other iPads' 3-column
+   landscape layout set by the 768px rule above). */
+@media (width: 1024px) and (orientation: landscape) {
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .philosophy-item {
   text-align: center;
   padding: var(--space-4);
   border: 1px solid var(--color-border);
   background: rgba(247, 246, 243, 0.02);
-  transition: all 0.3s ease;
-}
-
-.philosophy-item:hover {
-  border-color: var(--color-brass);
-  transform: translateY(-4px);
 }
 
 .studio-philosophy .philosophy-grid.fade-in-scroll {
