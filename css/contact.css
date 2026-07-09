@@ -60,6 +60,18 @@
   max-width: 52ch;
 }
 
+/* Commission inline link */
+.contact-commission-link {
+  color: var(--color-brass);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(199, 168, 106, 0.35);
+  transition: border-color 0.25s ease;
+}
+
+.contact-commission-link:hover {
+  border-bottom-color: var(--color-brass);
+}
+
 /* Channel list */
 .contact-channels {
   display: flex;
