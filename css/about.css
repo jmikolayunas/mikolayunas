@@ -156,7 +156,7 @@
 @media (width: 1024px) and (orientation: landscape) {
   .philosophy-grid {
     grid-template-columns: 1fr;
-    max-width: 63%;
+    max-width: 53.55%;
     margin-inline: auto;
   }
 }
