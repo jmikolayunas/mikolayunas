@@ -143,7 +143,7 @@
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
   .philosophy-grid {
     grid-template-columns: 1fr;
-    max-width: 50%;
+    max-width: 72%;
     margin-inline: auto;
   }
 }
