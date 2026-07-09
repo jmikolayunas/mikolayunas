@@ -318,7 +318,7 @@ console.log('✓ Process scrollytelling scripts loaded');
         
         // Add CTA
         const cta = document.createElement('a');
-        cta.href = 'commission.html';
+        cta.href = '/contact';
         cta.className = 'cta-link';
         cta.textContent = 'Schedule Consultation';
         contentArea.appendChild(cta);
