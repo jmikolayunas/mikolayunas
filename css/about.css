@@ -135,6 +135,17 @@
   }
 }
 
+/* INTENTIONAL: iPad portrait override (Mini/Air/Pro span 768-1024px
+   in portrait). Width alone can't distinguish portrait from landscape
+   here since iPad Pro 12.9" portrait (1024px) equals iPad Mini
+   landscape (1024px) - orientation is required. Landscape needs no
+   extra rule; it already gets repeat(3, 1fr) from the 768px rule above. */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: portrait) {
+  .philosophy-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .philosophy-item {
   text-align: center;
   padding: var(--space-4);
@@ -167,6 +178,16 @@
   letter-spacing: 0.01em;
   font-weight: 300;
   opacity: 0.95;
+}
+
+/* INTENTIONAL: iPad landscape only (1024-1366px covers Mini through
+   Pro 12.9" landscape). Caps philosophy-text at the same size as the
+   founder-story .text-body (var(--text-base)) so cards don't read
+   larger than the story copy once the grid is 3 columns wide. */
+@media (min-width: 768px) and (max-width: 1366px) and (orientation: landscape) {
+  .studio-philosophy .philosophy-text {
+    font-size: var(--text-base);
+  }
 }
 
 /* ============================================
