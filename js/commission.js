@@ -15,12 +15,8 @@ if (commissionForm) {
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
-      phone: formData.get('phone'),
-      location: formData.get('location'),
-      size: formData.get('size-preference'),
-      timeline: formData.get('timeline'),
-      story: formData.get('story'),
-      inspiration: formData.get('inspiration')
+      place: formData.get('place'),
+      message: formData.get('message')
     };
     
     // Hide any previous messages

@@ -25,7 +25,6 @@
 <link rel="canonical" href="https://mikolayunas.com/commission">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/commission.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
     /* Ensure arrows instead of bullets for investment list */
     .investment-list li::before {
@@ -76,93 +75,6 @@
     .commission-form select:focus {
       background-color: rgba(46, 46, 46, 0.95);
       border-color: var(--color-brass);
-    }
-
-    /* Custom Flatpickr Dark Theme - Graphite */
-    .flatpickr-calendar {
-      background: var(--color-graphite);
-      border: 1px solid var(--color-brass);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .flatpickr-months {
-      background: var(--color-graphite);
-      border-bottom: 1px solid rgba(199, 168, 106, 0.2);
-    }
-
-    .flatpickr-current-month {
-      color: var(--color-text-inverse);
-    }
-
-    .flatpickr-current-month .flatpickr-monthDropdown-months {
-      background: var(--color-graphite);
-      color: var(--color-text-inverse);
-      font-weight: 600;
-    }
-
-    .flatpickr-current-month .numInputWrapper input {
-      background: var(--color-graphite);
-      color: var(--color-text-inverse);
-    }
-
-    .flatpickr-weekdays {
-      background: var(--color-graphite);
-    }
-
-    span.flatpickr-weekday {
-      color: var(--color-brass);
-      font-weight: 600;
-    }
-
-    .flatpickr-days {
-      background: var(--color-graphite);
-    }
-
-    .flatpickr-day {
-      color: var(--color-text-inverse);
-      border: none;
-    }
-
-    .flatpickr-day:hover {
-      background: rgba(199, 168, 106, 0.2);
-      border-color: var(--color-brass);
-    }
-
-    .flatpickr-day.today {
-      border-color: var(--color-brass);
-      background: rgba(199, 168, 106, 0.15);
-      color: var(--color-brass);
-    }
-
-    .flatpickr-day.today:hover {
-      background: rgba(199, 168, 106, 0.3);
-    }
-
-    .flatpickr-day.selected {
-      background: var(--color-brass);
-      color: var(--color-charcoal);
-      border-color: var(--color-brass);
-    }
-
-    .flatpickr-day.selected:hover {
-      background: var(--color-brass);
-      color: var(--color-charcoal);
-    }
-
-    .flatpickr-day.disabled,
-    .flatpickr-day.prevMonthDay,
-    .flatpickr-day.nextMonthDay {
-      color: rgba(247, 246, 243, 0.3);
-    }
-
-    .flatpickr-months .flatpickr-prev-month:hover svg,
-    .flatpickr-months .flatpickr-next-month:hover svg {
-      fill: var(--color-brass);
-    }
-
-    .flatpickr-months .flatpickr-prev-month svg,
-    .flatpickr-months .flatpickr-next-month svg {
-      fill: var(--color-text-inverse);
     }
 
     /* Style default/placeholder options in select boxes to be lighter grey */
@@ -332,22 +244,12 @@
         Each commission is priced according to scale, materials, and complexity. Every work includes an artist-made frame and a custom-engraved nameplate.
       </p>
 
-      <p class="pricing-details">
-        Study &nbsp;·&nbsp; 24" × 24"<br>
-        <strong>from $8,500</strong><br>
-        <br>
-        Signature &nbsp;·&nbsp; 36" × 36"<br>
-        <strong>from $12,500</strong><br>
-        <br>
-        Statement &nbsp;·&nbsp; 48" × 48"<br>
-        <strong>from $19,500</strong><br>
-        <br>
-        Installation &nbsp;·&nbsp; site-scaled / installation<br>
-        <strong>from $40,000</strong>
+      <p class="pricing-floor">
+        <strong>Commissions begin at $8,500.</strong>
       </p>
 
       <p class="pricing-note">
-        <em>Final pricing is confirmed during consultation based on your specific vision, materials, and complexity. Dimensions follow the geography of the place; nominal sizes are reference anchors, not constraints. A detailed quote is provided before any commitment.</em>
+        Every commission begins with a conversation about scope and material — reach out to start there.
       </p>
     </div>
   </div>
@@ -365,10 +267,7 @@
 
         <form class="commission-form fade-in-scroll" id="commission-form">
 
-          <!-- Personal Info -->
           <div class="form-section">
-            <h3 class="form-section-title">Your Information</h3>
-
             <div class="form-row">
               <div class="form-group">
                 <label for="name" class="form-label">Full Name *</label>
@@ -395,132 +294,37 @@
               </div>
             </div>
 
-            <div class="form-row">
-              <div class="form-group">
-                <label for="phone" class="form-label">Phone (Optional)</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  class="form-input"
-                  autocomplete="tel"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="location" class="form-label">Your Location *</label>
-                <input
-                  type="text"
-                  id="location"
-                  name="location"
-                  class="form-input"
-                  placeholder="City, State/Country"
-                  required
-                />
-                <span class="form-helper">Helps me understand shipping logistics</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project Details -->
-          <div class="form-section">
-            <h3 class="form-section-title">Project Details</h3>
-
             <div class="form-group">
-              <label for="place" class="form-label">What Place Do You Want to Capture? *</label>
+              <label for="place" class="form-label">What Place Are You Thinking About? (Optional)</label>
               <input
                 type="text"
                 id="place"
                 name="place"
                 class="form-input"
-                placeholder="e.g. Mount Washington, Lake Tahoe, Nantucket Island, Brooklyn neighborhood"
-                required
+                placeholder="e.g. Mount Washington, Lake Tahoe, Nantucket Island — or leave blank if you're still deciding"
               />
-<span class="form-helper">Be as specific as possible: mountain name, coastline section, trail system, GPS coordinates</span>
             </div>
 
             <div class="form-group">
-              <label for="size-preference" class="form-label">Size Preference *</label>
-              <select id="size-preference" name="size-preference" class="form-select" required>
-                <option value="">Select a size</option>
-                <option value="study">Study — 24" × 24"</option>
-                <option value="signature">Signature — 36" × 36"</option>
-                <option value="statement">Statement — 48" × 48"</option>
-                <option value="installation">Installation — site-scaled / multi-panel</option>
-                <option value="open">Open to recommendations</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="timeline" class="form-label">Event / Delivery Deadline *</label>
-              <input
-                type="text"
-                id="timeline"
-                name="timeline"
-                class="form-input"
-                placeholder="Select a date"
-                required
-                readonly
-              />
-              <span class="form-helper">Select the date you need the piece in hand. Typical lead time is <strong>8–12 weeks</strong>; feasibility will be confirmed during consultation.</span>
-            </div>
-
-
-            <div class="form-group">
-              <label for="occasion" class="form-label">Occasion (Optional)</label>
-              <select id="occasion" name="occasion" class="form-select">
-                <option value="">Select an occasion</option>
-                <option value="wedding">Wedding</option>
-                <option value="anniversary">Anniversary</option>
-                <option value="birthday">Birthday</option>
-                <option value="housewarming">Housewarming</option>
-                <option value="retirement">Retirement</option>
-                <option value="corporate">Corporate / Client Gift</option>
-                <option value="gallery">Gallery / Installation</option>
-                <option value="other">Other</option>
-              </select>
-<span class="form-helper">Optional. Useful if this piece is a gift or tied to a specific event.</span>
-            </div>
-          </div>
-
-          <!-- Story -->
-          <div class="form-section">
-            <h3 class="form-section-title">Your Story</h3>
-
-            <div class="form-group">
-              <label for="story" class="form-label">The Story Behind This Place *</label>
+              <label for="message" class="form-label">A Few Words About What's On Your Mind (Optional)</label>
               <textarea
-                id="story"
-                name="story"
+                id="message"
+                name="message"
                 class="form-textarea"
-                rows="10"
-placeholder="What draws you to this place: memory, milestone, home, or heritage? If there's an occasion, date, or name you'd like honored (including for the nameplate), share it here. A few lines is perfect."
-                required
-              ></textarea>
-<span class="form-helper">Share as much or as little as you wish. Reference photos and sketches are welcome by reply email after submission.</span>
-            </div>
-
-            <div class="form-group">
-              <label for="inspiration" class="form-label">Design Ideas or Inspiration (Optional)</label>
-              <textarea
-                id="inspiration"
-                name="inspiration"
-                class="form-textarea"
-                rows="5"
-                placeholder="If you have a preferred mood, palette, wood species, or a piece from the gallery you love, note it here. If not, I'll guide you."
+                rows="4"
+                placeholder="Share as much or as little as you'd like — I'll follow up to talk through the rest."
               ></textarea>
             </div>
-
           </div>
 
           <!-- Submit -->
           <div class="form-actions">
-            <button type="submit" class="btn btn--accent btn--large">Submit Commission Inquiry</button>
+            <button type="submit" class="btn btn--accent btn--large">Send Inquiry</button>
           </div>
 
           <!-- Success/Error Messages -->
           <div class="form-message form-message--success" id="form-success">
-            <p><strong>✓ Thank you!</strong> Your commission inquiry has been received. I'll review your story and respond within 1–2 business days to schedule a consultation call.</p>
+            <p><strong>✓ Thank you!</strong> Your inquiry has been received. I'll respond within 1–2 business days to start the conversation.</p>
           </div>
           <div class="form-message form-message--error" id="form-error">
             <p><strong>Something went wrong.</strong> Please try emailing your inquiry directly to <a href="mailto:jonas@mikolayunas.com">jonas@mikolayunas.com</a></p>
@@ -668,18 +472,7 @@ placeholder="What draws you to this place: memory, milestone, home, or heritage?
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script>
-    // Initialize Flatpickr on the timeline input
-    flatpickr("#timeline", {
-      dateFormat: "F j, Y",
-      minDate: "today",
-      defaultDate: null,
-      allowInput: false,
-      disableMobile: false,
-      monthSelectorType: "static"
-    });
-
     // Handle placeholder styling for select boxes
     document.addEventListener('DOMContentLoaded', function() {
       const selects = document.querySelectorAll('.commission-form select');
