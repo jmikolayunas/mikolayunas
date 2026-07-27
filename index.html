@@ -30,7 +30,7 @@
   imagesizes="(min-width: 1440px) 2400px, (min-width: 1024px) 1800px, 100vw"
   media="(min-width: 768px)">
   <link rel="preload" as="image"
-  imagesrcset="images/block/block-hero-crop-800w.webp 800w, images/block/block-hero-crop-1200w.webp 1200w, images/block/block-hero-crop-1800w.webp 1800w, images/block/block-hero-crop-2400w.webp 2400w"
+  imagesrcset="images/southport/southport-featured-480w.webp 480w, images/southport/southport-featured-800w.webp 800w, images/southport/southport-featured-1200w.webp 1200w, images/southport/southport-featured-1600w.webp 1600w"
   imagesizes="100vw"
   media="(max-width: 767px)">
 </head>
@@ -64,14 +64,14 @@
     <section class="hero" id="hero">
       <div class="hero-media">
         <picture>
-          <!-- Mobile portrait: Block Island crop (max-width: 767px) -->
+          <!-- Mobile portrait: Southport Island crop (max-width: 767px) -->
           <source
             media="(max-width: 767px)"
             srcset="
-              images/block/block-hero-crop-800w.webp 800w,
-              images/block/block-hero-crop-1200w.webp 1200w,
-              images/block/block-hero-crop-1800w.webp 1800w,
-              images/block/block-hero-crop-2400w.webp 2400w
+              images/southport/southport-featured-480w.webp 480w,
+              images/southport/southport-featured-800w.webp 800w,
+              images/southport/southport-featured-1200w.webp 1200w,
+              images/southport/southport-featured-1600w.webp 1600w
             "
             sizes="100vw"
           />
@@ -133,6 +133,27 @@
         <div class="work-grid">
           
           <!-- Work Item 1 -->
+          <article class="work-item fade-in-scroll" data-aspect="4-5">
+            <a href="/pieces/southport" class="work-link">
+              <div class="work-media">
+                <img srcset="
+                    images/southport/southport-featured-480w.webp 480w,
+                    images/southport/southport-featured-800w.webp 800w,
+                    images/southport/southport-featured-1200w.webp 1200w,
+                    images/southport/southport-featured-1600w.webp 1600w
+                  "
+                  sizes="(min-width: 1024px) 750px, (min-width: 768px) 600px, 500px"
+                  src="images/southport/southport-featured-800w.webp"
+                  alt="Southport topographic relief" class="work-image" />
+              </div>
+              <div class="work-info">
+                <h3 class="work-title">Southport</h3>
+                <p class="work-meta">maple, mahogany, resin<br>22½" × 40" × 1¾"</p>
+              </div>
+            </a>
+          </article>
+
+          <!-- Work Item 2 -->
           <article class="work-item fade-in-scroll" data-aspect="3-2">
             <a href="/pieces/capecod" class="work-link">
               <div class="work-media">
@@ -149,27 +170,6 @@
               <div class="work-info">
                 <h3 class="work-title">Cape Cod</h3>
                 <p class="work-meta">maple, walnut, resin<br>22½" × 28" × 1½"</p>
-              </div>
-            </a>
-          </article>
-
-          <!-- Work Item 2 -->
-          <article class="work-item fade-in-scroll" data-aspect="3-2">
-            <a href="/pieces/maui" class="work-link">
-              <div class="work-media">
-                <img srcset="
-                    images/maui/maui-featured-480w.webp 480w,
-                    images/maui/maui-featured-800w.webp 800w,
-                    images/maui/maui-featured-1200w.webp 1200w,
-                    images/maui/maui-featured-1600w.webp 1600w
-                  "
-                  sizes="(min-width: 1024px) 750px, (min-width: 768px) 600px, 500px"
-                  src="images/maui/maui-featured-800w.webp"
-                  alt="Maui Island topographic relief map" class="work-image" />
-              </div>
-              <div class="work-info">
-                <h3 class="work-title">The Valley Isle</h3>
-                <p class="work-meta">koa, birch, resin<br>29" × 24" × 2¾"</p>
               </div>
             </a>
           </article>
