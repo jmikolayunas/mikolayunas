@@ -128,19 +128,28 @@
   gap: var(--space-6);
 }
 
-@media (min-width: 768px) {
-  .philosophy-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-  }
-}
-
+/* Keeps a single-column card from stretching the full container
+   width on tablet portrait, where two sentences would strand
+   inside a very wide bordered box. */
 .philosophy-item {
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
   text-align: center;
   padding: var(--space-4);
   border: 1px solid var(--color-border);
   background: rgba(247, 246, 243, 0.02);
   transition: all 0.3s ease;
+}
+
+@media (min-width: 1024px) {
+  .philosophy-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .philosophy-item {
+    max-width: none;
+  }
 }
 
 .philosophy-item:hover {
