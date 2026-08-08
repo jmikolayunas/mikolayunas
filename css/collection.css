@@ -92,6 +92,10 @@
   aspect-ratio: 600 / 515;
 }
 
+.collector-entry-figure[data-aspect="landscape"] {
+  aspect-ratio: 1200 / 963;
+}
+
 .collector-entry-figure img {
   width: 100%;
   height: 100%;
