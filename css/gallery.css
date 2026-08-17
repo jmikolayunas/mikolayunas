@@ -332,6 +332,21 @@
   opacity: 0.7;
 }
 
+/* Acquisition status — Available only. Private Collection stays
+   silent on the grid (labeling eight of twelve tiles would turn
+   it into a status board); that label lives on the piece page
+   instead. Single class since only one state ever renders here.
+   Reads as a caption annotation, not a second title. */
+.gallery-item-status {
+  display: block;
+  font-family: var(--font-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-brass);
+  margin-top: var(--space-1);
+}
+
 /* ============================================
    LIGHTBOX MODAL
    ============================================ */

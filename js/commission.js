@@ -18,7 +18,16 @@ if (commissionForm) {
       place: formData.get('place'),
       message: formData.get('message')
     };
-    
+
+    // Carry the piece query param through as a hidden field so Jonas can
+    // tell which piece prompted the inquiry. Omitted entirely when absent
+    // rather than sent empty. Not shown to the user; the visible form
+    // stays the same four fields.
+    const pieceParam = new URLSearchParams(window.location.search).get('piece');
+    if (pieceParam) {
+      data.piece = pieceParam;
+    }
+
     // Hide any previous messages
     formSuccess.classList.remove('show');
     formError.classList.remove('show');
