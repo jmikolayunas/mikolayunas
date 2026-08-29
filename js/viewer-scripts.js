@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const viewPresetButtons = document.querySelectorAll(".view-preset");
   const viewResetButton = document.querySelector(".view-reset");
 
-  const glbPath = "models/puerto rico cropped.glb";
+  const glbPath = "models/stowe.glb";
   const hdrPath = "hdri/kloppenheim_06_1k.hdr";
 
   const setLoading = (on) => { if (loadingEl) loadingEl.style.display = on ? "flex" : "none"; };
